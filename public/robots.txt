@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://escalup.com/sitemap.xml
