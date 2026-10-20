@@ -41,7 +41,7 @@ function CounterItem({ item, inView }) {
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: (item.id || 1) * 0.08, ease: 'easeOut' }}
       whileHover={{ y: -2 }}
-      className="text-center sm:text-left px-4 py-3 sm:py-2 transition-all rounded-xl hover:bg-[#F4F6F5]/60 cursor-default"
+      className="text-center sm:text-left px-4 py-3 sm:py-2 transition-all rounded-xl hover:bg-[#F4F6F5]/60 cursor-default border-l border-[#DBE3E0] dark:border-[#223249]"
     >
       <div className="flex items-baseline justify-center sm:justify-start gap-1 font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#14201D] font-mono tracking-tight">
         <span className="text-[#2E756E]">{displayCount}</span>
@@ -60,7 +60,7 @@ export default function StatsStrip() {
   return (
     <div ref={containerRef} className="w-full bg-white dark:bg-[#0B111E] border-b border-[#DBE3E0] dark:border-[#223249] py-8 lg:py-10 shadow-soft relative z-20">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 divide-y sm:divide-y-0 sm:divide-x divide-[#DBE3E0] dark:divide-[#223249]">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {statsData.map((stat) => (
             <CounterItem key={stat.id} item={stat} inView={isInView} />
           ))}
