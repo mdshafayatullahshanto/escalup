@@ -28,7 +28,7 @@ export const companyData = {
 
   workingHours: {
     timezone: 'Asia/Dhaka (BST, UTC+6)',
-    schedule: 'Monday – Friday, 09:00 – 18:00 BST',
+    schedule: 'Monday – Friday, 10:00 – 19:00 BST',
     weekendSupport: 'Available on-demand for critical project releases',
     overlaps: [
       {

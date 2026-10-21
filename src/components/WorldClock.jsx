@@ -148,7 +148,7 @@ export default function WorldClock() {
                   }`}
                 ></span>
                 <span className="truncate">
-                  {hub.overlapNote || (hub.isHQ ? '09:00 - 18:00 BST' : 'Operational')}
+                  {hub.overlapNote || (hub.isHQ ? '10:00 - 19:00 BST' : 'Operational')}
                 </span>
               </div>
             </motion.div>

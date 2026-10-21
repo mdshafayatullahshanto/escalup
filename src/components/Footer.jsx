@@ -59,7 +59,7 @@ export default function Footer({ onOpenCalendly }) {
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-3.5 h-3.5 text-[#2E756E]" />
-                <span>Monday – Friday | 09:00 – 18:00 BST (UTC+6)</span>
+                <span>Monday – Friday | 10:00 – 19:00 BST (UTC+6)</span>
               </div>
             </div>
 
