@@ -150,13 +150,14 @@ export default function AboutSection() {
           >
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
               
-              {/* Photo placeholder */}
-              <div className="w-24 h-24 rounded-2xl bg-gradient-to-tr from-[#2E756E]/20 to-[#2E756E]/5 dark:from-[#2E756E]/30 dark:to-[#121C2D] border border-[#DBE3E0] dark:border-[#223249] flex items-center justify-center shrink-0 overflow-hidden shadow-inner">
+              {/* Photo */}
+              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-[#2E756E]/10 dark:bg-[#162235] border border-[#DBE3E0] dark:border-[#223249] flex items-center justify-center shrink-0 overflow-hidden shadow-md">
                 {leadEngineer.photo ? (
                   <img
                     src={leadEngineer.photo}
                     alt={leadEngineer.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-center"
+                    loading="lazy"
                   />
                 ) : (
                   <div className="text-center p-2">
