@@ -17,7 +17,7 @@ export default function StickyMobileCTA() {
   };
 
   return (
-    <div className="fixed bottom-0 inset-x-0 z-40 bg-white/95 dark:bg-[#121C2D]/95 backdrop-blur-md border-t border-[#DBE3E0] dark:border-[#223249] p-3 shadow-lg lg:hidden">
+    <div className="fixed bottom-0 inset-x-0 z-40 bg-white/95 dark:bg-[#121C2D]/95 backdrop-blur-md border-t border-[#DBE3E0] dark:border-[#223249] p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-lg lg:hidden">
       <div className="flex items-center gap-2 max-w-md mx-auto">
         {/* Direct Email Button */}
         <a

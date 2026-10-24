@@ -32,7 +32,7 @@ export default function Footer({ onOpenCalendly }) {
   };
 
   return (
-    <footer className="bg-[#142F2C] text-white pt-16 pb-12 border-t border-[#1D4C47] relative">
+    <footer className="bg-[#142F2C] text-white pt-16 pb-28 sm:pb-24 lg:pb-12 border-t border-[#1D4C47] relative">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         {/* Top Grid */}
@@ -168,15 +168,15 @@ export default function Footer({ onOpenCalendly }) {
         </div>
 
         {/* Bottom Strip */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50 text-center sm:text-left">
           <div>
             © {currentYear} escalup. All rights reserved.
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-x-3 gap-y-1">
             <span>Mechanical & CAD Design</span>
-            <span>·</span>
+            <span className="hidden sm:inline">·</span>
             <span>MEP & BIM Coordination</span>
-            <span>·</span>
+            <span className="hidden sm:inline">·</span>
             <span>Offshore Engineering Services</span>
           </div>
         </div>
