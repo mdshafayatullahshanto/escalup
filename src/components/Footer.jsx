@@ -172,11 +172,11 @@ export default function Footer({ onOpenCalendly }) {
           <div>
             © {currentYear} escalup. All rights reserved.
           </div>
-          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-x-3 gap-y-1">
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-x-2.5 gap-y-1">
             <span>Mechanical & CAD Design</span>
-            <span className="hidden sm:inline">·</span>
+            <span>·</span>
             <span>MEP & BIM Coordination</span>
-            <span className="hidden sm:inline">·</span>
+            <span>·</span>
             <span>Offshore Engineering Services</span>
           </div>
         </div>
