@@ -94,16 +94,16 @@ export default function Navbar({ onOpenCalendly }) {
             <Logo variant="dark" size={scrolled ? 'sm' : 'md'} />
 
             {/* Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-medium text-white/85">
+            <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-medium">
               {navLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="hover:text-white transition-colors py-1 cursor-pointer relative group font-medium"
+                  className="text-white/90 hover:text-white transition-colors py-1 cursor-pointer relative group font-semibold text-sm tracking-wide"
                 >
                   <span>{link.label}</span>
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full rounded-full" />
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#A7F3D0] transition-all duration-300 group-hover:w-full rounded-full" />
                 </a>
               ))}
             </nav>
@@ -112,7 +112,7 @@ export default function Navbar({ onOpenCalendly }) {
             <div className="hidden lg:flex items-center gap-4">
               <button
                 onClick={handleBookCallClick}
-                className="text-xs font-semibold text-white/90 hover:text-white transition-colors flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 cursor-pointer"
+                className="text-xs font-bold text-white hover:text-white transition-colors flex items-center gap-1.5 px-3.5 py-2 rounded-full hover:bg-white/15 cursor-pointer border border-white/20"
                 title="Schedule 30-min intro call"
               >
                 <Calendar className="w-3.5 h-3.5 text-[#A7F3D0]" />
