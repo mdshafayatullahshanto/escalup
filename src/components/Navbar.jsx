@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowRight, Calendar } from 'lucide-react';
 import Logo from './Logo';
+import Magnetic from './Magnetic';
 import { companyData } from '../data/company';
 import { trackCallBooking } from '../utils/analytics';
 
@@ -91,7 +92,9 @@ export default function Navbar({ onOpenCalendly }) {
         <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
           <div className="flex items-center justify-between">
             {/* Brand Logo - white variant on brand teal background */}
-            <Logo variant="dark" size={scrolled ? 'sm' : 'md'} />
+            <Magnetic strength={0.12}>
+              <Logo variant="dark" size={scrolled ? 'sm' : 'md'} />
+            </Magnetic>
 
             {/* Desktop Navigation Links */}
             <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-medium">
@@ -110,23 +113,27 @@ export default function Navbar({ onOpenCalendly }) {
 
             {/* Desktop Actions */}
             <div className="hidden lg:flex items-center gap-4">
-              <button
-                onClick={handleBookCallClick}
-                className="text-xs font-bold text-white hover:text-white transition-colors flex items-center gap-1.5 px-3.5 py-2 rounded-full hover:bg-white/15 cursor-pointer border border-white/20"
-                title="Schedule 30-min intro call"
-              >
-                <Calendar className="w-3.5 h-3.5 text-[#A7F3D0]" />
-                <span>Book a Call</span>
-              </button>
+              <Magnetic strength={0.15}>
+                <button
+                  onClick={handleBookCallClick}
+                  className="text-xs font-bold text-white hover:text-white transition-colors flex items-center gap-1.5 px-3.5 py-2 rounded-full hover:bg-white/15 cursor-pointer border border-white/20"
+                  title="Schedule 30-min intro call"
+                >
+                  <Calendar className="w-3.5 h-3.5 text-[#A7F3D0]" />
+                  <span>Book a Call</span>
+                </button>
+              </Magnetic>
 
-              <a
-                href="#contact"
-                onClick={handleQuoteClick}
-                className="navbar-cta-btn btn-primary-white px-5 py-2.5 rounded-full bg-white hover:bg-[#F0F6F5] text-[#1D4E49] font-bold text-xs tracking-wide shadow-md hover:shadow-lg transition-all flex items-center gap-2 cursor-pointer group shrink-0"
-              >
-                <span>Get a Quote</span>
-                <ArrowRight className="w-3.5 h-3.5 text-[#2E756E] group-hover:translate-x-0.5 transition-transform" />
-              </a>
+              <Magnetic strength={0.18}>
+                <a
+                  href="#contact"
+                  onClick={handleQuoteClick}
+                  className="navbar-cta-btn btn-primary-white px-5 py-2.5 rounded-full bg-white hover:bg-[#F0F6F5] text-[#1D4E49] font-bold text-xs tracking-wide shadow-md hover:shadow-lg transition-all flex items-center gap-2 cursor-pointer group shrink-0"
+                >
+                  <span>Get a Quote</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-[#2E756E] group-hover:translate-x-0.5 transition-transform" />
+                </a>
+              </Magnetic>
             </div>
 
             {/* Mobile Hamburger Button */}

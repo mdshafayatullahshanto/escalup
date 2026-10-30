@@ -76,48 +76,49 @@ export default function ServicesSection() {
               <motion.div
                 key={service.id}
                 variants={item}
-                whileHover={{ y: -6 }}
-                transition={{ duration: 0.25, ease: 'easeOut' }}
+                whileHover={{ y: -8, scale: 1.01 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 className={`${isWide ? 'lg:col-span-3 lg:max-w-2xl lg:mx-auto' : ''}`}
               >
                 <Link
                   to={`/services/${service.slug}`}
-                  className="h-full flex flex-col justify-between p-7 rounded-2xl bg-[#F4F6F5]/50 dark:bg-[#121C2D] hover:bg-white dark:hover:bg-[#162235] border border-[#DBE3E0] dark:border-[#223249] hover:border-[#2E756E]/40 shadow-soft hover:shadow-card transition-all duration-300 group relative overflow-hidden"
+                  data-cursor="Explore"
+                  className="h-full flex flex-col justify-between p-7 rounded-2xl bg-[#F4F6F5]/50 dark:bg-[#121C2D] hover:bg-white dark:hover:bg-[#162235] border border-[#DBE3E0] dark:border-[#223249] hover:border-[#2E756E]/40 dark:hover:border-[#38B2A6]/40 shadow-soft hover:shadow-card transition-all duration-300 group relative overflow-hidden"
                 >
                   {/* Subtle top indicator bar on hover */}
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-[#2E756E] opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-[#2E756E] dark:bg-[#38B2A6] opacity-0 group-hover:opacity-100 transition-opacity" />
 
                   <div>
                     {/* Header: Icon + Category Badge */}
                     <div className="flex items-center justify-between mb-5">
-                      <div className="w-12 h-12 rounded-xl bg-white dark:bg-[#162235] border border-[#DBE3E0] dark:border-[#223249] text-[#2E756E] flex items-center justify-center shadow-sm group-hover:bg-[#2E756E] group-hover:text-white group-hover:border-[#2E756E] transition-all duration-300">
+                      <div className="w-12 h-12 rounded-xl bg-white dark:bg-[#162235] border border-[#DBE3E0] dark:border-[#223249] text-[#2E756E] dark:text-[#38B2A6] flex items-center justify-center shadow-sm group-hover:bg-[#2E756E] group-hover:text-white dark:group-hover:bg-[#38B2A6] dark:group-hover:text-[#0B111E] group-hover:border-[#2E756E] transition-all duration-300 group-hover:scale-105">
                         <Icon className="w-6 h-6" />
                       </div>
-                      <span className="text-[11px] font-semibold tracking-wider uppercase px-2.5 py-1 rounded-full bg-[#2E756E]/10 text-[#2E756E]">
+                      <span className="text-[11px] font-semibold tracking-wider uppercase px-2.5 py-1 rounded-full bg-[#2E756E]/10 dark:bg-[#38B2A6]/15 text-[#2E756E] dark:text-[#38B2A6]">
                         {service.tag}
                       </span>
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-xl font-bold text-[#14201D] mb-3 group-hover:text-[#2E756E] transition-colors leading-snug">
+                    <h3 className="text-xl font-bold text-[#14201D] dark:text-white mb-3 group-hover:text-[#2E756E] dark:group-hover:text-[#38B2A6] transition-colors leading-snug">
                       {service.title}
                     </h3>
 
                     {/* Short Description */}
-                    <p className="text-xs sm:text-sm text-[#5A6A65] mb-5 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-[#5A6A65] dark:text-[#94A3B8] mb-5 leading-relaxed">
                       {service.shortDesc}
                     </p>
 
                     {/* Sub-item highlights (preview 3 items) */}
-                    <div className="space-y-1.5 mb-6 pt-4 border-t border-[#DBE3E0]/70">
+                    <div className="space-y-1.5 mb-6 pt-4 border-t border-[#DBE3E0]/70 dark:border-[#223249]/70">
                       {service.items.slice(0, 3).map((subItem, idx) => (
-                        <div key={idx} className="flex items-center gap-2 text-xs text-[#14201D]">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#2E756E]" />
+                        <div key={idx} className="flex items-center gap-2 text-xs text-[#14201D] dark:text-[#F1F5F9]">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#2E756E] dark:bg-[#38B2A6]" />
                           <span className="truncate">{subItem}</span>
                         </div>
                       ))}
                       {service.items.length > 3 && (
-                        <div className="text-[11px] font-medium text-[#5A6A65] pl-3.5">
+                        <div className="text-[11px] font-medium text-[#5A6A65] dark:text-[#94A3B8] pl-3.5">
                           + {service.items.length - 3} more technical capabilities
                         </div>
                       )}
@@ -125,7 +126,7 @@ export default function ServicesSection() {
                   </div>
 
                   {/* Footer Action */}
-                  <div className="pt-4 border-t border-[#DBE3E0]/70 flex items-center justify-between text-xs font-bold text-[#2E756E] group-hover:text-[#255e58]">
+                  <div className="pt-4 border-t border-[#DBE3E0]/70 dark:border-[#223249]/70 flex items-center justify-between text-xs font-bold text-[#2E756E] dark:text-[#38B2A6] group-hover:text-[#255e58] dark:group-hover:text-[#5EEAD4]">
                     <span>View deliverables & tools</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
                   </div>

@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import StickyMobileCTA from './components/StickyMobileCTA';
 import FloatingActions from './components/FloatingActions';
 import CalendlyModal from './components/CalendlyModal';
+import CustomCursor from './components/CustomCursor';
 import HomePage from './pages/HomePage';
 
 // Lazy-loaded subpages for optimal performance & fast initial load
@@ -44,6 +45,42 @@ function ScrollManager() {
   return null;
 }
 
+// Animated routes with smooth transition between pages
+function AnimatedRoutes({ onOpenCalendly }) {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={location.pathname}
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+        className="flex-1 w-full"
+      >
+        <Suspense fallback={<PageLoader />}>
+          <Routes location={location}>
+            <Route
+              path="/"
+              element={<HomePage onOpenCalendly={onOpenCalendly} />}
+            />
+            <Route
+              path="/services/:slug"
+              element={<ServiceDetailPage onOpenCalendly={onOpenCalendly} />}
+            />
+            <Route
+              path="/thank-you"
+              element={<ThankYouPage onOpenCalendly={onOpenCalendly} />}
+            />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
 export default function App() {
   const [calendlyOpen, setCalendlyOpen] = useState(false);
 
@@ -52,13 +89,16 @@ export default function App() {
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 120,
     damping: 30,
-    restDelta: 0.001
+    restDelta: 0.001,
   });
 
   return (
     <ThemeProvider>
       <Router>
         <ScrollManager />
+        {/* Modern Custom Cursor (desktop only, disabled on touch/reduced-motion) */}
+        <CustomCursor />
+
         {/* Top Reading / Scroll Progress Bar */}
         <motion.div
           className="fixed top-0 left-0 right-0 h-1 bg-[#5EEAD4] origin-left z-50 pointer-events-none shadow-sm"
@@ -69,37 +109,11 @@ export default function App() {
           {/* Sticky Global Navigation */}
           <Navbar onOpenCalendly={() => setCalendlyOpen(true)} />
 
-          {/* Route Pages with Suspense */}
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <HomePage
-                    onOpenCalendly={() => setCalendlyOpen(true)}
-                  />
-                }
-              />
-              <Route
-                path="/services/:slug"
-                element={
-                  <ServiceDetailPage
-                    onOpenCalendly={() => setCalendlyOpen(true)}
-                  />
-                }
-              />
-              <Route
-                path="/thank-you"
-                element={<ThankYouPage onOpenCalendly={() => setCalendlyOpen(true)} />}
-              />
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </Suspense>
+          {/* Animated Page Transitions */}
+          <AnimatedRoutes onOpenCalendly={() => setCalendlyOpen(true)} />
 
           {/* Global Footer */}
-          <Footer
-            onOpenCalendly={() => setCalendlyOpen(true)}
-          />
+          <Footer onOpenCalendly={() => setCalendlyOpen(true)} />
 
           {/* Desktop Floating Actions (Scroll to Top) */}
           <FloatingActions />

@@ -89,16 +89,17 @@ export default function ProcessTimeline() {
               <motion.div
                 key={step.num}
                 variants={item}
-                whileHover={{ y: -6 }}
-                transition={{ duration: 0.25, ease: 'easeOut' }}
-                className="bg-white dark:bg-[#121C2D] rounded-2xl p-6 sm:p-7 border border-[#DBE3E0] dark:border-[#223249] shadow-soft hover:shadow-card hover:border-[#2E756E]/40 dark:hover:border-[#34A096]/50 transition-all duration-300 relative group flex flex-col cursor-default"
+                whileHover={{ y: -8, scale: 1.01 }}
+                data-cursor="Phase"
+                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                className="bg-white dark:bg-[#121C2D] rounded-2xl p-6 sm:p-7 border border-[#DBE3E0] dark:border-[#223249] shadow-soft hover:shadow-card hover:border-[#2E756E]/40 dark:hover:border-[#38B2A6]/50 transition-all duration-300 relative group flex flex-col cursor-default"
               >
                 <div>
                   <div className="flex items-center justify-between mb-5">
-                    <div className="w-12 h-12 rounded-xl bg-[#2E756E]/10 dark:bg-[#162235] text-[#2E756E] dark:text-[#34A096] flex items-center justify-center group-hover:bg-[#2E756E] group-hover:text-white transition-all duration-300">
+                    <div className="w-12 h-12 rounded-xl bg-[#2E756E]/10 dark:bg-[#162235] text-[#2E756E] dark:text-[#38B2A6] flex items-center justify-center group-hover:bg-[#2E756E] group-hover:text-white transition-all duration-300 group-hover:scale-105">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="text-2xl font-black font-mono text-[#DBE3E0] dark:text-[#223249] group-hover:text-[#2E756E]/40 dark:group-hover:text-[#34A096]/50 transition-colors">
+                    <span className="text-2xl font-black font-mono text-[#DBE3E0] dark:text-[#223249] group-hover:text-[#2E756E]/40 dark:group-hover:text-[#38B2A6]/50 transition-colors">
                       {step.num}
                     </span>
                   </div>

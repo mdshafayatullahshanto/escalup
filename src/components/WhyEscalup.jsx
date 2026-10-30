@@ -89,20 +89,21 @@ export default function WhyEscalup() {
               <motion.div
                 key={reason.id}
                 variants={item}
-                whileHover={{ y: -6 }}
-                transition={{ duration: 0.25, ease: 'easeOut' }}
-                className="p-7 rounded-2xl bg-[#F4F6F5]/60 dark:bg-[#121C2D] border border-[#DBE3E0] dark:border-[#223249] hover:bg-white dark:hover:bg-[#162235] hover:border-[#2E756E]/40 hover:shadow-card transition-all duration-300 group flex flex-col cursor-default"
+                whileHover={{ y: -8, scale: 1.01 }}
+                data-cursor="Quality"
+                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                className="p-7 rounded-2xl bg-[#F4F6F5]/60 dark:bg-[#121C2D] border border-[#DBE3E0] dark:border-[#223249] hover:bg-white dark:hover:bg-[#162235] hover:border-[#2E756E]/40 dark:hover:border-[#38B2A6]/40 hover:shadow-card transition-all duration-300 group flex flex-col cursor-default"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-xl bg-white dark:bg-[#162235] border border-[#DBE3E0] dark:border-[#223249] text-[#2E756E] flex items-center justify-center mb-5 group-hover:bg-[#2E756E] group-hover:text-white transition-all duration-300 shadow-sm">
+                  <div className="w-12 h-12 rounded-xl bg-white dark:bg-[#162235] border border-[#DBE3E0] dark:border-[#223249] text-[#2E756E] dark:text-[#38B2A6] flex items-center justify-center mb-5 group-hover:bg-[#2E756E] group-hover:text-white dark:group-hover:bg-[#38B2A6] dark:group-hover:text-[#0B111E] transition-all duration-300 shadow-sm group-hover:scale-105">
                     <Icon className="w-6 h-6" />
                   </div>
 
-                  <h3 className="text-xl font-bold text-[#14201D] mb-2.5 group-hover:text-[#2E756E] transition-colors">
+                  <h3 className="text-xl font-bold text-[#14201D] dark:text-white mb-2.5 group-hover:text-[#2E756E] dark:group-hover:text-[#38B2A6] transition-colors">
                     {reason.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-[#5A6A65] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#5A6A65] dark:text-[#94A3B8] leading-relaxed">
                     {reason.desc}
                   </p>
                 </div>

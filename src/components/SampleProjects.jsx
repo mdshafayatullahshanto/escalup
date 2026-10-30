@@ -61,9 +61,10 @@ export default function SampleProjects() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                whileHover={{ y: -6 }}
-                transition={{ duration: 0.25, ease: 'easeOut' }}
-                className="bg-white dark:bg-[#121C2D] rounded-2xl p-6 sm:p-7 border border-[#DBE3E0] dark:border-[#223249] hover:border-[#2E756E]/40 shadow-soft hover:shadow-card transition-all flex flex-col justify-between group cursor-default"
+                whileHover={{ y: -8, scale: 1.01 }}
+                data-cursor="Deliverable"
+                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                className="bg-white dark:bg-[#121C2D] rounded-2xl p-6 sm:p-7 border border-[#DBE3E0] dark:border-[#223249] hover:border-[#2E756E]/40 dark:hover:border-[#38B2A6]/40 shadow-soft hover:shadow-card transition-all flex flex-col justify-between group cursor-default"
               >
                 <div>
                   {/* Top row: Category tag + Sample project label */}

@@ -122,10 +122,11 @@ export default function AboutSection() {
                   hidden: { opacity: 0, y: 20 },
                   show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } }
                 }}
-                whileHover={{ y: -5 }}
-                className="bg-white dark:bg-[#121C2D] rounded-2xl p-6 border border-[#DBE3E0] dark:border-[#223249] shadow-soft hover:border-[#2E756E]/40 hover:shadow-card transition-all cursor-default"
+                whileHover={{ y: -6, scale: 1.02 }}
+                data-cursor="Pillar"
+                className="bg-white dark:bg-[#121C2D] rounded-2xl p-6 border border-[#DBE3E0] dark:border-[#223249] shadow-soft hover:border-[#2E756E]/40 dark:hover:border-[#38B2A6]/40 hover:shadow-card transition-all cursor-default group"
               >
-                <div className="w-10 h-10 rounded-xl bg-[#2E756E]/10 dark:bg-[#162235] text-[#2E756E] dark:text-[#34A096] flex items-center justify-center mb-4 shadow-sm">
+                <div className="w-10 h-10 rounded-xl bg-[#2E756E]/10 dark:bg-[#162235] text-[#2E756E] dark:text-[#38B2A6] flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform">
                   <Icon className="w-5 h-5" />
                 </div>
                 <h4 className="text-sm font-bold text-[#14201D] dark:text-[#F1F5F9] mb-1.5">

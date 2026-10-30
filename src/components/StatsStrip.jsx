@@ -37,18 +37,18 @@ function CounterItem({ item, inView }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 15 }}
+      initial={{ opacity: 0, y: 18 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: (item.id || 1) * 0.08, ease: 'easeOut' }}
-      whileHover={{ y: -2 }}
-      className="text-center sm:text-left px-4 py-3 sm:py-2 transition-all rounded-xl hover:bg-[#F4F6F5]/60 cursor-default border-l border-[#DBE3E0] dark:border-[#223249]"
+      transition={{ duration: 0.55, delay: (item.id || 1) * 0.08, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ y: -3, scale: 1.02 }}
+      className="text-center sm:text-left px-4 py-3 sm:py-2 transition-all rounded-xl hover:bg-[#F4F6F5]/60 dark:hover:bg-[#121C2D]/60 cursor-default border-l border-[#DBE3E0] dark:border-[#223249]"
     >
-      <div className="flex items-baseline justify-center sm:justify-start gap-1 font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#14201D] font-mono tracking-tight">
-        <span className="text-[#2E756E]">{displayCount}</span>
-        <span className="text-[#2E756E]">{item.suffix}</span>
+      <div className="flex items-baseline justify-center sm:justify-start gap-1 font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#14201D] dark:text-white font-mono tracking-tight">
+        <span className="text-[#2E756E] dark:text-[#38B2A6]">{displayCount}</span>
+        <span className="text-[#2E756E] dark:text-[#38B2A6]">{item.suffix}</span>
       </div>
-      <div className="text-sm lg:text-base font-bold text-[#14201D] mt-1">{item.label}</div>
-      <div className="text-xs lg:text-sm text-[#5A6A65]">{item.sublabel}</div>
+      <div className="text-sm lg:text-base font-bold text-[#14201D] dark:text-[#F1F5F9] mt-1">{item.label}</div>
+      <div className="text-xs lg:text-sm text-[#5A6A65] dark:text-[#94A3B8]">{item.sublabel}</div>
     </motion.div>
   );
 }
