@@ -122,7 +122,7 @@ export default function Navbar({ onOpenCalendly }) {
               <a
                 href="#contact"
                 onClick={handleQuoteClick}
-                className="px-5 py-2.5 rounded-full bg-white hover:bg-[#F0F6F5] text-[#1D4E49] font-bold text-xs tracking-wide shadow-md hover:shadow-lg transition-all flex items-center gap-2 cursor-pointer group"
+                className="navbar-cta-btn btn-primary-white px-5 py-2.5 rounded-full bg-white hover:bg-[#F0F6F5] text-[#1D4E49] font-bold text-xs tracking-wide shadow-md hover:shadow-lg transition-all flex items-center gap-2 cursor-pointer group shrink-0"
               >
                 <span>Get a Quote</span>
                 <ArrowRight className="w-3.5 h-3.5 text-[#2E756E] group-hover:translate-x-0.5 transition-transform" />
@@ -134,9 +134,9 @@ export default function Navbar({ onOpenCalendly }) {
               <a
                 href="#contact"
                 onClick={handleQuoteClick}
-                className="px-3.5 py-1.5 rounded-full bg-white text-[#1D4E49] text-xs font-bold shadow-sm hover:bg-[#F0F6F5] transition-colors"
+                className="navbar-cta-btn btn-primary-white px-3.5 py-1.5 rounded-full bg-white text-[#1D4E49] text-xs font-bold shadow-sm hover:bg-[#F0F6F5] transition-colors"
               >
-                Quote
+                <span>Quote</span>
               </a>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

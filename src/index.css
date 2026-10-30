@@ -111,7 +111,7 @@ html.dark .bg-\[\#F4F6F5\]\/70 {
   background-color: var(--bg-subtle) !important;
 }
 
-html.dark .bg-white:not(section):not(main):not(.final-cta-btn):not(.btn-primary-white) {
+html.dark .bg-white:not(section):not(main):not(.final-cta-btn):not(.btn-primary-white):not(.navbar-cta-btn) {
   background-color: var(--bg-card) !important;
 }
 
@@ -278,32 +278,37 @@ html.dark svg text[fill="#14201D"] {
   fill: #F1F5F9 !important;
 }
 
-/* Ensure CTA buttons inside accent bands preserve contrast */
+/* Ensure CTA buttons inside accent bands and teal navbar preserve contrast */
 html.dark .final-cta-btn,
-html.dark .btn-primary-white {
+html.dark .btn-primary-white,
+html.dark .navbar-cta-btn {
   background-color: #FFFFFF !important;
-  color: #142F2C !important;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4) !important;
+  color: #1D4E49 !important;
+  box-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.3) !important;
 }
 
 html.dark .final-cta-btn:hover,
-html.dark .btn-primary-white:hover {
-  background-color: #F4F6F5 !important;
-  color: #2E756E !important;
-}
-
-html.dark .final-cta-btn span,
-html.dark .btn-primary-white span {
+html.dark .btn-primary-white:hover,
+html.dark .navbar-cta-btn:hover {
+  background-color: #F0F6F5 !important;
   color: #142F2C !important;
 }
 
+html.dark .final-cta-btn span,
+html.dark .btn-primary-white span,
+html.dark .navbar-cta-btn span {
+  color: #1D4E49 !important;
+}
+
 html.dark .final-cta-btn:hover span,
-html.dark .btn-primary-white:hover span {
-  color: #2E756E !important;
+html.dark .btn-primary-white:hover span,
+html.dark .navbar-cta-btn:hover span {
+  color: #142F2C !important;
 }
 
 html.dark .final-cta-btn svg,
-html.dark .btn-primary-white svg {
+html.dark .btn-primary-white svg,
+html.dark .navbar-cta-btn svg {
   color: #2E756E !important;
 }
 
