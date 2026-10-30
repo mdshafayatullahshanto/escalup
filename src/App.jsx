@@ -61,7 +61,7 @@ export default function App() {
         <ScrollManager />
         {/* Top Reading / Scroll Progress Bar */}
         <motion.div
-          className="fixed top-0 left-0 right-0 h-1 bg-[#2E756E] origin-left z-50 pointer-events-none shadow-sm"
+          className="fixed top-0 left-0 right-0 h-1 bg-[#5EEAD4] origin-left z-50 pointer-events-none shadow-sm"
           style={{ scaleX }}
         />
 

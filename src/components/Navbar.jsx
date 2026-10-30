@@ -2,9 +2,9 @@
 // Sticky modern navbar with dynamic scroll shrink, shadow transition, desktop nav, and mobile drawer
 
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowRight, Calendar, PhoneCall } from 'lucide-react';
+import { Menu, X, ArrowRight, Calendar } from 'lucide-react';
 import Logo from './Logo';
 import { companyData } from '../data/company';
 import { trackCallBooking } from '../utils/analytics';
@@ -84,26 +84,26 @@ export default function Navbar({ onOpenCalendly }) {
       <header
         className={`sticky top-0 z-40 w-full transition-all duration-300 ${
           scrolled
-            ? 'py-2.5 bg-[#F4F6F5]/92 dark:bg-[#0B111E]/95 backdrop-blur-md shadow-sm border-b border-[#DBE3E0] dark:border-[#223249]'
-            : 'py-4 bg-[#F4F6F5]/80 dark:bg-[#0B111E]/85 backdrop-blur-sm border-b border-transparent'
+            ? 'py-2.5 bg-[#255E58]/95 dark:bg-[#1E4B47]/95 backdrop-blur-md shadow-md border-b border-[#1E4B47]/80 dark:border-[#163835]'
+            : 'py-3.5 bg-[#2E756E]/95 dark:bg-[#235853]/95 backdrop-blur-md shadow-sm border-b border-[#245D57]/60'
         }`}
       >
         <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
           <div className="flex items-center justify-between">
-            {/* Brand Logo */}
-            <Logo size={scrolled ? 'sm' : 'md'} />
+            {/* Brand Logo - white variant on brand teal background */}
+            <Logo variant="dark" size={scrolled ? 'sm' : 'md'} />
 
             {/* Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-medium text-[#5A6A65] dark:text-[#94A3B8]">
+            <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-medium text-white/85">
               {navLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="hover:text-[#2E756E] dark:hover:text-[#34A096] transition-colors py-1 cursor-pointer relative group font-medium"
+                  className="hover:text-white transition-colors py-1 cursor-pointer relative group font-medium"
                 >
                   <span>{link.label}</span>
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2E756E] dark:bg-[#34A096] transition-all duration-300 group-hover:w-full rounded-full" />
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full rounded-full" />
                 </a>
               ))}
             </nav>
@@ -112,20 +112,20 @@ export default function Navbar({ onOpenCalendly }) {
             <div className="hidden lg:flex items-center gap-4">
               <button
                 onClick={handleBookCallClick}
-                className="text-xs font-semibold text-[#5A6A65] dark:text-[#94A3B8] hover:text-[#2E756E] dark:hover:text-[#34A096] transition-colors flex items-center gap-1.5 px-2 py-1.5 cursor-pointer"
+                className="text-xs font-semibold text-white/90 hover:text-white transition-colors flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/10 cursor-pointer"
                 title="Schedule 30-min intro call"
               >
-                <Calendar className="w-3.5 h-3.5 text-[#2E756E] dark:text-[#34A096]" />
+                <Calendar className="w-3.5 h-3.5 text-[#A7F3D0]" />
                 <span>Book a Call</span>
               </button>
 
               <a
                 href="#contact"
                 onClick={handleQuoteClick}
-                className="px-5 py-2.5 rounded-full bg-[#2E756E] hover:bg-[#255e58] text-white font-semibold text-xs tracking-wide shadow-sm hover:shadow transition-all flex items-center gap-2 cursor-pointer group"
+                className="px-5 py-2.5 rounded-full bg-white hover:bg-[#F0F6F5] text-[#1D4E49] font-bold text-xs tracking-wide shadow-md hover:shadow-lg transition-all flex items-center gap-2 cursor-pointer group"
               >
                 <span>Get a Quote</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                <ArrowRight className="w-3.5 h-3.5 text-[#2E756E] group-hover:translate-x-0.5 transition-transform" />
               </a>
             </div>
 
@@ -134,13 +134,13 @@ export default function Navbar({ onOpenCalendly }) {
               <a
                 href="#contact"
                 onClick={handleQuoteClick}
-                className="px-3.5 py-2 rounded-full bg-[#2E756E] text-white text-xs font-semibold shadow-sm"
+                className="px-3.5 py-1.5 rounded-full bg-white text-[#1D4E49] text-xs font-bold shadow-sm hover:bg-[#F0F6F5] transition-colors"
               >
                 Quote
               </a>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-lg text-[#14201D] dark:text-[#F1F5F9] hover:bg-[#DBE3E0]/40 dark:hover:bg-[#223249]/50 transition-colors"
+                className="p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
                 aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
               >
                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
