@@ -4,45 +4,46 @@
 
 @layer base {
   :root {
-    --brand-teal: #2E756E;
-    --brand-teal-hover: #255e58;
-    --brand-dark: #142F2C;
-    --bg-main: #F4F6F5;
-    --bg-card: #FFFFFF;
-    --bg-subtle: #F4F6F5;
-    --bg-input: #F8FAF9;
-    --border-line: #DBE3E0;
-    --border-subtle: rgba(219, 227, 224, 0.7);
-    --ink-dark: #14201D;
-    --ink-muted: #5A6A65;
-    --ink-light: #889893;
-    color-scheme: light;
+    --brand-teal: #FFFFFF;
+    --brand-teal-hover: #E4E4E7;
+    --brand-dark: #0A0A0A;
+    --bg-main: #0A0A0A;
+    --bg-card: #121214;
+    --bg-subtle: #18181B;
+    --bg-input: #0A0A0A;
+    --border-line: rgba(255, 255, 255, 0.1);
+    --border-subtle: rgba(255, 255, 255, 0.06);
+    --ink-dark: #FFFFFF;
+    --ink-muted: #A1A1AA;
+    --ink-light: #71717A;
+    color-scheme: dark;
   }
 
-  html.dark {
-    --brand-teal: #14F3C1;
-    --brand-teal-hover: #34F8CE;
-    --brand-dark: #000D0E;
-    --bg-main: #000D0E;
-    --bg-card: #001517;
-    --bg-subtle: #012B30;
-    --bg-input: #000D0E;
-    --border-line: rgba(255, 255, 255, 0.08);
-    --border-subtle: rgba(255, 255, 255, 0.05);
+  html.dark, html {
+    --brand-teal: #FFFFFF;
+    --brand-teal-hover: #E4E4E7;
+    --brand-dark: #0A0A0A;
+    --bg-main: #0A0A0A;
+    --bg-card: #121214;
+    --bg-subtle: #18181B;
+    --bg-input: #0A0A0A;
+    --border-line: rgba(255, 255, 255, 0.1);
+    --border-subtle: rgba(255, 255, 255, 0.06);
     --ink-dark: #FFFFFF;
-    --ink-muted: rgba(255, 255, 255, 0.7);
-    --ink-light: rgba(255, 255, 255, 0.5);
+    --ink-muted: #A1A1AA;
+    --ink-light: #71717A;
     color-scheme: dark;
   }
   
   html {
     scroll-behavior: smooth;
     font-family: 'Golos Text', 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #0A0A0A;
   }
 
   body {
-    background-color: var(--bg-main);
-    color: var(--ink-dark);
+    background-color: #0A0A0A;
+    color: #FFFFFF;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
@@ -53,201 +54,34 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    background-color: #0A0A0A;
   }
 }
 
-/* Smooth theme transitions without flickering during page load */
-html.theme-transition body,
-html.theme-transition header,
-html.theme-transition footer,
-html.theme-transition section,
-html.theme-transition main,
-html.theme-transition [class*="bg-"],
-html.theme-transition [class*="text-"],
-html.theme-transition [class*="border-"],
-html.theme-transition input,
-html.theme-transition textarea,
-html.theme-transition select,
-html.theme-transition button,
-html.theme-transition a,
-html.theme-transition svg,
-html.theme-transition rect {
-  transition: 
-    background-color 0.3s ease, 
-    border-color 0.3s ease, 
-    color 0.25s ease, 
-    box-shadow 0.3s ease,
-    fill 0.3s ease,
-    stroke 0.3s ease !important;
-}
-
-/* Comprehensive Dark Mode Adaptations */
-html.dark body {
-  background-color: var(--bg-main);
-  color: var(--ink-dark);
-}
-
-/* Background surfaces */
-html.dark main {
+/* Base dark mode overrides */
+main {
   background-color: var(--bg-main);
 }
 
-html.dark .bg-\[\#F4F6F5\] {
-  background-color: var(--bg-main) !important;
-}
-
-html.dark .bg-\[\#F4F6F5\]\/80,
-html.dark .bg-\[\#F4F6F5\]\/92 {
-  background-color: rgba(0, 21, 23, 0.85) !important;
-}
-
-html.dark .bg-\[\#F4F6F5\]\/50,
-html.dark .bg-\[\#F4F6F5\]\/60,
-html.dark .bg-\[\#F4F6F5\]\/70 {
-  background-color: var(--bg-subtle) !important;
-}
-
-/* Gradients */
-html.dark .from-\[\#F4F6F5\] {
-  --tw-gradient-from: #000D0E var(--tw-gradient-from-position) !important;
-}
-
-html.dark .via-\[\#F4F6F5\] {
-  --tw-gradient-via: #000D0E var(--tw-gradient-via-position) !important;
-}
-
-html.dark .to-white {
-  --tw-gradient-to: #000D0E var(--tw-gradient-to-position) !important;
-}
-
-html.dark .from-white {
-  --tw-gradient-from: #001517 var(--tw-gradient-from-position) !important;
-}
-
-html.dark .via-white {
-  --tw-gradient-via: #001517 var(--tw-gradient-via-position) !important;
-}
-
-/* Text adaptations with sufficient contrast & accessibility */
-html.dark .text-\[\#14201D\] {
-  color: var(--ink-dark) !important;
-}
-
-html.dark .text-\[\#5A6A65\] {
-  color: var(--ink-muted) !important;
-}
-
-html.dark .text-\[\#889893\] {
-  color: var(--ink-light) !important;
-}
-
-/* Borders & Dividers */
-html.dark .border-\[\#DBE3E0\] {
-  border-color: var(--border-line) !important;
-}
-
-html.dark .border-\[\#DBE3E0\]\/70,
-html.dark .border-\[\#DBE3E0\]\/50,
-html.dark .border-\[\#DBE3E0\]\/40 {
-  border-color: var(--border-subtle) !important;
-}
-
-html.dark .divide-\[\#DBE3E0\] > :not([hidden]) ~ :not([hidden]) {
-  border-color: var(--border-line) !important;
-}
-
-/* Hover States */
-html.dark .hover\:bg-white:hover {
-  background-color: var(--bg-card) !important;
-}
-
-html.dark .hover\:bg-\[\#F4F6F5\]:hover,
-html.dark .hover\:bg-\[\#F4F6F5\]\/60:hover,
-html.dark .hover\:bg-\[\#F4F6F5\]\/80:hover,
-html.dark .hover\:bg-\[\#e4ece9\]:hover,
-html.dark .hover\:bg-\[\#e6eeeb\]:hover {
-  background-color: var(--bg-subtle) !important;
-}
-
-html.dark .hover\:bg-\[\#DBE3E0\]\/40:hover {
-  background-color: rgba(34, 50, 73, 0.6) !important;
-}
-
-html.dark .hover\:text-\[\#14201D\]:hover {
-  color: var(--ink-dark) !important;
-}
-
-/* Form inputs & controls */
-html.dark input,
-html.dark textarea,
-html.dark select {
-  background-color: var(--bg-input) !important;
-  color: var(--ink-dark) !important;
-  border-color: var(--border-line) !important;
-}
-
-html.dark input::placeholder,
-html.dark textarea::placeholder {
-  color: var(--ink-light) !important;
-}
-
-html.dark select option {
-  background-color: var(--bg-card) !important;
-  color: var(--ink-dark) !important;
-}
-
-/* Special Badges */
-html.dark .text-emerald-700.bg-emerald-50 {
-  color: #34D399 !important;
-  background-color: rgba(6, 78, 59, 0.4) !important;
-  border: 1px solid rgba(16, 185, 129, 0.25);
-}
-
-/* Shadows adapted for dark theme */
-html.dark .shadow-soft {
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.45) !important;
-}
-
-html.dark .shadow-card {
-  box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.55) !important;
-}
-
-/* Technical CAD & blueprint grid aesthetics */
+/* Technical CAD & blueprint grid aesthetics in monochrome */
 .blueprint-grid {
   background-size: 32px 32px;
   background-image: 
-    linear-gradient(to right, rgba(46, 117, 110, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(46, 117, 110, 0.06) 1px, transparent 1px);
-}
-
-html.dark .blueprint-grid {
-  background-image: 
-    linear-gradient(to right, rgba(52, 160, 150, 0.12) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(52, 160, 150, 0.12) 1px, transparent 1px) !important;
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
 }
 
 .blueprint-grid-dense {
   background-size: 16px 16px;
   background-image: 
-    linear-gradient(to right, rgba(46, 117, 110, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(46, 117, 110, 0.04) 1px, transparent 1px);
-}
-
-html.dark .blueprint-grid-dense {
-  background-image: 
-    linear-gradient(to right, rgba(52, 160, 150, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(52, 160, 150, 0.08) 1px, transparent 1px) !important;
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
 
 .blueprint-grid-subtle {
   background-size: 40px 40px;
   background-image: 
-    radial-gradient(circle, rgba(46, 117, 110, 0.15) 1px, transparent 1px);
-}
-
-html.dark .blueprint-grid-subtle {
-  background-image: 
-    radial-gradient(circle, rgba(52, 160, 150, 0.22) 1px, transparent 1px) !important;
+    radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
 }
 
 @keyframes marquee {
@@ -265,29 +99,19 @@ html.dark .blueprint-grid-subtle {
   animation-play-state: paused;
 }
 
-/* Custom smooth scrollbar */
+/* Custom sleek monochrome scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #000D0E;
+  background: #0A0A0A;
 }
 ::-webkit-scrollbar-thumb {
-  background: #012B30;
+  background: #27272A;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #14F3C1;
-}
-
-html.dark ::-webkit-scrollbar-track {
-  background: #000D0E;
-}
-html.dark ::-webkit-scrollbar-thumb {
-  background: #012B30;
-}
-html.dark ::-webkit-scrollbar-thumb:hover {
-  background: #14F3C1;
+  background: #52525B;
 }
 
 /* Hardware accelerated smooth motion & accessible reduced motion */

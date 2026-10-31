@@ -1,5 +1,6 @@
 // /src/components/ValuesSection.jsx
 // Consilio-style 4-card core values section establishing trust, rigor, and transparent partnership
+// Modern black-and-white theme
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -52,7 +53,7 @@ export default function ValuesSection() {
   };
 
   return (
-    <section className="py-20 md:py-28 bg-[#F4F6F5] dark:bg-[#000D0E] border-b border-[#DBE3E0] dark:border-[#223249]/60 relative">
+    <section className="py-20 md:py-28 bg-[#0A0A0A] border-b border-white/10 relative">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         <SectionHeading
@@ -75,23 +76,23 @@ export default function ValuesSection() {
                 key={val.number}
                 variants={itemVariants}
                 whileHover={{ y: -6 }}
-                className="bg-white dark:bg-[#001517] rounded-3xl p-7 border border-[#DBE3E0] dark:border-[#223249]/80 hover:border-[#2E756E]/40 dark:hover:border-[#14F3C1]/40 shadow-soft hover:shadow-card transition-all duration-300 flex flex-col justify-between group cursor-default"
+                className="bg-[#121214] hover:bg-[#18181B] rounded-3xl p-7 border border-white/10 hover:border-white/30 shadow-soft hover:shadow-card transition-all duration-300 flex flex-col justify-between group cursor-default"
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <div className="w-12 h-12 rounded-2xl bg-[#2E756E]/10 dark:bg-[#14F3C1]/10 text-[#2E756E] dark:text-[#14F3C1] flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 text-white flex items-center justify-center group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-300 shadow-xs">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="text-xl font-black font-mono text-[#DBE3E0] dark:text-[#223249] group-hover:text-[#2E756E] dark:group-hover:text-[#14F3C1] transition-colors">
+                    <span className="text-2xl font-black font-mono text-white/20 group-hover:text-white transition-colors">
                       {val.number}
                     </span>
                   </div>
 
-                  <h3 className="text-lg font-bold text-[#14201D] dark:text-white mb-2.5 group-hover:text-[#2E756E] dark:group-hover:text-[#14F3C1] transition-colors">
+                  <h3 className="text-lg font-bold text-white mb-3 group-hover:text-white transition-colors">
                     {val.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-[#5A6A65] dark:text-[#94A3B8] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#A1A1AA] leading-relaxed">
                     {val.desc}
                   </p>
                 </div>
@@ -104,4 +105,3 @@ export default function ValuesSection() {
     </section>
   );
 }
-

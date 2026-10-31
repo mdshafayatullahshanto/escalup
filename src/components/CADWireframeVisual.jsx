@@ -1,5 +1,6 @@
 // /src/components/CADWireframeVisual.jsx
 // Modern technical CAD wireframe graphic derived from the circular escalup "e" mark, mechanical crosshairs, and isometric guides
+// Pristine monochrome engineering aesthetic
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -25,29 +26,29 @@ export default function CADWireframeVisual({ className = '' }) {
   return (
     <div className={`relative w-full max-w-lg lg:max-w-xl xl:max-w-2xl 2xl:max-w-[620px] aspect-square flex items-center justify-center select-none ${className}`}>
       {/* Blueprint background disc */}
-      <div className="absolute w-[92%] h-[92%] rounded-full border border-white/[0.08] bg-[#001517]/80 backdrop-blur-sm shadow-2xl flex items-center justify-center overflow-hidden">
+      <div className="absolute w-[92%] h-[92%] rounded-full border border-white/10 bg-[#121214]/90 backdrop-blur-sm shadow-2xl flex items-center justify-center overflow-hidden">
         {/* Subtle grid lines */}
         <div className="absolute inset-0 blueprint-grid opacity-30" />
 
         {/* Technical compass circle indicators (scaled dynamically & symmetrical) */}
-        <div className="absolute w-[62%] h-[62%] rounded-full border border-dashed border-[#14F3C1]/20 animate-[spin_120s_linear_infinite]" />
-        <div className="absolute w-[78%] h-[78%] rounded-full border border-[#14F3C1]/10" />
+        <div className="absolute w-[62%] h-[62%] rounded-full border border-dashed border-white/20 animate-[spin_120s_linear_infinite]" />
+        <div className="absolute w-[78%] h-[78%] rounded-full border border-white/10" />
       </div>
 
       {/* Rotating technical coordinate rings */}
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
-        className="absolute w-[84%] h-[84%] rounded-full border border-dashed border-[#14F3C1]/25"
+        className="absolute w-[84%] h-[84%] rounded-full border border-dashed border-white/25"
       />
 
       {/* The Central escalup Hero Geometry */}
       <div className="relative z-10 w-[58%] h-[58%] flex items-center justify-center">
-        <svg viewBox="-240 -240 480 480" className="w-full h-full filter drop-shadow-[0_0_20px_rgba(20,243,193,0.2)] overflow-visible">
+        <svg viewBox="-240 -240 480 480" className="w-full h-full filter drop-shadow-[0_0_25px_rgba(255,255,255,0.15)] overflow-visible">
           <defs>
             <linearGradient id="cadGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#14F3C1" />
-              <stop offset="100%" stopColor="#0B7A66" />
+              <stop offset="0%" stopColor="#FFFFFF" />
+              <stop offset="100%" stopColor="#A1A1AA" />
             </linearGradient>
             {/* Real CAD drafting arrowhead marker */}
             <marker
@@ -59,20 +60,20 @@ export default function CADWireframeVisual({ className = '' }) {
               markerHeight="6"
               orient="auto-start-reverse"
             >
-              <path d="M 0 2 L 8 5 L 0 8 z" fill="#14F3C1" />
+              <path d="M 0 2 L 8 5 L 0 8 z" fill="#FFFFFF" />
             </marker>
           </defs>
 
           {/* Symmetrical Concentric Drafting Rings */}
-          <circle cx="0" cy="0" r="162" fill="none" stroke="#14F3C1" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.25" />
-          <circle cx="0" cy="0" r="105" fill="none" stroke="#14F3C1" strokeWidth="0.8" strokeDasharray="3 3" opacity="0.2" />
-          <circle cx="0" cy="0" r="42" fill="none" stroke="#14F3C1" strokeWidth="0.8" strokeDasharray="2 2" opacity="0.2" />
+          <circle cx="0" cy="0" r="162" fill="none" stroke="#FFFFFF" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.25" />
+          <circle cx="0" cy="0" r="105" fill="none" stroke="#FFFFFF" strokeWidth="0.8" strokeDasharray="3 3" opacity="0.2" />
+          <circle cx="0" cy="0" r="42" fill="none" stroke="#FFFFFF" strokeWidth="0.8" strokeDasharray="2 2" opacity="0.2" />
 
           {/* Symmetrical Hatch Outline (Concentric scale, zero translation offset) */}
           <g transform="rotate(-22) scale(1.05)" opacity="0.25">
             <path
               fill="none"
-              stroke="#14F3C1"
+              stroke="#FFFFFF"
               strokeWidth="2"
               strokeDasharray="4 4"
               d="M147.75 30.16 A150.80 150.80 0 1 0 120.64 90.48 L0 90.48 A90.48 90.48 0 1 1 85.31 -30.16 L0 -30.16 A30.16 30.16 0 0 0 0 30.16 Z"
@@ -86,9 +87,9 @@ export default function CADWireframeVisual({ className = '' }) {
               d="M147.75 30.16 A150.80 150.80 0 1 0 120.64 90.48 L0 90.48 A90.48 90.48 0 1 1 85.31 -30.16 L0 -30.16 A30.16 30.16 0 0 0 0 30.16 Z"
             />
             {/* Center crosshair */}
-            <circle cx="0" cy="0" r="4" fill="#000D0E" />
-            <line x1="-14" y1="0" x2="14" y2="0" stroke="#000D0E" strokeWidth="1.5" />
-            <line x1="0" y1="-14" x2="0" y2="14" stroke="#000D0E" strokeWidth="1.5" />
+            <circle cx="0" cy="0" r="4" fill="#0A0A0A" />
+            <line x1="-14" y1="0" x2="14" y2="0" stroke="#0A0A0A" strokeWidth="1.5" />
+            <line x1="0" y1="-14" x2="0" y2="14" stroke="#0A0A0A" strokeWidth="1.5" />
           </g>
 
           {/* Clear High-Visibility Dimension Leaders & Annotations (Completely Outside Logo, Zero Overlap) */}
@@ -97,80 +98,87 @@ export default function CADWireframeVisual({ className = '' }) {
             <path
               d="M 0 -152 L 0 -185 L 50 -185"
               fill="none"
-              stroke="#14F3C1"
-              strokeWidth="1.5"
+              stroke="#FFFFFF"
+              strokeWidth="1"
               markerStart="url(#cadArrow)"
+              opacity="0.85"
             />
-            <rect x="52" y="-198" width="146" height="26" rx="6" fill="#001517" stroke="#14F3C1" strokeWidth="1.2" opacity="0.95" />
-            <text x="60" y="-181" fontSize="10.5" fontWeight="700" fill="#14F3C1">
-              Ø 301.60 mm [R150.8]
+            <rect x="56" y="-196" width="96" height="20" rx="4" fill="#121214" stroke="#FFFFFF" strokeWidth="0.8" opacity="0.95" />
+            <text x="104" y="-182" fill="#FFFFFF" fontSize="9.5" fontWeight="bold" textAnchor="middle" letterSpacing="0.5">
+              Ø 301.60 ±0.05
             </text>
 
-            {/* Dimension 2: GD&T (Bottom-Right clearance, strictly outside logo) */}
+            {/* Dimension 2: Inner Bore Radius (Top-Left clearance) */}
             <path
-              d="M 122 85 L 160 176 L 75 176"
+              d="M -30 0 L -85 0 L -85 -55"
               fill="none"
-              stroke="#14F3C1"
-              strokeWidth="1.5"
+              stroke="#FFFFFF"
+              strokeWidth="1"
               markerStart="url(#cadArrow)"
+              opacity="0.85"
             />
-            <rect x="75" y="163" width="136" height="26" rx="6" fill="#001517" stroke="#14F3C1" strokeWidth="1.2" opacity="0.95" />
-            <text x="83" y="180" fontSize="10.5" fontWeight="700" fill="#14F3C1">
-              GD&T: // 0.02 | A
+            <rect x="-142" y="-72" width="76" height="20" rx="4" fill="#121214" stroke="#FFFFFF" strokeWidth="0.8" opacity="0.95" />
+            <text x="-104" y="-58" fill="#FFFFFF" fontSize="9.5" fontWeight="bold" textAnchor="middle" letterSpacing="0.5">
+              +R30.16 mm
             </text>
 
-            {/* Dimension 3: Hub Inner Radius (Top-Left clearance, strictly outside logo) */}
+            {/* Dimension 3: GD&T Feature Control Frame (Bottom-Right clearance) */}
             <path
-              d="M -24 -15 L -85 -168 L -105 -168"
+              d="M 70 85 L 120 135 L 155 135"
               fill="none"
-              stroke="#14F3C1"
-              strokeWidth="1.5"
+              stroke="#FFFFFF"
+              strokeWidth="1"
               markerStart="url(#cadArrow)"
+              opacity="0.85"
             />
-            <rect x="-225" y="-181" width="118" height="26" rx="6" fill="#001517" stroke="#14F3C1" strokeWidth="1.2" opacity="0.95" />
-            <text x="-218" y="-164" fontSize="10" fontWeight="700" fill="#14F3C1">
-              HUB R 30.16 mm
-            </text>
+            <g transform="translate(155, 124)">
+              <rect x="0" y="0" width="100" height="22" rx="4" fill="#121214" stroke="#FFFFFF" strokeWidth="0.8" opacity="0.95" />
+              <line x1="28" y1="0" x2="28" y2="22" stroke="#FFFFFF" strokeWidth="0.8" opacity="0.6" />
+              <line x1="72" y1="0" x2="72" y2="22" stroke="#FFFFFF" strokeWidth="0.8" opacity="0.6" />
+              {/* Position Symbol */}
+              <circle cx="14" cy="11" r="5" fill="none" stroke="#FFFFFF" strokeWidth="1" />
+              <line x1="14" y1="3" x2="14" y2="19" stroke="#FFFFFF" strokeWidth="1" />
+              <line x1="6" y1="11" x2="22" y2="11" stroke="#FFFFFF" strokeWidth="1" />
+              {/* Tolerance */}
+              <text x="50" y="15" fill="#FFFFFF" fontSize="9.5" fontWeight="bold" textAnchor="middle">Ø 0.02</text>
+              {/* Datum */}
+              <text x="86" y="15" fill="#FFFFFF" fontSize="10" fontWeight="bold" textAnchor="middle">A</text>
+            </g>
           </g>
         </svg>
       </div>
 
-      {/* Floating CAD spec tag (Top-Right) */}
+      {/* Modern floating technical badges */}
       <motion.div
-        initial={{ y: 0 }}
-        animate={{ y: [-4, 4, -4] }}
-        whileHover={{ scale: 1.06, y: -6 }}
+        animate={{ y: [0, -6, 0] }}
         transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-4 right-2 sm:top-6 sm:right-4 bg-[#001517]/95 border border-white/10 hover:border-[#14F3C1]/50 shadow-xl rounded-2xl px-4 py-2.5 text-xs font-mono backdrop-blur-md cursor-default transition-all"
+        className="absolute top-6 right-2 sm:right-6 bg-[#121214]/90 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/15 shadow-xl text-[11px] font-mono text-white/90"
       >
-        <span className="text-[#14F3C1] font-bold">ASME Y14.5M</span>
-        <div className="text-[11px] text-white/60">LOD 350 Precision</div>
+        <span className="font-bold text-white block">ASME Y14.5M</span>
+        <span className="text-[10px] text-[#A1A1AA]">LOD 350 Precision</span>
       </motion.div>
 
-      {/* Floating Dynamic CAD Software Badge (Bottom-Left with Live Cycling) */}
       <motion.div
-        initial={{ y: 0 }}
-        animate={{ y: [4, -4, 4] }}
-        whileHover={{ scale: 1.05, y: -2 }}
-        transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        className="absolute bottom-6 left-2 sm:bottom-8 sm:left-4 bg-[#001517]/95 border border-white/10 hover:border-[#14F3C1]/50 shadow-xl rounded-2xl px-4 py-2.5 text-xs font-mono backdrop-blur-md cursor-default transition-all min-w-[215px]"
+        animate={{ y: [0, 6, 0] }}
+        transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+        className="absolute bottom-6 left-2 sm:left-6 bg-[#121214]/90 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/15 shadow-xl text-[11px] font-mono text-white/90"
       >
-        <div className="flex items-center gap-1.5 text-white font-bold">
-          <span className="w-2 h-2 rounded-full bg-[#14F3C1] animate-pulse"></span>
-          <span>Zero Clash Verified</span>
+        <div className="flex items-center gap-1.5 mb-0.5">
+          <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+          <span className="font-bold text-white">Zero Clash Verified</span>
         </div>
-        <div className="h-4.5 overflow-hidden mt-0.5">
+        <div className="h-4 overflow-hidden relative">
           <AnimatePresence mode="wait">
-            <motion.div
+            <motion.span
               key={softwareIndex}
-              initial={{ opacity: 0, y: 7 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -7 }}
-              transition={{ duration: 0.35, ease: 'easeOut' }}
-              className="text-[11px] text-[#14F3C1] font-semibold truncate"
+              initial={{ y: 12, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -12, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="text-[10px] text-[#A1A1AA] block"
             >
               {SOFTWARE_LIST[softwareIndex]}
-            </motion.div>
+            </motion.span>
           </AnimatePresence>
         </div>
       </motion.div>

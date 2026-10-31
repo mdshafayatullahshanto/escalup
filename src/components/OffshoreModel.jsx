@@ -1,5 +1,6 @@
 // /src/components/OffshoreModel.jsx
 // Detailed offshore engagement models, live world clock, and comparison table
+// Modern black-and-white theme
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -13,9 +14,7 @@ import {
   ArrowRight, 
   Calendar,
   Zap,
-  FileCheck2,
-  Lock,
-  Layers
+  Lock
 } from 'lucide-react';
 import SectionHeading from './SectionHeading';
 import WorldClock from './WorldClock';
@@ -78,31 +77,35 @@ const ENGAGEMENT_MODELS = [
     name: 'Dedicated Team (FTE)',
     badge: 'Most Popular',
     popular: true,
-    tagline: 'Your full-time offshore engineering extension working exclusively on your product pipeline.',
-    bestFor: 'Continuous engineering overflow, active product lines, long-term BIM coordination.',
-    pricing: 'Predictable monthly retainer per dedicated engineer.',
-    team: 'Handpicked full-time engineers trained on your CAD standards & PLM.',
-    flexibility: 'Direct task allocation, agile prioritization, seamless scale up/down with 30-day notice.'
+    tagline: 'An integrated engineering desk working exclusively for your company.',
+    bestFor: 'Ongoing product development, continuous drawing production, recurring BIM coordination.',
+    pricing: 'Flat monthly retainer per engineer with predictable costs.',
+    team: 'Named, dedicated engineers operating as your offshore department.',
+    flexibility: 'Direct task prioritization; scale team size up or down with 30 days notice.'
   },
   {
-    id: 'hourly',
-    name: 'On-Demand / Hourly',
+    id: 'hybrid',
+    name: 'Hourly Bucket / Ad-Hoc',
     badge: 'Maximum Flexibility',
     popular: false,
-    tagline: 'Pay only for the hours you consume for quick updates, feasibility, and audits.',
-    bestFor: 'Occasional drawing revisions, rapid CAD conversions, urgent redline markups, FEA runs.',
-    pricing: 'Transparent hourly rate tracked via detailed timesheets.',
-    team: 'Pool of on-demand mechanical & MEP engineers as needed.',
-    flexibility: 'Ultimate agility with zero minimum monthly commitments.'
+    tagline: 'On-demand engineering hours for overflow tasks and quick turnarounds.',
+    bestFor: 'Design overflow, drawing revisions, urgent clash fixes, seasonal peak support.',
+    pricing: 'Pre-purchased block of 40–160 engineering hours.',
+    team: 'Flexible access to mechanical, MEP, and BIM drafting specialists.',
+    flexibility: 'Burn hours only as needed; unused hours roll over for up to 90 days.'
   }
 ];
 
 export default function OffshoreModel({ onOpenCalendly }) {
-  const handleQuoteClick = (e) => {
+  const handleQuoteClick = (e, modelName) => {
     e.preventDefault();
     const contactEl = document.getElementById('contact');
     if (contactEl) {
       contactEl.scrollIntoView({ behavior: 'smooth' });
+      const modelSelect = document.getElementById('form-model');
+      if (modelSelect && modelName) {
+        modelSelect.value = modelName;
+      }
     }
   };
 
@@ -116,7 +119,7 @@ export default function OffshoreModel({ onOpenCalendly }) {
   };
 
   return (
-    <section id="offshore-model" className="py-20 md:py-28 bg-[#000D0E] border-b border-white/[0.08] relative scroll-mt-12">
+    <section id="offshore-model" className="py-20 md:py-28 bg-[#0A0A0A] border-b border-white/10 relative scroll-mt-12">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         {/* Section Heading */}
@@ -150,16 +153,16 @@ export default function OffshoreModel({ onOpenCalendly }) {
                   show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } }
                 }}
                 whileHover={{ y: -5 }}
-                className="bg-[#001517] hover:bg-[#012B30]/70 rounded-3xl p-6 border border-white/[0.08] hover:border-[#14F3C1]/30 transition-all duration-300 flex items-start gap-4 cursor-default shadow-xl"
+                className="bg-[#121214] hover:bg-[#18181B] rounded-3xl p-6 border border-white/10 hover:border-white/30 transition-all duration-300 flex items-start gap-4 cursor-default shadow-xl"
               >
-                <div className="w-11 h-11 rounded-2xl bg-[#14F3C1]/10 text-[#14F3C1] shrink-0 flex items-center justify-center mt-0.5 shadow-sm">
+                <div className="w-11 h-11 rounded-2xl bg-white/5 border border-white/10 text-white shrink-0 flex items-center justify-center mt-0.5 shadow-sm">
                   <Icon className="w-5 h-5" />
                 </div>
                 <div>
                   <h3 className="text-base font-bold text-white mb-1.5">
                     {pillar.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-white/70 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#A1A1AA] leading-relaxed">
                     {pillar.desc}
                   </p>
                 </div>
@@ -179,7 +182,7 @@ export default function OffshoreModel({ onOpenCalendly }) {
             <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
               Choose Your Engagement Model
             </h3>
-            <p className="text-xs sm:text-sm text-white/70 mt-2">
+            <p className="text-xs sm:text-sm text-[#A1A1AA] mt-2">
               Select the structure that best fits your workflow, volume, and budget.
             </p>
           </div>
@@ -207,64 +210,65 @@ export default function OffshoreModel({ onOpenCalendly }) {
                 whileHover={{ y: -6 }}
                 className={`rounded-3xl p-7 flex flex-col justify-between transition-all duration-300 ${
                   model.popular
-                    ? 'bg-[#012B30] border-2 border-[#14F3C1] shadow-[0_0_30px_rgba(20,243,193,0.15)] relative ring-4 ring-[#14F3C1]/10'
-                    : 'bg-[#001517] border border-white/[0.08] hover:border-[#14F3C1]/30 shadow-xl'
+                    ? 'bg-[#18181B] border-2 border-white/40 shadow-[0_0_30px_rgba(255,255,255,0.1)] relative ring-4 ring-white/10'
+                    : 'bg-[#121214] border border-white/10 hover:border-white/30 shadow-xl'
                 }`}
               >
                 {model.popular && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#14F3C1] text-[#000D0E] text-[11px] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full shadow-md flex items-center gap-1.5 animate-pulse">
-                    <Zap className="w-3 h-3 fill-[#000D0E]" />
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-white text-black text-[11px] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full shadow-md flex items-center gap-1.5">
+                    <Zap className="w-3 h-3 fill-black" />
                     <span>{model.badge}</span>
                   </div>
                 )}
 
                 <div>
-                  {!model.popular && (
-                    <span className="text-[11px] font-bold text-[#14F3C1] uppercase tracking-wider block mb-1">
-                      {model.badge}
-                    </span>
-                  )}
-                  <h4 className="text-xl font-extrabold text-white mb-2 mt-1">
-                    {model.name}
-                  </h4>
-                  <p className="text-xs text-white/70 mb-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="text-xl font-bold text-white">{model.name}</h4>
+                    {!model.popular && (
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-[#A1A1AA] bg-white/5 border border-white/10 px-2.5 py-0.5 rounded-full font-mono">
+                        {model.badge}
+                      </span>
+                    )}
+                  </div>
+
+                  <p className="text-xs text-[#D4D4D8] mb-6 leading-relaxed">
                     {model.tagline}
                   </p>
 
-                  <div className="space-y-4 text-xs border-t border-white/[0.08] pt-5">
+                  <div className="space-y-4 pt-4 border-t border-white/10 text-xs">
                     <div>
                       <span className="font-bold text-white block mb-0.5">Best For:</span>
-                      <span className="text-white/70">{model.bestFor}</span>
+                      <span className="text-[#A1A1AA]">{model.bestFor}</span>
                     </div>
 
                     <div>
-                      <span className="font-bold text-white block mb-0.5">Pricing Structure:</span>
-                      <span className="text-white/70">{model.pricing}</span>
+                      <span className="font-bold text-white block mb-0.5">Commercial Structure:</span>
+                      <span className="text-white font-medium">{model.pricing}</span>
                     </div>
 
                     <div>
-                      <span className="font-bold text-white block mb-0.5">Engineering Team:</span>
-                      <span className="text-white/70">{model.team}</span>
+                      <span className="font-bold text-white block mb-0.5">Team Arrangement:</span>
+                      <span className="text-[#A1A1AA]">{model.team}</span>
                     </div>
 
                     <div>
                       <span className="font-bold text-white block mb-0.5">Flexibility:</span>
-                      <span className="text-white/70">{model.flexibility}</span>
+                      <span className="text-[#A1A1AA]">{model.flexibility}</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="pt-6 mt-6 border-t border-white/[0.08]">
+                <div className="pt-6 mt-6 border-t border-white/10">
                   <a
                     href="#contact"
-                    onClick={handleQuoteClick}
-                    className={`w-full py-3 rounded-full font-bold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                    onClick={(e) => handleQuoteClick(e, model.name)}
+                    className={`w-full py-3 rounded-full text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer ${
                       model.popular
-                        ? 'bg-[#14F3C1] hover:bg-[#34F8CE] text-[#000D0E] shadow-[0_0_20px_rgba(20,243,193,0.3)]'
-                        : 'bg-white/5 hover:bg-white/10 text-white border border-white/15'
+                        ? 'bg-white hover:bg-neutral-200 text-black shadow-md'
+                        : 'bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white'
                     }`}
                   >
-                    <span>Request {model.name} Quote</span>
+                    <span>Choose {model.name}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </a>
                 </div>
@@ -273,85 +277,76 @@ export default function OffshoreModel({ onOpenCalendly }) {
           </motion.div>
         </div>
 
-        {/* 3-Step "How to Get Started" Strip */}
-        <div className="bg-[#001517] rounded-3xl border border-white/[0.08] p-6 sm:p-8 shadow-xl mb-12">
-          <div className="text-center max-w-xl mx-auto mb-8">
-            <span className="text-xs font-bold text-[#14F3C1] uppercase tracking-wider">
-              Zero Friction Onboarding
-            </span>
-            <h4 className="text-xl sm:text-2xl font-bold text-white mt-1">
-              How to Get Started in 3 Simple Steps
-            </h4>
+        {/* Detailed Comparison Table */}
+        <div className="bg-[#121214] rounded-3xl border border-white/10 p-6 sm:p-8 shadow-xl overflow-hidden">
+          <div className="mb-6">
+            <h4 className="text-lg font-bold text-white">Side-by-Side Model Comparison</h4>
+            <p className="text-xs text-[#A1A1AA]">Detailed breakdown of operational and commercial differences</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 relative">
-            <div className="flex flex-col items-center text-center p-4">
-              <div className="w-12 h-12 rounded-full bg-[#14F3C1]/10 text-[#14F3C1] font-extrabold text-base flex items-center justify-center mb-3 ring-8 ring-[#14F3C1]/5">
-                1
-              </div>
-              <h5 className="font-bold text-sm text-white mb-1">Share Your Brief</h5>
-              <p className="text-xs text-white/70">
-                Send your scope, 2D sketches, 3D CAD files, or MEP requirements via secure upload or email.
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center text-center p-4">
-              <div className="w-12 h-12 rounded-full bg-[#14F3C1]/10 text-[#14F3C1] font-extrabold text-base flex items-center justify-center mb-3 ring-8 ring-[#14F3C1]/5">
-                2
-              </div>
-              <h5 className="font-bold text-sm text-white mb-1">Quote Within 24h</h5>
-              <p className="text-xs text-white/70">
-                We review technical feasibility and deliver a transparent milestone quote and schedule within one working day.
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center text-center p-4">
-              <div className="w-12 h-12 rounded-full bg-[#14F3C1]/10 text-[#14F3C1] font-extrabold text-base flex items-center justify-center mb-3 ring-8 ring-[#14F3C1]/5">
-                3
-              </div>
-              <h5 className="font-bold text-sm text-white mb-1">Kickoff Under NDA</h5>
-              <p className="text-xs text-white/70">
-                Execute mutual NDA, align drafting standards, and your dedicated engineering team begins execution immediately.
-              </p>
-            </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-xs">
+              <thead>
+                <tr className="border-b border-white/10 text-[#A1A1AA] uppercase tracking-wider font-mono">
+                  <th className="pb-3 pr-4 font-bold">Feature / Capability</th>
+                  <th className="pb-3 px-4 font-bold">Project-Based</th>
+                  <th className="pb-3 px-4 font-bold text-white">Dedicated Team (FTE)</th>
+                  <th className="pb-3 pl-4 font-bold">Hourly Bucket</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/10 text-[#D4D4D8]">
+                <tr>
+                  <td className="py-3 pr-4 font-semibold text-white">Billing Model</td>
+                  <td className="py-3 px-4">Fixed lump-sum milestone</td>
+                  <td className="py-3 px-4 text-white font-medium">Flat monthly fee</td>
+                  <td className="py-3 pl-4">Prepaid hour bundle</td>
+                </tr>
+                <tr>
+                  <td className="py-3 pr-4 font-semibold text-white">Dedicated Lead Engineer</td>
+                  <td className="py-3 px-4">Yes (for project scope)</td>
+                  <td className="py-3 px-4 text-white font-medium">Yes (full-time assigned)</td>
+                  <td className="py-3 pl-4">Shared lead oversight</td>
+                </tr>
+                <tr>
+                  <td className="py-3 pr-4 font-semibold text-white">Direct Slack/Teams Sync</td>
+                  <td className="py-3 px-4">Milestone checkpoints</td>
+                  <td className="py-3 px-4 text-white font-medium">Daily synchronous channel</td>
+                  <td className="py-3 pl-4">As-needed syncs</td>
+                </tr>
+                <tr>
+                  <td className="py-3 pr-4 font-semibold text-white">Client CAD Standards Adoption</td>
+                  <td className="py-3 px-4">Strict compliance</td>
+                  <td className="py-3 px-4 text-white font-medium">Deep workflow integration</td>
+                  <td className="py-3 pl-4">Client templates applied</td>
+                </tr>
+                <tr>
+                  <td className="py-3 pr-4 font-semibold text-white">Turnaround Guarantee</td>
+                  <td className="py-3 px-4">Per statement of work</td>
+                  <td className="py-3 px-4 text-white font-medium">Continuous daily releases</td>
+                  <td className="py-3 pl-4">24–48h notice</td>
+                </tr>
+                <tr>
+                  <td className="py-3 pr-4 font-semibold text-white">Non-Disclosure Agreement</td>
+                  <td className="py-3 px-4">Mandatory before kickoff</td>
+                  <td className="py-3 px-4 text-white font-medium">Mandatory before kickoff</td>
+                  <td className="py-3 pl-4">Mandatory before kickoff</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        </div>
 
-        {/* Trust Badges & Action CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-6 border-t border-white/[0.08]">
-          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 text-xs font-semibold text-white/80">
-            <span className="flex items-center gap-1.5">
-              <Lock className="w-3.5 h-3.5 text-[#14F3C1]" />
-              NDA Standard
-            </span>
-            <span className="text-white/20">|</span>
-            <span className="flex items-center gap-1.5">
-              <FileCheck2 className="w-3.5 h-3.5 text-[#14F3C1]" />
-              ASME & ISO Compliant
-            </span>
-            <span className="text-white/20">|</span>
-            <span className="flex items-center gap-1.5">
-              <Layers className="w-3.5 h-3.5 text-[#14F3C1]" />
-              STEP / DWG / RVT / IFC
-            </span>
-          </div>
-
-          <div className="flex items-center gap-3 w-full sm:w-auto">
+          <div className="mt-6 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-3 text-xs text-[#A1A1AA]">
+              <Lock className="w-4 h-4 text-white" />
+              <span>All models include 100% IP ownership transfer and strict confidentiality.</span>
+            </div>
             <button
               onClick={handleBookCall}
-              className="flex-1 sm:flex-initial px-5 py-2.5 rounded-full bg-white/5 border border-white/15 hover:border-[#14F3C1] text-xs font-bold text-white hover:text-[#14F3C1] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+              className="text-xs font-bold text-white hover:underline flex items-center gap-1.5"
             >
-              <Calendar className="w-3.5 h-3.5 text-[#14F3C1]" />
-              <span>Book Intro Call</span>
+              <Calendar className="w-3.5 h-3.5" />
+              <span>Discuss custom engagement parameters with our lead engineer →</span>
             </button>
-            <a
-              href="#contact"
-              onClick={handleQuoteClick}
-              className="flex-1 sm:flex-initial px-6 py-2.5 rounded-full bg-[#14F3C1] hover:bg-[#34F8CE] text-[#000D0E] text-xs font-bold shadow-[0_0_15px_rgba(20,243,193,0.25)] transition-all flex items-center justify-center gap-1.5 cursor-pointer"
-            >
-              <span>Request Quote</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </a>
           </div>
         </div>
 

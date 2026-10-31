@@ -1,5 +1,6 @@
 // /src/components/FAQAccordion.jsx
 // Consilio-style split FAQ layout with side guidance card & animated accordion
+// Modern black-and-white theme
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -34,45 +35,43 @@ export default function FAQAccordion({ onOpenCalendly }) {
   };
 
   return (
-    <section id="faq" className="py-20 md:py-28 bg-[#F4F6F5] dark:bg-[#000D0E] border-b border-[#DBE3E0] dark:border-[#223249]/60 relative scroll-mt-12">
+    <section id="faq" className="py-20 md:py-28 bg-[#0A0A0A] border-b border-white/10 relative scroll-mt-12">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           
           {/* Left Column (Consilio Split Layout) */}
           <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-28">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#2E756E]/10 dark:bg-[#14F3C1]/10 text-[#2E756E] dark:text-[#14F3C1] border border-[#2E756E]/20 dark:border-[#14F3C1]/20">
-              <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white/10 text-white border border-white/15">
+              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
               <span>FAQs</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#14201D] dark:text-white tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
               Your Commonly Asked Questions
             </h2>
 
-            <p className="text-sm sm:text-base text-[#5A6A65] dark:text-[#94A3B8] leading-relaxed">
+            <p className="text-sm sm:text-base text-[#A1A1AA] leading-relaxed">
               Everything you need to know about working with escalup as your dedicated offshore CAD, Mechanical, and MEP engineering partner.
             </p>
 
             {/* Consilio-style Guidance Box */}
-            <div className="p-7 rounded-3xl bg-white dark:bg-[#001517] border border-[#DBE3E0] dark:border-[#223249]/80 shadow-soft space-y-4">
-              <div className="w-11 h-11 rounded-2xl bg-[#2E756E]/10 dark:bg-[#14F3C1]/10 text-[#2E756E] dark:text-[#14F3C1] flex items-center justify-center">
-                <Calendar className="w-5 h-5" />
+            <div className="p-7 rounded-3xl bg-[#121214] border border-white/10 shadow-soft space-y-4">
+              <div className="w-11 h-11 rounded-2xl bg-white/10 text-white flex items-center justify-center">
+                <Calendar className="w-5 h-5 text-white" />
               </div>
-              <h4 className="text-base font-bold text-[#14201D] dark:text-white">
-                Need Direct Guidance?
-              </h4>
-              <p className="text-xs sm:text-sm text-[#5A6A65] dark:text-[#94A3B8] leading-relaxed">
-                Have a specialized engineering question or unique project standard? Discuss directly with our Principal Engineer.
+              <h4 className="text-base font-bold text-white">Have a specific question about your scope?</h4>
+              <p className="text-xs sm:text-sm text-[#A1A1AA] leading-relaxed">
+                Schedule a 30-minute intro call to discuss your CAD standards, drawing templates, or pilot scope directly with our lead engineer.
               </p>
-
+              
               <div className="pt-2 flex flex-col sm:flex-row gap-3">
                 <Magnetic strength={0.15}>
                   <button
                     onClick={handleBookCall}
-                    className="w-full sm:w-auto px-5 py-2.5 rounded-full bg-[#2E756E] hover:bg-[#255e58] text-white text-xs font-bold shadow-xs hover:shadow transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full sm:w-auto px-5 py-2.5 rounded-full bg-white hover:bg-neutral-200 text-black font-bold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md"
                   >
-                    <span>Book a Call</span>
+                    <span>Book 30-Min Call</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </Magnetic>
@@ -80,58 +79,56 @@ export default function FAQAccordion({ onOpenCalendly }) {
                 <a
                   href="#contact"
                   onClick={handleContactClick}
-                  className="w-full sm:w-auto px-5 py-2.5 rounded-full bg-[#F4F6F5] dark:bg-[#002226] text-[#14201D] dark:text-white hover:text-[#2E756E] dark:hover:text-[#14F3C1] border border-[#DBE3E0] dark:border-[#14F3C1]/20 text-xs font-bold transition-colors text-center flex items-center justify-center"
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-white font-semibold text-xs text-center flex items-center justify-center cursor-pointer"
                 >
-                  <span>Send Message</span>
+                  <span>Send Inquiry</span>
                 </a>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Accordion */}
+          {/* Right Column: Accordion List */}
           <div className="lg:col-span-7 space-y-4">
             {faqData.map((faq, index) => {
               const isOpen = openIndex === index;
-              const faqId = `faq-answer-${faq.id}`;
-              const headerId = `faq-header-${faq.id}`;
-
               return (
                 <div
                   key={faq.id}
-                  className="bg-white dark:bg-[#001517] rounded-3xl border border-[#DBE3E0] dark:border-[#223249]/80 overflow-hidden transition-all duration-200 shadow-xs"
+                  className={`rounded-3xl border transition-all duration-300 overflow-hidden ${
+                    isOpen
+                      ? 'bg-[#18181B] border-white/30 shadow-card'
+                      : 'bg-[#121214] border-white/10 hover:border-white/20'
+                  }`}
                 >
                   <button
-                    id={headerId}
-                    aria-expanded={isOpen}
-                    aria-controls={faqId}
                     onClick={() => toggleFAQ(index)}
-                    className="w-full py-5 px-6 sm:px-7 text-left flex items-center justify-between gap-4 font-bold text-base sm:text-lg text-[#14201D] dark:text-white hover:text-[#2E756E] dark:hover:text-[#14F3C1] transition-colors cursor-pointer focus:outline-none"
+                    className="w-full p-6 sm:p-7 text-left flex items-start justify-between gap-4 cursor-pointer"
+                    aria-expanded={isOpen}
                   >
-                    <span className="flex-1">{faq.question}</span>
-                    <div
-                      className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all ${
+                    <span className="text-base sm:text-lg font-bold text-white leading-snug">
+                      {faq.question}
+                    </span>
+                    <span
+                      className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-colors ${
                         isOpen
-                          ? 'bg-[#2E756E] dark:bg-[#14F3C1] text-white dark:text-[#000D0E] rotate-180'
-                          : 'bg-[#F4F6F5] dark:bg-[#002226] text-[#5A6A65] dark:text-[#94A3B8]'
+                          ? 'bg-white text-black'
+                          : 'bg-white/5 text-white/70'
                       }`}
                     >
                       {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-                    </div>
+                    </span>
                   </button>
 
                   <AnimatePresence initial={false}>
                     {isOpen && (
                       <motion.div
-                        id={faqId}
-                        role="region"
-                        aria-labelledby={headerId}
+                        key="content"
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: 'easeInOut' }}
-                        className="overflow-hidden"
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                       >
-                        <div className="px-6 sm:px-7 pb-6 pt-1 text-xs sm:text-sm text-[#5A6A65] dark:text-[#94A3B8] leading-relaxed border-t border-[#DBE3E0]/50 dark:border-[#223249]/60">
+                        <div className="px-6 sm:px-7 pb-6 sm:pb-7 text-xs sm:text-sm text-[#D4D4D8] leading-relaxed border-t border-white/10 pt-4">
                           {faq.answer}
                         </div>
                       </motion.div>

@@ -1,5 +1,6 @@
 // /src/pages/HomePage.jsx
 // Complete Consilio-inspired editorial engineering experience for escalup
+// Sleek, consistent black-and-white theme with zero duplicate sections
 
 import React from 'react';
 import Hero from '../components/Hero';
@@ -16,21 +17,20 @@ import OffshoreModel from '../components/OffshoreModel';
 import PilotProject from '../components/PilotProject';
 import StatsStrip from '../components/StatsStrip';
 import ToolsSoftware from '../components/ToolsSoftware';
-import AboutSection from '../components/AboutSection';
 import FAQAccordion from '../components/FAQAccordion';
 import FinalCTABand from '../components/FinalCTABand';
 import ContactSection from '../components/ContactSection';
 
 export default function HomePage({ onOpenCalendly }) {
   return (
-    <main className="flex-1 w-full overflow-hidden">
+    <main className="flex-1 w-full overflow-hidden bg-[#0A0A0A]">
       {/* 1. Consilio-style Hero with editorial typography, pill CTAs & CAD 3D wireframe */}
       <Hero onOpenCalendly={onOpenCalendly} />
 
       {/* 2. Continuous Engineering Standards & Software Marquee Ticker */}
       <LogoTicker />
 
-      {/* 3. Consilio-style Large Statement, 3 Feature Pillars & Tag Ticker */}
+      {/* 3. Consolidated About escalup: Statement, Narrative, Hub, 3 Pillars, Leadership & Ticker (Appears Once) */}
       <AboutManifesto />
 
       {/* 4. Expert Engineering For Every Stage (Services Bento Grid) */}
@@ -66,16 +66,13 @@ export default function HomePage({ onOpenCalendly }) {
       {/* 14. Supported Engineering CAD & BIM Platforms */}
       <ToolsSoftware />
 
-      {/* 15. About escalup Leadership & Dhaka Engineering Hub */}
-      <AboutSection />
-
-      {/* 16. Commonly Asked Questions (Split FAQ Layout with Guidance Box) */}
+      {/* 15. Commonly Asked Questions (Split FAQ Layout with Guidance Box) */}
       <FAQAccordion onOpenCalendly={onOpenCalendly} />
 
-      {/* 17. Build With Precision. Unlock Engineering Scale (Final CTA Band) */}
+      {/* 16. Build With Precision. Unlock Engineering Scale (Final CTA Band) */}
       <FinalCTABand onOpenCalendly={onOpenCalendly} />
 
-      {/* 18. Comprehensive Engineering Inquiry & Quote Form */}
+      {/* 17. Comprehensive Engineering Inquiry & Quote Form */}
       <ContactSection onOpenCalendly={onOpenCalendly} />
     </main>
   );

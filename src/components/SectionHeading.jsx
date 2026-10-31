@@ -1,5 +1,6 @@
 // /src/components/SectionHeading.jsx
 // Smooth, staggered entrance animation for section headings across the site
+// Modern black-and-white theme
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -9,7 +10,6 @@ export default function SectionHeading({
   title,
   subtitle,
   align = 'center',
-  light = false,
   className = '',
 }) {
   const isCenter = align === 'center';
@@ -47,14 +47,8 @@ export default function SectionHeading({
     >
       {eyebrow && (
         <motion.div variants={itemVariants}>
-          <div
-            className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3.5 ${
-              light
-                ? 'bg-white/10 text-white border border-white/20'
-                : 'bg-[#14F3C1]/10 text-[#14F3C1] border border-[#14F3C1]/20'
-            }`}
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-[#14F3C1] animate-pulse"></span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3.5 bg-white/10 text-white border border-white/20">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
             {eyebrow}
           </div>
         </motion.div>
@@ -62,9 +56,7 @@ export default function SectionHeading({
 
       <motion.h2
         variants={itemVariants}
-        className={`text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight leading-tight ${
-          light ? 'text-white' : 'text-[#14201D] dark:text-white'
-        }`}
+        className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight leading-tight text-white"
       >
         {title}
       </motion.h2>
@@ -72,9 +64,7 @@ export default function SectionHeading({
       {subtitle && (
         <motion.p
           variants={itemVariants}
-          className={`mt-4 text-base sm:text-lg leading-relaxed ${
-            light ? 'text-white/80' : 'text-[#5A6A65] dark:text-[#94A3B8]'
-          }`}
+          className="mt-4 text-base sm:text-lg leading-relaxed text-[#A1A1AA]"
         >
           {subtitle}
         </motion.p>

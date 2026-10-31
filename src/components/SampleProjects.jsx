@@ -1,5 +1,6 @@
 // /src/components/SampleProjects.jsx
 // Consilio-style filtered case studies & engineering deliverables with highlighted metrics
+// Modern black-and-white theme
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -15,7 +16,7 @@ export default function SampleProjects() {
     : projectsData.filter((p) => p.category === activeCategory);
 
   return (
-    <section id="projects" className="py-20 md:py-28 bg-[#F4F6F5] dark:bg-[#000D0E] border-b border-[#DBE3E0] dark:border-[#223249]/60 relative scroll-mt-12">
+    <section id="projects" className="py-20 md:py-28 bg-[#0A0A0A] border-b border-white/10 relative scroll-mt-12">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         <SectionHeading
@@ -34,14 +35,14 @@ export default function SampleProjects() {
                 onClick={() => setActiveCategory(cat)}
                 className={`relative px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                   isActive
-                    ? 'text-white'
-                    : 'bg-white dark:bg-[#001517] text-[#5A6A65] dark:text-[#94A3B8] hover:text-[#14201D] dark:hover:text-white border border-[#DBE3E0] dark:border-[#223249]/80'
+                    ? 'text-black'
+                    : 'bg-[#121214] text-[#A1A1AA] hover:text-white border border-white/10'
                 }`}
               >
                 {isActive && (
                   <motion.div
                     layoutId="activeFilterPill"
-                    className="absolute inset-0 bg-[#2E756E] dark:bg-[#002B30] rounded-full shadow-xs border border-transparent dark:border-[#14F3C1]/30"
+                    className="absolute inset-0 bg-white rounded-full shadow-md"
                     transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                   />
                 )}
@@ -64,56 +65,52 @@ export default function SampleProjects() {
                 whileHover={{ y: -8, scale: 1.01 }}
                 data-cursor="Deliverable"
                 transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-                className="bg-white dark:bg-[#001517] rounded-3xl p-7 border border-[#DBE3E0] dark:border-[#223249]/80 hover:border-[#2E756E]/40 dark:hover:border-[#14F3C1]/40 shadow-soft hover:shadow-card transition-all flex flex-col justify-between group cursor-default"
+                className="bg-[#121214] hover:bg-[#18181B] rounded-3xl p-7 border border-white/10 hover:border-white/30 shadow-soft hover:shadow-card transition-all flex flex-col justify-between group cursor-default"
               >
                 <div>
                   {/* Top row: Category tag + Metric badge */}
                   <div className="flex items-center justify-between gap-2 mb-5">
-                    <span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#2E756E]/10 dark:bg-[#14F3C1]/15 text-[#2E756E] dark:text-[#14F3C1] font-mono">
+                    <span className="text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-white/10 text-white/90 border border-white/15 font-mono">
                       {project.categoryLabel}
                     </span>
-                    <div className="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-700 dark:text-[#14F3C1] bg-emerald-50 dark:bg-[#002B30] px-2.5 py-1 rounded-full border border-emerald-200/50 dark:border-[#14F3C1]/30">
-                      <TrendingUp className="w-3 h-3" />
+                    <div className="inline-flex items-center gap-1.5 text-[11px] font-bold text-white bg-white/10 px-2.5 py-1 rounded-full border border-white/20">
+                      <TrendingUp className="w-3 h-3 text-white" />
                       <span>{project.metrics}</span>
                     </div>
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-lg sm:text-xl font-bold text-[#14201D] dark:text-white mb-3 group-hover:text-[#2E756E] dark:group-hover:text-[#14F3C1] transition-colors leading-snug">
+                  <h3 className="text-xl font-bold text-white mb-2.5 group-hover:text-white transition-colors leading-snug">
                     {project.title}
                   </h3>
 
+                  {/* Industry tag */}
+                  <div className="text-xs font-semibold text-[#A1A1AA] mb-4">
+                    {project.industry}
+                  </div>
+
                   {/* Description */}
-                  <p className="text-xs sm:text-sm text-[#5A6A65] dark:text-[#94A3B8] mb-5 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#D4D4D8] leading-relaxed mb-6">
                     {project.description}
                   </p>
-
-                  {/* Scope Line */}
-                  <div className="py-2.5 px-3.5 rounded-2xl bg-[#F4F6F5] dark:bg-[#002226]/60 border border-[#DBE3E0]/70 dark:border-[#14F3C1]/10 text-xs mb-5">
-                    <span className="font-bold text-[#2E756E] dark:text-[#14F3C1] block text-[10px] uppercase tracking-wider mb-1 font-mono">
-                      Deliverable Scope:
-                    </span>
-                    <span className="font-medium text-xs text-[#5A6A65] dark:text-[#94A3B8] leading-relaxed block">
-                      {project.scope}
-                    </span>
-                  </div>
                 </div>
 
-                {/* Footer Tools */}
-                <div className="pt-4 border-t border-[#DBE3E0]/70 dark:border-[#223249]/70 flex items-center justify-between text-xs">
+                {/* Footer Tools + Deliverables */}
+                <div className="pt-4 border-t border-white/10 space-y-3">
                   <div className="flex flex-wrap gap-1.5">
                     {project.tools.map((t, idx) => (
                       <span
                         key={idx}
-                        className="text-[10px] font-mono font-semibold text-[#14201D] dark:text-[#F1F5F9] bg-white dark:bg-[#001517] px-2 py-0.5 rounded border border-[#DBE3E0] dark:border-[#223249]"
+                        className="text-[10px] font-mono text-white/80 bg-white/5 px-2.5 py-1 rounded-md border border-white/10"
                       >
                         {t}
                       </span>
                     ))}
                   </div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#889893] dark:text-[#64748B]">
-                    ASME / ISO
-                  </span>
+                  <div className="text-xs font-bold text-white/70 group-hover:text-white transition-colors flex items-center justify-between">
+                    <span>{project.deliverable}</span>
+                    <span className="text-white">→</span>
+                  </div>
                 </div>
               </motion.div>
             ))}

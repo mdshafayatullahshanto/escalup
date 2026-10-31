@@ -1,5 +1,6 @@
 // /src/components/WhyEscalup.jsx
 // Consilio-style "The Advantage Of Working With escalup" section
+// Modern black-and-white theme
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -73,7 +74,7 @@ export default function WhyEscalup() {
   };
 
   return (
-    <section className="py-20 md:py-28 bg-[#F4F6F5] dark:bg-[#000D0E] border-b border-[#DBE3E0] dark:border-[#223249]/60 relative">
+    <section className="py-20 md:py-28 bg-[#0A0A0A] border-b border-white/10 relative">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         <SectionHeading
@@ -99,23 +100,23 @@ export default function WhyEscalup() {
                 whileHover={{ y: -8, scale: 1.01 }}
                 data-cursor="Advantage"
                 transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-                className="p-7 sm:p-8 rounded-3xl bg-white dark:bg-[#001517] border border-[#DBE3E0] dark:border-[#223249]/80 hover:border-[#2E756E]/40 dark:hover:border-[#14F3C1]/40 hover:shadow-card transition-all duration-300 group flex flex-col justify-between cursor-default"
+                className="p-7 sm:p-8 rounded-3xl bg-[#121214] hover:bg-[#18181B] border border-white/10 hover:border-white/30 hover:shadow-card transition-all duration-300 group flex flex-col justify-between cursor-default"
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <div className="w-12 h-12 rounded-2xl bg-[#2E756E]/10 dark:bg-[#14F3C1]/10 text-[#2E756E] dark:text-[#14F3C1] flex items-center justify-center transition-all duration-300 shadow-xs group-hover:scale-105">
+                    <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 text-white flex items-center justify-center transition-all duration-300 shadow-xs group-hover:scale-105 group-hover:bg-white group-hover:text-black">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#5A6A65] dark:text-[#94A3B8] font-mono">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#A1A1AA] font-mono">
                       {adv.tag}
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold text-[#14201D] dark:text-white mb-2.5 group-hover:text-[#2E756E] dark:group-hover:text-[#14F3C1] transition-colors leading-snug">
+                  <h3 className="text-xl font-bold text-white mb-2.5 group-hover:text-white transition-colors leading-snug">
                     {adv.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-[#5A6A65] dark:text-[#94A3B8] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#A1A1AA] leading-relaxed">
                     {adv.desc}
                   </p>
                 </div>
