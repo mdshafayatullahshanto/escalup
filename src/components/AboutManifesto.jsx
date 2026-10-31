@@ -49,8 +49,8 @@ export default function AboutManifesto() {
     <section id="about" className="py-20 md:py-28 bg-[#F8FAF9] border-b border-[#DBE3E0] relative overflow-hidden scroll-mt-12">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
-        {/* Top Header Block: Tag + Big Editorial Statement */}
-        <div className="max-w-4xl mb-16 md:mb-20">
+        {/* Top Header Block: Tag + Big Editorial Statement (Centered in Middle) */}
+        <div className="max-w-4xl mx-auto text-center mb-16 md:mb-20">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -67,7 +67,7 @@ export default function AboutManifesto() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#14201D] tracking-tight leading-[1.35] sm:leading-[1.38] md:leading-[1.4] mb-8"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#14201D] tracking-tight leading-[1.35] sm:leading-[1.38] md:leading-[1.4] mb-8 text-center"
           >
             escalup partners with ambitious engineering firms, manufacturers, and contractors to{' '}
             <span className="text-[#2E756E] relative inline-block pb-2 sm:pb-2.5">

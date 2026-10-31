@@ -51,36 +51,34 @@ export default function PilotProject() {
           {/* Subtle background CAD grid */}
           <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none" />
 
-          <div className="relative z-10 max-w-3xl">
+          <div className="relative z-10 max-w-4xl mx-auto text-center">
             {/* Pill */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#2E756E]/30 text-[#A0D4CE] border border-[#2E756E]/40 mb-6">
               <Sparkles className="w-3.5 h-3.5 text-[#A0D4CE]" />
               <span>Low-Risk International Kickoff</span>
             </div>
 
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-4 leading-tight">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-4 leading-tight text-center">
               Start with a Small Paid Pilot Project
             </h3>
 
-            <p className="text-sm sm:text-base text-[#D4E2DE] mb-8 leading-relaxed">
+            <p className="text-sm sm:text-base text-[#D4E2DE] mb-8 leading-relaxed max-w-2xl mx-auto text-center">
               Evaluating a new overseas engineering partner is a critical operational decision. You do not need to commit to a long-term contract right away. Test our speed, drafting rigor, and communication with a low-risk trial assignment.
             </p>
 
-            <div className="space-y-4 mb-8">
+            <div className="grid sm:grid-cols-3 gap-4 mb-8 text-left">
               {points.map((pt, idx) => (
-                <div key={idx} className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full bg-[#2E756E]/40 text-[#A0D4CE] flex items-center justify-center shrink-0 mt-0.5 border border-[#2E756E]/50">
+                <div key={idx} className="bg-white/5 border border-[#2E756E]/30 rounded-2xl p-4 sm:p-5 flex flex-col justify-start">
+                  <div className="w-6 h-6 rounded-full bg-[#2E756E]/40 text-[#A0D4CE] flex items-center justify-center shrink-0 mb-3 border border-[#2E756E]/50">
                     <CheckCircle2 className="w-3.5 h-3.5 text-[#A0D4CE]" />
                   </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-white leading-snug">{pt.title}</h4>
-                    <p className="text-xs text-[#A0D4CE]/90 leading-relaxed mt-0.5">{pt.desc}</p>
-                  </div>
+                  <h4 className="text-sm font-bold text-white leading-snug">{pt.title}</h4>
+                  <p className="text-xs text-[#A0D4CE]/90 leading-relaxed mt-1.5">{pt.desc}</p>
                 </div>
               ))}
             </div>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href="#contact"
                 onClick={handlePilotClick}
@@ -90,7 +88,7 @@ export default function PilotProject() {
                 <ArrowRight className="w-4 h-4 text-[#14201D] group-hover:translate-x-1 transition-transform" />
               </a>
 
-              <span className="text-xs text-[#A0D4CE] text-center sm:text-left font-mono">
+              <span className="text-xs text-[#A0D4CE] text-center font-mono">
                 Average pilot delivered in 3–5 business days under strict NDA
               </span>
             </div>
