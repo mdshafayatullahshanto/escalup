@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Calendar, ShieldCheck, Clock, Award, Globe, Star } from 'lucide-react';
+import { ArrowRight, Calendar, ShieldCheck, Clock, Award, Globe } from 'lucide-react';
 import CADWireframeVisual from './CADWireframeVisual';
 import Magnetic from './Magnetic';
 import { trackCallBooking } from '../utils/analytics';
@@ -78,20 +78,11 @@ export default function Hero({ onOpenCalendly }) {
             animate="visible"
             className="lg:col-span-7 space-y-6 lg:space-y-8 text-left"
           >
-            {/* Eyebrow Label + Social Proof Pill */}
+            {/* Eyebrow Label */}
             <motion.div variants={childVariants} className="flex flex-wrap items-center gap-3">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#2E756E]/10 text-[#2E756E] border border-[#2E756E]/20">
                 <span className="w-2 h-2 rounded-full bg-[#2E756E] animate-pulse"></span>
                 <span>Offshore Engineering Services | CAD · MEP · BIM</span>
-              </div>
-
-              {/* Consilio-style Review Pill */}
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-white text-[#14201D] border border-[#DBE3E0] shadow-xs">
-                <div className="flex text-amber-500">
-                  <Star className="w-3.5 h-3.5 fill-current" />
-                </div>
-                <span className="font-bold">4.9 / 5.0</span>
-                <span className="text-[#5A6A65]">· Trusted by global teams</span>
               </div>
             </motion.div>
 

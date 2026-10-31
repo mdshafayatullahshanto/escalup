@@ -163,18 +163,6 @@ export default function Footer() {
               <span>Submit Project Brief</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
             </a>
-
-            <div className="pt-2">
-              <span className="text-[11px] font-bold text-[#71857E] uppercase tracking-wider block mb-2 font-mono">
-                Serving Overseas Desks:
-              </span>
-              <div className="flex flex-wrap gap-1.5 text-[10px] text-[#D4E2DE]">
-                <span className="bg-white/5 px-2.5 py-1 rounded-md border border-[#1C332F]">North America</span>
-                <span className="bg-white/5 px-2.5 py-1 rounded-md border border-[#1C332F]">Europe</span>
-                <span className="bg-white/5 px-2.5 py-1 rounded-md border border-[#1C332F]">Middle East</span>
-                <span className="bg-white/5 px-2.5 py-1 rounded-md border border-[#1C332F]">Asia-Pacific</span>
-              </div>
-            </div>
           </div>
 
         </div>
