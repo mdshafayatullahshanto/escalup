@@ -94,7 +94,11 @@ export default function Navbar({ onOpenCalendly }) {
           <div className="flex items-center justify-between">
             {/* Brand Logo - default teal variant */}
             <Magnetic strength={0.12}>
-              <Logo variant="default" size={scrolled ? 'sm' : 'md'} />
+              <Logo 
+                variant="default" 
+                size={scrolled ? 'sm' : 'md'} 
+                onClick={() => setMobileMenuOpen(false)} 
+              />
             </Magnetic>
 
             {/* Desktop Navigation Links */}
@@ -181,7 +185,11 @@ export default function Navbar({ onOpenCalendly }) {
               className="fixed top-0 right-0 bottom-0 w-full max-w-xs bg-white text-[#14201D] shadow-2xl z-50 flex flex-col p-6 overflow-y-auto border-l border-[#DBE3E0]"
             >
               <div className="flex items-center justify-between pb-6 border-b border-[#DBE3E0]">
-                <Logo variant="default" size="sm" />
+                <Logo 
+                  variant="default" 
+                  size="sm" 
+                  onClick={() => setMobileMenuOpen(false)} 
+                />
                 <button
                   onClick={() => setMobileMenuOpen(false)}
                   className="p-2 rounded-lg text-[#14201D] hover:bg-neutral-100"

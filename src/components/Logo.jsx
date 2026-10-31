@@ -1,11 +1,18 @@
 // /src/components/Logo.jsx
 // escalup official brand logo component (do not redraw or alter logo geometry)
 // The brand name is always written in lowercase: "escalup"
+// Clicking the logo navigates to homepage and scrolls to the top smoothly
 
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Logo({ variant = 'default', size = 'md', link = true, className = '' }) {
+export default function Logo({ 
+  variant = 'default', 
+  size = 'md', 
+  link = true, 
+  className = '',
+  onClick 
+}) {
   // Size presets
   const sizeMap = {
     sm: { icon: 'w-6 h-6', text: 'text-lg', dot: 'w-1.5 h-1.5' },
@@ -16,14 +23,30 @@ export default function Logo({ variant = 'default', size = 'md', link = true, cl
   const currentSize = sizeMap[size] || sizeMap.md;
   const isDarkVariant = variant === 'dark'; // for dark background (e.g. footer)
 
+  const handleClick = (e) => {
+    if (onClick) {
+      onClick(e);
+    }
+
+    if (window.location.pathname === '/') {
+      e.preventDefault();
+      if (window.location.hash) {
+        window.history.pushState(null, '', '/');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  };
+
   const content = (
-    <div className={`inline-flex items-center gap-2.5 select-none font-sans group ${className}`}>
+    <div className={`inline-flex items-center gap-2.5 select-none font-sans group cursor-pointer ${className}`}>
       {/* Official Symbol using the attached SVG */}
       <div className={`relative ${currentSize.icon} shrink-0 transition-transform duration-300 group-hover:scale-105`}>
         <img
           src={isDarkVariant ? '/e-logo-white.svg' : '/e-logo-2e756e.svg'}
           alt="escalup logo"
-          className="w-full h-full object-contain"
+          className="w-full h-full object-contain pointer-events-none"
           onError={(e) => {
             // Fallback to inline SVG if image file fails to load
             e.target.style.display = 'none';
@@ -35,7 +58,7 @@ export default function Logo({ variant = 'default', size = 'md', link = true, cl
         {/* Inline SVG Fallback matching exact geometry of e-logo-2e756e.svg */}
         <svg
           viewBox="-151 -151 302 302"
-          className="w-full h-full hidden"
+          className="w-full h-full hidden pointer-events-none"
           fill={isDarkVariant ? '#FFFFFF' : '#2E756E'}
         >
           <g transform="rotate(-22)">
@@ -59,7 +82,8 @@ export default function Logo({ variant = 'default', size = 'md', link = true, cl
     return (
       <Link
         to="/"
-        className="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2E756E] rounded-md transition-opacity"
+        onClick={handleClick}
+        className="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2E756E] rounded-md transition-opacity cursor-pointer inline-block"
         aria-label="escalup home"
       >
         {content}
