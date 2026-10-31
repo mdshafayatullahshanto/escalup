@@ -92,14 +92,23 @@ export default function Hero({ onOpenCalendly }) {
               className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-[4.25rem] font-extrabold text-[#14201D] tracking-tight leading-[1.22] sm:leading-[1.2] md:leading-[1.18] pb-1"
             >
               We bring people and engineering together to{' '}
-              <span className="text-[#2E756E] relative inline-block pb-2 sm:pb-2.5">
-                build things better.
+              <span className="relative inline-block pb-2 sm:pb-2.5">
+                <span className="bg-gradient-to-r from-[#1B3F3B] via-[#2E756E] to-[#3B948A] bg-clip-text text-transparent">
+                  build things better.
+                </span>
                 <svg
-                  className="absolute bottom-0 left-0 w-full h-2 sm:h-2.5 text-[#2E756E]/35 overflow-visible pointer-events-none"
+                  className="absolute bottom-0 left-0 w-full h-2 sm:h-2.5 overflow-visible pointer-events-none"
                   viewBox="0 0 100 8"
                   preserveAspectRatio="none"
                 >
-                  <path d="M0 3 Q 50 7 100 3" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+                  <defs>
+                    <linearGradient id="heroUnderlineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#1B3F3B" stopOpacity="0.4" />
+                      <stop offset="50%" stopColor="#2E756E" stopOpacity="0.55" />
+                      <stop offset="100%" stopColor="#3B948A" stopOpacity="0.4" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M0 3 Q 50 7 100 3" stroke="url(#heroUnderlineGrad)" strokeWidth="2.2" strokeLinecap="round" fill="none" />
                 </svg>
               </span>
             </motion.h1>
