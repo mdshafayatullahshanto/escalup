@@ -1,6 +1,6 @@
 // /src/components/WorldClock.jsx
 // Live World Clock widget displaying real-time hours across global hubs and Dhaka headquarters
-// Modern black-and-white theme
+// Light Editorial Engineering Theme with Deep Teal accents
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
@@ -93,19 +93,19 @@ export default function WorldClock() {
   };
 
   return (
-    <div className="bg-[#121214] rounded-3xl border border-white/10 p-6 shadow-xl">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-5 border-b border-white/10 gap-2">
+    <div className="bg-white rounded-3xl border border-[#DBE3E0] p-6 shadow-soft">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-5 border-b border-[#DBE3E0] gap-2">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-white/10 text-white flex items-center justify-center">
-            <Globe2 className="w-4 h-4 text-white" />
+          <div className="w-8 h-8 rounded-xl bg-[#2E756E]/10 text-[#2E756E] flex items-center justify-center">
+            <Globe2 className="w-4 h-4 text-[#2E756E]" />
           </div>
           <div>
-            <h4 className="text-sm font-bold text-white">Global Time-Zone Coordination</h4>
-            <p className="text-xs text-[#A1A1AA]">Real-time operational overlap with international engineering desks</p>
+            <h4 className="text-sm font-bold text-[#14201D]">Global Time-Zone Coordination</h4>
+            <p className="text-xs text-[#5A6A65]">Real-time operational overlap with international engineering desks</p>
           </div>
         </div>
-        <div className="flex items-center gap-2 text-xs font-semibold text-white bg-white/10 px-3 py-1 rounded-full border border-white/20 self-start sm:self-auto">
-          <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+        <div className="flex items-center gap-2 text-xs font-semibold text-[#2E756E] bg-[#2E756E]/10 px-3 py-1 rounded-full border border-[#2E756E]/20 self-start sm:self-auto">
+          <span className="w-2 h-2 rounded-full bg-[#2E756E] animate-pulse"></span>
           <span>Dhaka Engineering Hub: Active</span>
         </div>
       </div>
@@ -122,30 +122,30 @@ export default function WorldClock() {
               transition={{ duration: 0.2, ease: 'easeOut' }}
               className={`p-3.5 rounded-2xl border transition-colors cursor-default ${
                 hub.isHQ
-                  ? 'bg-[#18181B] border-white/40 ring-1 ring-white/20 shadow-md'
-                  : 'bg-[#0D0D0E] border-white/10 hover:border-white/25'
+                  ? 'bg-[#F4F6F5] border-[#2E756E] ring-1 ring-[#2E756E]/20 shadow-sm'
+                  : 'bg-[#F8FAF9] border-[#DBE3E0] hover:border-[#2E756E]/40'
               }`}
             >
               <div className="flex items-center justify-between mb-1.5">
-                <span className="text-xs font-bold text-white flex items-center gap-1.5">
+                <span className="text-xs font-bold text-[#14201D] flex items-center gap-1.5">
                   {hub.city}
                   {hub.isHQ && (
-                    <span className="text-[10px] font-bold bg-white text-black px-1.5 py-0.2 rounded-full">
+                    <span className="text-[10px] font-bold bg-[#2E756E] text-white px-1.5 py-0.2 rounded-full">
                       HQ
                     </span>
                   )}
                 </span>
-                <span className="text-[10px] font-mono text-white/50">{hub.offset}</span>
+                <span className="text-[10px] font-mono text-[#889893]">{hub.offset}</span>
               </div>
 
-              <div className="font-mono text-base font-bold text-white tracking-tight mb-1">
+              <div className="font-mono text-base font-bold text-[#14201D] tracking-tight mb-1">
                 {formatHubTime(hub.timeZone)}
               </div>
 
-              <div className="text-[11px] text-[#A1A1AA] flex items-center gap-1.5">
+              <div className="text-[11px] text-[#5A6A65] flex items-center gap-1.5">
                 <span
                   className={`w-1.5 h-1.5 rounded-full ${
-                    isWorkHours ? 'bg-white animate-pulse' : 'bg-white/30'
+                    isWorkHours ? 'bg-[#2E756E] animate-pulse' : 'bg-[#DBE3E0]'
                   }`}
                 ></span>
                 <span className="truncate">
@@ -157,12 +157,12 @@ export default function WorldClock() {
         })}
       </div>
 
-      <div className="mt-4 pt-3 border-t border-white/10 flex flex-wrap items-center justify-between text-xs text-[#A1A1AA] gap-2">
-        <span className="flex items-center gap-1.5 text-white/80">
-          <CheckCircle2 className="w-3.5 h-3.5 text-white" />
+      <div className="mt-4 pt-3 border-t border-[#DBE3E0] flex flex-wrap items-center justify-between text-xs text-[#5A6A65] gap-2">
+        <span className="flex items-center gap-1.5 text-[#14201D]">
+          <CheckCircle2 className="w-3.5 h-3.5 text-[#2E756E]" />
           Synchronous communication available during European & Middle East mornings.
         </span>
-        <span className="text-[11px] text-white font-medium">
+        <span className="text-[11px] text-[#2E756E] font-medium">
           Fast async overnight sprints for North America
         </span>
       </div>

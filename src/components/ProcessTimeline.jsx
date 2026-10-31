@@ -1,6 +1,6 @@
 // /src/components/ProcessTimeline.jsx
 // Consilio-style structured engineering delivery framework (3 major phases / 6 detailed execution gates)
-// Modern black-and-white theme
+// Light Editorial Engineering Theme with Deep Teal accents
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -92,7 +92,7 @@ export default function ProcessTimeline() {
   };
 
   return (
-    <section id="process" className="py-20 md:py-28 bg-[#0A0A0A] border-b border-white/10 relative scroll-mt-12">
+    <section id="process" className="py-20 md:py-28 bg-white border-b border-[#DBE3E0] relative scroll-mt-12">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         <SectionHeading
@@ -112,11 +112,11 @@ export default function ProcessTimeline() {
           {PHASES.map((phaseGroup, pIdx) => (
             <div key={pIdx} className="space-y-6">
               {/* Phase Header */}
-              <div className="flex items-center justify-between pb-3 border-b border-white/10">
-                <span className="text-xs font-bold uppercase tracking-wider text-white font-mono">
+              <div className="flex items-center justify-between pb-3 border-b border-[#DBE3E0]">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#2E756E] font-mono">
                   {phaseGroup.phase}
                 </span>
-                <span className="text-sm font-bold text-white">
+                <span className="text-sm font-bold text-[#14201D]">
                   {phaseGroup.phaseTitle}
                 </span>
               </div>
@@ -133,28 +133,28 @@ export default function ProcessTimeline() {
                       whileInView="show"
                       viewport={{ once: true, margin: '-30px' }}
                       whileHover={{ y: -6 }}
-                      className="bg-[#121214] hover:bg-[#18181B] rounded-3xl p-6 sm:p-7 border border-white/10 hover:border-white/30 shadow-soft hover:shadow-card transition-all duration-300 flex flex-col justify-between group cursor-default"
+                      className="bg-[#F8FAF9] hover:bg-white rounded-3xl p-6 sm:p-7 border border-[#DBE3E0] hover:border-[#2E756E]/50 shadow-soft hover:shadow-card transition-all duration-300 flex flex-col justify-between group cursor-default"
                     >
                       <div>
                         <div className="flex items-center justify-between mb-5">
-                          <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 text-white flex items-center justify-center group-hover:bg-white group-hover:text-black group-hover:border-white transition-all shadow-xs">
+                          <div className="w-12 h-12 rounded-2xl bg-white border border-[#DBE3E0] text-[#2E756E] flex items-center justify-center group-hover:bg-[#2E756E] group-hover:text-white group-hover:border-[#2E756E] transition-all shadow-xs">
                             <Icon className="w-6 h-6" />
                           </div>
                           <div className="flex items-center gap-2">
-                            <span className="text-[10px] font-bold uppercase font-mono px-2 py-0.5 rounded bg-white/10 text-white/90 border border-white/15">
+                            <span className="text-[10px] font-bold uppercase font-mono px-2 py-0.5 rounded bg-[#2E756E]/10 text-[#2E756E] border border-[#2E756E]/20">
                               {step.badge}
                             </span>
-                            <span className="text-2xl font-black font-mono text-white/20 group-hover:text-white transition-colors">
+                            <span className="text-2xl font-black font-mono text-[#2E756E]/25 group-hover:text-[#2E756E] transition-colors">
                               {step.num}
                             </span>
                           </div>
                         </div>
 
-                        <h3 className="text-lg font-bold text-white mb-2.5 group-hover:text-white transition-colors leading-snug">
+                        <h3 className="text-lg font-bold text-[#14201D] mb-2.5 group-hover:text-[#2E756E] transition-colors leading-snug">
                           {step.title}
                         </h3>
 
-                        <p className="text-xs sm:text-sm text-[#A1A1AA] leading-relaxed">
+                        <p className="text-xs sm:text-sm text-[#5A6A65] leading-relaxed">
                           {step.desc}
                         </p>
                       </div>

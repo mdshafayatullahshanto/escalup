@@ -1,6 +1,6 @@
 // /src/components/OffshoreModel.jsx
 // Detailed offshore engagement models, live world clock, and comparison table
-// Modern black-and-white theme
+// Light Editorial Engineering Theme with Deep Teal accents
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -119,7 +119,7 @@ export default function OffshoreModel({ onOpenCalendly }) {
   };
 
   return (
-    <section id="offshore-model" className="py-20 md:py-28 bg-[#0A0A0A] border-b border-white/10 relative scroll-mt-12">
+    <section id="offshore-model" className="py-20 md:py-28 bg-[#F8FAF9] border-b border-[#DBE3E0] relative scroll-mt-12">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         {/* Section Heading */}
@@ -153,16 +153,16 @@ export default function OffshoreModel({ onOpenCalendly }) {
                   show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } }
                 }}
                 whileHover={{ y: -5 }}
-                className="bg-[#121214] hover:bg-[#18181B] rounded-3xl p-6 border border-white/10 hover:border-white/30 transition-all duration-300 flex items-start gap-4 cursor-default shadow-xl"
+                className="bg-white hover:bg-white rounded-3xl p-6 border border-[#DBE3E0] hover:border-[#2E756E]/40 transition-all duration-300 flex items-start gap-4 cursor-default shadow-soft hover:shadow-card"
               >
-                <div className="w-11 h-11 rounded-2xl bg-white/5 border border-white/10 text-white shrink-0 flex items-center justify-center mt-0.5 shadow-sm">
+                <div className="w-11 h-11 rounded-2xl bg-[#F8FAF9] border border-[#DBE3E0] text-[#2E756E] shrink-0 flex items-center justify-center mt-0.5 shadow-xs">
                   <Icon className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-white mb-1.5">
+                  <h3 className="text-base font-bold text-[#14201D] mb-1.5">
                     {pillar.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#A1A1AA] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#5A6A65] leading-relaxed">
                     {pillar.desc}
                   </p>
                 </div>
@@ -179,10 +179,10 @@ export default function OffshoreModel({ onOpenCalendly }) {
         {/* Engagement Models Comparison */}
         <div className="mb-16">
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-[#14201D]">
               Choose Your Engagement Model
             </h3>
-            <p className="text-xs sm:text-sm text-[#A1A1AA] mt-2">
+            <p className="text-xs sm:text-sm text-[#5A6A65] mt-2">
               Select the structure that best fits your workflow, volume, and budget.
             </p>
           </div>
@@ -210,62 +210,62 @@ export default function OffshoreModel({ onOpenCalendly }) {
                 whileHover={{ y: -6 }}
                 className={`rounded-3xl p-7 flex flex-col justify-between transition-all duration-300 ${
                   model.popular
-                    ? 'bg-[#18181B] border-2 border-white/40 shadow-[0_0_30px_rgba(255,255,255,0.1)] relative ring-4 ring-white/10'
-                    : 'bg-[#121214] border border-white/10 hover:border-white/30 shadow-xl'
+                    ? 'bg-white border-2 border-[#2E756E] shadow-xl relative ring-4 ring-[#2E756E]/10'
+                    : 'bg-white border border-[#DBE3E0] hover:border-[#2E756E]/40 shadow-soft'
                 }`}
               >
                 {model.popular && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-white text-black text-[11px] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full shadow-md flex items-center gap-1.5">
-                    <Zap className="w-3 h-3 fill-black" />
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#2E756E] text-white text-[11px] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full shadow-md flex items-center gap-1.5">
+                    <Zap className="w-3 h-3 fill-white" />
                     <span>{model.badge}</span>
                   </div>
                 )}
 
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <h4 className="text-xl font-bold text-white">{model.name}</h4>
+                    <h4 className="text-xl font-bold text-[#14201D]">{model.name}</h4>
                     {!model.popular && (
-                      <span className="text-[10px] font-semibold uppercase tracking-wider text-[#A1A1AA] bg-white/5 border border-white/10 px-2.5 py-0.5 rounded-full font-mono">
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-[#2E756E] bg-[#2E756E]/10 border border-[#2E756E]/20 px-2.5 py-0.5 rounded-full font-mono">
                         {model.badge}
                       </span>
                     )}
                   </div>
 
-                  <p className="text-xs text-[#D4D4D8] mb-6 leading-relaxed">
+                  <p className="text-xs text-[#5A6A65] mb-6 leading-relaxed">
                     {model.tagline}
                   </p>
 
-                  <div className="space-y-4 pt-4 border-t border-white/10 text-xs">
+                  <div className="space-y-4 pt-4 border-t border-[#DBE3E0] text-xs">
                     <div>
-                      <span className="font-bold text-white block mb-0.5">Best For:</span>
-                      <span className="text-[#A1A1AA]">{model.bestFor}</span>
+                      <span className="font-bold text-[#14201D] block mb-0.5">Best For:</span>
+                      <span className="text-[#5A6A65]">{model.bestFor}</span>
                     </div>
 
                     <div>
-                      <span className="font-bold text-white block mb-0.5">Commercial Structure:</span>
-                      <span className="text-white font-medium">{model.pricing}</span>
+                      <span className="font-bold text-[#14201D] block mb-0.5">Commercial Structure:</span>
+                      <span className="text-[#14201D] font-medium">{model.pricing}</span>
                     </div>
 
                     <div>
-                      <span className="font-bold text-white block mb-0.5">Team Arrangement:</span>
-                      <span className="text-[#A1A1AA]">{model.team}</span>
+                      <span className="font-bold text-[#14201D] block mb-0.5">Team Arrangement:</span>
+                      <span className="text-[#5A6A65]">{model.team}</span>
                     </div>
 
                     <div>
-                      <span className="font-bold text-white block mb-0.5">Flexibility:</span>
-                      <span className="text-[#A1A1AA]">{model.flexibility}</span>
+                      <span className="font-bold text-[#14201D] block mb-0.5">Flexibility:</span>
+                      <span className="text-[#5A6A65]">{model.flexibility}</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="pt-6 mt-6 border-t border-white/10">
+                <div className="pt-6 mt-6 border-t border-[#DBE3E0]">
                   <a
                     href="#contact"
                     onClick={(e) => handleQuoteClick(e, model.name)}
                     className={`w-full py-3 rounded-full text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer ${
                       model.popular
-                        ? 'bg-white hover:bg-neutral-200 text-black shadow-md'
-                        : 'bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white'
+                        ? 'bg-[#2E756E] hover:bg-[#255E58] text-white shadow-md'
+                        : 'bg-[#F8FAF9] hover:bg-[#F4F6F5] text-[#14201D] border border-[#DBE3E0] hover:border-[#2E756E]'
                     }`}
                   >
                     <span>Choose {model.name}</span>
@@ -278,71 +278,71 @@ export default function OffshoreModel({ onOpenCalendly }) {
         </div>
 
         {/* Detailed Comparison Table */}
-        <div className="bg-[#121214] rounded-3xl border border-white/10 p-6 sm:p-8 shadow-xl overflow-hidden">
+        <div className="bg-white rounded-3xl border border-[#DBE3E0] p-6 sm:p-8 shadow-soft overflow-hidden">
           <div className="mb-6">
-            <h4 className="text-lg font-bold text-white">Side-by-Side Model Comparison</h4>
-            <p className="text-xs text-[#A1A1AA]">Detailed breakdown of operational and commercial differences</p>
+            <h4 className="text-lg font-bold text-[#14201D]">Side-by-Side Model Comparison</h4>
+            <p className="text-xs text-[#5A6A65]">Detailed breakdown of operational and commercial differences</p>
           </div>
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
-                <tr className="border-b border-white/10 text-[#A1A1AA] uppercase tracking-wider font-mono">
+                <tr className="border-b border-[#DBE3E0] text-[#889893] uppercase tracking-wider font-mono">
                   <th className="pb-3 pr-4 font-bold">Feature / Capability</th>
                   <th className="pb-3 px-4 font-bold">Project-Based</th>
-                  <th className="pb-3 px-4 font-bold text-white">Dedicated Team (FTE)</th>
+                  <th className="pb-3 px-4 font-bold text-[#2E756E]">Dedicated Team (FTE)</th>
                   <th className="pb-3 pl-4 font-bold">Hourly Bucket</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-white/10 text-[#D4D4D8]">
+              <tbody className="divide-y divide-[#DBE3E0] text-[#5A6A65]">
                 <tr>
-                  <td className="py-3 pr-4 font-semibold text-white">Billing Model</td>
+                  <td className="py-3 pr-4 font-semibold text-[#14201D]">Billing Model</td>
                   <td className="py-3 px-4">Fixed lump-sum milestone</td>
-                  <td className="py-3 px-4 text-white font-medium">Flat monthly fee</td>
+                  <td className="py-3 px-4 text-[#2E756E] font-medium">Flat monthly fee</td>
                   <td className="py-3 pl-4">Prepaid hour bundle</td>
                 </tr>
                 <tr>
-                  <td className="py-3 pr-4 font-semibold text-white">Dedicated Lead Engineer</td>
+                  <td className="py-3 pr-4 font-semibold text-[#14201D]">Dedicated Lead Engineer</td>
                   <td className="py-3 px-4">Yes (for project scope)</td>
-                  <td className="py-3 px-4 text-white font-medium">Yes (full-time assigned)</td>
+                  <td className="py-3 px-4 text-[#2E756E] font-medium">Yes (full-time assigned)</td>
                   <td className="py-3 pl-4">Shared lead oversight</td>
                 </tr>
                 <tr>
-                  <td className="py-3 pr-4 font-semibold text-white">Direct Slack/Teams Sync</td>
+                  <td className="py-3 pr-4 font-semibold text-[#14201D]">Direct Slack/Teams Sync</td>
                   <td className="py-3 px-4">Milestone checkpoints</td>
-                  <td className="py-3 px-4 text-white font-medium">Daily synchronous channel</td>
+                  <td className="py-3 px-4 text-[#2E756E] font-medium">Daily synchronous channel</td>
                   <td className="py-3 pl-4">As-needed syncs</td>
                 </tr>
                 <tr>
-                  <td className="py-3 pr-4 font-semibold text-white">Client CAD Standards Adoption</td>
+                  <td className="py-3 pr-4 font-semibold text-[#14201D]">Client CAD Standards Adoption</td>
                   <td className="py-3 px-4">Strict compliance</td>
-                  <td className="py-3 px-4 text-white font-medium">Deep workflow integration</td>
+                  <td className="py-3 px-4 text-[#2E756E] font-medium">Deep workflow integration</td>
                   <td className="py-3 pl-4">Client templates applied</td>
                 </tr>
                 <tr>
-                  <td className="py-3 pr-4 font-semibold text-white">Turnaround Guarantee</td>
+                  <td className="py-3 pr-4 font-semibold text-[#14201D]">Turnaround Guarantee</td>
                   <td className="py-3 px-4">Per statement of work</td>
-                  <td className="py-3 px-4 text-white font-medium">Continuous daily releases</td>
+                  <td className="py-3 px-4 text-[#2E756E] font-medium">Continuous daily releases</td>
                   <td className="py-3 pl-4">24–48h notice</td>
                 </tr>
                 <tr>
-                  <td className="py-3 pr-4 font-semibold text-white">Non-Disclosure Agreement</td>
+                  <td className="py-3 pr-4 font-semibold text-[#14201D]">Non-Disclosure Agreement</td>
                   <td className="py-3 px-4">Mandatory before kickoff</td>
-                  <td className="py-3 px-4 text-white font-medium">Mandatory before kickoff</td>
+                  <td className="py-3 px-4 text-[#2E756E] font-medium">Mandatory before kickoff</td>
                   <td className="py-3 pl-4">Mandatory before kickoff</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <div className="mt-6 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3 text-xs text-[#A1A1AA]">
-              <Lock className="w-4 h-4 text-white" />
+          <div className="mt-6 pt-6 border-t border-[#DBE3E0] flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-3 text-xs text-[#5A6A65]">
+              <Lock className="w-4 h-4 text-[#2E756E]" />
               <span>All models include 100% IP ownership transfer and strict confidentiality.</span>
             </div>
             <button
               onClick={handleBookCall}
-              className="text-xs font-bold text-white hover:underline flex items-center gap-1.5"
+              className="text-xs font-bold text-[#2E756E] hover:underline flex items-center gap-1.5"
             >
               <Calendar className="w-3.5 h-3.5" />
               <span>Discuss custom engagement parameters with our lead engineer →</span>

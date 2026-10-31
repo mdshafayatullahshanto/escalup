@@ -1,32 +1,24 @@
 // /src/context/ThemeContext.jsx
-// Modern Theme Provider locked to premium dark monochrome aesthetic
+// Theme Provider supporting the clean editorial engineering light palette
 
 import React, { createContext, useContext, useEffect } from 'react';
 
 const ThemeContext = createContext({
-  theme: 'dark',
-  isDark: true,
+  theme: 'light',
+  isDark: false,
 });
 
 export function ThemeProvider({ children }) {
-  const isDark = true;
-
   useEffect(() => {
     const root = document.documentElement;
-    root.classList.add('dark');
-    root.style.colorScheme = 'dark';
+    root.classList.remove('dark');
+    root.style.colorScheme = 'light';
     const themeColorMeta = document.querySelector('meta[name="theme-color"]');
-    if (themeColorMeta) themeColorMeta.setAttribute('content', '#0A0A0A');
-
-    const transitionTimer = setTimeout(() => {
-      document.documentElement.classList.add('theme-transition');
-    }, 150);
-
-    return () => clearTimeout(transitionTimer);
+    if (themeColorMeta) themeColorMeta.setAttribute('content', '#2E756E');
   }, []);
 
   return (
-    <ThemeContext.Provider value={{ theme: 'dark', isDark }}>
+    <ThemeContext.Provider value={{ theme: 'light', isDark: false }}>
       {children}
     </ThemeContext.Provider>
   );

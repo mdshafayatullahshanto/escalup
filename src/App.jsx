@@ -18,9 +18,9 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 // Loading fallback spinner with escalup brand styling
 function PageLoader() {
   return (
-    <div className="min-h-[70vh] flex flex-col items-center justify-center bg-[#0A0A0A] text-white">
-      <div className="w-10 h-10 rounded-full border-2 border-white/10 border-t-white animate-spin mb-3"></div>
-      <span className="text-xs font-semibold text-neutral-400 font-mono tracking-wider">escalup engineering...</span>
+    <div className="min-h-[70vh] flex flex-col items-center justify-center bg-[#F8FAF9] text-[#14201D]">
+      <div className="w-10 h-10 rounded-full border-2 border-[#2E756E]/20 border-t-[#2E756E] animate-spin mb-3"></div>
+      <span className="text-xs font-semibold text-[#5A6A65] font-mono tracking-wider">escalup engineering...</span>
     </div>
   );
 }
@@ -101,11 +101,11 @@ export default function App() {
 
         {/* Top Reading / Scroll Progress Bar */}
         <motion.div
-          className="fixed top-0 left-0 right-0 h-[2px] bg-white origin-left z-50 pointer-events-none shadow-[0_0_10px_rgba(255,255,255,0.8)]"
+          className="fixed top-0 left-0 right-0 h-[2.5px] bg-[#2E756E] origin-left z-50 pointer-events-none shadow-[0_0_10px_rgba(46,117,110,0.5)]"
           style={{ scaleX }}
         />
 
-        <div className="flex flex-col min-h-screen bg-[#0A0A0A] text-white font-sans antialiased selection:bg-white/20 selection:text-white">
+        <div className="flex flex-col min-h-screen bg-[#F8FAF9] text-[#14201D] font-sans antialiased selection:bg-[#2E756E]/20 selection:text-[#2E756E]">
           {/* Sticky Global Navigation */}
           <Navbar onOpenCalendly={() => setCalendlyOpen(true)} />
 

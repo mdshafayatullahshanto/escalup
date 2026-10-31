@@ -1,6 +1,6 @@
 // /src/components/PilotProject.jsx
 // High-conversion lead capture section lowering risk for first-time overseas buyers
-// Modern black-and-white theme
+// Light Editorial Engineering Theme with Deep Teal accents
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -39,22 +39,22 @@ export default function PilotProject() {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-[#0A0A0A] border-b border-white/10 relative overflow-hidden">
+    <section className="py-16 md:py-24 bg-white border-b border-[#DBE3E0] relative overflow-hidden">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="bg-[#121214] rounded-3xl p-8 sm:p-12 md:p-16 text-white shadow-2xl relative overflow-hidden border border-white/10"
+          className="bg-gradient-to-br from-[#142F2C] via-[#102724] to-[#0A1B19] rounded-3xl p-8 sm:p-12 md:p-16 text-white shadow-2xl relative overflow-hidden border border-[#2E756E]/40"
         >
           {/* Subtle background CAD grid */}
-          <div className="absolute inset-0 blueprint-grid opacity-15" />
+          <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none" />
 
           <div className="relative z-10 max-w-3xl">
             {/* Pill */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white/10 text-white border border-white/20 mb-6">
-              <Sparkles className="w-3.5 h-3.5 text-white" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#2E756E]/30 text-[#A0D4CE] border border-[#2E756E]/40 mb-6">
+              <Sparkles className="w-3.5 h-3.5 text-[#A0D4CE]" />
               <span>Low-Risk International Kickoff</span>
             </div>
 
@@ -62,19 +62,19 @@ export default function PilotProject() {
               Start with a Small Paid Pilot Project
             </h3>
 
-            <p className="text-sm sm:text-base text-[#D4D4D8] mb-8 leading-relaxed">
+            <p className="text-sm sm:text-base text-[#D4E2DE] mb-8 leading-relaxed">
               Evaluating a new overseas engineering partner is a critical operational decision. You do not need to commit to a long-term contract right away. Test our speed, drafting rigor, and communication with a low-risk trial assignment.
             </p>
 
             <div className="space-y-4 mb-8">
               {points.map((pt, idx) => (
                 <div key={idx} className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full bg-white/10 text-white flex items-center justify-center shrink-0 mt-0.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-white" />
+                  <div className="w-5 h-5 rounded-full bg-[#2E756E]/40 text-[#A0D4CE] flex items-center justify-center shrink-0 mt-0.5 border border-[#2E756E]/50">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#A0D4CE]" />
                   </div>
                   <div>
                     <h4 className="text-sm font-bold text-white leading-snug">{pt.title}</h4>
-                    <p className="text-xs text-[#A1A1AA] leading-relaxed mt-0.5">{pt.desc}</p>
+                    <p className="text-xs text-[#A0D4CE]/90 leading-relaxed mt-0.5">{pt.desc}</p>
                   </div>
                 </div>
               ))}
@@ -84,13 +84,13 @@ export default function PilotProject() {
               <a
                 href="#contact"
                 onClick={handlePilotClick}
-                className="px-7 py-3.5 rounded-full bg-white hover:bg-neutral-200 text-black font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-lg group cursor-pointer"
+                className="px-7 py-3.5 rounded-full bg-white hover:bg-[#F4F6F5] text-[#14201D] font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-lg group cursor-pointer"
               >
                 <span>Propose a Pilot Assignment</span>
-                <ArrowRight className="w-4 h-4 text-black group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 text-[#14201D] group-hover:translate-x-1 transition-transform" />
               </a>
 
-              <span className="text-xs text-[#A1A1AA] text-center sm:text-left font-mono">
+              <span className="text-xs text-[#A0D4CE] text-center sm:text-left font-mono">
                 Average pilot delivered in 3–5 business days under strict NDA
               </span>
             </div>

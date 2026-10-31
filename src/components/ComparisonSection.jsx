@@ -1,6 +1,6 @@
 // /src/components/ComparisonSection.jsx
 // Consilio-style iconic comparison card: "Why Engineering Leaders Choose escalup" vs "Other Firms / Freelancers"
-// Modern black-and-white theme
+// Light Editorial Engineering Theme with Deep Teal accents
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -36,7 +36,7 @@ export default function ComparisonSection() {
   };
 
   return (
-    <section className="py-20 md:py-28 bg-[#0A0A0A] border-b border-white/10 relative">
+    <section className="py-20 md:py-28 bg-white border-b border-[#DBE3E0] relative">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         <SectionHeading
@@ -54,30 +54,30 @@ export default function ComparisonSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.5 }}
-            className="rounded-3xl p-7 sm:p-9 bg-[#121214] border border-white/10 shadow-soft"
+            className="rounded-3xl p-7 sm:p-9 bg-[#F8FAF9] border border-[#DBE3E0] shadow-soft"
           >
-            <div className="flex items-center justify-between pb-6 border-b border-white/10 mb-6">
+            <div className="flex items-center justify-between pb-6 border-b border-[#DBE3E0] mb-6">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-[#71717A] block mb-1 font-mono">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#889893] block mb-1 font-mono">
                   Common Market Approach
                 </span>
-                <h3 className="text-xl sm:text-2xl font-extrabold text-white">
+                <h3 className="text-xl sm:text-2xl font-extrabold text-[#14201D]">
                   Other Firms & Freelancers
                 </h3>
               </div>
-              <div className="w-10 h-10 rounded-full bg-red-500/10 text-red-400 flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0">
                 <X className="w-5 h-5" />
               </div>
             </div>
 
-            <p className="text-xs sm:text-sm text-[#A1A1AA] mb-6 leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#5A6A65] mb-6 leading-relaxed">
               Many offshore engagements deliver low-cost drafting, but fall short during production—leaving your shop floor with rework and delays.
             </p>
 
             <ul className="space-y-4">
               {OTHER_FIRMS.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-[#A1A1AA]">
-                  <div className="w-5 h-5 rounded-full bg-red-500/10 text-red-400 flex items-center justify-center shrink-0 mt-0.5">
+                <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-[#5A6A65]">
+                  <div className="w-5 h-5 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0 mt-0.5">
                     <X className="w-3 h-3" />
                   </div>
                   <span className="leading-snug">{item}</span>
@@ -92,34 +92,34 @@ export default function ComparisonSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.5 }}
-            className="rounded-3xl p-7 sm:p-9 bg-[#18181B] text-white shadow-2xl border border-white/20 relative overflow-hidden flex flex-col justify-between"
+            className="rounded-3xl p-7 sm:p-9 bg-gradient-to-br from-[#142F2C] via-[#102724] to-[#0A1B19] text-white shadow-2xl border border-[#2E756E]/40 relative overflow-hidden flex flex-col justify-between"
           >
             {/* Subtle glow effect */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[#2E756E]/20 rounded-full blur-3xl pointer-events-none" />
 
             <div className="relative z-10">
               <div className="flex items-center justify-between pb-6 border-b border-white/15 mb-6">
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#A1A1AA] block mb-1 font-mono">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#A0D4CE] block mb-1 font-mono">
                     The escalup Standard
                   </span>
                   <h3 className="text-xl sm:text-2xl font-extrabold text-white">
                     With escalup
                   </h3>
                 </div>
-                <div className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center shrink-0 font-bold shadow-md">
+                <div className="w-10 h-10 rounded-full bg-[#2E756E] text-white flex items-center justify-center shrink-0 font-bold shadow-md border border-[#2E756E]/50">
                   <Check className="w-5 h-5 stroke-[3]" />
                 </div>
               </div>
 
-              <p className="text-xs sm:text-sm text-[#D4D4D8] mb-6 leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#D4E2DE] mb-6 leading-relaxed">
                 We combine rigorous mechanical engineering expertise with hands-on drafting discipline to provide a reliable, long-term extension of your team.
               </p>
 
               <ul className="space-y-4 mb-8">
                 {WITH_ESCALUP.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-white">
-                    <div className="w-5 h-5 rounded-full bg-white/10 text-white flex items-center justify-center shrink-0 mt-0.5">
+                    <div className="w-5 h-5 rounded-full bg-[#2E756E]/40 text-[#A0D4CE] flex items-center justify-center shrink-0 mt-0.5 border border-[#2E756E]/50">
                       <Check className="w-3.5 h-3.5 stroke-[3]" />
                     </div>
                     <span className="leading-snug font-medium">{item}</span>
@@ -130,15 +130,15 @@ export default function ComparisonSection() {
 
             {/* Bottom CTA Button */}
             <div className="relative z-10 pt-4 border-t border-white/10 flex items-center justify-between">
-              <span className="text-xs text-[#A1A1AA] font-mono">24h Response Guaranteed</span>
+              <span className="text-xs text-[#A0D4CE] font-mono">24h Response Guaranteed</span>
               <Magnetic strength={0.2}>
                 <a
                   href="#contact"
                   onClick={handleQuoteClick}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black hover:bg-neutral-200 text-xs font-bold shadow-md transition-all group"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-[#14201D] hover:bg-[#F4F6F5] text-xs font-bold shadow-md transition-all group"
                 >
                   <span>Request an Estimate</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-black group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-3.5 h-3.5 text-[#14201D] group-hover:translate-x-1 transition-transform" />
                 </a>
               </Magnetic>
             </div>

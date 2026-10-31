@@ -1,6 +1,6 @@
 // /src/components/CustomCursor.jsx
 // Smooth, premium dual-layer custom cursor with magnetic & hover reaction states.
-// Automatically disabled on touch / tablet / mobile devices and when reduced motion is preferred.
+// Brand teal color palette matching reference design
 
 import React, { useEffect, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
@@ -46,7 +46,6 @@ export default function CustomCursor() {
     const handleMouseLeave = () => setVisible(false);
     const handleMouseEnter = () => setVisible(true);
 
-    // Dynamic hover detection for interactive elements
     const handleElementHover = (e) => {
       const target = e.target.closest('a, button, input, textarea, select, [role="button"], .interactive-hover, .magnetic-btn, [data-cursor]');
       if (target) {
@@ -96,21 +95,21 @@ export default function CustomCursor() {
           width: cursorText ? 76 : (hovered ? 48 : 32),
           height: cursorText ? 76 : (hovered ? 48 : 32),
           backgroundColor: cursorText
-            ? '#FFFFFF'
-            : (hovered ? 'rgba(255, 255, 255, 0.12)' : 'rgba(255, 255, 255, 0.04)'),
+            ? '#2E756E'
+            : (hovered ? 'rgba(46, 117, 110, 0.12)' : 'rgba(46, 117, 110, 0.04)'),
           borderColor: cursorText
-            ? '#FFFFFF'
-            : (hovered ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.35)'),
+            ? '#2E756E'
+            : (hovered ? '#2E756E' : 'rgba(46, 117, 110, 0.4)'),
           borderWidth: cursorText ? '0px' : (hovered ? '1.5px' : '1px'),
           boxShadow: cursorText
-            ? '0 8px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.35)'
+            ? '0 8px 25px rgba(46, 117, 110, 0.4)'
             : 'none',
           scale: clicked ? 0.9 : 1,
         }}
         transition={{ type: 'spring', damping: 22, stiffness: 300 }}
       >
         {cursorText && (
-          <span className="text-[11px] font-black uppercase tracking-widest text-black select-none font-mono">
+          <span className="text-[11px] font-black uppercase tracking-widest text-white select-none font-mono">
             {cursorText}
           </span>
         )}
@@ -118,7 +117,7 @@ export default function CustomCursor() {
 
       {/* Inner Precision Tracking Dot */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[99999] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)] transition-opacity duration-200"
+        className="fixed top-0 left-0 pointer-events-none z-[99999] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#2E756E] shadow-[0_0_8px_rgba(46,117,110,0.6)] transition-opacity duration-200"
         style={{
           x: dotX,
           y: dotY,
