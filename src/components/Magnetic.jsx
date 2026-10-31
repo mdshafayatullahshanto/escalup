@@ -48,3 +48,4 @@ export default function Magnetic({ children, strength = 0.25, className = '' }) 
     </motion.div>
   );
 }
+
