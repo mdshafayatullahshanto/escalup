@@ -26,6 +26,10 @@ export const companyData = {
     capabilityStatementPdf: '/escalup-capability-statement.pdf'
   },
 
+  social: {
+    linkedin: 'https://www.linkedin.com/company/escalup'
+  },
+
   workingHours: {
     timezone: 'Asia/Dhaka (BST, UTC+6)',
     schedule: 'Monday – Friday, 10:00 – 19:00 BST',

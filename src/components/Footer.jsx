@@ -64,7 +64,7 @@ export default function Footer() {
 
             <div className="pt-2 flex items-center gap-3">
               <a
-                href={companyData.social.linkedin}
+                href={companyData.contact?.linkedinUrl || 'https://www.linkedin.com/company/escalup'}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 rounded-full bg-white/5 hover:bg-white hover:text-black border border-white/15 text-white flex items-center justify-center transition-all"
