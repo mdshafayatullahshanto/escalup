@@ -51,10 +51,10 @@ export default function SectionHeading({
             className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3.5 ${
               light
                 ? 'bg-white/10 text-white border border-white/20'
-                : 'bg-[#2E756E]/10 text-[#2E756E] border border-[#2E756E]/20'
+                : 'bg-[#14F3C1]/10 text-[#14F3C1] border border-[#14F3C1]/20'
             }`}
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#14F3C1] animate-pulse"></span>
             {eyebrow}
           </div>
         </motion.div>

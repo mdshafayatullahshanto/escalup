@@ -20,24 +20,24 @@
   }
 
   html.dark {
-    --brand-teal: #34A096;
-    --brand-teal-hover: #2E756E;
-    --brand-dark: #0A1412;
-    --bg-main: #0B111E;
-    --bg-card: #121C2D;
-    --bg-subtle: #172338;
-    --bg-input: #0E1624;
-    --border-line: #223249;
-    --border-subtle: rgba(34, 50, 73, 0.7);
-    --ink-dark: #F1F5F9;
-    --ink-muted: #94A3B8;
-    --ink-light: #64748B;
+    --brand-teal: #14F3C1;
+    --brand-teal-hover: #34F8CE;
+    --brand-dark: #000D0E;
+    --bg-main: #000D0E;
+    --bg-card: #001517;
+    --bg-subtle: #012B30;
+    --bg-input: #000D0E;
+    --border-line: rgba(255, 255, 255, 0.08);
+    --border-subtle: rgba(255, 255, 255, 0.05);
+    --ink-dark: #FFFFFF;
+    --ink-muted: rgba(255, 255, 255, 0.7);
+    --ink-light: rgba(255, 255, 255, 0.5);
     color-scheme: dark;
   }
   
   html {
     scroll-behavior: smooth;
-    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+    font-family: 'Golos Text', 'Inter', system-ui, -apple-system, sans-serif;
   }
 
   body {
@@ -88,21 +88,17 @@ html.dark body {
 }
 
 /* Background surfaces */
-html.dark main,
-html.dark section:not([class*="dark:bg-[#122A27]"]) {
-  background-color: var(--bg-main) !important;
+html.dark main {
+  background-color: var(--bg-main);
 }
 
 html.dark .bg-\[\#F4F6F5\] {
   background-color: var(--bg-main) !important;
 }
 
-html.dark .bg-\[\#F4F6F5\]\/80 {
-  background-color: rgba(11, 17, 30, 0.85) !important;
-}
-
+html.dark .bg-\[\#F4F6F5\]\/80,
 html.dark .bg-\[\#F4F6F5\]\/92 {
-  background-color: rgba(11, 17, 30, 0.94) !important;
+  background-color: rgba(0, 21, 23, 0.85) !important;
 }
 
 html.dark .bg-\[\#F4F6F5\]\/50,
@@ -111,39 +107,25 @@ html.dark .bg-\[\#F4F6F5\]\/70 {
   background-color: var(--bg-subtle) !important;
 }
 
-html.dark .bg-white:not(section):not(main):not(.final-cta-btn):not(.btn-primary-white):not(.navbar-cta-btn) {
-  background-color: var(--bg-card) !important;
-}
-
-html.dark .bg-white\/95,
-html.dark .bg-white\/90,
-html.dark .bg-white\/80 {
-  background-color: rgba(18, 28, 45, 0.96) !important;
-}
-
-html.dark .bg-white\/40 {
-  background-color: rgba(18, 28, 45, 0.55) !important;
-}
-
 /* Gradients */
 html.dark .from-\[\#F4F6F5\] {
-  --tw-gradient-from: #0B111E var(--tw-gradient-from-position) !important;
+  --tw-gradient-from: #000D0E var(--tw-gradient-from-position) !important;
 }
 
 html.dark .via-\[\#F4F6F5\] {
-  --tw-gradient-via: #0B111E var(--tw-gradient-via-position) !important;
+  --tw-gradient-via: #000D0E var(--tw-gradient-via-position) !important;
 }
 
 html.dark .to-white {
-  --tw-gradient-to: #0B111E var(--tw-gradient-to-position) !important;
+  --tw-gradient-to: #000D0E var(--tw-gradient-to-position) !important;
 }
 
 html.dark .from-white {
-  --tw-gradient-from: #121C2D var(--tw-gradient-from-position) !important;
+  --tw-gradient-from: #001517 var(--tw-gradient-from-position) !important;
 }
 
 html.dark .via-white {
-  --tw-gradient-via: #121C2D var(--tw-gradient-via-position) !important;
+  --tw-gradient-via: #001517 var(--tw-gradient-via-position) !important;
 }
 
 /* Text adaptations with sufficient contrast & accessibility */
@@ -268,50 +250,6 @@ html.dark .blueprint-grid-subtle {
     radial-gradient(circle, rgba(52, 160, 150, 0.22) 1px, transparent 1px) !important;
 }
 
-/* SVG CAD Drafting Overrides for dark mode */
-html.dark svg rect[fill="#FFFFFF"] {
-  fill: #121C2D !important;
-  stroke: #34A096 !important;
-}
-
-html.dark svg text[fill="#14201D"] {
-  fill: #F1F5F9 !important;
-}
-
-/* Ensure CTA buttons inside accent bands and teal navbar preserve contrast */
-html.dark .final-cta-btn,
-html.dark .btn-primary-white,
-html.dark .navbar-cta-btn {
-  background-color: #FFFFFF !important;
-  color: #1D4E49 !important;
-  box-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.3) !important;
-}
-
-html.dark .final-cta-btn:hover,
-html.dark .btn-primary-white:hover,
-html.dark .navbar-cta-btn:hover {
-  background-color: #F0F6F5 !important;
-  color: #142F2C !important;
-}
-
-html.dark .final-cta-btn span,
-html.dark .btn-primary-white span,
-html.dark .navbar-cta-btn span {
-  color: #1D4E49 !important;
-}
-
-html.dark .final-cta-btn:hover span,
-html.dark .btn-primary-white:hover span,
-html.dark .navbar-cta-btn:hover span {
-  color: #142F2C !important;
-}
-
-html.dark .final-cta-btn svg,
-html.dark .btn-primary-white svg,
-html.dark .navbar-cta-btn svg {
-  color: #2E756E !important;
-}
-
 @keyframes marquee {
   0% { transform: translateX(0%); }
   100% { transform: translateX(-50%); }
@@ -332,24 +270,24 @@ html.dark .navbar-cta-btn svg {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #F4F6F5;
+  background: #000D0E;
 }
 ::-webkit-scrollbar-thumb {
-  background: #C3DBD7;
+  background: #012B30;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2E756E;
+  background: #14F3C1;
 }
 
 html.dark ::-webkit-scrollbar-track {
-  background: #0B111E;
+  background: #000D0E;
 }
 html.dark ::-webkit-scrollbar-thumb {
-  background: #223249;
+  background: #012B30;
 }
 html.dark ::-webkit-scrollbar-thumb:hover {
-  background: #34A096;
+  background: #14F3C1;
 }
 
 /* Hardware accelerated smooth motion & accessible reduced motion */

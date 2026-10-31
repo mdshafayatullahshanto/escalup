@@ -101,11 +101,11 @@ export default function App() {
 
         {/* Top Reading / Scroll Progress Bar */}
         <motion.div
-          className="fixed top-0 left-0 right-0 h-1 bg-[#5EEAD4] origin-left z-50 pointer-events-none shadow-sm"
+          className="fixed top-0 left-0 right-0 h-[2px] bg-[#14F3C1] origin-left z-50 pointer-events-none shadow-[0_0_10px_#14F3C1]"
           style={{ scaleX }}
         />
 
-        <div className="flex flex-col min-h-screen bg-[#F4F6F5] dark:bg-[#0B111E] text-[#14201D] dark:text-[#F1F5F9] font-sans antialiased selection:bg-[#2E756E]/20 selection:text-[#2E756E]">
+        <div className="flex flex-col min-h-screen bg-[#000D0E] text-white font-sans antialiased selection:bg-[#14F3C1]/20 selection:text-[#14F3C1]">
           {/* Sticky Global Navigation */}
           <Navbar onOpenCalendly={() => setCalendlyOpen(true)} />
 

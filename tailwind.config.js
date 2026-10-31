@@ -8,6 +8,14 @@ export default {
   theme: {
     extend: {
       colors: {
+        consilio: {
+          darkest: '#000D0E',
+          surface: '#001517',
+          card: '#012B30',
+          mint: '#14F3C1',
+          teal: '#056671',
+          lightMint: '#D8E9EB',
+        },
         brand: {
           50: '#f0f6f5',
           100: '#e1edea',
@@ -31,7 +39,8 @@ export default {
         borderLine: '#DBE3E0',
       },
       fontFamily: {
-        sans: ['Poppins', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['"Golos Text"', 'Inter', 'Poppins', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['"Fragment Mono"', 'monospace'],
       },
       boxShadow: {
         'soft': '0 4px 20px -2px rgba(20, 32, 29, 0.05)',

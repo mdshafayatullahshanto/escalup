@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Minus, ArrowRight, MessageSquare, Calendar } from 'lucide-react';
+import { Plus, Minus, ArrowRight, Calendar } from 'lucide-react';
 import { faqData } from '../data/faq';
 import Magnetic from './Magnetic';
 import { trackCallBooking } from '../utils/analytics';

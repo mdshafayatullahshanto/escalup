@@ -2,7 +2,7 @@
 // Analytics event tracking utility supporting Google Analytics 4 (gtag), Plausible, and development logging
 
 export const trackEvent = (eventName, params = {}) => {
-  const gaId = import.meta.env.VITE_GA_MEASUREMENT_ID;
+  const _gaId = import.meta.env.VITE_GA_MEASUREMENT_ID;
   const isDev = import.meta.env.DEV;
 
   if (isDev) {

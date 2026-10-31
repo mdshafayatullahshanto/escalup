@@ -4,17 +4,12 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const ThemeContext = createContext({
-  theme: 'light',
-  isDark: false,
+  theme: 'dark',
+  isDark: true,
 });
 
 export function ThemeProvider({ children }) {
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof window !== 'undefined' && window.matchMedia) {
-      return window.matchMedia('(prefers-color-scheme: dark)').matches;
-    }
-    return false;
-  });
+  const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
     if (typeof window === 'undefined' || !window.matchMedia) return;

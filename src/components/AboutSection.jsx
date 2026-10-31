@@ -9,9 +9,7 @@ import {
   Flame, 
   Layers, 
   RotateCcw, 
-  CheckCircle2, 
-  MapPin, 
-  Award 
+  MapPin 
 } from 'lucide-react';
 import { LinkedInIcon } from './Icons';
 import { teamData } from '../data/team';
@@ -44,7 +42,7 @@ export default function AboutSection() {
   const leadEngineer = teamData[0];
 
   return (
-    <section id="about" className="py-20 md:py-28 bg-[#F4F6F5] dark:bg-[#0B111E] border-b border-[#DBE3E0] dark:border-[#223249] relative scroll-mt-12">
+    <section id="about" className="py-20 md:py-28 bg-[#000D0E] border-b border-white/[0.08] relative scroll-mt-12">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         <SectionHeading
@@ -57,9 +55,9 @@ export default function AboutSection() {
         <div className="grid lg:grid-cols-12 gap-10 items-start mb-16">
           
           {/* Main Story Narrative */}
-          <div className="lg:col-span-7 space-y-5 text-sm sm:text-base text-[#5A6A65] dark:text-[#94A3B8] leading-relaxed">
+          <div className="lg:col-span-7 space-y-5 text-sm sm:text-base text-white/70 leading-relaxed">
             <p>
-              <strong className="text-[#2E756E] dark:text-[#34A096] font-bold">escalup</strong> is a Mechanical and MEP design company based in Dhaka. We work with manufacturers, developers and contractors worldwide to turn ideas into designs that are clear, practical and ready to build.
+              <strong className="text-[#14F3C1] font-bold">escalup</strong> is a Mechanical and MEP design company based in Dhaka. We work with manufacturers, developers and contractors worldwide to turn ideas into designs that are clear, practical and ready to build.
             </p>
             <p>
               Our clients share one universal challenge: moving from concept to execution without losing precision along the way. escalup closes that gap, operating exactly where design intent meets engineering reality.
@@ -74,24 +72,24 @@ export default function AboutSection() {
 
           {/* Highlighted Quote & Dhaka Engineering Hub Card */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="bg-white dark:bg-[#121C2D] rounded-2xl p-7 border border-[#DBE3E0] dark:border-[#223249] shadow-soft relative overflow-hidden">
-              <div className="w-10 h-10 rounded-xl bg-[#2E756E]/10 dark:bg-[#162235] text-[#2E756E] dark:text-[#34A096] flex items-center justify-center mb-4">
+            <div className="bg-[#001517] rounded-3xl p-7 border border-white/[0.08] relative overflow-hidden shadow-xl">
+              <div className="w-10 h-10 rounded-xl bg-[#14F3C1]/10 text-[#14F3C1] flex items-center justify-center mb-4">
                 <Quote className="w-5 h-5" />
               </div>
-              <blockquote className="text-base sm:text-lg font-bold text-[#14201D] dark:text-[#F1F5F9] leading-snug italic mb-4">
+              <blockquote className="text-base sm:text-lg font-bold text-white leading-snug italic mb-4">
                 “We believe great projects are built where engineering precision meets thoughtful design.”
               </blockquote>
-              <div className="text-xs font-semibold text-[#2E756E] dark:text-[#34A096] uppercase tracking-wider">
+              <div className="text-xs font-semibold text-[#14F3C1] uppercase tracking-wider">
                 — escalup Core Principle
               </div>
             </div>
 
-            <div className="bg-white dark:bg-[#121C2D] rounded-2xl p-6 border border-[#DBE3E0] dark:border-[#223249] shadow-soft text-xs space-y-3">
-              <div className="flex items-center gap-2 text-[#14201D] dark:text-[#F1F5F9] font-bold text-sm">
-                <MapPin className="w-4 h-4 text-[#2E756E] dark:text-[#34A096]" />
+            <div className="bg-[#001517] rounded-3xl p-6 border border-white/[0.08] shadow-xl text-xs space-y-3">
+              <div className="flex items-center gap-2 text-white font-bold text-sm">
+                <MapPin className="w-4 h-4 text-[#14F3C1]" />
                 <span>Offshore Engineering Center: Uttara, Dhaka</span>
               </div>
-              <p className="text-[#5A6A65] dark:text-[#94A3B8] leading-relaxed">
+              <p className="text-white/70 leading-relaxed">
                 Dhaka is a fast-growing engineering hub with world-class technical universities and mechanical talent. escalup connects this top-tier talent with overseas procurement heads looking for high-fidelity deliverables at balanced offshore rates.
               </p>
             </div>
@@ -124,15 +122,15 @@ export default function AboutSection() {
                 }}
                 whileHover={{ y: -6, scale: 1.02 }}
                 data-cursor="Pillar"
-                className="bg-white dark:bg-[#121C2D] rounded-2xl p-6 border border-[#DBE3E0] dark:border-[#223249] shadow-soft hover:border-[#2E756E]/40 dark:hover:border-[#38B2A6]/40 hover:shadow-card transition-all cursor-default group"
+                className="bg-[#001517] hover:bg-[#012B30]/70 rounded-3xl p-6 border border-white/[0.08] hover:border-[#14F3C1]/30 transition-all cursor-default group"
               >
-                <div className="w-10 h-10 rounded-xl bg-[#2E756E]/10 dark:bg-[#162235] text-[#2E756E] dark:text-[#38B2A6] flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform">
+                <div className="w-10 h-10 rounded-xl bg-[#14F3C1]/10 text-[#14F3C1] flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform">
                   <Icon className="w-5 h-5" />
                 </div>
-                <h4 className="text-sm font-bold text-[#14201D] dark:text-[#F1F5F9] mb-1.5">
+                <h4 className="text-sm font-bold text-white mb-1.5">
                   {pillar.title}
                 </h4>
-                <p className="text-xs text-[#5A6A65] dark:text-[#94A3B8] leading-relaxed">
+                <p className="text-xs text-white/70 leading-relaxed">
                   {pillar.desc}
                 </p>
               </motion.div>
@@ -147,12 +145,12 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
-            className="bg-white dark:bg-[#121C2D] rounded-2xl border border-[#DBE3E0] dark:border-[#223249] p-6 sm:p-8 shadow-soft max-w-3xl mx-auto hover:shadow-card hover:border-[#2E756E]/30 transition-all"
+            className="bg-[#001517] rounded-3xl border border-white/[0.08] p-6 sm:p-8 max-w-3xl mx-auto hover:border-[#14F3C1]/30 transition-all shadow-xl"
           >
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
               
               {/* Photo */}
-              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-[#2E756E]/10 dark:bg-[#162235] border border-[#DBE3E0] dark:border-[#223249] flex items-center justify-center shrink-0 overflow-hidden shadow-md">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 overflow-hidden shadow-md">
                 {leadEngineer.photo ? (
                   <img
                     src={leadEngineer.photo}
@@ -162,8 +160,8 @@ export default function AboutSection() {
                   />
                 ) : (
                   <div className="text-center p-2">
-                    <span className="font-mono text-2xl font-black text-[#2E756E] dark:text-[#34A096]">e</span>
-                    <span className="block text-[9px] font-bold text-[#5A6A65] dark:text-[#94A3B8] uppercase">Lead</span>
+                    <span className="font-mono text-2xl font-black text-[#14F3C1]">e</span>
+                    <span className="block text-[9px] font-bold text-white/60 uppercase">Lead</span>
                   </div>
                 )}
               </div>
@@ -172,8 +170,8 @@ export default function AboutSection() {
               <div className="flex-1 space-y-2">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <div>
-                    <h4 className="text-lg font-bold text-[#14201D] dark:text-[#F1F5F9]">{leadEngineer.name}</h4>
-                    <span className="text-xs font-semibold text-[#2E756E] dark:text-[#34A096] block">{leadEngineer.role}</span>
+                    <h4 className="text-lg font-bold text-white">{leadEngineer.name}</h4>
+                    <span className="text-xs font-semibold text-[#14F3C1] block">{leadEngineer.role}</span>
                   </div>
 
                   {leadEngineer.linkedin && (
@@ -181,15 +179,15 @@ export default function AboutSection() {
                       href={leadEngineer.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#5A6A65] dark:text-[#94A3B8] hover:text-[#2E756E] dark:hover:text-[#34A096] bg-[#F4F6F5] dark:bg-[#162235] px-3 py-1.5 rounded-lg border border-[#DBE3E0] dark:border-[#223249] self-center sm:self-auto transition-colors"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-white/80 hover:text-[#000D0E] bg-white/5 hover:bg-[#14F3C1] px-3.5 py-1.5 rounded-full border border-white/10 self-center sm:self-auto transition-all"
                     >
-                      <LinkedInIcon className="w-3.5 h-3.5 text-[#2E756E] dark:text-[#34A096]" />
+                      <LinkedInIcon className="w-3.5 h-3.5" />
                       <span>LinkedIn Profile</span>
                     </a>
                   )}
                 </div>
 
-                <p className="text-xs sm:text-sm text-[#5A6A65] dark:text-[#94A3B8] leading-relaxed">
+                <p className="text-xs sm:text-sm text-white/70 leading-relaxed">
                   {leadEngineer.bio}
                 </p>
 
@@ -197,7 +195,7 @@ export default function AboutSection() {
                   {leadEngineer.skills.map((skill, sIdx) => (
                     <span
                       key={sIdx}
-                      className="text-[10px] font-semibold text-[#14201D] dark:text-[#F1F5F9] bg-[#F4F6F5] dark:bg-[#162235] px-2 py-0.5 rounded border border-[#DBE3E0] dark:border-[#223249]"
+                      className="text-[10px] font-semibold text-white/80 bg-white/5 px-2.5 py-1 rounded-full border border-white/10"
                     >
                       {skill}
                     </span>

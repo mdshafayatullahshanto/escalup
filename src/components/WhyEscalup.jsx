@@ -9,11 +9,9 @@ import {
   SearchCheck, 
   ShieldAlert, 
   Layers, 
-  Zap,
-  ArrowRight
+  Zap
 } from 'lucide-react';
 import SectionHeading from './SectionHeading';
-import Magnetic from './Magnetic';
 
 const ADVANTAGES = [
   {
@@ -60,7 +58,7 @@ const ADVANTAGES = [
   }
 ];
 
-export default function WhyEscalup({ onOpenCalendly }) {
+export default function WhyEscalup() {
   const container = {
     hidden: { opacity: 0 },
     show: {

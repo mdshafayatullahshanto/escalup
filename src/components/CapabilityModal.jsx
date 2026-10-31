@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { X, FileText, Download, CheckCircle2, ArrowRight } from 'lucide-react';
+import { X, FileText, Download, CheckCircle2 } from 'lucide-react';
 import { companyData } from '../data/company';
 import { trackCapabilityDownload } from '../utils/analytics';
 
@@ -38,23 +38,23 @@ export default function CapabilityModal({ isOpen, onClose }) {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 15 }}
         transition={{ type: 'spring', damping: 25, stiffness: 320 }}
-        className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-[#DBE3E0] overflow-hidden flex flex-col"
+        className="relative w-full max-w-lg bg-[#001517] text-white rounded-3xl shadow-2xl border border-white/[0.08] overflow-hidden flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-5 border-b border-[#DBE3E0] bg-[#F4F6F5]">
+        <div className="flex items-center justify-between p-5 border-b border-white/[0.08] bg-[#000D0E]">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-[#2E756E]/10 text-[#2E756E] flex items-center justify-center">
+            <div className="w-9 h-9 rounded-xl bg-[#14F3C1]/10 text-[#14F3C1] flex items-center justify-center">
               <FileText className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-[#14201D]">Capability Statement</h3>
-              <p className="text-xs text-[#5A6A65]">Official escalup Engineering Dossier (PDF)</p>
+              <h3 className="text-base font-bold text-white">Capability Statement</h3>
+              <p className="text-xs text-white/60">Official escalup Engineering Dossier (PDF)</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 rounded-lg text-[#5A6A65] hover:text-[#14201D] hover:bg-black/5 transition-colors"
+            className="p-2 rounded-lg text-white/60 hover:text-white hover:bg-white/5 transition-colors"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -66,22 +66,22 @@ export default function CapabilityModal({ isOpen, onClose }) {
           {!submitted ? (
             <>
               <div className="space-y-2">
-                <h4 className="font-bold text-sm text-[#14201D]">Inside the Capability Statement:</h4>
-                <ul className="text-xs text-[#5A6A65] space-y-1.5">
+                <h4 className="font-bold text-sm text-white">Inside the Capability Statement:</h4>
+                <ul className="text-xs text-white/70 space-y-1.5">
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#2E756E] shrink-0" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#14F3C1] shrink-0" />
                     <span>Complete Mechanical CAD, DFMA & MEP BIM capability matrix</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#2E756E] shrink-0" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#14F3C1] shrink-0" />
                     <span>Sample 2D manufacturing drawing standards & GD&T samples</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#2E756E] shrink-0" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#14F3C1] shrink-0" />
                     <span>Software versions, security protocols & engagement rate tiers</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#2E756E] shrink-0" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#14F3C1] shrink-0" />
                     <span>Dhaka offshore infrastructure & engineering team credentials</span>
                   </li>
                 </ul>
@@ -89,7 +89,7 @@ export default function CapabilityModal({ isOpen, onClose }) {
 
               <form onSubmit={handleDownload} className="space-y-3 pt-2">
                 <div>
-                  <label htmlFor="cap-email" className="block text-xs font-semibold text-[#14201D] mb-1">
+                  <label htmlFor="cap-email" className="block text-xs font-semibold text-white/90 mb-1">
                     Your Work Email (Optional)
                   </label>
                   <input
@@ -98,41 +98,41 @@ export default function CapabilityModal({ isOpen, onClose }) {
                     placeholder="name@company.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#DBE3E0] text-sm focus:outline-none focus:ring-2 focus:ring-[#2E756E] focus:border-transparent"
+                    className="w-full px-3.5 py-2.5 rounded-2xl bg-[#000D0E] border border-white/10 text-white placeholder-white/30 text-sm focus:outline-none focus:ring-1 focus:ring-[#14F3C1] focus:border-[#14F3C1]"
                   />
-                  <span className="text-[11px] text-[#5A6A65] mt-1 block">
+                  <span className="text-[11px] text-white/50 mt-1 block">
                     No spam ever. We only send relevant technical documentation.
                   </span>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-3 rounded-xl bg-[#2E756E] hover:bg-[#255e58] text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-3 rounded-full bg-[#14F3C1] hover:bg-[#34F8CE] text-[#000D0E] font-bold text-sm shadow-[0_0_20px_rgba(20,243,193,0.3)] transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <Download className="w-4 h-4" />
+                  <Download className="w-4 h-4 text-[#000D0E]" />
                   <span>Download PDF Capability Statement</span>
                 </button>
               </form>
             </>
           ) : (
             <div className="text-center py-6 space-y-4">
-              <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-700 mx-auto flex items-center justify-center">
+              <div className="w-12 h-12 rounded-full bg-[#14F3C1]/10 text-[#14F3C1] mx-auto flex items-center justify-center border border-[#14F3C1]/20">
                 <CheckCircle2 className="w-6 h-6" />
               </div>
-              <h4 className="font-bold text-lg text-[#14201D]">Download Started!</h4>
-              <p className="text-xs text-[#5A6A65] max-w-xs mx-auto">
+              <h4 className="font-bold text-lg text-white">Download Started!</h4>
+              <p className="text-xs text-white/70 max-w-xs mx-auto">
                 Your PDF is downloading. If it didn't start automatically,{' '}
                 <a
                   href={companyData.contact.capabilityStatementPdf}
                   download
-                  className="text-[#2E756E] underline font-semibold"
+                  className="text-[#14F3C1] underline font-semibold"
                 >
                   click here to retry
                 </a>.
               </p>
               <button
                 onClick={onClose}
-                className="px-6 py-2 rounded-xl bg-[#F4F6F5] hover:bg-[#e6eeeb] text-[#14201D] font-semibold text-xs transition-colors"
+                className="px-6 py-2 rounded-full bg-white/5 hover:bg-white/10 text-white font-semibold text-xs border border-white/15 transition-colors"
               >
                 Close Window
               </button>

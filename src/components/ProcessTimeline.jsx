@@ -9,11 +9,9 @@ import {
   Box, 
   CheckCheck, 
   FileCheck, 
-  HeadphonesIcon,
-  ArrowRight
+  HeadphonesIcon
 } from 'lucide-react';
 import SectionHeading from './SectionHeading';
-import Magnetic from './Magnetic';
 
 const PHASES = [
   {
@@ -103,7 +101,13 @@ export default function ProcessTimeline() {
         />
 
         {/* 3 Main Phase Columns */}
-        <div className="grid lg:grid-cols-3 gap-8">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-40px' }}
+          className="grid lg:grid-cols-3 gap-8"
+        >
           {PHASES.map((phaseGroup, pIdx) => (
             <div key={pIdx} className="space-y-6">
               {/* Phase Header */}
@@ -159,7 +163,7 @@ export default function ProcessTimeline() {
               </div>
             </div>
           ))}
-        </div>
+        </motion.div>
 
       </div>
     </section>

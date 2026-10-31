@@ -2,11 +2,11 @@
 // Smooth, premium dual-layer custom cursor with magnetic & hover reaction states.
 // Automatically disabled on touch / tablet / mobile devices and when reduced motion is preferred.
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 export default function CustomCursor() {
-  const [enabled, setEnabled] = useState(() => {
+  const [enabled] = useState(() => {
     if (typeof window === 'undefined') return false;
     const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -94,18 +94,18 @@ export default function CustomCursor() {
           width: hovered ? (cursorText ? 64 : 46) : 32,
           height: hovered ? (cursorText ? 64 : 46) : 32,
           backgroundColor: hovered
-            ? 'rgba(46, 117, 110, 0.12)'
-            : 'rgba(46, 117, 110, 0.04)',
+            ? 'rgba(20, 243, 193, 0.12)'
+            : 'rgba(20, 243, 193, 0.04)',
           borderColor: hovered
-            ? 'rgba(94, 234, 212, 0.85)'
-            : 'rgba(46, 117, 110, 0.45)',
+            ? 'rgba(20, 243, 193, 0.85)'
+            : 'rgba(20, 243, 193, 0.35)',
           borderWidth: hovered ? '1.5px' : '1px',
           scale: clicked ? 0.88 : 1,
         }}
         transition={{ type: 'spring', damping: 22, stiffness: 300 }}
       >
         {cursorText && (
-          <span className="text-[10px] font-bold uppercase tracking-wider text-[#14201D] dark:text-white select-none">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-white select-none">
             {cursorText}
           </span>
         )}
@@ -113,7 +113,7 @@ export default function CustomCursor() {
 
       {/* Inner Precision Tracking Dot */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[99999] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#2E756E] dark:bg-[#5EEAD4] shadow-sm transition-opacity duration-200"
+        className="fixed top-0 left-0 pointer-events-none z-[99999] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#14F3C1] shadow-[0_0_10px_rgba(20,243,193,0.6)] transition-opacity duration-200"
         style={{
           x: dotX,
           y: dotY,

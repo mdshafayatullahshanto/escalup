@@ -39,11 +39,11 @@ export default function FloatingActions() {
               whileTap={{ scale: 0.95 }}
               onClick={scrollToTop}
               data-cursor="Top"
-              className="w-10 h-10 rounded-full bg-white dark:bg-[#121C2D] border border-[#DBE3E0] dark:border-[#223249] text-[#5A6A65] dark:text-[#94A3B8] hover:text-[#2E756E] dark:hover:text-[#38B2A6] hover:border-[#2E756E] shadow-card flex items-center justify-center transition-colors cursor-pointer group"
+              className="w-10 h-10 rounded-full bg-[#001517] border border-white/10 text-white/70 hover:text-[#14F3C1] hover:border-[#14F3C1] shadow-2xl flex items-center justify-center transition-colors cursor-pointer group"
               aria-label="Scroll to top"
               title="Back to top"
             >
-              <ChevronUp className="w-5 h-5 group-hover:text-[#2E756E] dark:group-hover:text-[#38B2A6] transition-transform group-hover:-translate-y-0.5" />
+              <ChevronUp className="w-5 h-5 group-hover:text-[#14F3C1] transition-transform group-hover:-translate-y-0.5" />
             </motion.button>
           </Magnetic>
         </motion.div>

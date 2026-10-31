@@ -2,7 +2,7 @@
 // Reads from /src/data/testimonials.js and automatically hides itself when the array is empty
 
 import React from 'react';
-import { Quote, Star } from 'lucide-react';
+import { Star } from 'lucide-react';
 import { testimonialsData } from '../data/testimonials';
 import SectionHeading from './SectionHeading';
 
@@ -13,7 +13,7 @@ export default function TestimonialsSection() {
   }
 
   return (
-    <section className="py-20 md:py-28 bg-white dark:bg-[#0B111E] border-b border-[#DBE3E0] dark:border-[#223249] relative">
+    <section className="py-20 md:py-28 bg-[#000D0E] border-b border-white/[0.08] relative">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         <SectionHeading
           eyebrow="Verified Client Feedback"
@@ -25,28 +25,28 @@ export default function TestimonialsSection() {
           {testimonialsData.map((item) => (
             <div
               key={item.id}
-              className="bg-[#F4F6F5] dark:bg-[#121C2D] rounded-2xl p-7 border border-[#DBE3E0] dark:border-[#223249] flex flex-col justify-between shadow-soft"
+              className="bg-[#001517] rounded-3xl p-7 border border-white/[0.08] flex flex-col justify-between shadow-xl"
             >
               <div>
-                <div className="flex items-center gap-1 text-amber-500 mb-4">
+                <div className="flex items-center gap-1 text-[#14F3C1] mb-4">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-amber-500 text-amber-500" />
+                    <Star key={i} className="w-4 h-4 fill-current text-[#14F3C1]" />
                   ))}
                 </div>
-                <p className="text-sm text-[#14201D] leading-relaxed italic mb-6">
+                <p className="text-sm text-white/80 leading-relaxed italic mb-6">
                   “{item.quote}”
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-[#DBE3E0] flex items-center justify-between">
+              <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between">
                 <div>
-                  <h4 className="font-bold text-sm text-[#14201D]">{item.clientName}</h4>
-                  <p className="text-xs text-[#5A6A65]">
+                  <h4 className="font-bold text-sm text-white">{item.clientName}</h4>
+                  <p className="text-xs text-white/60">
                     {item.role}, {item.company}
                   </p>
                 </div>
-                <span className="text-[10px] font-semibold text-[#2E756E] bg-[#2E756E]/10 px-2 py-0.5 rounded">
-                  {item.country}
+                <span className="text-[10px] font-semibold text-[#14F3C1] bg-[#14F3C1]/10 px-2.5 py-1 rounded-full border border-[#14F3C1]/20">
+                  {item.country || 'International'}
                 </span>
               </div>
             </div>

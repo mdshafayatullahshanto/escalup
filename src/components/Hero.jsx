@@ -131,10 +131,10 @@ export default function Hero({ onOpenCalendly }) {
                   onClick={handleQuoteClick}
                   whileHover={{ scale: 1.03, y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  className="px-7 py-3.5 lg:px-8 lg:py-4 rounded-full bg-[#2E756E] hover:bg-[#255e58] text-white font-bold text-sm lg:text-base tracking-wide shadow-md hover:shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer group"
+                  className="px-7 py-3.5 lg:px-8 lg:py-4 rounded-full bg-[#14F3C1] hover:bg-[#34F8CE] text-[#000D0E] font-bold text-sm lg:text-base tracking-wide shadow-[0_0_25px_rgba(20,243,193,0.35)] hover:shadow-[0_0_35px_rgba(20,243,193,0.55)] transition-all flex items-center justify-center gap-2 cursor-pointer group"
                 >
                   <span>Request a Quote</span>
-                  <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 group-hover:translate-x-1.5 transition-transform" />
+                  <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 text-[#000D0E] group-hover:translate-x-1.5 transition-transform" />
                 </motion.a>
               </Magnetic>
 
@@ -143,9 +143,9 @@ export default function Hero({ onOpenCalendly }) {
                   onClick={handleBookCall}
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  className="px-6 py-3.5 lg:px-7 lg:py-4 rounded-full bg-white dark:bg-[#002226] hover:bg-[#F4F6F5] dark:hover:bg-[#002e33] text-[#14201D] dark:text-white border border-[#DBE3E0] dark:border-[#14F3C1]/20 hover:border-[#2E756E] dark:hover:border-[#14F3C1] font-semibold text-sm lg:text-base transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm hover:shadow"
+                  className="px-6 py-3.5 lg:px-7 lg:py-4 rounded-full bg-white/5 hover:bg-white/10 text-white border border-white/20 hover:border-[#14F3C1] font-semibold text-sm lg:text-base transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
                 >
-                  <Calendar className="w-4 h-4 lg:w-5 lg:h-5 text-[#2E756E] dark:text-[#14F3C1]" />
+                  <Calendar className="w-4 h-4 lg:w-5 lg:h-5 text-[#14F3C1]" />
                   <span>Book 30-Min Intro Call</span>
                 </motion.button>
               </Magnetic>
@@ -153,14 +153,14 @@ export default function Hero({ onOpenCalendly }) {
               <a
                 href="#services"
                 onClick={handleServicesClick}
-                className="text-xs sm:text-sm font-semibold text-[#5A6A65] dark:text-[#94A3B8] hover:text-[#2E756E] dark:hover:text-[#14F3C1] transition-colors py-2 text-center sm:text-left underline underline-offset-4 cursor-pointer"
+                className="text-xs sm:text-sm font-semibold text-white/70 hover:text-[#14F3C1] transition-colors py-2 text-center sm:text-left underline underline-offset-4 cursor-pointer"
               >
                 Explore Services →
               </a>
             </motion.div>
 
             {/* Trust Chips under the CTAs with staggered reveal & hover lift */}
-            <motion.div variants={childVariants} className="pt-4 border-t border-[#DBE3E0]/70 dark:border-[#223249]/70">
+            <motion.div variants={childVariants} className="pt-4 border-t border-white/[0.08]">
               <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                 {trustChips.map((chip, idx) => {
                   const Icon = chip.icon;
@@ -169,9 +169,9 @@ export default function Hero({ onOpenCalendly }) {
                       key={idx}
                       whileHover={{ y: -3, scale: 1.02 }}
                       transition={{ duration: 0.2 }}
-                      className="flex items-center gap-2.5 text-xs sm:text-sm font-medium text-[#14201D] dark:text-[#F1F5F9] bg-white dark:bg-[#001517] hover:border-[#2E756E]/40 dark:hover:border-[#14F3C1]/40 px-3.5 py-2.5 rounded-xl border border-[#DBE3E0] dark:border-[#223249]/80 shadow-soft hover:shadow-md transition-all cursor-default min-h-[46px] w-full"
+                      className="flex items-center gap-2.5 text-xs sm:text-sm font-medium text-white/90 bg-[#001517] hover:border-[#14F3C1]/40 px-3.5 py-2.5 rounded-2xl border border-white/[0.08] shadow-sm hover:shadow-md transition-all cursor-default min-h-[46px] w-full"
                     >
-                      <Icon className="w-4 h-4 text-[#2E756E] dark:text-[#14F3C1] shrink-0" />
+                      <Icon className="w-4 h-4 text-[#14F3C1] shrink-0" />
                       <span className="leading-snug">{chip.text}</span>
                     </motion.div>
                   );
