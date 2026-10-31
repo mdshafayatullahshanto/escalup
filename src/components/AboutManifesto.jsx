@@ -70,7 +70,16 @@ export default function AboutManifesto() {
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#14201D] tracking-tight leading-[1.26] mb-8"
           >
             escalup partners with ambitious engineering firms, manufacturers, and contractors to{' '}
-            <span className="text-[#2E756E]">simplify technical complexity</span>,{' '}
+            <span className="text-[#2E756E] relative inline-block">
+              simplify technical complexity
+              <svg
+                className="absolute -bottom-2 sm:-bottom-2.5 left-0 w-full h-2 sm:h-2.5 text-[#2E756E]/30"
+                viewBox="0 0 100 10"
+                preserveAspectRatio="none"
+              >
+                <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="2.5" fill="none" />
+              </svg>
+            </span>,{' '}
             strengthen production decisions, and deliver sustainable scale through dedicated offshore expertise.
           </motion.h2>
         </div>
