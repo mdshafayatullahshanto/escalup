@@ -92,14 +92,14 @@ export default function Hero({ onOpenCalendly }) {
               className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-[4.25rem] font-extrabold text-[#14201D] tracking-tight leading-[1.22] sm:leading-[1.2] md:leading-[1.18] pb-1"
             >
               We bring people and engineering together to{' '}
-              <span className="text-[#2E756E] relative inline-block">
+              <span className="text-[#2E756E] relative inline-block pb-2 sm:pb-2.5">
                 build things better.
                 <svg
-                  className="absolute -bottom-2.5 left-0 w-full h-2.5 text-[#2E756E]/30"
-                  viewBox="0 0 100 10"
+                  className="absolute bottom-0 left-0 w-full h-2 sm:h-2.5 text-[#2E756E]/35 overflow-visible pointer-events-none"
+                  viewBox="0 0 100 8"
                   preserveAspectRatio="none"
                 >
-                  <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="2.5" fill="none" />
+                  <path d="M0 3 Q 50 7 100 3" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" fill="none" />
                 </svg>
               </span>
             </motion.h1>
