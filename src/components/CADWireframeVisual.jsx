@@ -108,17 +108,17 @@ export default function CADWireframeVisual({ className = '' }) {
               Ø 301.60 ±0.05
             </text>
 
-            {/* Dimension 2: Inner Bore Radius (Top-Left) */}
+            {/* Dimension 2: Inner Bore Radius (Top-Left clearance, strictly outside logo) */}
             <path
-              d="M -30 0 L -85 0 L -85 -55"
+              d="M -30 0 L -85 0 L -85 -185 L -105 -185"
               fill="none"
               stroke="#2E756E"
               strokeWidth="1"
               markerStart="url(#cadArrow)"
               opacity="0.75"
             />
-            <rect x="-142" y="-72" width="76" height="20" rx="4" fill="#FFFFFF" stroke="#DBE3E0" strokeWidth="0.8" opacity="0.95" />
-            <text x="-104" y="-58" fill="#14201D" fontSize="9.5" fontWeight="bold" textAnchor="middle" letterSpacing="0.5">
+            <rect x="-187" y="-196" width="76" height="20" rx="4" fill="#FFFFFF" stroke="#DBE3E0" strokeWidth="0.8" opacity="0.95" />
+            <text x="-149" y="-182" fill="#14201D" fontSize="9.5" fontWeight="bold" textAnchor="middle" letterSpacing="0.5">
               +R30.16 mm
             </text>
 
