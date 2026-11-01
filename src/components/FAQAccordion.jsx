@@ -1,11 +1,12 @@
 // /src/components/FAQAccordion.jsx
-// Consilio-style split FAQ layout with animated accordion
+// Centered FAQ layout with animated accordion
 // Light Editorial Engineering Theme with Deep Teal accents
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
 import { faqData } from '../data/faq';
+import SectionHeading from './SectionHeading';
 
 export default function FAQAccordion() {
   const [openIndex, setOpenIndex] = useState(0); // first item open by default
@@ -18,76 +19,63 @@ export default function FAQAccordion() {
     <section id="faq" className="py-20 md:py-28 bg-white border-b border-[#DBE3E0] relative scroll-mt-12">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          
-          {/* Left Column (Consilio Split Layout) */}
-          <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-28">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#2E756E]/10 text-[#2E756E] border border-[#2E756E]/20">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#2E756E] animate-pulse" />
-              <span>FAQs</span>
-            </div>
+        {/* Title and Subtitle Centered in the Middle */}
+        <SectionHeading
+          eyebrow="FAQs"
+          title="Your Commonly Asked Questions"
+          subtitle="Everything you need to know about working with escalup as your dedicated offshore CAD, Mechanical, and MEP engineering partner."
+        />
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#14201D] tracking-tight leading-tight">
-              Your Commonly Asked Questions
-            </h2>
-
-            <p className="text-sm sm:text-base text-[#5A6A65] leading-relaxed">
-              Everything you need to know about working with escalup as your dedicated offshore CAD, Mechanical, and MEP engineering partner.
-            </p>
-          </div>
-
-          {/* Right Column: Accordion List */}
-          <div className="lg:col-span-7 space-y-4">
-            {faqData.map((faq, index) => {
-              const isOpen = openIndex === index;
-              return (
-                <div
-                  key={faq.id}
-                  className={`rounded-3xl border transition-all duration-300 overflow-hidden ${
-                    isOpen
-                      ? 'bg-[#F8FAF9] border-[#2E756E]/50 shadow-soft'
-                      : 'bg-white border-[#DBE3E0] hover:border-[#2E756E]/30'
-                  }`}
+        {/* Accordion Content Centered in the Middle */}
+        <div className="max-w-4xl mx-auto space-y-4">
+          {faqData.map((faq, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <div
+                key={faq.id}
+                className={`rounded-3xl border transition-all duration-300 overflow-hidden ${
+                  isOpen
+                    ? 'bg-[#F8FAF9] border-[#2E756E]/50 shadow-soft'
+                    : 'bg-white border-[#DBE3E0] hover:border-[#2E756E]/30'
+                }`}
+              >
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full p-6 sm:p-7 text-left flex items-start justify-between gap-4 cursor-pointer"
+                  aria-expanded={isOpen}
                 >
-                  <button
-                    onClick={() => toggleFAQ(index)}
-                    className="w-full p-6 sm:p-7 text-left flex items-start justify-between gap-4 cursor-pointer"
-                    aria-expanded={isOpen}
+                  <span className="text-base sm:text-lg font-bold text-[#14201D] leading-snug">
+                    {faq.question}
+                  </span>
+                  <span
+                    className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-colors ${
+                      isOpen
+                        ? 'bg-[#2E756E] text-white'
+                        : 'bg-[#F8FAF9] text-[#5A6A65] border border-[#DBE3E0]'
+                    }`}
                   >
-                    <span className="text-base sm:text-lg font-bold text-[#14201D] leading-snug">
-                      {faq.question}
-                    </span>
-                    <span
-                      className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-colors ${
-                        isOpen
-                          ? 'bg-[#2E756E] text-white'
-                          : 'bg-[#F8FAF9] text-[#5A6A65] border border-[#DBE3E0]'
-                      }`}
+                    {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                  </span>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      key="content"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     >
-                      {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-                    </span>
-                  </button>
-
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        key="content"
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                      >
-                        <div className="px-6 sm:px-7 pb-6 sm:pb-7 text-xs sm:text-sm text-[#5A6A65] leading-relaxed border-t border-[#DBE3E0] pt-4">
-                          {faq.answer}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              );
-            })}
-          </div>
-
+                      <div className="px-6 sm:px-7 pb-6 sm:pb-7 text-xs sm:text-sm text-[#5A6A65] leading-relaxed border-t border-[#DBE3E0] pt-4">
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
         </div>
 
       </div>
