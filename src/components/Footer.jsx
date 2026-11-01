@@ -29,11 +29,15 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#0D1A18] text-white pt-16 pb-28 sm:pb-24 lg:pb-12 border-t border-[#1C332F] relative">
-      <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
+    <footer className="bg-gradient-to-br from-[#142F2C] via-[#0E2421] to-[#081614] text-white pt-16 pb-28 sm:pb-24 lg:pb-12 border-t border-[#2E756E]/30 relative overflow-hidden">
+      {/* Decorative technical grid and ambient glow matching reference */}
+      <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#2E756E]/20 rounded-full blur-[140px] pointer-events-none" />
+
+      <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16 relative z-10">
         
         {/* Top Section: Symmetrical 3-column layout with equal spacing */}
-        <div className="flex flex-col md:flex-row justify-between items-start gap-10 lg:gap-12 pb-14 border-b border-[#1C332F]">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-10 lg:gap-12 pb-14 border-b border-[#2E756E]/25">
           
           {/* Col 1: Left Position (Brand & Positioning) */}
           <div className="space-y-4 max-w-sm">
@@ -65,7 +69,7 @@ export default function Footer() {
                 href={companyData.contact?.linkedinUrl || 'https://www.linkedin.com/company/escalup'}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#2E756E] hover:text-white border border-[#1C332F] text-white flex items-center justify-center transition-all"
+                className="w-8 h-8 rounded-full bg-white/5 hover:bg-[#2E756E] hover:text-white border border-[#2E756E]/40 text-white flex items-center justify-center transition-all"
                 aria-label="LinkedIn Company Page"
               >
                 <LinkedInIcon className="w-4 h-4" />
