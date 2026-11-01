@@ -107,9 +107,8 @@ export default function SampleProjects() {
                       </span>
                     ))}
                   </div>
-                  <div className="text-xs font-bold text-[#2E756E] group-hover:text-[#255E58] transition-colors flex items-center justify-between">
+                  <div className="text-xs font-bold text-[#2E756E] group-hover:text-[#255E58] transition-colors">
                     <span>{project.deliverable}</span>
-                    <span>→</span>
                   </div>
                 </div>
               </motion.div>
