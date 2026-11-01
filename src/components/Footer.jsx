@@ -7,7 +7,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { 
   Mail, 
   MapPin, 
-  ArrowRight, 
   Clock 
 } from 'lucide-react';
 import { LinkedInIcon } from './Icons';
@@ -33,11 +32,11 @@ export default function Footer() {
     <footer className="bg-[#0D1A18] text-white pt-16 pb-28 sm:pb-24 lg:pb-12 border-t border-[#1C332F] relative">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
-        {/* Top Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-14 border-b border-[#1C332F]">
+        {/* Top Grid: 3-column balanced layout (5 + 4 + 3 = 12 cols) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b border-[#1C332F]">
           
-          {/* Col 1: Brand & Positioning (4 cols) */}
-          <div className="lg:col-span-4 space-y-4">
+          {/* Col 1: Brand & Positioning (5 cols) */}
+          <div className="lg:col-span-5 space-y-4">
             <Logo variant="dark" size="md" />
             
             <p className="text-xs sm:text-sm text-[#9BB0A8] max-w-sm leading-relaxed">
@@ -77,8 +76,8 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Col 2: Engineering Disciplines (3 cols) */}
-          <div className="lg:col-span-3 space-y-3">
+          {/* Col 2: Engineering Disciplines (4 cols) */}
+          <div className="lg:col-span-4 space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-white font-mono">
               Engineering Disciplines
             </h4>
@@ -96,8 +95,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Col 3: Navigation & Governance (2 cols) */}
-          <div className="lg:col-span-2 space-y-3">
+          {/* Col 3: Navigation & Governance (3 cols) */}
+          <div className="lg:col-span-3 space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-white font-mono">
               Overview
             </h4>
@@ -143,25 +142,6 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
-
-          {/* Col 4: Rapid Engagement & Inquiry (3 cols) */}
-          <div className="lg:col-span-3 space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white font-mono">
-              Fast Project Turnaround
-            </h4>
-            <p className="text-xs text-[#9BB0A8] leading-relaxed">
-              We return verified engineering quotes and feasibility assessments within 24 hours of brief submission.
-            </p>
-
-            <a
-              href="#contact"
-              onClick={(e) => handleNavClick(e, '#contact')}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#2E756E] hover:bg-[#255E58] text-white font-bold text-xs shadow-md transition-all group"
-            >
-              <span>Submit Project Brief</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-            </a>
           </div>
 
         </div>
