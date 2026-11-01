@@ -8,7 +8,6 @@ import {
   Mail, 
   MapPin, 
   ArrowRight, 
-  ShieldCheck, 
   Clock 
 } from 'lucide-react';
 import { LinkedInIcon } from './Icons';
@@ -167,22 +166,9 @@ export default function Footer() {
 
         </div>
 
-        {/* Bottom Bar: Copyright & Compliance */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#71857E] gap-4">
-          <div className="flex items-center gap-2 text-center sm:text-left">
-            <span>© {currentYear} escalup. All rights reserved.</span>
-            <span className="hidden sm:inline">·</span>
-            <span className="hidden sm:inline">Dhaka Engineering Center</span>
-          </div>
-
-          <div className="flex items-center gap-4 text-[11px]">
-            <span className="flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#52C5B6]" />
-              <span>100% Client IP Ownership</span>
-            </span>
-            <span>·</span>
-            <span>ASME Y14.5 & ISO Standard Drafting</span>
-          </div>
+        {/* Bottom Bar: Copyright (Centered in Middle) */}
+        <div className="pt-8 text-center text-xs text-[#71857E]">
+          <p>© {currentYear} escalup. All rights reserved.</p>
         </div>
 
       </div>
