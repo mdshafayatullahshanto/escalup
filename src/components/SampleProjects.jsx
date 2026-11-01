@@ -63,7 +63,6 @@ export default function SampleProjects() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 whileHover={{ y: -8, scale: 1.01 }}
-                data-cursor="Deliverable"
                 transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
                 className="bg-[#F8FAF9] hover:bg-white rounded-3xl p-7 border border-[#DBE3E0] hover:border-[#2E756E]/40 shadow-soft hover:shadow-card transition-all flex flex-col justify-between group cursor-default"
               >
