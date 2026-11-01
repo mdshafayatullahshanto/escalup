@@ -32,8 +32,8 @@ export default function Footer() {
     <footer className="bg-[#0D1A18] text-white pt-16 pb-28 sm:pb-24 lg:pb-12 border-t border-[#1C332F] relative">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
-        {/* Top Grid: Symmetrical 3-position layout (Left, Middle, Right) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12 pb-14 border-b border-[#1C332F] items-start">
+        {/* Top Section: Symmetrical 3-column layout with equal spacing */}
+        <div className="flex flex-col md:flex-row justify-between items-start gap-10 lg:gap-12 pb-14 border-b border-[#1C332F]">
           
           {/* Col 1: Left Position (Brand & Positioning) */}
           <div className="space-y-4 max-w-sm">
@@ -77,7 +77,7 @@ export default function Footer() {
           </div>
 
           {/* Col 2: Middle Position (Engineering Disciplines) */}
-          <div className="space-y-3 md:mx-auto">
+          <div className="space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-white font-mono">
               Engineering Disciplines
             </h4>
@@ -96,7 +96,7 @@ export default function Footer() {
           </div>
 
           {/* Col 3: Right Position (Overview) */}
-          <div className="space-y-3 md:ml-auto">
+          <div className="space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-white font-mono">
               Overview
             </h4>
