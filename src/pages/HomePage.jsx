@@ -14,11 +14,9 @@ import ProcessTimeline from '../components/ProcessTimeline';
 import WhyEscalup from '../components/WhyEscalup';
 import ComparisonSection from '../components/ComparisonSection';
 import OffshoreModel from '../components/OffshoreModel';
-import PilotProject from '../components/PilotProject';
 import StatsStrip from '../components/StatsStrip';
 import ToolsSoftware from '../components/ToolsSoftware';
 import FAQAccordion from '../components/FAQAccordion';
-import FinalCTABand from '../components/FinalCTABand';
 import ContactSection from '../components/ContactSection';
 
 export default function HomePage({ onOpenCalendly }) {
@@ -57,22 +55,16 @@ export default function HomePage({ onOpenCalendly }) {
       {/* 11. Dedicated Offshore Engagement Models & BST Time Overlaps */}
       <OffshoreModel onOpenCalendly={onOpenCalendly} />
 
-      {/* 12. Low-Risk International Kickoff Paid Pilot Project */}
-      <PilotProject />
-
-      {/* 13. Key Metrics & Impact Statistics Strip */}
+      {/* 12. Key Metrics & Impact Statistics Strip */}
       <StatsStrip />
 
-      {/* 14. Supported Engineering CAD & BIM Platforms */}
+      {/* 13. Supported Engineering CAD & BIM Platforms */}
       <ToolsSoftware />
 
-      {/* 15. Commonly Asked Questions (Split FAQ Layout with Guidance Box) */}
+      {/* 14. Commonly Asked Questions (Split FAQ Layout) */}
       <FAQAccordion onOpenCalendly={onOpenCalendly} />
 
-      {/* 16. Build With Precision. Unlock Engineering Scale (Final CTA Band) */}
-      <FinalCTABand onOpenCalendly={onOpenCalendly} />
-
-      {/* 17. Comprehensive Engineering Inquiry & Quote Form */}
+      {/* 15. Comprehensive Engineering Inquiry & Quote Form */}
       <ContactSection onOpenCalendly={onOpenCalendly} />
     </main>
   );

@@ -15,7 +15,6 @@ import {
   Calendar
 } from 'lucide-react';
 import { servicesData } from '../data/services';
-import FinalCTABand from '../components/FinalCTABand';
 import { companyData } from '../data/company';
 import { trackCallBooking } from '../utils/analytics';
 
@@ -287,9 +286,6 @@ export default function ServiceDetailPage({ onOpenCalendly }) {
         </div>
 
       </section>
-
-      {/* Final CTA band */}
-      <FinalCTABand onOpenCalendly={onOpenCalendly} />
 
     </motion.div>
   );
