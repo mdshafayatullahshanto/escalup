@@ -11,14 +11,11 @@ import {
   CheckCircle2, 
   Clock, 
   FileCheck2, 
-  ShieldCheck, 
-  Calendar
+  ShieldCheck
 } from 'lucide-react';
 import { servicesData } from '../data/services';
-import { companyData } from '../data/company';
-import { trackCallBooking } from '../utils/analytics';
 
-export default function ServiceDetailPage({ onOpenCalendly }) {
+export default function ServiceDetailPage() {
   const { slug } = useParams();
   const navigate = useNavigate();
 
@@ -48,15 +45,6 @@ export default function ServiceDetailPage({ onOpenCalendly }) {
       </div>
     );
   }
-
-  const handleBookCall = () => {
-    trackCallBooking(`service_detail_${service.slug}`);
-    if (onOpenCalendly) {
-      onOpenCalendly();
-    } else {
-      window.open(companyData.contact.calendlyUrl, '_blank', 'noopener,noreferrer');
-    }
-  };
 
   const handleQuoteClick = () => {
     navigate('/#contact');
@@ -100,31 +88,9 @@ export default function ServiceDetailPage({ onOpenCalendly }) {
               {service.title}
             </h1>
 
-            <p className="text-base sm:text-lg text-[#5A6A65] leading-relaxed mb-8">
+            <p className="text-base sm:text-lg text-[#5A6A65] leading-relaxed">
               {service.intro}
             </p>
-
-            <div className="flex flex-wrap items-center gap-4">
-              <motion.button
-                onClick={handleQuoteClick}
-                whileHover={{ scale: 1.03, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="px-7 py-3.5 rounded-full bg-[#2E756E] hover:bg-[#255E58] text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center gap-2 cursor-pointer"
-              >
-                <span>Request a Quote for this Service</span>
-                <ArrowRight className="w-4 h-4 text-white" />
-              </motion.button>
-
-              <motion.button
-                onClick={handleBookCall}
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="px-6 py-3.5 rounded-full bg-white hover:bg-[#F4F6F5] text-[#14201D] border border-[#DBE3E0] hover:border-[#2E756E] font-semibold text-xs sm:text-sm transition-all flex items-center gap-2 cursor-pointer shadow-xs"
-              >
-                <Calendar className="w-4 h-4 text-[#2E756E]" />
-                <span>Book a Technical Review Call</span>
-              </motion.button>
-            </div>
           </div>
 
         </div>

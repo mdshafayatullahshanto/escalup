@@ -13,12 +13,10 @@ import {
   Layers, 
   Database, 
   Briefcase, 
-  ArrowRight,
-  HelpCircle
+  ArrowRight
 } from 'lucide-react';
 import { servicesData } from '../data/services';
 import SectionHeading from './SectionHeading';
-import Magnetic from './Magnetic';
 
 const iconMap = {
   Cpu,
@@ -42,14 +40,6 @@ export default function ServicesSection() {
   const item = {
     hidden: { opacity: 0, y: 22 },
     show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }
-  };
-
-  const handleQuoteClick = (e) => {
-    e.preventDefault();
-    const contactEl = document.getElementById('contact');
-    if (contactEl) {
-      contactEl.scrollIntoView({ behavior: 'smooth' });
-    }
   };
 
   return (
@@ -136,39 +126,6 @@ export default function ServicesSection() {
               </motion.div>
             );
           })}
-        </motion.div>
-
-        {/* Consilio-style Discovery CTA Band */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-14 p-6 sm:p-8 rounded-3xl bg-[#F8FAF9] border border-[#DBE3E0] shadow-soft flex flex-col md:flex-row items-center justify-between gap-6"
-        >
-          <div className="flex items-start sm:items-center gap-4 text-left">
-            <div className="w-11 h-11 rounded-2xl bg-[#2E756E]/10 text-[#2E756E] shrink-0 flex items-center justify-center">
-              <HelpCircle className="w-6 h-6" />
-            </div>
-            <div>
-              <h4 className="text-base font-bold text-[#14201D]">
-                Not sure which service or software package your project requires?
-              </h4>
-              <p className="text-xs sm:text-sm text-[#5A6A65]">
-                Share your initial sketches, project brief, or current drawings. Our senior engineering lead will review your scope within 24 hours.
-              </p>
-            </div>
-          </div>
-
-          <Magnetic strength={0.15}>
-            <a
-              href="#contact"
-              onClick={handleQuoteClick}
-              className="w-full md:w-auto px-6 py-3 rounded-full bg-[#2E756E] hover:bg-[#255E58] text-white font-bold text-xs sm:text-sm whitespace-nowrap shadow-md hover:shadow-lg transition-all text-center flex items-center justify-center gap-2 cursor-pointer"
-            >
-              <span>Request a Quote</span>
-              <ArrowRight className="w-4 h-4 text-white" />
-            </a>
-          </Magnetic>
         </motion.div>
       </div>
     </section>

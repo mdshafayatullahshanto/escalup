@@ -380,9 +380,6 @@ export default function ContactSection({ onOpenCalendly }) {
                     </>
                   )}
                 </motion.button>
-                <div className="text-center mt-2.5 text-[11px] text-[#5A6A65]">
-                  We review incoming briefs daily at 09:00, 13:00, and 17:00 UTC+6.
-                </div>
               </div>
 
             </form>
@@ -462,23 +459,6 @@ export default function ContactSection({ onOpenCalendly }) {
                   referrerPolicy="no-referrer-when-downgrade"
                   className="w-full h-full opacity-90 hover:opacity-100 transition-opacity"
                 />
-              </div>
-
-              {/* Time-zone overlap pills */}
-              <div className="pt-2 border-t border-[#DBE3E0]">
-                <span className="text-[11px] font-bold text-[#14201D] block mb-2">
-                  Regional Working Overlap:
-                </span>
-                <div className="grid grid-cols-2 gap-2 text-[11px]">
-                  <div className="p-2.5 rounded-xl bg-[#F8FAF9] border border-[#DBE3E0]">
-                    <span className="font-semibold text-[#14201D] block">London (GMT)</span>
-                    <span className="text-[#5A6A65]">4 - 5h morning sync</span>
-                  </div>
-                  <div className="p-2.5 rounded-xl bg-[#F8FAF9] border border-[#DBE3E0]">
-                    <span className="font-semibold text-[#14201D] block">Dubai (GST)</span>
-                    <span className="text-[#5A6A65]">6 - 7h direct overlap</span>
-                  </div>
-                </div>
               </div>
 
             </div>

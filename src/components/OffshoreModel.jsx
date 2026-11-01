@@ -12,14 +12,10 @@ import {
   DollarSign, 
   MessageSquare, 
   ArrowRight, 
-  Calendar,
-  Zap,
-  Lock
+  Zap
 } from 'lucide-react';
 import SectionHeading from './SectionHeading';
 import WorldClock from './WorldClock';
-import { trackCallBooking } from '../utils/analytics';
-import { companyData } from '../data/company';
 
 const PILLARS = [
   {
@@ -96,7 +92,7 @@ const ENGAGEMENT_MODELS = [
   }
 ];
 
-export default function OffshoreModel({ onOpenCalendly }) {
+export default function OffshoreModel() {
   const handleQuoteClick = (e, modelName) => {
     e.preventDefault();
     const contactEl = document.getElementById('contact');
@@ -106,15 +102,6 @@ export default function OffshoreModel({ onOpenCalendly }) {
       if (modelSelect && modelName) {
         modelSelect.value = modelName;
       }
-    }
-  };
-
-  const handleBookCall = () => {
-    trackCallBooking('offshore_model_cta');
-    if (onOpenCalendly) {
-      onOpenCalendly();
-    } else {
-      window.open(companyData.contact.calendlyUrl, '_blank', 'noopener,noreferrer');
     }
   };
 
@@ -275,79 +262,6 @@ export default function OffshoreModel({ onOpenCalendly }) {
               </motion.div>
             ))}
           </motion.div>
-        </div>
-
-        {/* Detailed Comparison Table */}
-        <div className="bg-white rounded-3xl border border-[#DBE3E0] p-6 sm:p-8 shadow-soft overflow-hidden">
-          <div className="mb-6">
-            <h4 className="text-lg font-bold text-[#14201D]">Side-by-Side Model Comparison</h4>
-            <p className="text-xs text-[#5A6A65]">Detailed breakdown of operational and commercial differences</p>
-          </div>
-
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs">
-              <thead>
-                <tr className="border-b border-[#DBE3E0] text-[#889893] uppercase tracking-wider font-mono">
-                  <th className="pb-3 pr-4 font-bold">Feature / Capability</th>
-                  <th className="pb-3 px-4 font-bold">Project-Based</th>
-                  <th className="pb-3 px-4 font-bold text-[#2E756E]">Dedicated Team (FTE)</th>
-                  <th className="pb-3 pl-4 font-bold">Hourly Bucket</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-[#DBE3E0] text-[#5A6A65]">
-                <tr>
-                  <td className="py-3 pr-4 font-semibold text-[#14201D]">Billing Model</td>
-                  <td className="py-3 px-4">Fixed lump-sum milestone</td>
-                  <td className="py-3 px-4 text-[#2E756E] font-medium">Flat monthly fee</td>
-                  <td className="py-3 pl-4">Prepaid hour bundle</td>
-                </tr>
-                <tr>
-                  <td className="py-3 pr-4 font-semibold text-[#14201D]">Dedicated Lead Engineer</td>
-                  <td className="py-3 px-4">Yes (for project scope)</td>
-                  <td className="py-3 px-4 text-[#2E756E] font-medium">Yes (full-time assigned)</td>
-                  <td className="py-3 pl-4">Shared lead oversight</td>
-                </tr>
-                <tr>
-                  <td className="py-3 pr-4 font-semibold text-[#14201D]">Direct Slack/Teams Sync</td>
-                  <td className="py-3 px-4">Milestone checkpoints</td>
-                  <td className="py-3 px-4 text-[#2E756E] font-medium">Daily synchronous channel</td>
-                  <td className="py-3 pl-4">As-needed syncs</td>
-                </tr>
-                <tr>
-                  <td className="py-3 pr-4 font-semibold text-[#14201D]">Client CAD Standards Adoption</td>
-                  <td className="py-3 px-4">Strict compliance</td>
-                  <td className="py-3 px-4 text-[#2E756E] font-medium">Deep workflow integration</td>
-                  <td className="py-3 pl-4">Client templates applied</td>
-                </tr>
-                <tr>
-                  <td className="py-3 pr-4 font-semibold text-[#14201D]">Turnaround Guarantee</td>
-                  <td className="py-3 px-4">Per statement of work</td>
-                  <td className="py-3 px-4 text-[#2E756E] font-medium">Continuous daily releases</td>
-                  <td className="py-3 pl-4">24–48h notice</td>
-                </tr>
-                <tr>
-                  <td className="py-3 pr-4 font-semibold text-[#14201D]">Non-Disclosure Agreement</td>
-                  <td className="py-3 px-4">Mandatory before kickoff</td>
-                  <td className="py-3 px-4 text-[#2E756E] font-medium">Mandatory before kickoff</td>
-                  <td className="py-3 pl-4">Mandatory before kickoff</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div className="mt-6 pt-6 border-t border-[#DBE3E0] flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3 text-xs text-[#5A6A65]">
-              <Lock className="w-4 h-4 text-[#2E756E]" />
-              <span>All models include 100% IP ownership transfer and strict confidentiality.</span>
-            </div>
-            <button
-              onClick={handleBookCall}
-              className="text-xs font-bold text-[#2E756E] hover:underline flex items-center gap-1.5"
-            >
-              <Calendar className="w-3.5 h-3.5" />
-              <span>Discuss custom engagement parameters with our lead engineer →</span>
-            </button>
-          </div>
         </div>
 
       </div>
