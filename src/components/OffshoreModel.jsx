@@ -11,7 +11,6 @@ import {
   ShieldCheck, 
   DollarSign, 
   MessageSquare, 
-  ArrowRight, 
   Zap
 } from 'lucide-react';
 import SectionHeading from './SectionHeading';
@@ -93,18 +92,6 @@ const ENGAGEMENT_MODELS = [
 ];
 
 export default function OffshoreModel() {
-  const handleQuoteClick = (e, modelName) => {
-    e.preventDefault();
-    const contactEl = document.getElementById('contact');
-    if (contactEl) {
-      contactEl.scrollIntoView({ behavior: 'smooth' });
-      const modelSelect = document.getElementById('form-model');
-      if (modelSelect && modelName) {
-        modelSelect.value = modelName;
-      }
-    }
-  };
-
   return (
     <section id="offshore-model" className="py-20 md:py-28 bg-[#F8FAF9] border-b border-[#DBE3E0] relative scroll-mt-12">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
@@ -243,21 +230,6 @@ export default function OffshoreModel() {
                       <span className="text-[#5A6A65]">{model.flexibility}</span>
                     </div>
                   </div>
-                </div>
-
-                <div className="pt-6 mt-6 border-t border-[#DBE3E0]">
-                  <a
-                    href="#contact"
-                    onClick={(e) => handleQuoteClick(e, model.name)}
-                    className={`w-full py-3 rounded-full text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer ${
-                      model.popular
-                        ? 'bg-[#2E756E] hover:bg-[#255E58] text-white shadow-md'
-                        : 'bg-[#F8FAF9] hover:bg-[#F4F6F5] text-[#14201D] border border-[#DBE3E0] hover:border-[#2E756E]'
-                    }`}
-                  >
-                    <span>Choose {model.name}</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </a>
                 </div>
               </motion.div>
             ))}
