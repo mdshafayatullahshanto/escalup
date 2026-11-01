@@ -46,7 +46,7 @@ export default function AboutManifesto() {
   const leadEngineer = teamData[0];
 
   return (
-    <section id="about" className="py-20 md:py-28 bg-[#F8FAF9] border-b border-[#DBE3E0] relative overflow-hidden scroll-mt-12">
+    <section id="about" className="pt-20 md:pt-28 pb-0 bg-[#F8FAF9] border-b border-[#DBE3E0] relative overflow-hidden scroll-mt-12">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         {/* Top Header Block: Tag + Big Editorial Statement (Centered in Middle) */}
@@ -243,18 +243,18 @@ export default function AboutManifesto() {
         )}
 
         {/* Continuous Discipline Marquee */}
-        <div className="pt-8 border-t border-[#DBE3E0] overflow-hidden relative [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+        <div className="mt-16 md:mt-20 py-8 md:py-10 border-t border-[#DBE3E0] overflow-hidden relative [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
           <motion.div
             animate={{ x: ['0%', '-50%'] }}
-            transition={{ duration: 28, repeat: Infinity, ease: 'linear' }}
-            className="flex items-center gap-4 shrink-0 whitespace-nowrap"
+            transition={{ duration: 32, repeat: Infinity, ease: 'linear' }}
+            className="flex items-center gap-6 shrink-0 whitespace-nowrap"
           >
-            {[...DISCIPLINE_TICKER, ...DISCIPLINE_TICKER].map((tag, idx) => (
+            {[...DISCIPLINE_TICKER, ...DISCIPLINE_TICKER, ...DISCIPLINE_TICKER, ...DISCIPLINE_TICKER].map((tag, idx) => (
               <span
                 key={idx}
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-medium text-[#14201D] bg-white border border-[#DBE3E0]"
+                className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl text-xs font-mono font-medium text-[#14201D] bg-white border border-[#DBE3E0] hover:border-[#2E756E]/40 shadow-xs transition-colors cursor-default"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-[#2E756E]" />
+                <span className="w-2 h-2 rounded-full bg-[#2E756E]" />
                 <span>{tag}</span>
               </span>
             ))}
