@@ -98,7 +98,6 @@ export default function WhyEscalup() {
                 key={adv.id}
                 variants={item}
                 whileHover={{ y: -8, scale: 1.01 }}
-                data-cursor="Advantage"
                 transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
                 className="p-7 sm:p-8 rounded-3xl bg-white hover:bg-white border border-[#DBE3E0] hover:border-[#2E756E]/50 shadow-soft hover:shadow-card transition-all duration-300 group flex flex-col justify-between cursor-default"
               >
