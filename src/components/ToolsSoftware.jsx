@@ -39,21 +39,19 @@ export default function ToolsSoftware() {
                 hidden: { opacity: 0, y: 20 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } }
               }}
-              className="p-6 sm:p-7 rounded-3xl bg-white border border-[#DBE3E0] hover:border-[#2E756E]/40 transition-all shadow-soft"
+              className="p-6 sm:p-7 rounded-3xl bg-white border border-[#DBE3E0] hover:border-[#2E756E]/40 transition-all shadow-soft text-center"
             >
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
-                <div>
-                  <h3 className="text-base font-bold text-[#14201D]">
-                    {categoryGroup.category}
-                  </h3>
-                  <p className="text-xs text-[#5A6A65]">
-                    {categoryGroup.description}
-                  </p>
-                </div>
+              <div className="flex flex-col items-center justify-center gap-1.5 mb-5 text-center">
+                <h3 className="text-base font-bold text-[#14201D]">
+                  {categoryGroup.category}
+                </h3>
+                <p className="text-xs text-[#5A6A65] max-w-2xl">
+                  {categoryGroup.description}
+                </p>
               </div>
 
               {/* Text Badges with spring hover */}
-              <div className="flex flex-wrap gap-2.5">
+              <div className="flex flex-wrap justify-center gap-2.5">
                 {categoryGroup.tools.map((toolName, toolIdx) => (
                   <motion.div
                     key={toolIdx}
@@ -71,7 +69,7 @@ export default function ToolsSoftware() {
 
         {/* Informational Callout Card */}
         {toolsNote && (
-          <div className="mt-8 max-w-5xl mx-auto p-4 rounded-2xl bg-white border border-[#DBE3E0] text-xs text-[#5A6A65] flex items-center gap-3 shadow-soft">
+          <div className="mt-8 max-w-5xl mx-auto p-4 rounded-2xl bg-white border border-[#DBE3E0] text-xs text-[#5A6A65] flex items-center justify-center gap-3 shadow-soft text-center">
             <HelpCircle className="w-4 h-4 text-[#2E756E] shrink-0" />
             <span>{toolsNote}</span>
           </div>
