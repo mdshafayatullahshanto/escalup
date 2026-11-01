@@ -101,8 +101,8 @@ export default function Navbar({ onOpenCalendly }) {
               />
             </Magnetic>
 
-            {/* Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-medium">
+            {/* Desktop Navigation Links moved to the right */}
+            <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-medium ml-auto">
               {navLinks.map((link) => (
                 <a
                   key={link.label}
@@ -116,40 +116,8 @@ export default function Navbar({ onOpenCalendly }) {
               ))}
             </nav>
 
-            {/* Desktop Actions matching screenshot */}
-            <div className="hidden lg:flex items-center gap-3.5">
-              <Magnetic strength={0.15}>
-                <button
-                  onClick={handleBookCallClick}
-                  className="text-xs font-semibold text-[#14201D] hover:text-[#2E756E] transition-colors flex items-center gap-1.5 px-4 py-2 rounded-full bg-white hover:bg-[#F4F6F5] cursor-pointer border border-[#DBE3E0] hover:border-[#2E756E]/40 shadow-xs"
-                  title="Schedule 30-min intro call"
-                >
-                  <Calendar className="w-3.5 h-3.5 text-[#2E756E]" />
-                  <span>Book a Call</span>
-                </button>
-              </Magnetic>
-
-              <Magnetic strength={0.18}>
-                <a
-                  href="#contact"
-                  onClick={handleQuoteClick}
-                  className="px-5 py-2.5 rounded-full bg-[#2E756E] hover:bg-[#255E58] text-white font-bold text-xs tracking-wide shadow-sm hover:shadow transition-all flex items-center gap-2 cursor-pointer group shrink-0"
-                >
-                  <span>Get a Quote</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-white group-hover:translate-x-0.5 transition-transform" />
-                </a>
-              </Magnetic>
-            </div>
-
             {/* Mobile Hamburger Button */}
             <div className="flex items-center gap-2 lg:hidden">
-              <a
-                href="#contact"
-                onClick={handleQuoteClick}
-                className="px-3.5 py-1.5 rounded-full bg-[#2E756E] text-white text-xs font-bold shadow-xs hover:bg-[#255E58] transition-colors"
-              >
-                <span>Quote</span>
-              </a>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="p-2 rounded-lg text-[#14201D] hover:bg-neutral-100 transition-colors"
