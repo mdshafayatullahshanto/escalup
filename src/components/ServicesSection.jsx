@@ -43,7 +43,7 @@ export default function ServicesSection() {
   };
 
   return (
-    <section id="services" className="py-20 md:py-28 bg-white border-b border-[#DBE3E0] relative scroll-mt-12">
+    <section id="services" className="py-16 sm:py-20 md:py-28 bg-white border-b border-[#DBE3E0] relative scroll-mt-12">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         <SectionHeading
@@ -58,7 +58,7 @@ export default function ServicesSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: '-40px' }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"
         >
           {servicesData.map((service, index) => {
             const Icon = iconMap[service.iconName] || Cpu;

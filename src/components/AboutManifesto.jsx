@@ -46,11 +46,11 @@ export default function AboutManifesto() {
   const leadEngineer = teamData[0];
 
   return (
-    <section id="about" className="pt-20 md:pt-28 pb-0 bg-[#F8FAF9] border-b border-[#DBE3E0] relative overflow-hidden scroll-mt-12">
+    <section id="about" className="pt-16 sm:pt-20 md:pt-28 pb-0 bg-[#F8FAF9] border-b border-[#DBE3E0] relative overflow-hidden scroll-mt-12">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         {/* Top Header Block: Tag + Big Editorial Statement (Centered in Middle) */}
-        <div className="max-w-4xl mx-auto text-center mb-16 md:mb-20">
+        <div className="max-w-4xl mx-auto text-center mb-12 md:mb-16 lg:mb-20">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -94,7 +94,7 @@ export default function AboutManifesto() {
         </div>
 
         {/* Narrative & Quote Grid */}
-        <div className="grid lg:grid-cols-12 gap-10 items-start mb-16">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start mb-12 md:mb-16">
           {/* Main Story Narrative */}
           <div className="lg:col-span-7 space-y-5 text-sm sm:text-base text-[#5A6A65] leading-relaxed">
             <p>
@@ -138,7 +138,7 @@ export default function AboutManifesto() {
         </div>
 
         {/* 3 Feature Pillar Cards */}
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-6 mb-12 md:mb-16">
           {PILLARS.map((pillar, idx) => {
             const Icon = pillar.icon;
             return (
@@ -182,7 +182,7 @@ export default function AboutManifesto() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
-            className="bg-white rounded-3xl border border-[#DBE3E0] p-6 sm:p-8 max-w-4xl mx-auto hover:border-[#2E756E]/40 transition-all shadow-soft mb-16"
+            className="bg-white rounded-3xl border border-[#DBE3E0] p-5 sm:p-8 max-w-4xl mx-auto hover:border-[#2E756E]/40 transition-all shadow-soft mb-12 md:mb-16"
           >
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
               {/* Photo */}

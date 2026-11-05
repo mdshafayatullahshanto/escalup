@@ -21,12 +21,12 @@ const PLATFORMS = [
 export default function LogoTicker() {
   return (
     <div className="w-full border-y border-[#DBE3E0] bg-[#F4F6F5]/80 py-5 overflow-hidden relative select-none">
-      <div className="max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 mb-3 flex items-center justify-between text-xs text-[#5A6A65]">
-        <div className="flex items-center gap-2 font-medium tracking-wide">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#2E756E] animate-pulse" />
-          <span className="uppercase text-[11px] font-bold text-[#14201D] tracking-wider">Supported Engineering Environments & Compliance</span>
+      <div className="max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 mb-3 flex items-center justify-between gap-4 text-xs text-[#5A6A65]">
+        <div className="flex items-center gap-2 font-medium tracking-wide min-w-0">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#2E756E] animate-pulse flex-shrink-0" />
+          <span className="uppercase text-[11px] font-bold text-[#14201D] tracking-wider leading-tight">Supported Engineering Environments &amp; Compliance</span>
         </div>
-        <span className="hidden sm:inline-block text-[11px] font-mono text-[#889893]">100% Native Files · Zero Translation Loss</span>
+        <span className="hidden sm:inline-block text-[11px] font-mono text-[#889893] whitespace-nowrap flex-shrink-0">100% Native Files · Zero Translation Loss</span>
       </div>
 
       <div className="flex overflow-hidden relative [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">

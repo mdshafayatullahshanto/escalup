@@ -53,7 +53,7 @@ export default function ValuesSection() {
   };
 
   return (
-    <section className="py-20 md:py-28 bg-[#F8FAF9] border-b border-[#DBE3E0] relative">
+    <section className="py-16 sm:py-20 md:py-28 bg-[#F8FAF9] border-b border-[#DBE3E0] relative">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         <SectionHeading
