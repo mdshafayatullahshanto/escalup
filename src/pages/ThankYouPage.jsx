@@ -55,8 +55,8 @@ export default function ThankYouPage({ onOpenCalendly }) {
   };
 
   return (
-    <div className="min-h-[85vh] bg-[#F8FAF9] py-20 px-4 sm:px-6 lg:px-8 flex items-center justify-center blueprint-grid">
-      <div className="max-w-2xl w-full bg-white rounded-3xl p-8 sm:p-12 border border-[#DBE3E0] shadow-soft text-center relative overflow-hidden">
+    <div className="min-h-[85vh] bg-[#F8FAF9] dark:bg-[#0D1A17] py-20 px-4 sm:px-6 lg:px-8 flex items-center justify-center blueprint-grid">
+      <div className="max-w-2xl w-full bg-white dark:bg-[#152620] rounded-3xl p-8 sm:p-12 border border-[#DBE3E0] dark:border-[#263830] shadow-soft text-center relative overflow-hidden">
         
         {/* Animated Check Icon */}
         <div className="w-16 h-16 rounded-2xl bg-[#2E756E]/10 text-[#2E756E] mx-auto flex items-center justify-center mb-6 shadow-xs animate-bounce">
@@ -67,55 +67,55 @@ export default function ThankYouPage({ onOpenCalendly }) {
           Request Successfully Received
         </span>
 
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#14201D] tracking-tight mb-4">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#14201D] dark:text-[#E4EDE9] tracking-tight mb-4">
           Thank you for reaching out to escalup.
         </h1>
 
-        <div className="p-4 rounded-2xl bg-[#F8FAF9] border border-[#DBE3E0] text-[#14201D] font-bold text-sm sm:text-base flex items-center justify-center gap-2 mb-6 shadow-xs">
+        <div className="p-4 rounded-2xl bg-[#F8FAF9] dark:bg-[#0D1A17] border border-[#DBE3E0] dark:border-[#263830] text-[#14201D] dark:text-[#E4EDE9] font-bold text-sm sm:text-base flex items-center justify-center gap-2 mb-6 shadow-xs">
           <Clock className="w-5 h-5 text-[#2E756E]" />
           <span>We will reply with a detailed quote within 24 hours.</span>
         </div>
 
-        <p className="text-xs sm:text-sm text-[#5A6A65] leading-relaxed mb-8 max-w-lg mx-auto">
+        <p className="text-xs sm:text-sm text-[#5A6A65] dark:text-[#8FA89F] leading-relaxed mb-8 max-w-lg mx-auto">
           {submissionInfo?.name ? (
-            <>Thank you, <strong className="text-[#14201D]">{submissionInfo.name}</strong> from <strong className="text-[#14201D]">{submissionInfo.company}</strong>. </>
+            <>Thank you, <strong className="text-[#14201D] dark:text-[#E4EDE9]">{submissionInfo.name}</strong> from <strong className="text-[#14201D] dark:text-[#E4EDE9]">{submissionInfo.company}</strong>. </>
           ) : null}
           Our lead engineering desk in Uttara, Dhaka is reviewing your technical requirements. We will prepare an itemized milestone estimate and drawing timeline.
         </p>
 
         {/* 3 Steps What Happens Next */}
-        <div className="bg-[#F8FAF9] rounded-2xl p-6 border border-[#DBE3E0] text-left mb-8 space-y-3.5">
-          <h4 className="text-xs font-bold text-[#14201D] uppercase tracking-wider font-mono">
+        <div className="bg-[#F8FAF9] dark:bg-[#0D1A17] rounded-2xl p-6 border border-[#DBE3E0] dark:border-[#263830] text-left mb-8 space-y-3.5">
+          <h4 className="text-xs font-bold text-[#14201D] dark:text-[#E4EDE9] uppercase tracking-wider font-mono">
             What Happens Next:
           </h4>
-          <div className="space-y-2.5 text-xs text-[#5A6A65]">
+          <div className="space-y-2.5 text-xs text-[#5A6A65] dark:text-[#8FA89F]">
             <div className="flex items-start gap-2.5">
               <ShieldCheck className="w-4 h-4 text-[#2E756E] shrink-0 mt-0.5" />
               <span>
-                <strong className="text-[#14201D]">1. NDA Execution:</strong> We countersign your confidentiality agreement before examining proprietary CAD models or drawings.
+                <strong className="text-[#14201D] dark:text-[#E4EDE9]">1. NDA Execution:</strong> We countersign your confidentiality agreement before examining proprietary CAD models or drawings.
               </span>
             </div>
             <div className="flex items-start gap-2.5">
               <FileCheck2 className="w-4 h-4 text-[#2E756E] shrink-0 mt-0.5" />
               <span>
-                <strong className="text-[#14201D]">2. Technical Review:</strong> Our senior mechanical and MEP engineers evaluate tolerances, drafting scope, and tooling feasibility.
+                <strong className="text-[#14201D] dark:text-[#E4EDE9]">2. Technical Review:</strong> Our senior mechanical and MEP engineers evaluate tolerances, drafting scope, and tooling feasibility.
               </span>
             </div>
             <div className="flex items-start gap-2.5">
               <Mail className="w-4 h-4 text-[#2E756E] shrink-0 mt-0.5" />
               <span>
-                <strong className="text-[#14201D]">3. Fixed Quote & Milestones:</strong> You receive a clear, binding proposal with delivery dates and payment terms.
+                <strong className="text-[#14201D] dark:text-[#E4EDE9]">3. Fixed Quote & Milestones:</strong> You receive a clear, binding proposal with delivery dates and payment terms.
               </span>
             </div>
           </div>
         </div>
 
         {/* Accelerated Next Action: Book a Call on Cal.com */}
-        <div className="p-6 rounded-2xl border-2 border-dashed border-[#2E756E]/40 bg-[#F8FAF9] mb-8">
-          <h4 className="font-bold text-sm text-[#14201D] mb-1">
+        <div className="p-6 rounded-2xl border-2 border-dashed border-[#2E756E]/40 bg-[#F8FAF9] dark:bg-[#0D1A17] mb-8">
+          <h4 className="font-bold text-sm text-[#14201D] dark:text-[#E4EDE9] mb-1">
             Want to accelerate your kickoff?
           </h4>
-          <p className="text-xs text-[#5A6A65] mb-4">
+          <p className="text-xs text-[#5A6A65] dark:text-[#8FA89F] mb-4">
             Skip the email delay and reserve 30 minutes with our Principal Engineer right away.
           </p>
           <button
@@ -129,12 +129,12 @@ export default function ThankYouPage({ onOpenCalendly }) {
         </div>
 
         {/* Return Links */}
-        <div className="flex items-center justify-center gap-4 text-xs font-semibold text-[#889893]">
+        <div className="flex items-center justify-center gap-4 text-xs font-semibold text-[#889893] dark:text-[#5A7268]">
           <Link to="/" className="text-[#2E756E] hover:underline flex items-center gap-1">
             <span>← Return to Home</span>
           </Link>
           <span>·</span>
-          <Link to="/#services" className="hover:text-[#14201D] transition-colors">
+          <Link to="/#services" className="hover:text-[#14201D] dark:hover:text-[#E4EDE9] transition-colors">
             Explore All Services
           </Link>
           <span>·</span>
