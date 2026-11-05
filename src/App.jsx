@@ -4,7 +4,6 @@ import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
 import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import StickyMobileCTA from './components/StickyMobileCTA';
 import FloatingActions from './components/FloatingActions';
 import CalendlyModal from './components/CalendlyModal';
 import CustomCursor from './components/CustomCursor';
@@ -117,9 +116,6 @@ export default function App() {
 
           {/* Desktop Floating Actions (Scroll to Top) */}
           <FloatingActions />
-
-          {/* Mobile Sticky Bottom CTA */}
-          <StickyMobileCTA />
 
           {/* Global Modals with AnimatePresence */}
           <AnimatePresence>
