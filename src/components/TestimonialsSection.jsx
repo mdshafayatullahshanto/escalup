@@ -13,7 +13,7 @@ export default function TestimonialsSection() {
   }
 
   return (
-    <section className="py-20 md:py-28 bg-[#F8FAF9] border-b border-[#DBE3E0] relative">
+    <section className="py-20 md:py-28 bg-[#F8FAF9] dark:bg-[#0D1A17] border-b border-[#DBE3E0] dark:border-[#263830] relative">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         <SectionHeading
           eyebrow="Verified Client Feedback"
@@ -25,7 +25,7 @@ export default function TestimonialsSection() {
           {testimonialsData.map((item) => (
             <div
               key={item.id}
-              className="bg-white rounded-3xl p-7 border border-[#DBE3E0] flex flex-col justify-between shadow-soft"
+              className="bg-white dark:bg-[#152620] rounded-3xl p-7 border border-[#DBE3E0] dark:border-[#263830] flex flex-col justify-between shadow-soft"
             >
               <div>
                 <div className="flex items-center gap-1 text-[#2E756E] mb-4">
@@ -33,15 +33,15 @@ export default function TestimonialsSection() {
                     <Star key={i} className="w-4 h-4 fill-[#2E756E] text-[#2E756E]" />
                   ))}
                 </div>
-                <p className="text-sm text-[#14201D] leading-relaxed italic mb-6">
+                <p className="text-sm text-[#14201D] dark:text-[#E4EDE9] leading-relaxed italic mb-6">
                   “{item.quote}”
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-[#DBE3E0] flex items-center justify-between">
+              <div className="pt-4 border-t border-[#DBE3E0] dark:border-[#263830] flex items-center justify-between">
                 <div>
-                  <h4 className="font-bold text-sm text-[#14201D]">{item.clientName}</h4>
-                  <p className="text-xs text-[#5A6A65]">
+                  <h4 className="font-bold text-sm text-[#14201D] dark:text-[#E4EDE9]">{item.clientName}</h4>
+                  <p className="text-xs text-[#5A6A65] dark:text-[#8FA89F]">
                     {item.role}, {item.company}
                   </p>
                 </div>

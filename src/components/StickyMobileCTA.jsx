@@ -18,12 +18,12 @@ export default function StickyMobileCTA() {
   };
 
   return (
-    <div className="fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-[#DBE3E0] p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-soft lg:hidden">
+    <div className="fixed bottom-0 inset-x-0 z-40 bg-white/95 dark:bg-[#0D1A17]/95 backdrop-blur-md border-t border-[#DBE3E0] dark:border-[#263830] p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-soft lg:hidden">
       <div className="flex items-center gap-2 max-w-md mx-auto">
         {/* Direct Email Button */}
         <a
           href={`mailto:${companyData.contact.email}?subject=Offshore%20Engineering%20Inquiry%20-%20escalup`}
-          className="flex-1 py-2.5 px-3 rounded-full bg-[#F8FAF9] hover:bg-[#F4F6F5] border border-[#DBE3E0] text-[#14201D] font-semibold text-xs flex items-center justify-center gap-1.5 shadow-xs active:scale-95 transition-all"
+          className="flex-1 py-2.5 px-3 rounded-full bg-[#F8FAF9] dark:bg-[#1D3328] hover:bg-[#F4F6F5] dark:hover:bg-[#263830] border border-[#DBE3E0] dark:border-[#263830] text-[#14201D] dark:text-[#E4EDE9] font-semibold text-xs flex items-center justify-center gap-1.5 shadow-xs active:scale-95 transition-all"
         >
           <Mail className="w-4 h-4 text-[#2E756E]" />
           <span>Email Us</span>

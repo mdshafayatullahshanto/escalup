@@ -39,7 +39,7 @@ export default function PilotProject() {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-white border-b border-[#DBE3E0] relative overflow-hidden">
+    <section className="py-16 md:py-24 bg-white dark:bg-[#0D1A17] border-b border-[#DBE3E0] dark:border-[#263830] relative overflow-hidden">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 25 }}
