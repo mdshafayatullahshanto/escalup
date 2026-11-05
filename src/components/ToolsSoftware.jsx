@@ -42,10 +42,9 @@ export default function ToolsSoftware() {
               className="p-6 sm:p-7 rounded-3xl bg-white dark:bg-[#152620] border border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40 dark:hover:border-[#3B948A]/40 transition-all shadow-soft text-center"
             >
               <div className="flex flex-col items-center justify-center gap-1.5 mb-5 text-center">
-                <h3 className="text-base font-bold text-[#14201D]">
+                <h3 className="text-base font-bold text-[#14201D] dark:text-[#E4EDE9]">
                   {categoryGroup.category}
-                </h3>
-                <p className="text-xs text-[#5A6A65] max-w-2xl">
+                </h3>                <p className="text-xs text-[#5A6A65] dark:text-[#8FA89F] max-w-2xl">
                   {categoryGroup.description}
                 </p>
               </div>
@@ -57,7 +56,7 @@ export default function ToolsSoftware() {
                     key={toolIdx}
                     whileHover={{ y: -3, scale: 1.04 }}
                     transition={{ duration: 0.2 }}
-                    className="px-3.5 py-1.5 rounded-full text-xs font-mono font-medium text-[#14201D] bg-[#F8FAF9] border border-[#DBE3E0] hover:border-[#2E756E] hover:bg-[#2E756E] hover:text-white transition-all cursor-default shadow-xs"
+                    className="px-3.5 py-1.5 rounded-full text-xs font-mono font-medium text-[#14201D] dark:text-[#E4EDE9] bg-[#F8FAF9] dark:bg-[#1D3328] border border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E] hover:bg-[#2E756E] hover:text-white dark:hover:bg-[#2E756E] dark:hover:border-[#2E756E] transition-all cursor-default shadow-xs"
                   >
                     {toolName}
                   </motion.div>
