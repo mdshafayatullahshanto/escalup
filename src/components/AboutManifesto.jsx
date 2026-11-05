@@ -46,7 +46,7 @@ export default function AboutManifesto() {
   const leadEngineer = teamData[0];
 
   return (
-    <section id="about" className="pt-16 sm:pt-20 md:pt-28 pb-0 bg-[#F8FAF9] border-b border-[#DBE3E0] relative overflow-hidden scroll-mt-12">
+    <section id="about" className="pt-16 sm:pt-20 md:pt-28 pb-0 bg-[#F8FAF9] dark:bg-[#0D1A17] border-b border-[#DBE3E0] dark:border-[#263830] relative overflow-hidden scroll-mt-12">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         {/* Top Header Block: Tag + Big Editorial Statement (Centered in Middle) */}
@@ -67,7 +67,7 @@ export default function AboutManifesto() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#14201D] tracking-tight leading-[1.35] sm:leading-[1.38] md:leading-[1.4] mb-8 text-center"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#14201D] dark:text-[#E4EDE9] tracking-tight leading-[1.35] sm:leading-[1.38] md:leading-[1.4] mb-8 text-center"
           >
             Escalup partners with ambitious engineering firms, manufacturers, and contractors to{' '}
             <span className="relative inline-block pb-2 sm:pb-2.5">
@@ -96,7 +96,7 @@ export default function AboutManifesto() {
         {/* Narrative & Quote Grid */}
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start mb-12 md:mb-16">
           {/* Main Story Narrative */}
-          <div className="lg:col-span-7 space-y-5 text-sm sm:text-base text-[#5A6A65] leading-relaxed">
+          <div className="lg:col-span-7 space-y-5 text-sm sm:text-base text-[#5A6A65] dark:text-[#8FA89F] leading-relaxed">
             <p>
               <strong className="text-[#2E756E] font-bold">Escalup</strong> is a Mechanical and MEP design company based in Dhaka. We work with manufacturers, developers and contractors worldwide to turn ideas into designs that are clear, practical and ready to build.
             </p>
@@ -113,11 +113,11 @@ export default function AboutManifesto() {
 
           {/* Highlighted Quote & Dhaka Engineering Hub Card */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="bg-white rounded-3xl p-7 border border-[#DBE3E0] relative overflow-hidden shadow-soft">
+            <div className="bg-white dark:bg-[#152620] rounded-3xl p-7 border border-[#DBE3E0] dark:border-[#263830] relative overflow-hidden shadow-soft">
               <div className="w-10 h-10 rounded-xl bg-[#2E756E]/10 text-[#2E756E] flex items-center justify-center mb-4">
                 <Quote className="w-5 h-5" />
               </div>
-              <blockquote className="text-base sm:text-lg font-bold text-[#14201D] leading-snug italic mb-4">
+              <blockquote className="text-base sm:text-lg font-bold text-[#14201D] dark:text-[#E4EDE9] leading-snug italic mb-4">
                 “We believe great projects are built where engineering precision meets thoughtful design.”
               </blockquote>
               <div className="text-xs font-semibold text-[#2E756E] uppercase tracking-wider font-mono">
@@ -125,8 +125,8 @@ export default function AboutManifesto() {
               </div>
             </div>
 
-            <div className="bg-white rounded-3xl p-6 border border-[#DBE3E0] shadow-soft text-xs space-y-3">
-              <div className="flex items-center gap-2 text-[#14201D] font-bold text-sm">
+            <div className="bg-white dark:bg-[#152620] rounded-3xl p-6 border border-[#DBE3E0] dark:border-[#263830] shadow-soft text-xs space-y-3">
+              <div className="flex items-center gap-2 text-[#14201D] dark:text-[#E4EDE9] font-bold text-sm">
                 <MapPin className="w-4 h-4 text-[#2E756E]" />
                 <span>Offshore Engineering Center: Uttara, Dhaka</span>
               </div>
@@ -150,7 +150,7 @@ export default function AboutManifesto() {
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 whileHover={{ y: -6 }}
                 data-cursor="Pillar"
-                className="bg-white hover:bg-[#F4F6F5] rounded-3xl p-7 border border-[#DBE3E0] hover:border-[#2E756E]/40 transition-all duration-300 flex flex-col justify-between group cursor-default shadow-soft"
+                className="bg-white dark:bg-[#152620] hover:bg-[#F4F6F5] dark:hover:bg-[#1D3328] rounded-3xl p-7 border border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40 dark:hover:border-[#3B948A]/40 transition-all duration-300 flex flex-col justify-between group cursor-default shadow-soft"
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
@@ -162,7 +162,7 @@ export default function AboutManifesto() {
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold text-[#14201D] mb-3 group-hover:text-[#2E756E] transition-colors">
+                  <h3 className="text-xl font-bold text-[#14201D] dark:text-[#E4EDE9] mb-3 group-hover:text-[#2E756E] dark:group-hover:text-[#3B948A] transition-colors">
                     {pillar.title}
                   </h3>
 
@@ -182,11 +182,11 @@ export default function AboutManifesto() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
-            className="bg-white rounded-3xl border border-[#DBE3E0] p-5 sm:p-8 max-w-4xl mx-auto hover:border-[#2E756E]/40 transition-all shadow-soft mb-12 md:mb-16"
+            className="bg-white dark:bg-[#152620] rounded-3xl border border-[#DBE3E0] dark:border-[#263830] p-5 sm:p-8 max-w-4xl mx-auto hover:border-[#2E756E]/40 dark:hover:border-[#3B948A]/40 transition-all shadow-soft mb-12 md:mb-16"
           >
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
               {/* Photo */}
-              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-[#F4F6F5] border border-[#DBE3E0] flex items-center justify-center shrink-0 overflow-hidden shadow-xs">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-[#F4F6F5] dark:bg-[#1D3328] border border-[#DBE3E0] dark:border-[#263830] flex items-center justify-center shrink-0 overflow-hidden shadow-xs">
                 {leadEngineer.photo ? (
                   <img
                     src={leadEngineer.photo}
@@ -206,7 +206,7 @@ export default function AboutManifesto() {
               <div className="flex-1 space-y-2">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                   <div>
-                    <h4 className="text-lg font-bold text-[#14201D]">{leadEngineer.name}</h4>
+                    <h4 className="text-lg font-bold text-[#14201D] dark:text-[#E4EDE9]">{leadEngineer.name}</h4>
                     <span className="text-xs font-semibold text-[#2E756E] block">{leadEngineer.role}</span>
                   </div>
 
@@ -223,7 +223,7 @@ export default function AboutManifesto() {
                   )}
                 </div>
 
-                <p className="text-xs sm:text-sm text-[#5A6A65] leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#5A6A65] dark:text-[#8FA89F] leading-relaxed">
                   {leadEngineer.bio}
                 </p>
 
@@ -231,7 +231,7 @@ export default function AboutManifesto() {
                   {leadEngineer.skills.map((skill, sIdx) => (
                     <span
                       key={sIdx}
-                      className="text-[10px] font-semibold text-[#14201D] bg-[#F4F6F5] px-3 py-1 rounded-full border border-[#DBE3E0]"
+                      className="text-[10px] font-semibold text-[#14201D] dark:text-[#E4EDE9] bg-[#F4F6F5] dark:bg-[#1D3328] px-3 py-1 rounded-full border border-[#DBE3E0] dark:border-[#263830]"
                     >
                       {skill}
                     </span>
@@ -243,7 +243,7 @@ export default function AboutManifesto() {
         )}
 
         {/* Continuous Discipline Marquee */}
-        <div className="mt-16 md:mt-20 py-8 md:py-10 border-t border-[#DBE3E0] overflow-hidden relative [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+        <div className="mt-16 md:mt-20 py-8 md:py-10 border-t border-[#DBE3E0] dark:border-[#263830] overflow-hidden relative [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
           <motion.div
             animate={{ x: ['0%', '-50%'] }}
             transition={{ duration: 32, repeat: Infinity, ease: 'linear' }}
@@ -252,7 +252,7 @@ export default function AboutManifesto() {
             {[...DISCIPLINE_TICKER, ...DISCIPLINE_TICKER, ...DISCIPLINE_TICKER, ...DISCIPLINE_TICKER].map((tag, idx) => (
               <span
                 key={idx}
-                className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl text-xs font-mono font-medium text-[#14201D] bg-white border border-[#DBE3E0] hover:border-[#2E756E]/40 shadow-xs transition-colors cursor-default"
+                className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl text-xs font-mono font-medium text-[#14201D] dark:text-[#E4EDE9] bg-white dark:bg-[#152620] border border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40 dark:hover:border-[#3B948A]/40 shadow-xs transition-colors cursor-default"
               >
                 <span className="w-2 h-2 rounded-full bg-[#2E756E]" />
                 <span>{tag}</span>

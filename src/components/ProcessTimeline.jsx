@@ -92,7 +92,7 @@ export default function ProcessTimeline() {
   };
 
   return (
-    <section id="process" className="py-20 md:py-28 bg-white border-b border-[#DBE3E0] relative scroll-mt-12">
+    <section id="process" className="py-20 md:py-28 bg-white dark:bg-[#0F201C] border-b border-[#DBE3E0] dark:border-[#263830] relative scroll-mt-12">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         <SectionHeading
@@ -112,11 +112,11 @@ export default function ProcessTimeline() {
           {PHASES.map((phaseGroup, pIdx) => (
             <div key={pIdx} className="space-y-6">
               {/* Phase Header */}
-              <div className="flex items-center justify-between pb-3 border-b border-[#DBE3E0]">
+              <div className="flex items-center justify-between pb-3 border-b border-[#DBE3E0] dark:border-[#263830]">
                 <span className="text-xs font-bold uppercase tracking-wider text-[#2E756E] font-mono">
                   {phaseGroup.phase}
                 </span>
-                <span className="text-sm font-bold text-[#14201D]">
+                <span className="text-sm font-bold text-[#14201D] dark:text-[#E4EDE9]">
                   {phaseGroup.phaseTitle}
                 </span>
               </div>
@@ -133,11 +133,11 @@ export default function ProcessTimeline() {
                       whileInView="show"
                       viewport={{ once: true, margin: '-30px' }}
                       whileHover={{ y: -6 }}
-                      className="bg-[#F8FAF9] hover:bg-white rounded-3xl p-6 sm:p-7 border border-[#DBE3E0] hover:border-[#2E756E]/50 shadow-soft hover:shadow-card transition-all duration-300 flex flex-col justify-between group cursor-default"
+                      className="bg-[#F8FAF9] dark:bg-[#152620] hover:bg-white dark:hover:bg-[#1D3328] rounded-3xl p-6 sm:p-7 border border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/50 dark:hover:border-[#3B948A]/50 shadow-soft hover:shadow-card transition-all duration-300 flex flex-col justify-between group cursor-default"
                     >
                       <div>
                         <div className="flex items-center justify-between mb-5">
-                          <div className="w-12 h-12 rounded-2xl bg-white border border-[#DBE3E0] text-[#2E756E] flex items-center justify-center group-hover:bg-[#2E756E] group-hover:text-white group-hover:border-[#2E756E] transition-all shadow-xs">
+                          <div className="w-12 h-12 rounded-2xl bg-white dark:bg-[#1D3328] border border-[#DBE3E0] dark:border-[#263830] text-[#2E756E] flex items-center justify-center group-hover:bg-[#2E756E] group-hover:text-white group-hover:border-[#2E756E] transition-all shadow-xs">
                             <Icon className="w-6 h-6" />
                           </div>
                           <div className="flex items-center gap-2">
@@ -150,11 +150,11 @@ export default function ProcessTimeline() {
                           </div>
                         </div>
 
-                        <h3 className="text-lg font-bold text-[#14201D] mb-2.5 group-hover:text-[#2E756E] transition-colors leading-snug">
+                        <h3 className="text-lg font-bold text-[#14201D] dark:text-[#E4EDE9] mb-2.5 group-hover:text-[#2E756E] dark:group-hover:text-[#3B948A] transition-colors leading-snug">
                           {step.title}
                         </h3>
 
-                        <p className="text-xs sm:text-sm text-[#5A6A65] leading-relaxed">
+                        <p className="text-xs sm:text-sm text-[#5A6A65] dark:text-[#8FA89F] leading-relaxed">
                           {step.desc}
                         </p>
                       </div>

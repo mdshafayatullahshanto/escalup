@@ -21,7 +21,7 @@ import ContactSection from '../components/ContactSection';
 
 export default function HomePage({ onOpenCalendly }) {
   return (
-    <main className="flex-1 w-full overflow-hidden bg-[#F8FAF9] text-[#14201D]">
+    <main className="flex-1 w-full overflow-hidden bg-[#F8FAF9] dark:bg-[#0D1A17] text-[#14201D] dark:text-[#E4EDE9]">
       {/* 1. Consilio-style Hero with editorial typography, pill CTAs & CAD 3D wireframe */}
       <Hero onOpenCalendly={onOpenCalendly} />
 

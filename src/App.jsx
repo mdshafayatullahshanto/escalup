@@ -17,7 +17,7 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 // Loading fallback spinner with escalup brand styling
 function PageLoader() {
   return (
-    <div className="min-h-[70vh] flex flex-col items-center justify-center bg-[#F8FAF9] text-[#14201D]">
+    <div className="min-h-[70vh] flex flex-col items-center justify-center bg-[#F8FAF9] dark:bg-[#0D1A17] text-[#14201D] dark:text-[#E4EDE9]">
       <div className="w-10 h-10 rounded-full border-2 border-[#2E756E]/20 border-t-[#2E756E] animate-spin mb-3"></div>
       <span className="text-xs font-semibold text-[#5A6A65] font-mono tracking-wider">escalup engineering...</span>
     </div>
@@ -104,7 +104,7 @@ export default function App() {
           style={{ scaleX }}
         />
 
-        <div className="flex flex-col min-h-screen bg-[#F8FAF9] text-[#14201D] font-sans antialiased selection:bg-[#2E756E]/20 selection:text-[#2E756E]">
+        <div className="flex flex-col min-h-screen bg-[#F8FAF9] dark:bg-[#0D1A17] text-[#14201D] dark:text-[#E4EDE9] font-sans antialiased selection:bg-[#2E756E]/20 selection:text-[#2E756E]">
           {/* Sticky Global Navigation */}
           <Navbar onOpenCalendly={() => setCalendlyOpen(true)} />
 

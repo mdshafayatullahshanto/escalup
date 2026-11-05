@@ -18,17 +18,33 @@
     --ink-light: #889893;
     color-scheme: light;
   }
-  
+
+  /* Dark mode palette */
+  .dark {
+    --brand-teal: #3B948A;
+    --brand-teal-hover: #2E756E;
+    --bg-main: #0D1A17;
+    --bg-card: #152620;
+    --bg-subtle: #102018;
+    --bg-input: #152620;
+    --border-line: #263830;
+    --border-subtle: rgba(38, 56, 48, 0.8);
+    --ink-dark: #E4EDE9;
+    --ink-muted: #8FA89F;
+    --ink-light: #5A7268;
+    color-scheme: dark;
+  }
+
   html {
     scroll-behavior: smooth;
     font-family: 'Golos Text', 'Inter', system-ui, -apple-system, sans-serif;
-    background-color: #F8FAF9;
-    color: #14201D;
+    background-color: var(--bg-main);
+    color: var(--ink-dark);
   }
 
   body {
-    background-color: #F8FAF9;
-    color: #14201D;
+    background-color: var(--bg-main);
+    color: var(--ink-dark);
     margin: 0;
     padding: 0;
     overflow-x: hidden;
@@ -39,7 +55,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color: #F8FAF9;
+    background-color: var(--bg-main);
   }
 }
 
@@ -89,14 +105,20 @@ main {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #F4F6F5;
+  background: var(--bg-subtle);
 }
 ::-webkit-scrollbar-thumb {
   background: #C3DBD6;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2E756E;
+  background: var(--brand-teal);
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #2A3B36;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #3B948A;
 }
 
 /* Hardware accelerated smooth motion & accessible reduced motion */

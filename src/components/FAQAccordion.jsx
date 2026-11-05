@@ -16,7 +16,7 @@ export default function FAQAccordion() {
   };
 
   return (
-    <section id="faq" className="py-20 md:py-28 bg-white border-b border-[#DBE3E0] relative scroll-mt-12">
+    <section id="faq" className="py-20 md:py-28 bg-white dark:bg-[#0F201C] border-b border-[#DBE3E0] dark:border-[#263830] relative scroll-mt-12">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         {/* Title and Subtitle Centered in the Middle */}
@@ -35,8 +35,8 @@ export default function FAQAccordion() {
                 key={faq.id}
                 className={`rounded-3xl border transition-all duration-300 overflow-hidden ${
                   isOpen
-                    ? 'bg-[#F8FAF9] border-[#2E756E]/50 shadow-soft'
-                    : 'bg-white border-[#DBE3E0] hover:border-[#2E756E]/30'
+                    ? 'bg-[#F8FAF9] dark:bg-[#1D3328] border-[#2E756E]/50 dark:border-[#3B948A]/50 shadow-soft'
+                    : 'bg-white dark:bg-[#152620] border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/30 dark:hover:border-[#3B948A]/30'
                 }`}
               >
                 <button
@@ -44,14 +44,14 @@ export default function FAQAccordion() {
                   className="w-full p-6 sm:p-7 text-left flex items-start justify-between gap-4 cursor-pointer"
                   aria-expanded={isOpen}
                 >
-                  <span className="text-base sm:text-lg font-bold text-[#14201D] leading-snug">
+                  <span className="text-base sm:text-lg font-bold text-[#14201D] dark:text-[#E4EDE9] leading-snug">
                     {faq.question}
                   </span>
                   <span
                     className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-colors ${
                       isOpen
                         ? 'bg-[#2E756E] text-white'
-                        : 'bg-[#F8FAF9] text-[#5A6A65] border border-[#DBE3E0]'
+                        : 'bg-[#F8FAF9] dark:bg-[#1D3328] text-[#5A6A65] dark:text-[#8FA89F] border border-[#DBE3E0] dark:border-[#263830]'
                     }`}
                   >
                     {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
@@ -67,7 +67,7 @@ export default function FAQAccordion() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     >
-                      <div className="px-6 sm:px-7 pb-6 sm:pb-7 text-xs sm:text-sm text-[#5A6A65] leading-relaxed border-t border-[#DBE3E0] pt-4">
+                      <div className="px-6 sm:px-7 pb-6 sm:pb-7 text-xs sm:text-sm text-[#5A6A65] dark:text-[#8FA89F] leading-relaxed border-t border-[#DBE3E0] dark:border-[#263830] pt-4">
                         {faq.answer}
                       </div>
                     </motion.div>

@@ -93,7 +93,7 @@ const ENGAGEMENT_MODELS = [
 
 export default function OffshoreModel() {
   return (
-    <section id="offshore-model" className="py-20 md:py-28 bg-[#F8FAF9] border-b border-[#DBE3E0] relative scroll-mt-12">
+    <section id="offshore-model" className="py-20 md:py-28 bg-[#F8FAF9] dark:bg-[#0D1A17] border-b border-[#DBE3E0] dark:border-[#263830] relative scroll-mt-12">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         {/* Section Heading */}
@@ -127,16 +127,16 @@ export default function OffshoreModel() {
                   show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } }
                 }}
                 whileHover={{ y: -5 }}
-                className="bg-white hover:bg-white rounded-3xl p-6 border border-[#DBE3E0] hover:border-[#2E756E]/40 transition-all duration-300 flex items-start gap-4 cursor-default shadow-soft hover:shadow-card"
+                className="bg-white dark:bg-[#152620] hover:bg-white dark:hover:bg-[#1D3328] rounded-3xl p-6 border border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40 dark:hover:border-[#3B948A]/40 transition-all duration-300 flex items-start gap-4 cursor-default shadow-soft hover:shadow-card"
               >
-                <div className="w-11 h-11 rounded-2xl bg-[#F8FAF9] border border-[#DBE3E0] text-[#2E756E] shrink-0 flex items-center justify-center mt-0.5 shadow-xs">
+                <div className="w-11 h-11 rounded-2xl bg-[#F8FAF9] dark:bg-[#1D3328] border border-[#DBE3E0] dark:border-[#263830] text-[#2E756E] shrink-0 flex items-center justify-center mt-0.5 shadow-xs">
                   <Icon className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-[#14201D] mb-1.5">
+                  <h3 className="text-base font-bold text-[#14201D] dark:text-[#E4EDE9] mb-1.5">
                     {pillar.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#5A6A65] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#5A6A65] dark:text-[#8FA89F] leading-relaxed">
                     {pillar.desc}
                   </p>
                 </div>
@@ -153,10 +153,10 @@ export default function OffshoreModel() {
         {/* Engagement Models Comparison */}
         <div className="mb-16">
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-[#14201D]">
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-[#14201D] dark:text-[#E4EDE9]">
               Choose Your Engagement Model
             </h3>
-            <p className="text-xs sm:text-sm text-[#5A6A65] mt-2">
+            <p className="text-xs sm:text-sm text-[#5A6A65] dark:text-[#8FA89F] mt-2">
               Select the structure that best fits your workflow, volume, and budget.
             </p>
           </div>
@@ -184,8 +184,8 @@ export default function OffshoreModel() {
                 whileHover={{ y: -6 }}
                 className={`rounded-3xl p-7 flex flex-col justify-between transition-all duration-300 ${
                   model.popular
-                    ? 'bg-white border-2 border-[#2E756E] shadow-xl relative ring-4 ring-[#2E756E]/10'
-                    : 'bg-white border border-[#DBE3E0] hover:border-[#2E756E]/40 shadow-soft'
+                    ? 'bg-white dark:bg-[#1D3328] border-2 border-[#2E756E] shadow-xl relative ring-4 ring-[#2E756E]/10'
+                    : 'bg-white dark:bg-[#152620] border border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40 dark:hover:border-[#3B948A]/40 shadow-soft'
                 }`}
               >
                 {model.popular && (
@@ -197,7 +197,7 @@ export default function OffshoreModel() {
 
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <h4 className="text-xl font-bold text-[#14201D]">{model.name}</h4>
+                    <h4 className="text-xl font-bold text-[#14201D] dark:text-[#E4EDE9]">{model.name}</h4>
                     {!model.popular && (
                       <span className="text-[10px] font-semibold uppercase tracking-wider text-[#2E756E] bg-[#2E756E]/10 border border-[#2E756E]/20 px-2.5 py-0.5 rounded-full font-mono">
                         {model.badge}
@@ -205,29 +205,29 @@ export default function OffshoreModel() {
                     )}
                   </div>
 
-                  <p className="text-xs text-[#5A6A65] mb-6 leading-relaxed">
+                  <p className="text-xs text-[#5A6A65] dark:text-[#8FA89F] mb-6 leading-relaxed">
                     {model.tagline}
                   </p>
 
-                  <div className="space-y-4 pt-4 border-t border-[#DBE3E0] text-xs">
+                  <div className="space-y-4 pt-4 border-t border-[#DBE3E0] dark:border-[#263830] text-xs">
                     <div>
-                      <span className="font-bold text-[#14201D] block mb-0.5">Best For:</span>
-                      <span className="text-[#5A6A65]">{model.bestFor}</span>
+                      <span className="font-bold text-[#14201D] dark:text-[#E4EDE9] block mb-0.5">Best For:</span>
+                      <span className="text-[#5A6A65] dark:text-[#8FA89F]">{model.bestFor}</span>
                     </div>
 
                     <div>
-                      <span className="font-bold text-[#14201D] block mb-0.5">Commercial Structure:</span>
-                      <span className="text-[#14201D] font-medium">{model.pricing}</span>
+                      <span className="font-bold text-[#14201D] dark:text-[#E4EDE9] block mb-0.5">Commercial Structure:</span>
+                      <span className="text-[#14201D] dark:text-[#E4EDE9] font-medium">{model.pricing}</span>
                     </div>
 
                     <div>
-                      <span className="font-bold text-[#14201D] block mb-0.5">Team Arrangement:</span>
-                      <span className="text-[#5A6A65]">{model.team}</span>
+                      <span className="font-bold text-[#14201D] dark:text-[#E4EDE9] block mb-0.5">Team Arrangement:</span>
+                      <span className="text-[#5A6A65] dark:text-[#8FA89F]">{model.team}</span>
                     </div>
 
                     <div>
-                      <span className="font-bold text-[#14201D] block mb-0.5">Flexibility:</span>
-                      <span className="text-[#5A6A65]">{model.flexibility}</span>
+                      <span className="font-bold text-[#14201D] dark:text-[#E4EDE9] block mb-0.5">Flexibility:</span>
+                      <span className="text-[#5A6A65] dark:text-[#8FA89F]">{model.flexibility}</span>
                     </div>
                   </div>
                 </div>

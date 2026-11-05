@@ -66,7 +66,7 @@ export default function Hero({ onOpenCalendly }) {
   };
 
   return (
-    <section className="relative overflow-hidden min-h-[calc(100vh-4.5rem)] flex flex-col justify-center py-6 sm:py-8 lg:py-12 2xl:py-16 border-b border-[#DBE3E0] bg-[#F8FAF9] blueprint-grid">
+    <section className="relative overflow-hidden min-h-[calc(100vh-4.5rem)] flex flex-col justify-center py-6 sm:py-8 lg:py-12 2xl:py-16 border-b border-[#DBE3E0] dark:border-[#263830] bg-[#F8FAF9] dark:bg-[#0D1A17] blueprint-grid">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16 relative z-10">
         <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 2xl:gap-14 items-center">
           
@@ -79,7 +79,7 @@ export default function Hero({ onOpenCalendly }) {
           >
             {/* Eyebrow Label */}
             <motion.div variants={childVariants} className="flex items-center gap-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-3.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-[#2E756E]/10 text-[#2E756E] border border-[#2E756E]/20">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-3.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-[#2E756E]/10 dark:bg-[#3B948A]/15 text-[#2E756E] dark:text-[#3B948A] border border-[#2E756E]/20 dark:border-[#3B948A]/30">
                 <span className="w-2 h-2 rounded-full bg-[#2E756E] animate-pulse flex-shrink-0"></span>
                 <span>CAD · MEP · BIM Engineering Services</span>
               </div>
@@ -88,7 +88,7 @@ export default function Hero({ onOpenCalendly }) {
             {/* Main Headline */}
             <motion.h1
               variants={childVariants}
-              className="text-[1.6rem] xs:text-[1.75rem] sm:text-4xl md:text-5xl lg:text-5xl xl:text-[3.5rem] 2xl:text-[4.25rem] font-extrabold text-[#14201D] tracking-tight leading-[1.16] sm:leading-[1.2] md:leading-[1.18]"
+              className="text-[1.6rem] xs:text-[1.75rem] sm:text-4xl md:text-5xl lg:text-5xl xl:text-[3.5rem] 2xl:text-[4.25rem] font-extrabold text-[#14201D] dark:text-[#E4EDE9] tracking-tight leading-[1.16] sm:leading-[1.2] md:leading-[1.18]"
             >
               We bring people and engineering together to{' '}
               <span className="relative inline-block pb-2 sm:pb-2.5">
@@ -115,7 +115,7 @@ export default function Hero({ onOpenCalendly }) {
             {/* Sub-headline */}
             <motion.p
               variants={childVariants}
-              className="text-[13px] sm:text-base lg:text-lg xl:text-xl text-[#5A6A65] max-w-2xl leading-relaxed"
+              className="text-[13px] sm:text-base lg:text-lg xl:text-xl text-[#5A6A65] dark:text-[#8FA89F] max-w-2xl leading-relaxed"
             >
               <strong className="text-[#2E756E] font-bold">escalup</strong> is your offshore engineering partner delivering Mechanical, MEP and BIM design support — with clear communication and production-ready documentation.
             </motion.p>
@@ -142,7 +142,7 @@ export default function Hero({ onOpenCalendly }) {
                 onClick={handleBookCall}
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full sm:w-auto px-5 py-3 lg:px-7 lg:py-4 rounded-full bg-white hover:bg-[#F4F6F5] text-[#14201D] border border-[#DBE3E0] hover:border-[#2E756E]/40 font-semibold text-sm lg:text-base transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                className="w-full sm:w-auto px-5 py-3 lg:px-7 lg:py-4 rounded-full bg-white dark:bg-[#152620] hover:bg-[#F4F6F5] dark:hover:bg-[#1D3328] text-[#14201D] dark:text-[#E4EDE9] border border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40 dark:hover:border-[#3B948A]/40 font-semibold text-sm lg:text-base transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs"
               >
                 <Calendar className="w-4 h-4 lg:w-5 lg:h-5 text-[#2E756E]" />
                 <span>Book a Free Intro Call</span>
@@ -160,7 +160,7 @@ export default function Hero({ onOpenCalendly }) {
             </motion.div>
 
             {/* Trust Chips */}
-            <motion.div variants={childVariants} className="pt-2 border-t border-[#DBE3E0]">
+            <motion.div variants={childVariants} className="pt-2 border-t border-[#DBE3E0] dark:border-[#263830]">
               <div className="grid grid-cols-2 gap-2">
                 {trustChips.map((chip, idx) => {
                   const Icon = chip.icon;
@@ -169,7 +169,7 @@ export default function Hero({ onOpenCalendly }) {
                       key={idx}
                       whileHover={{ y: -3, scale: 1.02 }}
                       transition={{ duration: 0.2 }}
-                      className="flex items-center gap-2 text-xs font-medium text-[#14201D] bg-white hover:border-[#2E756E]/40 px-2.5 py-2 sm:px-3.5 sm:py-2.5 rounded-xl border border-[#DBE3E0] shadow-xs hover:shadow-sm transition-all cursor-default w-full"
+                      className="flex items-center gap-2 text-xs font-medium text-[#14201D] dark:text-[#E4EDE9] bg-white dark:bg-[#152620] hover:border-[#2E756E]/40 dark:hover:border-[#3B948A]/40 px-2.5 py-2 sm:px-3.5 sm:py-2.5 rounded-xl border border-[#DBE3E0] dark:border-[#263830] shadow-xs hover:shadow-sm transition-all cursor-default w-full"
                     >
                       <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#2E756E] shrink-0" />
                       <span className="leading-snug text-[11px] sm:text-xs">{chip.text}</span>

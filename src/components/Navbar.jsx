@@ -5,15 +5,17 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowRight, Calendar } from 'lucide-react';
+import { Menu, X, ArrowRight, Calendar, Sun, Moon } from 'lucide-react';
 import Logo from './Logo';
 import Magnetic from './Magnetic';
 import { companyData } from '../data/company';
 import { trackCallBooking } from '../utils/analytics';
+import { useTheme } from '../context/ThemeContext';
 
 export default function Navbar({ onOpenCalendly }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { isDark, toggleTheme } = useTheme();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -86,13 +88,13 @@ export default function Navbar({ onOpenCalendly }) {
       <header
         className={`sticky top-0 z-40 w-full transition-all duration-300 ${
           scrolled
-            ? 'py-3 bg-white/95 backdrop-blur-md shadow-sm border-b border-[#DBE3E0]'
-            : 'py-4 bg-[#F8FAF9]/90 backdrop-blur-md border-b border-[#DBE3E0]/70'
+            ? 'py-3 bg-white/95 dark:bg-[#0D1A17]/95 backdrop-blur-md shadow-sm border-b border-[#DBE3E0] dark:border-[#263830]'
+            : 'py-4 bg-[#F8FAF9]/90 dark:bg-[#0D1A17]/90 backdrop-blur-md border-b border-[#DBE3E0]/70 dark:border-[#263830]/70'
         }`}
       >
         <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
           <div className="flex items-center justify-between">
-            {/* Brand Logo - default teal variant */}
+            {/* Brand Logo */}
             <Magnetic strength={0.12}>
               <Logo 
                 variant="default" 
@@ -101,30 +103,50 @@ export default function Navbar({ onOpenCalendly }) {
               />
             </Magnetic>
 
-            {/* Desktop Navigation Links moved to the right */}
+            {/* Desktop Navigation Links */}
             <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-medium ml-auto">
               {navLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="text-[#14201D] hover:text-[#2E756E] transition-colors py-1 cursor-pointer relative group font-semibold text-sm tracking-wide"
+                  className="text-[#14201D] dark:text-[#E4EDE9] hover:text-[#2E756E] dark:hover:text-[#3B948A] transition-colors py-1 cursor-pointer relative group font-semibold text-sm tracking-wide"
                 >
                   <span>{link.label}</span>
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2E756E] transition-all duration-300 group-hover:w-full rounded-full" />
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2E756E] dark:bg-[#3B948A] transition-all duration-300 group-hover:w-full rounded-full" />
                 </a>
               ))}
             </nav>
 
-            {/* Mobile Hamburger Button */}
-            <div className="flex items-center gap-2 lg:hidden">
+            {/* Right side controls */}
+            <div className="flex items-center gap-2 ml-4">
+              {/* Dark mode toggle — desktop */}
               <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-lg text-[#14201D] hover:bg-neutral-100 transition-colors"
-                aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+                onClick={toggleTheme}
+                aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+                className="hidden lg:flex p-2 rounded-lg text-[#14201D] dark:text-[#E4EDE9] hover:bg-[#F4F6F5] dark:hover:bg-[#152620] transition-colors"
               >
-                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
               </button>
+
+              {/* Mobile Hamburger Button */}
+              <div className="flex items-center gap-2 lg:hidden">
+                {/* Dark mode toggle — mobile */}
+                <button
+                  onClick={toggleTheme}
+                  aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+                  className="p-2 rounded-lg text-[#14201D] dark:text-[#E4EDE9] hover:bg-neutral-100 dark:hover:bg-[#152620] transition-colors"
+                >
+                  {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                </button>
+                <button
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  className="p-2 rounded-lg text-[#14201D] dark:text-[#E4EDE9] hover:bg-neutral-100 dark:hover:bg-[#152620] transition-colors"
+                  aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+                >
+                  {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -150,9 +172,9 @@ export default function Navbar({ onOpenCalendly }) {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 28, stiffness: 280 }}
-              className="fixed top-0 right-0 bottom-0 w-full max-w-xs bg-white text-[#14201D] shadow-2xl z-50 flex flex-col p-6 overflow-y-auto border-l border-[#DBE3E0]"
+              className="fixed top-0 right-0 bottom-0 w-full max-w-xs bg-white dark:bg-[#0F201C] text-[#14201D] dark:text-[#E4EDE9] shadow-2xl z-50 flex flex-col p-6 overflow-y-auto border-l border-[#DBE3E0] dark:border-[#263830]"
             >
-              <div className="flex items-center justify-between pb-6 border-b border-[#DBE3E0]">
+              <div className="flex items-center justify-between pb-6 border-b border-[#DBE3E0] dark:border-[#263830]">
                 <Logo 
                   variant="default" 
                   size="sm" 
@@ -160,7 +182,7 @@ export default function Navbar({ onOpenCalendly }) {
                 />
                 <button
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-2 rounded-lg text-[#14201D] hover:bg-neutral-100"
+                  className="p-2 rounded-lg text-[#14201D] dark:text-[#E4EDE9] hover:bg-neutral-100 dark:hover:bg-[#152620]"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -173,7 +195,7 @@ export default function Navbar({ onOpenCalendly }) {
                     key={link.label}
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
-                    className="block text-base font-semibold text-[#14201D] hover:text-[#2E756E] py-1.5 transition-colors"
+                    className="block text-base font-semibold text-[#14201D] dark:text-[#E4EDE9] hover:text-[#2E756E] dark:hover:text-[#3B948A] py-1.5 transition-colors"
                   >
                     {link.label}
                   </a>
@@ -181,15 +203,15 @@ export default function Navbar({ onOpenCalendly }) {
               </div>
 
               {/* Mobile Actions */}
-              <div className="pt-6 border-t border-[#DBE3E0] space-y-3">
+              <div className="pt-6 border-t border-[#DBE3E0] dark:border-[#263830] space-y-3">
                 <button
                   onClick={() => {
                     setMobileMenuOpen(false);
                     handleBookCallClick();
                   }}
-                  className="w-full py-3 rounded-full bg-[#F4F6F5] hover:bg-[#E1EDEA] text-[#14201D] font-semibold text-sm flex items-center justify-center gap-2 border border-[#DBE3E0]"
+                  className="w-full py-3 rounded-full bg-[#F4F6F5] dark:bg-[#152620] hover:bg-[#E1EDEA] dark:hover:bg-[#1D3328] text-[#14201D] dark:text-[#E4EDE9] font-semibold text-sm flex items-center justify-center gap-2 border border-[#DBE3E0] dark:border-[#263830]"
                 >
-                  <Calendar className="w-4 h-4 text-[#2E756E]" />
+                  <Calendar className="w-4 h-4 text-[#2E756E] dark:text-[#3B948A]" />
                   <span>Book a Call</span>
                 </button>
 

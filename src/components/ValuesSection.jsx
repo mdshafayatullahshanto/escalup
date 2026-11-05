@@ -53,7 +53,7 @@ export default function ValuesSection() {
   };
 
   return (
-    <section className="py-16 sm:py-20 md:py-28 bg-[#F8FAF9] border-b border-[#DBE3E0] relative">
+    <section className="py-16 sm:py-20 md:py-28 bg-[#F8FAF9] dark:bg-[#0D1A17] border-b border-[#DBE3E0] dark:border-[#263830] relative">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         <SectionHeading
@@ -76,7 +76,7 @@ export default function ValuesSection() {
                 key={val.number}
                 variants={itemVariants}
                 whileHover={{ y: -6 }}
-                className="bg-white hover:bg-[#F4F6F5] rounded-3xl p-7 border border-[#DBE3E0] hover:border-[#2E756E]/40 shadow-soft hover:shadow-card transition-all duration-300 flex flex-col justify-between group cursor-default"
+                className="bg-white dark:bg-[#152620] hover:bg-[#F4F6F5] dark:hover:bg-[#1D3328] rounded-3xl p-7 border border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40 dark:hover:border-[#3B948A]/40 shadow-soft hover:shadow-card transition-all duration-300 flex flex-col justify-between group cursor-default"
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
@@ -88,11 +88,11 @@ export default function ValuesSection() {
                     </span>
                   </div>
 
-                  <h3 className="text-lg font-bold text-[#14201D] mb-3 group-hover:text-[#2E756E] transition-colors">
+                  <h3 className="text-lg font-bold text-[#14201D] dark:text-[#E4EDE9] mb-3 group-hover:text-[#2E756E] dark:group-hover:text-[#3B948A] transition-colors">
                     {val.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-[#5A6A65] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#5A6A65] dark:text-[#8FA89F] leading-relaxed">
                     {val.desc}
                   </p>
                 </div>

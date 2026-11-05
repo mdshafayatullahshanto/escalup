@@ -74,7 +74,7 @@ export default function WhyEscalup() {
   };
 
   return (
-    <section className="py-20 md:py-28 bg-[#F8FAF9] border-b border-[#DBE3E0] relative">
+    <section className="py-20 md:py-28 bg-[#F8FAF9] dark:bg-[#0D1A17] border-b border-[#DBE3E0] dark:border-[#263830] relative">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         <SectionHeading
@@ -99,11 +99,11 @@ export default function WhyEscalup() {
                 variants={item}
                 whileHover={{ y: -8, scale: 1.01 }}
                 transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-                className="p-7 sm:p-8 rounded-3xl bg-white hover:bg-white border border-[#DBE3E0] hover:border-[#2E756E]/50 shadow-soft hover:shadow-card transition-all duration-300 group flex flex-col justify-between cursor-default"
+                className="p-7 sm:p-8 rounded-3xl bg-white dark:bg-[#152620] hover:bg-white dark:hover:bg-[#1D3328] border border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/50 dark:hover:border-[#3B948A]/50 shadow-soft hover:shadow-card transition-all duration-300 group flex flex-col justify-between cursor-default"
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <div className="w-12 h-12 rounded-2xl bg-[#F8FAF9] border border-[#DBE3E0] text-[#2E756E] flex items-center justify-center transition-all duration-300 shadow-xs group-hover:scale-105 group-hover:bg-[#2E756E] group-hover:text-white group-hover:border-[#2E756E]">
+                    <div className="w-12 h-12 rounded-2xl bg-[#F8FAF9] dark:bg-[#1D3328] border border-[#DBE3E0] dark:border-[#263830] text-[#2E756E] flex items-center justify-center transition-all duration-300 shadow-xs group-hover:scale-105 group-hover:bg-[#2E756E] group-hover:text-white group-hover:border-[#2E756E]">
                       <Icon className="w-6 h-6" />
                     </div>
                     <span className="text-[11px] font-bold uppercase tracking-wider text-[#2E756E] font-mono px-2 py-0.5 rounded bg-[#2E756E]/10 border border-[#2E756E]/20">
@@ -111,11 +111,11 @@ export default function WhyEscalup() {
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold text-[#14201D] mb-2.5 group-hover:text-[#2E756E] transition-colors leading-snug">
+                  <h3 className="text-xl font-bold text-[#14201D] dark:text-[#E4EDE9] mb-2.5 group-hover:text-[#2E756E] dark:group-hover:text-[#3B948A] transition-colors leading-snug">
                     {adv.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-[#5A6A65] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#5A6A65] dark:text-[#8FA89F] leading-relaxed">
                     {adv.desc}
                   </p>
                 </div>

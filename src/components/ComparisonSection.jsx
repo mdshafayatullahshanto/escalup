@@ -36,7 +36,7 @@ export default function ComparisonSection() {
   };
 
   return (
-    <section className="py-20 md:py-28 bg-white border-b border-[#DBE3E0] relative">
+    <section className="py-20 md:py-28 bg-white dark:bg-[#0F201C] border-b border-[#DBE3E0] dark:border-[#263830] relative">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         <SectionHeading
@@ -54,14 +54,14 @@ export default function ComparisonSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.5 }}
-            className="rounded-3xl p-7 sm:p-9 bg-[#F8FAF9] border border-[#DBE3E0] shadow-soft"
+            className="rounded-3xl p-7 sm:p-9 bg-[#F8FAF9] dark:bg-[#152620] border border-[#DBE3E0] dark:border-[#263830] shadow-soft"
           >
-            <div className="flex items-center justify-between pb-6 border-b border-[#DBE3E0] mb-6">
+            <div className="flex items-center justify-between pb-6 border-b border-[#DBE3E0] dark:border-[#263830] mb-6">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-[#889893] block mb-1 font-mono">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#889893] dark:text-[#5A7268] block mb-1 font-mono">
                   Common Market Approach
                 </span>
-                <h3 className="text-xl sm:text-2xl font-extrabold text-[#14201D]">
+                <h3 className="text-xl sm:text-2xl font-extrabold text-[#14201D] dark:text-[#E4EDE9]">
                   Other Firms & Freelancers
                 </h3>
               </div>
@@ -70,13 +70,13 @@ export default function ComparisonSection() {
               </div>
             </div>
 
-            <p className="text-xs sm:text-sm text-[#5A6A65] mb-6 leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#5A6A65] dark:text-[#8FA89F] mb-6 leading-relaxed">
               Many offshore engagements deliver low-cost drafting, but fall short during production—leaving your shop floor with rework and delays.
             </p>
 
             <ul className="space-y-4">
               {OTHER_FIRMS.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-[#5A6A65]">
+                <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-[#5A6A65] dark:text-[#8FA89F]">
                   <div className="w-5 h-5 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0 mt-0.5">
                     <X className="w-3 h-3" />
                   </div>

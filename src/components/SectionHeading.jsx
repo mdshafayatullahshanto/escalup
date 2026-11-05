@@ -47,7 +47,7 @@ export default function SectionHeading({
     >
       {eyebrow && (
         <motion.div variants={itemVariants}>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3.5 bg-[#2E756E]/10 text-[#2E756E] border border-[#2E756E]/20">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3.5 bg-[#2E756E]/10 dark:bg-[#3B948A]/15 text-[#2E756E] dark:text-[#3B948A] border border-[#2E756E]/20 dark:border-[#3B948A]/30">
             <span className="w-1.5 h-1.5 rounded-full bg-[#2E756E] animate-pulse"></span>
             {eyebrow}
           </div>
@@ -56,7 +56,7 @@ export default function SectionHeading({
 
       <motion.h2
         variants={itemVariants}
-        className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight leading-tight text-[#14201D]"
+        className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight leading-tight text-[#14201D] dark:text-[#E4EDE9]"
       >
         {title}
       </motion.h2>
@@ -64,7 +64,7 @@ export default function SectionHeading({
       {subtitle && (
         <motion.p
           variants={itemVariants}
-          className="mt-4 text-base sm:text-lg leading-relaxed text-[#5A6A65]"
+          className="mt-4 text-base sm:text-lg leading-relaxed text-[#5A6A65] dark:text-[#8FA89F]"
         >
           {subtitle}
         </motion.p>

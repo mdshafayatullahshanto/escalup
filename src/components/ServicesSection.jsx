@@ -43,7 +43,7 @@ export default function ServicesSection() {
   };
 
   return (
-    <section id="services" className="py-16 sm:py-20 md:py-28 bg-white border-b border-[#DBE3E0] relative scroll-mt-12">
+    <section id="services" className="py-16 sm:py-20 md:py-28 bg-white dark:bg-[#0F201C] border-b border-[#DBE3E0] dark:border-[#263830] relative scroll-mt-12">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         <SectionHeading
@@ -75,7 +75,7 @@ export default function ServicesSection() {
                 <Link
                   to={`/services/${service.slug}`}
                   data-cursor="Explore"
-                  className="h-full flex flex-col justify-between p-7 sm:p-8 rounded-3xl bg-[#F8FAF9] hover:bg-white border border-[#DBE3E0] hover:border-[#2E756E]/40 shadow-soft hover:shadow-card transition-all duration-300 group relative overflow-hidden"
+                  className="h-full flex flex-col justify-between p-7 sm:p-8 rounded-3xl bg-[#F8FAF9] dark:bg-[#152620] hover:bg-white dark:hover:bg-[#1D3328] border border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40 dark:hover:border-[#3B948A]/40 shadow-soft hover:shadow-card transition-all duration-300 group relative overflow-hidden"
                 >
                   {/* Subtle top indicator bar on hover */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-[#2E756E] opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -83,7 +83,7 @@ export default function ServicesSection() {
                   <div>
                     {/* Header: Icon + Category Badge */}
                     <div className="flex items-center justify-between mb-6">
-                      <div className="w-12 h-12 rounded-2xl bg-white border border-[#DBE3E0] text-[#2E756E] flex items-center justify-center shadow-xs group-hover:bg-[#2E756E] group-hover:text-white transition-all duration-300 group-hover:scale-105">
+                      <div className="w-12 h-12 rounded-2xl bg-white dark:bg-[#1D3328] border border-[#DBE3E0] dark:border-[#263830] text-[#2E756E] flex items-center justify-center shadow-xs group-hover:bg-[#2E756E] group-hover:text-white transition-all duration-300 group-hover:scale-105">
                         <Icon className="w-6 h-6" />
                       </div>
                       <span className="text-[11px] font-bold tracking-wider uppercase px-3 py-1 rounded-full bg-[#2E756E]/10 text-[#2E756E] border border-[#2E756E]/20 font-mono">
@@ -92,25 +92,25 @@ export default function ServicesSection() {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-xl font-bold text-[#14201D] mb-3 group-hover:text-[#2E756E] transition-colors leading-snug">
+                    <h3 className="text-xl font-bold text-[#14201D] dark:text-[#E4EDE9] mb-3 group-hover:text-[#2E756E] dark:group-hover:text-[#3B948A] transition-colors leading-snug">
                       {service.title}
                     </h3>
 
                     {/* Short Description */}
-                    <p className="text-xs sm:text-sm text-[#5A6A65] mb-6 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-[#5A6A65] dark:text-[#8FA89F] mb-6 leading-relaxed">
                       {service.shortDesc}
                     </p>
 
                     {/* Sub-item highlights */}
-                    <div className="space-y-2 mb-6 pt-4 border-t border-[#DBE3E0]/70">
+                    <div className="space-y-2 mb-6 pt-4 border-t border-[#DBE3E0]/70 dark:border-[#263830]/70">
                       {service.items.slice(0, 3).map((subItem, idx) => (
-                        <div key={idx} className="flex items-center gap-2 text-xs text-[#14201D]">
+                        <div key={idx} className="flex items-center gap-2 text-xs text-[#14201D] dark:text-[#E4EDE9]">
                           <span className="w-1.5 h-1.5 rounded-full bg-[#2E756E] shrink-0" />
                           <span className="truncate">{subItem}</span>
                         </div>
                       ))}
                       {service.items.length > 3 && (
-                        <div className="text-[11px] font-medium text-[#889893] pl-3.5">
+                        <div className="text-[11px] font-medium text-[#889893] dark:text-[#5A7268] pl-3.5">
                           + {service.items.length - 3} more technical capabilities
                         </div>
                       )}
@@ -118,7 +118,7 @@ export default function ServicesSection() {
                   </div>
 
                   {/* Footer Action */}
-                  <div className="pt-4 border-t border-[#DBE3E0]/70 flex items-center justify-between text-xs font-bold text-[#2E756E] group-hover:text-[#255E58] transition-colors">
+                  <div className="pt-4 border-t border-[#DBE3E0]/70 dark:border-[#263830]/70 flex items-center justify-between text-xs font-bold text-[#2E756E] group-hover:text-[#255E58] dark:group-hover:text-[#3B948A] transition-colors">
                     <span>View deliverables & tools</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
                   </div>

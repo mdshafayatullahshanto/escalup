@@ -126,7 +126,7 @@ export default function ContactSection({ onOpenCalendly }) {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-28 bg-[#F8FAF9] border-b border-[#DBE3E0] relative scroll-mt-12">
+    <section id="contact" className="py-20 md:py-28 bg-[#F8FAF9] dark:bg-[#0D1A17] border-b border-[#DBE3E0] dark:border-[#263830] relative scroll-mt-12">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         <SectionHeading
@@ -143,12 +143,12 @@ export default function ContactSection({ onOpenCalendly }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
-            className="lg:col-span-7 bg-white rounded-3xl p-7 sm:p-10 border border-[#DBE3E0] shadow-soft"
+            className="lg:col-span-7 bg-white dark:bg-[#152620] rounded-3xl p-7 sm:p-10 border border-[#DBE3E0] dark:border-[#263830] shadow-soft"
           >
-            <div className="flex items-center justify-between pb-6 mb-6 border-b border-[#DBE3E0]">
+            <div className="flex items-center justify-between pb-6 mb-6 border-b border-[#DBE3E0] dark:border-[#263830]">
               <div>
-                <h3 className="text-xl font-bold text-[#14201D]">Project Scope & Specifications</h3>
-                <p className="text-xs text-[#5A6A65]">All submissions are encrypted and strictly protected under mutual NDA.</p>
+                <h3 className="text-xl font-bold text-[#14201D] dark:text-[#E4EDE9]">Project Scope & Specifications</h3>
+                <p className="text-xs text-[#5A6A65] dark:text-[#8FA89F]">All submissions are encrypted and strictly protected under mutual NDA.</p>
               </div>
               <div className="hidden sm:flex items-center gap-1.5 text-xs font-semibold text-[#2E756E] bg-[#2E756E]/10 px-3 py-1 rounded-full border border-[#2E756E]/20">
                 <ShieldCheck className="w-4 h-4 text-[#2E756E]" />
@@ -161,7 +161,7 @@ export default function ContactSection({ onOpenCalendly }) {
               {/* Row 1: Name & Company */}
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="form-name" className="block text-xs font-semibold text-[#14201D] mb-1.5">
+                  <label htmlFor="form-name" className="block text-xs font-semibold text-[#14201D] dark:text-[#E4EDE9] mb-1.5">
                     Your Name <span className="text-[#2E756E]">*</span>
                   </label>
                   <input
@@ -172,15 +172,15 @@ export default function ContactSection({ onOpenCalendly }) {
                     placeholder="e.g. Michael Vance"
                     value={formData.name}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 rounded-2xl border text-xs sm:text-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#2E756E] focus:border-[#2E756E] bg-[#F8FAF9] text-[#14201D] placeholder-[#889893] ${
-                      errors.name ? 'border-rose-400' : 'border-[#DBE3E0] hover:border-[#2E756E]/40'
+                    className={`w-full px-4 py-3 rounded-2xl border text-xs sm:text-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#2E756E] focus:border-[#2E756E] bg-[#F8FAF9] dark:bg-[#0D1A17] text-[#14201D] dark:text-[#E4EDE9] placeholder-[#889893] dark:placeholder-[#5A7268] ${
+                      errors.name ? 'border-rose-400' : 'border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40'
                     }`}
                   />
                   {errors.name && <p className="text-[11px] text-rose-500 mt-1">{errors.name}</p>}
                 </div>
 
                 <div>
-                  <label htmlFor="form-company" className="block text-xs font-semibold text-[#14201D] mb-1.5">
+                  <label htmlFor="form-company" className="block text-xs font-semibold text-[#14201D] dark:text-[#E4EDE9] mb-1.5">
                     Company / Organization <span className="text-[#2E756E]">*</span>
                   </label>
                   <input
@@ -191,8 +191,8 @@ export default function ContactSection({ onOpenCalendly }) {
                     placeholder="e.g. Apex Industrial Systems"
                     value={formData.company}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 rounded-2xl border text-xs sm:text-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#2E756E] focus:border-[#2E756E] bg-[#F8FAF9] text-[#14201D] placeholder-[#889893] ${
-                      errors.company ? 'border-rose-400' : 'border-[#DBE3E0] hover:border-[#2E756E]/40'
+                    className={`w-full px-4 py-3 rounded-2xl border text-xs sm:text-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#2E756E] focus:border-[#2E756E] bg-[#F8FAF9] dark:bg-[#0D1A17] text-[#14201D] dark:text-[#E4EDE9] placeholder-[#889893] dark:placeholder-[#5A7268] ${
+                      errors.company ? 'border-rose-400' : 'border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40'
                     }`}
                   />
                   {errors.company && <p className="text-[11px] text-rose-500 mt-1">{errors.company}</p>}
@@ -202,7 +202,7 @@ export default function ContactSection({ onOpenCalendly }) {
               {/* Row 2: Work Email & Country */}
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="form-email" className="block text-xs font-semibold text-[#14201D] mb-1.5">
+                  <label htmlFor="form-email" className="block text-xs font-semibold text-[#14201D] dark:text-[#E4EDE9] mb-1.5">
                     Work Email <span className="text-[#2E756E]">*</span>
                   </label>
                   <input
@@ -213,15 +213,15 @@ export default function ContactSection({ onOpenCalendly }) {
                     placeholder="name@company.com"
                     value={formData.email}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 rounded-2xl border text-xs sm:text-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#2E756E] focus:border-[#2E756E] bg-[#F8FAF9] text-[#14201D] placeholder-[#889893] ${
-                      errors.email ? 'border-rose-400' : 'border-[#DBE3E0] hover:border-[#2E756E]/40'
+                    className={`w-full px-4 py-3 rounded-2xl border text-xs sm:text-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#2E756E] focus:border-[#2E756E] bg-[#F8FAF9] dark:bg-[#0D1A17] text-[#14201D] dark:text-[#E4EDE9] placeholder-[#889893] dark:placeholder-[#5A7268] ${
+                      errors.email ? 'border-rose-400' : 'border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40'
                     }`}
                   />
                   {errors.email && <p className="text-[11px] text-rose-500 mt-1">{errors.email}</p>}
                 </div>
 
                 <div>
-                  <label htmlFor="form-country" className="block text-xs font-semibold text-[#14201D] mb-1.5">
+                  <label htmlFor="form-country" className="block text-xs font-semibold text-[#14201D] dark:text-[#E4EDE9] mb-1.5">
                     Country / Region <span className="text-[#2E756E]">*</span>
                   </label>
                   <input
@@ -232,8 +232,8 @@ export default function ContactSection({ onOpenCalendly }) {
                     placeholder="e.g. Europe, North America, Middle East, APAC"
                     value={formData.country}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 rounded-2xl border text-xs sm:text-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#2E756E] focus:border-[#2E756E] bg-[#F8FAF9] text-[#14201D] placeholder-[#889893] ${
-                      errors.country ? 'border-rose-400' : 'border-[#DBE3E0] hover:border-[#2E756E]/40'
+                    className={`w-full px-4 py-3 rounded-2xl border text-xs sm:text-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#2E756E] focus:border-[#2E756E] bg-[#F8FAF9] dark:bg-[#0D1A17] text-[#14201D] dark:text-[#E4EDE9] placeholder-[#889893] dark:placeholder-[#5A7268] ${
+                      errors.country ? 'border-rose-400' : 'border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40'
                     }`}
                   />
                   {errors.country && <p className="text-[11px] text-rose-500 mt-1">{errors.country}</p>}
@@ -242,7 +242,7 @@ export default function ContactSection({ onOpenCalendly }) {
 
               {/* Row 3: Service needed dropdown */}
               <div>
-                <label htmlFor="form-service" className="block text-xs font-semibold text-[#14201D] mb-1.5">
+                <label htmlFor="form-service" className="block text-xs font-semibold text-[#14201D] dark:text-[#E4EDE9] mb-1.5">
                   Primary Service Needed
                 </label>
                 <select
@@ -250,22 +250,22 @@ export default function ContactSection({ onOpenCalendly }) {
                   name="service"
                   value={formData.service}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-2xl border border-[#DBE3E0] bg-[#F8FAF9] hover:border-[#2E756E]/40 text-[#14201D] text-xs sm:text-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#2E756E] focus:border-[#2E756E]"
+                  className="w-full px-4 py-3 rounded-2xl border border-[#DBE3E0] dark:border-[#263830] bg-[#F8FAF9] dark:bg-[#0D1A17] hover:border-[#2E756E]/40 text-[#14201D] dark:text-[#E4EDE9] text-xs sm:text-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#2E756E] focus:border-[#2E756E]"
                 >
                   {servicesData.map((s) => (
-                    <option key={s.id} value={s.title} className="bg-white text-[#14201D]">
+                    <option key={s.id} value={s.title} className="bg-white dark:bg-[#152620] text-[#14201D] dark:text-[#E4EDE9]">
                       {s.title}
                     </option>
                   ))}
-                  <option value="Multi-Discipline Engineering Package" className="bg-white text-[#14201D]">Multi-Discipline Package (Mechanical + MEP + BIM)</option>
-                  <option value="Not Sure - Need Recommendation" className="bg-white text-[#14201D]">Not sure — recommend based on brief</option>
+                  <option value="Multi-Discipline Engineering Package" className="bg-white dark:bg-[#152620] text-[#14201D] dark:text-[#E4EDE9]">Multi-Discipline Package (Mechanical + MEP + BIM)</option>
+                  <option value="Not Sure - Need Recommendation" className="bg-white dark:bg-[#152620] text-[#14201D] dark:text-[#E4EDE9]">Not sure — recommend based on brief</option>
                 </select>
               </div>
 
               {/* Row 4: Engagement Model & Timeline */}
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="form-model" className="block text-xs font-semibold text-[#14201D] mb-1.5">
+                  <label htmlFor="form-model" className="block text-xs font-semibold text-[#14201D] dark:text-[#E4EDE9] mb-1.5">
                     Preferred Engagement Model
                   </label>
                   <select
@@ -273,18 +273,18 @@ export default function ContactSection({ onOpenCalendly }) {
                     name="engagementModel"
                     value={formData.engagementModel}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-2xl border border-[#DBE3E0] bg-[#F8FAF9] hover:border-[#2E756E]/40 text-[#14201D] text-xs sm:text-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#2E756E] focus:border-[#2E756E]"
+                    className="w-full px-4 py-3 rounded-2xl border border-[#DBE3E0] dark:border-[#263830] bg-[#F8FAF9] dark:bg-[#0D1A17] hover:border-[#2E756E]/40 text-[#14201D] dark:text-[#E4EDE9] text-xs sm:text-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#2E756E] focus:border-[#2E756E]"
                   >
-                    <option value="Project-Based" className="bg-white text-[#14201D]">Project-Based (Fixed Lump-Sum)</option>
-                    <option value="Dedicated Team" className="bg-white text-[#14201D]">Dedicated Team / Monthly Retainer</option>
-                    <option value="On-Demand" className="bg-white text-[#14201D]">On-Demand / Hourly Rates</option>
-                    <option value="Paid Pilot" className="bg-white text-[#14201D]">Small Paid Pilot Project</option>
-                    <option value="Not Sure" className="bg-white text-[#14201D]">Not sure / Advise me</option>
+                    <option value="Project-Based" className="bg-white dark:bg-[#152620] text-[#14201D] dark:text-[#E4EDE9]">Project-Based (Fixed Lump-Sum)</option>
+                    <option value="Dedicated Team" className="bg-white dark:bg-[#152620] text-[#14201D] dark:text-[#E4EDE9]">Dedicated Team / Monthly Retainer</option>
+                    <option value="On-Demand" className="bg-white dark:bg-[#152620] text-[#14201D] dark:text-[#E4EDE9]">On-Demand / Hourly Rates</option>
+                    <option value="Paid Pilot" className="bg-white dark:bg-[#152620] text-[#14201D] dark:text-[#E4EDE9]">Small Paid Pilot Project</option>
+                    <option value="Not Sure" className="bg-white dark:bg-[#152620] text-[#14201D] dark:text-[#E4EDE9]">Not sure / Advise me</option>
                   </select>
                 </div>
 
                 <div>
-                  <label htmlFor="form-timeline" className="block text-xs font-semibold text-[#14201D] mb-1.5">
+                  <label htmlFor="form-timeline" className="block text-xs font-semibold text-[#14201D] dark:text-[#E4EDE9] mb-1.5">
                     Expected Timeline
                   </label>
                   <select
@@ -292,19 +292,19 @@ export default function ContactSection({ onOpenCalendly }) {
                     name="timeline"
                     value={formData.timeline}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-2xl border border-[#DBE3E0] bg-[#F8FAF9] hover:border-[#2E756E]/40 text-[#14201D] text-xs sm:text-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#2E756E] focus:border-[#2E756E]"
+                    className="w-full px-4 py-3 rounded-2xl border border-[#DBE3E0] dark:border-[#263830] bg-[#F8FAF9] dark:bg-[#0D1A17] hover:border-[#2E756E]/40 text-[#14201D] dark:text-[#E4EDE9] text-xs sm:text-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#2E756E] focus:border-[#2E756E]"
                   >
-                    <option value="Urgent (1-3 days)" className="bg-white text-[#14201D]">Urgent (1 - 3 working days)</option>
-                    <option value="Within 2 weeks" className="bg-white text-[#14201D]">Standard (Within 2 weeks)</option>
-                    <option value="1 month+" className="bg-white text-[#14201D]">Long-term (1 - 3 months)</option>
-                    <option value="Ongoing capacity" className="bg-white text-[#14201D]">Ongoing offshore capacity</option>
+                    <option value="Urgent (1-3 days)" className="bg-white dark:bg-[#152620] text-[#14201D] dark:text-[#E4EDE9]">Urgent (1 - 3 working days)</option>
+                    <option value="Within 2 weeks" className="bg-white dark:bg-[#152620] text-[#14201D] dark:text-[#E4EDE9]">Standard (Within 2 weeks)</option>
+                    <option value="1 month+" className="bg-white dark:bg-[#152620] text-[#14201D] dark:text-[#E4EDE9]">Long-term (1 - 3 months)</option>
+                    <option value="Ongoing capacity" className="bg-white dark:bg-[#152620] text-[#14201D] dark:text-[#E4EDE9]">Ongoing offshore capacity</option>
                   </select>
                 </div>
               </div>
 
               {/* Row 5: Project Details Textarea */}
               <div>
-                <label htmlFor="form-details" className="block text-xs font-semibold text-[#14201D] mb-1.5">
+                <label htmlFor="form-details" className="block text-xs font-semibold text-[#14201D] dark:text-[#E4EDE9] mb-1.5">
                   Project Details & Scope <span className="text-[#2E756E]">*</span>
                 </label>
                 <textarea
@@ -315,15 +315,15 @@ export default function ContactSection({ onOpenCalendly }) {
                   placeholder="Outline the assembly type, CAD software and version (e.g. SolidWorks 2024, Revit 2025), required deliverables (3D models, 2D shop drawings, FEA report), or any specific drawing standards."
                   value={formData.details}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 rounded-2xl border text-xs sm:text-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#2E756E] focus:border-[#2E756E] bg-[#F8FAF9] text-[#14201D] placeholder-[#889893] ${
-                    errors.details ? 'border-rose-400' : 'border-[#DBE3E0] hover:border-[#2E756E]/40'
+                  className={`w-full px-4 py-3 rounded-2xl border text-xs sm:text-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#2E756E] focus:border-[#2E756E] bg-[#F8FAF9] dark:bg-[#0D1A17] text-[#14201D] dark:text-[#E4EDE9] placeholder-[#889893] dark:placeholder-[#5A7268] ${
+                    errors.details ? 'border-rose-400' : 'border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40'
                   }`}
                 />
                 {errors.details && <p className="text-[11px] text-rose-500 mt-1">{errors.details}</p>}
               </div>
 
               {/* Optional File Upload */}
-              <div className="p-4 rounded-2xl border border-dashed border-[#DBE3E0] bg-[#F8FAF9] text-center hover:border-[#2E756E] transition-colors">
+              <div className="p-4 rounded-2xl border border-dashed border-[#DBE3E0] dark:border-[#263830] bg-[#F8FAF9] dark:bg-[#0D1A17] text-center hover:border-[#2E756E] transition-colors">
                 <input
                   type="file"
                   id="file-upload"
@@ -335,10 +335,10 @@ export default function ContactSection({ onOpenCalendly }) {
                   className="cursor-pointer flex flex-col items-center justify-center gap-1.5"
                 >
                   <FileUp className="w-5 h-5 text-[#2E756E]" />
-                  <span className="text-xs font-semibold text-[#14201D]">
+                  <span className="text-xs font-semibold text-[#14201D] dark:text-[#E4EDE9]">
                     {selectedFile ? selectedFile.name : 'Attach brief, sketch, or drawing set (Optional)'}
                   </span>
-                  <span className="text-[10px] text-[#5A6A65]">
+                  <span className="text-[10px] text-[#5A6A65] dark:text-[#8FA89F]">
                     PDF, STEP, ZIP, DWG up to 25MB (Larger CAD models can be shared via secure link)
                   </span>
                 </label>
@@ -354,8 +354,8 @@ export default function ContactSection({ onOpenCalendly }) {
                   onChange={handleChange}
                   className="mt-0.5 rounded border-[#DBE3E0] text-[#2E756E] focus:ring-[#2E756E] cursor-pointer"
                 />
-                <label htmlFor="form-nda" className="text-xs text-[#5A6A65] cursor-pointer leading-relaxed">
-                  <strong className="text-[#14201D]">Mutual NDA protection:</strong> Please countersign an NDA before detailed CAD exchange. escalup respects all intellectual property rights.
+                <label htmlFor="form-nda" className="text-xs text-[#5A6A65] dark:text-[#8FA89F] cursor-pointer leading-relaxed">
+                  <strong className="text-[#14201D] dark:text-[#E4EDE9]">Mutual NDA protection:</strong> Please countersign an NDA before detailed CAD exchange. escalup respects all intellectual property rights.
                 </label>
               </div>
 
@@ -392,15 +392,15 @@ export default function ContactSection({ onOpenCalendly }) {
             <motion.div
               whileHover={{ y: -4 }}
               transition={{ duration: 0.25 }}
-              className="bg-white rounded-3xl p-7 border border-[#DBE3E0] hover:border-[#2E756E]/40 shadow-soft transition-all"
+              className="bg-white dark:bg-[#152620] rounded-3xl p-7 border border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40 dark:hover:border-[#3B948A]/40 shadow-soft transition-all"
             >
               <div className="w-10 h-10 rounded-2xl bg-[#2E756E]/10 text-[#2E756E] flex items-center justify-center mb-4">
                 <Calendar className="w-5 h-5" />
               </div>
-              <h4 className="text-lg font-bold text-[#14201D] mb-1">
+              <h4 className="text-lg font-bold text-[#14201D] dark:text-[#E4EDE9] mb-1">
                 Book a Free Intro Call
               </h4>
-              <p className="text-xs text-[#5A6A65] mb-5 leading-relaxed">
+              <p className="text-xs text-[#5A6A65] dark:text-[#8FA89F] mb-5 leading-relaxed">
                 Prefer to talk directly? Pick a 30-minute slot that suits your local time zone to discuss technical scope and pricing.
               </p>
               <div className="space-y-2.5">
@@ -414,7 +414,7 @@ export default function ContactSection({ onOpenCalendly }) {
                 </button>
                 <a
                   href={`mailto:${companyData.contact.email}?subject=Engineering%20Project%20Inquiry%20-%20escalup`}
-                  className="w-full py-2.5 rounded-full bg-[#F8FAF9] hover:bg-[#F4F6F5] border border-[#DBE3E0] hover:border-[#2E756E] text-[#14201D] font-semibold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  className="w-full py-2.5 rounded-full bg-[#F8FAF9] dark:bg-[#1D3328] hover:bg-[#F4F6F5] dark:hover:bg-[#263830] border border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E] dark:hover:border-[#3B948A] text-[#14201D] dark:text-[#E4EDE9] font-semibold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
                 >
                   <Mail className="w-4 h-4 text-[#2E756E]" />
                   <span>Email: {companyData.contact.email}</span>
@@ -423,13 +423,13 @@ export default function ContactSection({ onOpenCalendly }) {
             </motion.div>
 
             {/* Operational Location & Styled Map Card */}
-            <div className="bg-white rounded-3xl p-7 border border-[#DBE3E0] shadow-soft space-y-4">
+            <div className="bg-white dark:bg-[#152620] rounded-3xl p-7 border border-[#DBE3E0] dark:border-[#263830] shadow-soft space-y-4">
               <div className="flex items-center gap-2.5">
                 <MapPin className="w-5 h-5 text-[#2E756E]" />
-                <h4 className="text-sm font-bold text-[#14201D]">Uttara Engineering Center</h4>
+                <h4 className="text-sm font-bold text-[#14201D] dark:text-[#E4EDE9]">Uttara Engineering Center</h4>
               </div>
 
-              <div className="space-y-2 text-xs text-[#5A6A65]">
+              <div className="space-y-2 text-xs text-[#5A6A65] dark:text-[#8FA89F]">
                 <div className="flex items-start gap-2">
                   <MapPin className="w-3.5 h-3.5 text-[#2E756E] shrink-0 mt-0.5" />
                   <span>{companyData.location.fullAddress}</span>
@@ -447,7 +447,7 @@ export default function ContactSection({ onOpenCalendly }) {
               </div>
 
               {/* Styled interactive map container */}
-              <div className="rounded-2xl overflow-hidden border border-[#DBE3E0] aspect-[16/9] w-full bg-[#F8FAF9] relative">
+              <div className="rounded-2xl overflow-hidden border border-[#DBE3E0] dark:border-[#263830] aspect-[16/9] w-full bg-[#F8FAF9] dark:bg-[#0D1A17] relative">
                 <iframe
                   title="escalup Uttara Dhaka Office Location"
                   src={companyData.location.googleMapsEmbedUrl}
