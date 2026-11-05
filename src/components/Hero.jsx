@@ -66,8 +66,8 @@ export default function Hero({ onOpenCalendly }) {
   };
 
   return (
-    <section className="relative overflow-hidden min-h-[calc(100vh-4.5rem)] flex flex-col justify-center py-10 sm:py-12 lg:py-16 2xl:py-20 border-b border-[#DBE3E0] bg-[#F8FAF9] blueprint-grid">
-      <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16 relative z-10 my-auto">
+    <section className="relative overflow-hidden flex flex-col justify-center py-8 sm:py-10 lg:py-16 2xl:py-20 border-b border-[#DBE3E0] bg-[#F8FAF9] blueprint-grid">
+      <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16 relative z-10">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 2xl:gap-16 items-center">
           
           {/* Left Column: Copy & High-converting CTAs */}
@@ -75,20 +75,20 @@ export default function Hero({ onOpenCalendly }) {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="lg:col-span-7 space-y-5 sm:space-y-6 lg:space-y-8 text-left"
+            className="lg:col-span-7 space-y-4 sm:space-y-5 lg:space-y-8 text-left"
           >
-            {/* Eyebrow Label */}
-            <motion.div variants={childVariants} className="flex flex-wrap items-center gap-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-3.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider bg-[#2E756E]/10 text-[#2E756E] border border-[#2E756E]/20">
-                <span className="w-2 h-2 rounded-full bg-[#2E756E] animate-pulse flex-shrink-0"></span>
-                <span>Offshore Engineering Services | CAD · MEP · BIM</span>
+            {/* Eyebrow Label — split into two lines friendly version on mobile */}
+            <motion.div variants={childVariants} className="flex items-center gap-3">
+              <div className="inline-flex items-start gap-2 px-3 py-1.5 sm:px-3.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-[#2E756E]/10 text-[#2E756E] border border-[#2E756E]/20 max-w-[280px] sm:max-w-none">
+                <span className="w-2 h-2 rounded-full bg-[#2E756E] animate-pulse flex-shrink-0 mt-0.5"></span>
+                <span className="leading-snug">CAD · MEP · BIM Engineering Services</span>
               </div>
             </motion.div>
 
             {/* Main Headline - Bold dark with brand teal accent */}
             <motion.h1
               variants={childVariants}
-              className="text-[1.85rem] sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-[4.25rem] font-extrabold text-[#14201D] tracking-tight leading-[1.2] sm:leading-[1.2] md:leading-[1.18] pb-1"
+              className="text-[1.75rem] sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-[4.25rem] font-extrabold text-[#14201D] tracking-tight leading-[1.18] sm:leading-[1.2] md:leading-[1.18] pb-1"
             >
               We bring people and engineering together to{' '}
               <span className="relative inline-block pb-2 sm:pb-2.5">
@@ -117,13 +117,13 @@ export default function Hero({ onOpenCalendly }) {
               variants={childVariants}
               className="text-sm sm:text-base lg:text-xl text-[#5A6A65] max-w-2xl leading-relaxed"
             >
-              <strong className="text-[#2E756E] font-bold">escalup</strong> is your offshore engineering partner. We deliver Mechanical, Product and MEP design support for manufacturers, engineering firms and contractors worldwide, with clear communication and production-ready documentation.
+              <strong className="text-[#2E756E] font-bold">escalup</strong> is your offshore engineering partner delivering Mechanical, MEP and BIM design support — with clear communication and production-ready documentation.
             </motion.p>
 
             {/* Action Buttons */}
             <motion.div
               variants={childVariants}
-              className="pt-1 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 sm:gap-4"
+              className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-2.5 sm:gap-4"
             >
               {/* Primary Request a Quote Button */}
               <motion.a
@@ -160,8 +160,8 @@ export default function Hero({ onOpenCalendly }) {
             </motion.div>
 
             {/* Trust Chips under the CTAs with staggered reveal & hover lift */}
-            <motion.div variants={childVariants} className="pt-3 sm:pt-4 border-t border-[#DBE3E0]">
-              <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
+            <motion.div variants={childVariants} className="pt-2 sm:pt-3 border-t border-[#DBE3E0]">
+              <div className="grid grid-cols-2 gap-2 sm:gap-2.5">
                 {trustChips.map((chip, idx) => {
                   const Icon = chip.icon;
                   return (
@@ -169,7 +169,7 @@ export default function Hero({ onOpenCalendly }) {
                       key={idx}
                       whileHover={{ y: -3, scale: 1.02 }}
                       transition={{ duration: 0.2 }}
-                      className="flex items-center gap-2 sm:gap-2.5 text-xs font-medium text-[#14201D] bg-white hover:border-[#2E756E]/40 px-3 py-2.5 sm:px-3.5 rounded-2xl border border-[#DBE3E0] shadow-xs hover:shadow-sm transition-all cursor-default min-h-[44px] w-full"
+                      className="flex items-center gap-2 text-xs font-medium text-[#14201D] bg-white hover:border-[#2E756E]/40 px-3 py-2 sm:py-2.5 sm:px-3.5 rounded-xl border border-[#DBE3E0] shadow-xs hover:shadow-sm transition-all cursor-default w-full"
                     >
                       <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#2E756E] shrink-0" />
                       <span className="leading-snug text-[11px] sm:text-xs">{chip.text}</span>
@@ -178,8 +178,8 @@ export default function Hero({ onOpenCalendly }) {
                 })}
               </div>
 
-              {/* Tag indicator below chips */}
-              <div className="flex items-center gap-2 mt-3 text-xs text-[#5A6A65]">
+              {/* Tag indicator below chips — hidden on mobile to save space */}
+              <div className="hidden sm:flex items-center gap-2 mt-3 text-xs text-[#5A6A65]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#2E756E]" />
                 <span>Offshore engineering support for global teams</span>
               </div>
