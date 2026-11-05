@@ -66,29 +66,29 @@ export default function Hero({ onOpenCalendly }) {
   };
 
   return (
-    <section className="relative overflow-hidden flex flex-col justify-center py-8 sm:py-10 lg:py-16 2xl:py-20 border-b border-[#DBE3E0] bg-[#F8FAF9] blueprint-grid">
+    <section className="relative overflow-hidden min-h-[calc(100vh-4.5rem)] flex flex-col justify-center py-6 sm:py-8 lg:py-12 2xl:py-16 border-b border-[#DBE3E0] bg-[#F8FAF9] blueprint-grid">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 2xl:gap-16 items-center">
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 2xl:gap-14 items-center">
           
           {/* Left Column: Copy & High-converting CTAs */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="lg:col-span-7 space-y-4 sm:space-y-5 lg:space-y-8 text-left"
+            className="lg:col-span-7 space-y-3 sm:space-y-4 lg:space-y-6 text-left"
           >
-            {/* Eyebrow Label — split into two lines friendly version on mobile */}
+            {/* Eyebrow Label */}
             <motion.div variants={childVariants} className="flex items-center gap-3">
-              <div className="inline-flex items-start gap-2 px-3 py-1.5 sm:px-3.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-[#2E756E]/10 text-[#2E756E] border border-[#2E756E]/20 max-w-[280px] sm:max-w-none">
-                <span className="w-2 h-2 rounded-full bg-[#2E756E] animate-pulse flex-shrink-0 mt-0.5"></span>
-                <span className="leading-snug">CAD · MEP · BIM Engineering Services</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-3.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-[#2E756E]/10 text-[#2E756E] border border-[#2E756E]/20">
+                <span className="w-2 h-2 rounded-full bg-[#2E756E] animate-pulse flex-shrink-0"></span>
+                <span>CAD · MEP · BIM Engineering Services</span>
               </div>
             </motion.div>
 
-            {/* Main Headline - Bold dark with brand teal accent */}
+            {/* Main Headline */}
             <motion.h1
               variants={childVariants}
-              className="text-[1.75rem] sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-[4.25rem] font-extrabold text-[#14201D] tracking-tight leading-[1.18] sm:leading-[1.2] md:leading-[1.18] pb-1"
+              className="text-[1.6rem] xs:text-[1.75rem] sm:text-4xl md:text-5xl lg:text-5xl xl:text-[3.5rem] 2xl:text-[4.25rem] font-extrabold text-[#14201D] tracking-tight leading-[1.16] sm:leading-[1.2] md:leading-[1.18]"
             >
               We bring people and engineering together to{' '}
               <span className="relative inline-block pb-2 sm:pb-2.5">
@@ -115,7 +115,7 @@ export default function Hero({ onOpenCalendly }) {
             {/* Sub-headline */}
             <motion.p
               variants={childVariants}
-              className="text-sm sm:text-base lg:text-xl text-[#5A6A65] max-w-2xl leading-relaxed"
+              className="text-[13px] sm:text-base lg:text-lg xl:text-xl text-[#5A6A65] max-w-2xl leading-relaxed"
             >
               <strong className="text-[#2E756E] font-bold">escalup</strong> is your offshore engineering partner delivering Mechanical, MEP and BIM design support — with clear communication and production-ready documentation.
             </motion.p>
@@ -123,7 +123,7 @@ export default function Hero({ onOpenCalendly }) {
             {/* Action Buttons */}
             <motion.div
               variants={childVariants}
-              className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-2.5 sm:gap-4"
+              className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-2 sm:gap-3 lg:gap-4"
             >
               {/* Primary Request a Quote Button */}
               <motion.a
@@ -131,7 +131,7 @@ export default function Hero({ onOpenCalendly }) {
                 onClick={handleQuoteClick}
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full sm:w-auto px-7 py-3.5 lg:px-8 lg:py-4 rounded-full bg-[#2E756E] hover:bg-[#255E58] text-white font-bold text-sm lg:text-base tracking-wide shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer group"
+                className="w-full sm:w-auto px-6 py-3 lg:px-8 lg:py-4 rounded-full bg-[#2E756E] hover:bg-[#255E58] text-white font-bold text-sm lg:text-base tracking-wide shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer group"
               >
                 <span>Request a Quote</span>
                 <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 text-white group-hover:translate-x-1.5 transition-transform" />
@@ -142,26 +142,26 @@ export default function Hero({ onOpenCalendly }) {
                 onClick={handleBookCall}
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full sm:w-auto px-6 py-3.5 lg:px-7 lg:py-4 rounded-full bg-white hover:bg-[#F4F6F5] text-[#14201D] border border-[#DBE3E0] hover:border-[#2E756E]/40 font-semibold text-sm lg:text-base transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs"
+                className="w-full sm:w-auto px-5 py-3 lg:px-7 lg:py-4 rounded-full bg-white hover:bg-[#F4F6F5] text-[#14201D] border border-[#DBE3E0] hover:border-[#2E756E]/40 font-semibold text-sm lg:text-base transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs"
               >
                 <Calendar className="w-4 h-4 lg:w-5 lg:h-5 text-[#2E756E]" />
                 <span>Book a Free Intro Call</span>
               </motion.button>
 
-              {/* Explore Services Link */}
+              {/* Explore Services Link — hidden on mobile to save space */}
               <a
                 href="#services"
                 onClick={handleServicesClick}
                 data-cursor="Explore"
-                className="text-xs sm:text-sm font-semibold text-[#14201D] hover:text-[#2E756E] transition-colors py-2 text-center sm:text-left underline underline-offset-4 cursor-pointer"
+                className="hidden sm:inline-block text-xs sm:text-sm font-semibold text-[#14201D] hover:text-[#2E756E] transition-colors py-2 underline underline-offset-4 cursor-pointer"
               >
                 Explore Services →
               </a>
             </motion.div>
 
-            {/* Trust Chips under the CTAs with staggered reveal & hover lift */}
-            <motion.div variants={childVariants} className="pt-2 sm:pt-3 border-t border-[#DBE3E0]">
-              <div className="grid grid-cols-2 gap-2 sm:gap-2.5">
+            {/* Trust Chips */}
+            <motion.div variants={childVariants} className="pt-2 border-t border-[#DBE3E0]">
+              <div className="grid grid-cols-2 gap-2">
                 {trustChips.map((chip, idx) => {
                   const Icon = chip.icon;
                   return (
@@ -169,7 +169,7 @@ export default function Hero({ onOpenCalendly }) {
                       key={idx}
                       whileHover={{ y: -3, scale: 1.02 }}
                       transition={{ duration: 0.2 }}
-                      className="flex items-center gap-2 text-xs font-medium text-[#14201D] bg-white hover:border-[#2E756E]/40 px-3 py-2 sm:py-2.5 sm:px-3.5 rounded-xl border border-[#DBE3E0] shadow-xs hover:shadow-sm transition-all cursor-default w-full"
+                      className="flex items-center gap-2 text-xs font-medium text-[#14201D] bg-white hover:border-[#2E756E]/40 px-2.5 py-2 sm:px-3.5 sm:py-2.5 rounded-xl border border-[#DBE3E0] shadow-xs hover:shadow-sm transition-all cursor-default w-full"
                     >
                       <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#2E756E] shrink-0" />
                       <span className="leading-snug text-[11px] sm:text-xs">{chip.text}</span>
@@ -178,7 +178,7 @@ export default function Hero({ onOpenCalendly }) {
                 })}
               </div>
 
-              {/* Tag indicator below chips — hidden on mobile to save space */}
+              {/* Tag indicator — hidden on mobile */}
               <div className="hidden sm:flex items-center gap-2 mt-3 text-xs text-[#5A6A65]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#2E756E]" />
                 <span>Offshore engineering support for global teams</span>
