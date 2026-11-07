@@ -1,10 +1,9 @@
 // src/components/InActionCarousel.jsx
-// SECTION 1: "Real Delivery, Measurable Impact"
-// Unified near-black/indigo dark tone, max-w-[1400px] container,
-// true 4-slide horizontal peek carousel where EVERY slide has the exact same rich structure.
-// Next slide peeks ~15% on the right at opacity ~0.5 and scale ~0.985.
-// Drag/swipe, keyboard arrows, 6s autoplay with pause on hover/focus/tab-hidden,
-// light-weight heading with "Measurable Impact." in semibold, 15px deliverables, indigo link.
+// SECTION 1: Real Delivery, Measurable Impact
+// Styled like reference content (ProductCardsTrio / Image 3):
+// Blue uppercase letterspaced eyebrow, light headline with signature indigo gradient,
+// clean deliverables list with indigo checkmarks, verified result glass panel,
+// true 4-slide horizontal peek carousel where every slide retains its full structure without text squishing.
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
@@ -17,14 +16,14 @@ const ACTION_PROJECTS = [
     title: 'Automated Conveyor & Packaging Cell Kinematics',
     discipline: 'Mechanical Solid Modeling',
     clientType: 'European Automation Equipment Builder',
-    outcome: 'Eliminated 18 shop-floor interference points prior to tooling manufacture.',
+    outcome: 'Eliminated 18 shop-floor interference points prior to tooling manufacture, delivering coordinated 3D CAD assemblies and ASME drawings.',
     metricNum: '18',
     metricPhrase: 'Clashes Prevented',
     standards: 'ASME Y14.5M · ISO 1101 · SolidWorks Native',
     deliverables: [
-      '3D Parametric CAD Assembly',
-      '2D Manufacturing Drawings with GD&T',
-      'Full Multi-Level Indented BOM'
+      '3D Parametric CAD Assembly with native feature trees',
+      '2D Manufacturing Drawings with ASME Y14.5M GD&T',
+      'Full Multi-Level Indented Bill of Materials (BOM)'
     ],
   },
   {
@@ -32,14 +31,14 @@ const ACTION_PROJECTS = [
     title: 'Hospital Complex Commercial HVAC & Plumbing LOD 400',
     discipline: 'MEP BIM Coordination',
     clientType: 'Commercial MEP Contracting Firm',
-    outcome: 'Delivered coordinated Revit models with zero spatial collisions in medical gas and duct risers.',
+    outcome: 'Delivered coordinated Revit models with zero spatial collisions in medical gas and duct risers before fabrication drawings were released.',
     metricNum: '124',
     metricPhrase: 'Spatial Collisions Solved',
     standards: 'Autodesk Revit · Navisworks · ASHRAE 90.1',
     deliverables: [
-      'LOD 350-400 Coordinated Revit Models',
-      'Navisworks Clash Resolution Matrix',
-      'Contractor Spool & Shop Drawings'
+      'LOD 350-400 Coordinated Revit MEP Models',
+      'Navisworks Multi-Discipline Clash Resolution Matrix',
+      'Contractor Spool & Shop Drawings for Pre-Fabrication'
     ],
   },
   {
@@ -47,14 +46,14 @@ const ACTION_PROJECTS = [
     title: 'High-Volume Precision Sheet Metal Enclosures',
     discipline: 'DFMA & Tooling Detailing',
     clientType: 'Industrial Electronics Manufacturer',
-    outcome: 'Standardized bend deductions and flat patterns, cutting press brake cycle time by 28%.',
+    outcome: 'Standardized bend deductions and flat patterns, cutting press brake cycle time by 28% and eliminating shop-floor scrap.',
     metricNum: '28%',
     metricPhrase: 'Cycle Time Cut',
     standards: 'Sheet Metal DIN 6935 · K-Factor 0.44',
     deliverables: [
-      'Unfolded DXF Flat Patterns for Laser Cutting',
-      'Forming & Bend Sequence Drawings',
-      'Tooling & Inspection Fixture Prints'
+      'Unfolded DXF Flat Patterns optimized for CNC laser cutting',
+      'Forming & Bend Sequence Drawings with tooling specs',
+      'Tooling & Inspection Fixture Detail Prints'
     ],
   },
   {
@@ -62,14 +61,14 @@ const ACTION_PROJECTS = [
     title: 'Turbine Housing Assembly Drawing Border Migration',
     discipline: 'PLM Vault Data Governance',
     clientType: 'Energy Systems Supplier',
-    outcome: 'Converted 1,400+ legacy 2D drawings into native parametric models with 100% ERP BOM parity.',
+    outcome: 'Converted 1,400+ legacy 2D drawings into native parametric models with 100% ERP BOM parity under formal ECN revision control.',
     metricNum: '1,400+',
     metricPhrase: 'Drawings Standardized',
     standards: 'Siemens NX · Teamcenter PDM · ASME Y14.100',
     deliverables: [
-      'Native 3D NX Models with Feature Trees',
-      'Teamcenter Vault Attribute Mapping',
-      'Drawing Border & Title Block Migration'
+      'Native 3D NX Models with fully constrained feature trees',
+      'Teamcenter Vault Attribute Mapping & title block migration',
+      'Drawing Border Standardization across all legacy formats'
     ],
   }
 ];
@@ -85,10 +84,6 @@ export default function InActionCarousel() {
     }
     return false;
   });
-  const [isDesktop, setIsDesktop] = useState(() => {
-    if (typeof window !== 'undefined') return window.innerWidth >= 1024;
-    return true;
-  });
 
   const sectionRef = useRef(null);
   const touchStartX = useRef(0);
@@ -100,13 +95,6 @@ export default function InActionCarousel() {
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev === ACTION_PROJECTS.length - 1 ? 0 : prev + 1));
-  }, []);
-
-  // Window resize listener for peek calculations
-  useEffect(() => {
-    const handleResize = () => setIsDesktop(window.innerWidth >= 1024);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   // Reduced motion preference
@@ -126,7 +114,7 @@ export default function InActionCarousel() {
     return () => document.removeEventListener('visibilitychange', handleVisibility);
   }, []);
 
-  // 6-second optional autoplay, pauses on hover, focus, or hidden tab
+  // 6-second autoplay, pauses on hover, focus, or hidden tab
   const isPaused = isHovered || isFocused || isTabHidden;
   useEffect(() => {
     if (isPaused || isReducedMotion) return;
@@ -136,7 +124,7 @@ export default function InActionCarousel() {
     return () => clearInterval(interval);
   }, [isPaused, isReducedMotion, nextSlide]);
 
-  // Keyboard navigation when focused inside section
+  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'ArrowLeft') prevSlide();
@@ -181,20 +169,23 @@ export default function InActionCarousel() {
       {/* Subtle ambient lighting */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-[#5846F6]/06 rounded-full blur-[160px] pointer-events-none" />
 
-      {/* Shared ~1400px centered container with equal padding */}
+      {/* Shared ~1400px centered container */}
       <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
         
         {/* Section Header with Controls */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10 sm:mb-12 lg:mb-14">
           <div>
-            <div className="mb-3">
-              <Badge variant="navy" size="sm" className="bg-[#121926] text-[#A5B4FC] border border-white/10">
-                Engineering in Action
-              </Badge>
+            {/* Eyebrow: Reference Style (Uppercase, letterspaced, blue/indigo) */}
+            <div className="text-xs font-semibold uppercase tracking-widest text-[#0070AD] dark:text-[#38BDF8] mb-3">
+              Core Delivery Outcomes
             </div>
-            {/* Light-weight heading with ONLY "Measurable Impact." in semibold */}
+            
+            {/* Headline: Reference Style (Light 300 with signature indigo gradient) */}
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-white tracking-tight leading-tight">
-              Real Delivery, <span className="font-semibold text-white">Measurable Impact.</span>
+              Real Delivery,{' '}
+              <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
+                Measurable Impact.
+              </span>
             </h2>
           </div>
 
@@ -226,8 +217,8 @@ export default function InActionCarousel() {
 
         {/* 
           Horizontal Peek Carousel:
-          4 slides, each using the exact SAME full card structure.
-          Next slide peeks ~15% on the right at opacity ~0.5 and scale ~0.985.
+          4 slides, each maintaining its full wide card structure.
+          The next slide peeks ~15% on the right at opacity ~0.5 and scale ~0.985.
         */}
         <div 
           className="relative w-full overflow-hidden cursor-grab active:cursor-grabbing select-none"
@@ -236,9 +227,9 @@ export default function InActionCarousel() {
           onTouchEnd={handleTouchEnd}
         >
           <motion.div
-            className="flex items-stretch gap-5 sm:gap-6 will-change-transform"
+            className="flex items-stretch gap-6 will-change-transform"
             animate={{
-              x: `calc(-${currentIndex * (isDesktop ? 85 : 88)}% - ${currentIndex * (isDesktop ? 1.5 : 1.25)}rem)`
+              x: `calc(-${currentIndex * 86}% - ${currentIndex * 1.5}rem)`
             }}
             transition={{
               duration: isReducedMotion ? 0 : 0.6,
@@ -264,7 +255,7 @@ export default function InActionCarousel() {
                   onClick={() => {
                     if (!isActive) setCurrentIndex(idx);
                   }}
-                  className={`shrink-0 w-[88%] sm:w-[86%] lg:w-[85%] rounded-3xl p-6 sm:p-10 lg:p-12 transition-all duration-500 ${
+                  className={`shrink-0 w-[86%] rounded-3xl p-6 sm:p-10 lg:p-12 transition-all duration-500 overflow-hidden ${
                     isActive
                       ? 'bg-[#0E1420] border border-white/10 shadow-2xl opacity-100 scale-100 cursor-default pointer-events-auto'
                       : 'bg-[#0E1420]/75 border border-white/06 shadow-lg opacity-50 hover:opacity-75 scale-[0.985] cursor-pointer'
@@ -278,7 +269,7 @@ export default function InActionCarousel() {
                         <Badge variant="navy" size="xs" className="bg-[#182232] text-[#A5B4FC] border border-white/10">
                           {project.discipline}
                         </Badge>
-                        <span className="text-sm text-white/75 font-normal">
+                        <span className="text-sm text-white/70 font-normal">
                           {project.clientType}
                         </span>
                       </div>
@@ -287,57 +278,57 @@ export default function InActionCarousel() {
                         {project.title}
                       </h3>
 
-                      <p className="text-sm sm:text-[15px] text-white/80 leading-relaxed font-normal">
+                      <p className="text-sm sm:text-base text-white/80 leading-relaxed font-normal">
                         {project.outcome}
                       </p>
 
-                      {/* Deliverables list: 15px text and indigo check icons */}
+                      {/* Deliverables List matching reference card style (Image 3) */}
                       <div className="space-y-2 pt-2">
-                        <div className="text-xs font-semibold uppercase tracking-wider text-[#A5B4FC]">
-                          Key Production Deliverables:
+                        <div className="text-xs font-semibold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8]">
+                          Key Production Deliverables
                         </div>
                         {project.deliverables.map((item, dIdx) => (
-                          <div key={dIdx} className="flex items-center gap-2.5 text-[15px] text-white/90">
+                          <div key={dIdx} className="flex items-center gap-2.5 text-sm sm:text-[15px] text-white/90">
                             <CheckCircle2 className="w-4 h-4 text-[#5846F6] shrink-0" />
                             <span>{item}</span>
                           </div>
                         ))}
                       </div>
 
-                      {/* Governed Under standard (minimum 14px, WCAG AA compliant) */}
-                      <div className="text-sm text-white/70 pt-1">
+                      {/* Governed Under standard */}
+                      <div className="text-xs sm:text-sm text-white/60 pt-1">
                         Governed Under: {project.standards}
                       </div>
                     </div>
 
-                    {/* Right 5 cols: Inner "Verified Result" Panel on subtle lighter surface with NO heavy border */}
-                    <div className="lg:col-span-5 p-6 sm:p-8 rounded-2xl bg-[#141A26]/85 border border-white/08 flex flex-col justify-between text-left shadow-lg">
+                    {/* Right 5 cols: Integrated Verified Result Panel on subtle glass surface */}
+                    <div className="lg:col-span-5 p-7 sm:p-8 rounded-2xl bg-white/[0.04] border border-white/10 flex flex-col justify-between text-left shadow-lg backdrop-blur-sm">
                       <div className="space-y-2">
-                        <div className="text-xs font-medium text-[#A5B4FC] uppercase tracking-wider">
+                        <div className="text-xs font-semibold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8]">
                           Verified Result
                         </div>
-                        {/* Big text: light weight with key phrase in semibold */}
+                        {/* Big Metric: light weight with key phrase in semibold */}
                         <div className="text-3xl sm:text-4xl lg:text-5xl font-light text-white tracking-tight leading-tight">
                           {project.metricNum}{' '}
                           <span className="font-semibold text-white">
                             {project.metricPhrase}
                           </span>
                         </div>
-                        <div className="text-sm text-white/70 mt-1">
+                        <div className="text-xs sm:text-sm text-white/70 mt-1 font-normal">
                           Documented in project release logs
                         </div>
                       </div>
 
                       <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
-                        <div className="flex items-center gap-2 text-sm text-white/75">
+                        <div className="flex items-center gap-2 text-xs sm:text-sm text-white/75">
                           <ShieldCheck className="w-4 h-4 text-[#5846F6]" />
                           <span>Protected by Mutual NDA</span>
                         </div>
 
-                        {/* Indigo link with arrow and hover animation */}
+                        {/* Indigo link matching "Explore Technical Scope ->" in reference */}
                         <a
                           href="#contact"
-                          className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#5846F6] hover:text-[#8172FC] transition-colors group"
+                          className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#0070AD] dark:text-[#38BDF8] hover:text-white transition-colors group"
                         >
                           <span>Inquire Scope</span>
                           <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
