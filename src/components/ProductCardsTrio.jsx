@@ -54,7 +54,7 @@ export default function ProductCardsTrio() {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-          <div className="text-xs font-mono font-bold uppercase tracking-widest text-[#0070AD] dark:text-[#38BDF8] mb-3">
+          <div className="text-xs font-semibold uppercase tracking-widest text-[#0070AD] dark:text-[#38BDF8] mb-3">
             Core Engineering Pillars
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-tight">
@@ -98,7 +98,7 @@ export default function ProductCardsTrio() {
                     <div className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
                       {card.metric}
                     </div>
-                    <div className="text-xs text-white/70 font-mono mt-0.5">
+                    <div className="text-xs text-white/70 mt-0.5">
                       Production Verified Metric
                     </div>
                   </div>

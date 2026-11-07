@@ -3,10 +3,11 @@
 // Styled like reference content (ProductCardsTrio / Image 3):
 // Blue uppercase letterspaced eyebrow, light headline with signature indigo gradient,
 // clean deliverables list with indigo checkmarks, verified result glass panel,
-// true 4-slide horizontal peek carousel where every slide retains its full structure without text squishing.
+// 100% full-width cards with smooth directional slide transitions and interactive discipline tabs,
+// ensuring zero content truncation, zero severed words, and full responsiveness across all viewports.
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowRight, ArrowUpRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import Badge from './ui/Badge';
 
@@ -75,6 +76,7 @@ const ACTION_PROJECTS = [
 
 export default function InActionCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [isTabHidden, setIsTabHidden] = useState(false);
@@ -90,12 +92,20 @@ export default function InActionCarousel() {
   const touchEndX = useRef(0);
 
   const prevSlide = useCallback(() => {
+    setDirection(-1);
     setCurrentIndex((prev) => (prev === 0 ? ACTION_PROJECTS.length - 1 : prev - 1));
   }, []);
 
   const nextSlide = useCallback(() => {
+    setDirection(1);
     setCurrentIndex((prev) => (prev === ACTION_PROJECTS.length - 1 ? 0 : prev + 1));
   }, []);
+
+  const goToSlide = (targetIndex) => {
+    if (targetIndex === currentIndex) return;
+    setDirection(targetIndex > currentIndex ? 1 : -1);
+    setCurrentIndex(targetIndex);
+  };
 
   // Reduced motion preference
   useEffect(() => {
@@ -152,6 +162,31 @@ export default function InActionCarousel() {
     }
   };
 
+  const currentProject = ACTION_PROJECTS[currentIndex];
+
+  const slideVariants = {
+    enter: (dir) => ({
+      x: dir > 0 ? 30 : -30,
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        x: { duration: isReducedMotion ? 0 : 0.45, ease: [0.22, 1, 0.36, 1] },
+        opacity: { duration: isReducedMotion ? 0 : 0.35, ease: 'easeOut' },
+      },
+    },
+    exit: (dir) => ({
+      x: dir > 0 ? -30 : 30,
+      opacity: 0,
+      transition: {
+        x: { duration: isReducedMotion ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] },
+        opacity: { duration: isReducedMotion ? 0 : 0.25, ease: 'easeIn' },
+      },
+    }),
+  };
+
   return (
     <section 
       ref={sectionRef}
@@ -173,7 +208,7 @@ export default function InActionCarousel() {
       <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
         
         {/* Section Header with Controls */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10 sm:mb-12 lg:mb-14">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-8 sm:mb-10 lg:mb-12">
           <div>
             {/* Eyebrow: Reference Style (Uppercase, letterspaced, blue/indigo) */}
             <div className="text-xs font-semibold uppercase tracking-widest text-[#0070AD] dark:text-[#38BDF8] mb-3">
@@ -190,7 +225,7 @@ export default function InActionCarousel() {
           </div>
 
           {/* Navigation Controls: Counter + Round Arrow Buttons */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 self-start sm:self-auto">
             <span className="text-sm font-medium tracking-wider text-white/70">
               <strong className="text-white font-semibold">{currentIndex + 1}</strong> / {ACTION_PROJECTS.length}
             </span>
@@ -216,9 +251,9 @@ export default function InActionCarousel() {
         </div>
 
         {/* 
-          Horizontal Peek Carousel:
-          4 slides, each maintaining its full wide card structure.
-          The next slide peeks ~15% on the right at opacity ~0.5 and scale ~0.985.
+          100% Full-Width Card with Directional Animation:
+          Eliminates awkward margin clipping and severed words.
+          Every deliverable, metric, and title enjoys full breathing room.
         */}
         <div 
           className="relative w-full overflow-hidden cursor-grab active:cursor-grabbing select-none"
@@ -226,121 +261,129 @@ export default function InActionCarousel() {
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          <motion.div
-            className="flex items-stretch gap-6 will-change-transform"
-            animate={{
-              x: `calc(-${currentIndex * 86}% - ${currentIndex * 1.5}rem)`
-            }}
-            transition={{
-              duration: isReducedMotion ? 0 : 0.6,
-              ease: [0.22, 1, 0.36, 1]
-            }}
-            drag="x"
-            dragConstraints={{ left: 0, right: 0 }}
-            onDragEnd={(e, { offset, velocity }) => {
-              const swipeThreshold = 40;
-              if (offset.x < -swipeThreshold || velocity.x < -250) {
-                nextSlide();
-              } else if (offset.x > swipeThreshold || velocity.x > 250) {
-                prevSlide();
-              }
-            }}
-          >
-            {ACTION_PROJECTS.map((project, idx) => {
-              const isActive = idx === currentIndex;
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.div
+              key={currentProject.id}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.15}
+              onDragEnd={(e, { offset, velocity }) => {
+                const swipeThreshold = 40;
+                if (offset.x < -swipeThreshold || velocity.x < -250) {
+                  nextSlide();
+                } else if (offset.x > swipeThreshold || velocity.x > 250) {
+                  prevSlide();
+                }
+              }}
+              className="w-full rounded-3xl p-6 sm:p-10 lg:p-12 bg-[#0E1420] border border-white/10 shadow-2xl relative overflow-hidden"
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                
+                {/* Left 7 cols: Case Narrative */}
+                <div className="lg:col-span-7 space-y-5 text-left">
+                  <div className="flex flex-wrap items-center gap-2.5">
+                    <Badge variant="navy" size="xs" className="bg-[#182232] text-[#A5B4FC] border border-white/10">
+                      {currentProject.discipline}
+                    </Badge>
+                    <span className="text-sm text-white/70 font-normal">
+                      {currentProject.clientType}
+                    </span>
+                  </div>
 
-              return (
-                <div
-                  key={project.id}
-                  onClick={() => {
-                    if (!isActive) setCurrentIndex(idx);
-                  }}
-                  className={`shrink-0 w-[86%] rounded-3xl p-6 sm:p-10 lg:p-12 transition-all duration-500 overflow-hidden ${
-                    isActive
-                      ? 'bg-[#0E1420] border border-white/10 shadow-2xl opacity-100 scale-100 cursor-default pointer-events-auto'
-                      : 'bg-[#0E1420]/75 border border-white/06 shadow-lg opacity-50 hover:opacity-75 scale-[0.985] cursor-pointer'
-                  }`}
-                >
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-                    
-                    {/* Left 7 cols: Case Narrative */}
-                    <div className="lg:col-span-7 space-y-5 text-left">
-                      <div className="flex flex-wrap items-center gap-2.5">
-                        <Badge variant="navy" size="xs" className="bg-[#182232] text-[#A5B4FC] border border-white/10">
-                          {project.discipline}
-                        </Badge>
-                        <span className="text-sm text-white/70 font-normal">
-                          {project.clientType}
-                        </span>
-                      </div>
+                  <h3 className="text-2xl sm:text-3xl font-light text-white leading-tight">
+                    {currentProject.title}
+                  </h3>
 
-                      <h3 className="text-2xl sm:text-3xl font-light text-white leading-tight">
-                        {project.title}
-                      </h3>
+                  <p className="text-sm sm:text-base text-white/80 leading-relaxed font-normal">
+                    {currentProject.outcome}
+                  </p>
 
-                      <p className="text-sm sm:text-base text-white/80 leading-relaxed font-normal">
-                        {project.outcome}
-                      </p>
-
-                      {/* Deliverables List matching reference card style (Image 3) */}
-                      <div className="space-y-2 pt-2">
-                        <div className="text-xs font-semibold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8]">
-                          Key Production Deliverables
-                        </div>
-                        {project.deliverables.map((item, dIdx) => (
-                          <div key={dIdx} className="flex items-center gap-2.5 text-sm sm:text-[15px] text-white/90">
-                            <CheckCircle2 className="w-4 h-4 text-[#5846F6] shrink-0" />
-                            <span>{item}</span>
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Governed Under standard */}
-                      <div className="text-xs sm:text-sm text-white/60 pt-1">
-                        Governed Under: {project.standards}
-                      </div>
+                  {/* Deliverables List matching reference card style (Image 3) */}
+                  <div className="space-y-2.5 pt-2">
+                    <div className="text-xs font-semibold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8]">
+                      Key Production Deliverables
                     </div>
-
-                    {/* Right 5 cols: Integrated Verified Result Panel on subtle glass surface */}
-                    <div className="lg:col-span-5 p-7 sm:p-8 rounded-2xl bg-white/[0.04] border border-white/10 flex flex-col justify-between text-left shadow-lg backdrop-blur-sm">
-                      <div className="space-y-2">
-                        <div className="text-xs font-semibold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8]">
-                          Verified Result
-                        </div>
-                        {/* Big Metric: light weight with key phrase in semibold */}
-                        <div className="text-3xl sm:text-4xl lg:text-5xl font-light text-white tracking-tight leading-tight">
-                          {project.metricNum}{' '}
-                          <span className="font-semibold text-white">
-                            {project.metricPhrase}
-                          </span>
-                        </div>
-                        <div className="text-xs sm:text-sm text-white/70 mt-1 font-normal">
-                          Documented in project release logs
-                        </div>
+                    {currentProject.deliverables.map((item, dIdx) => (
+                      <div key={dIdx} className="flex items-center gap-2.5 text-sm sm:text-[15px] text-white/90">
+                        <CheckCircle2 className="w-4 h-4 text-[#5846F6] shrink-0" />
+                        <span>{item}</span>
                       </div>
+                    ))}
+                  </div>
 
-                      <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
-                        <div className="flex items-center gap-2 text-xs sm:text-sm text-white/75">
-                          <ShieldCheck className="w-4 h-4 text-[#5846F6]" />
-                          <span>Protected by Mutual NDA</span>
-                        </div>
-
-                        {/* Indigo link matching "Explore Technical Scope ->" in reference */}
-                        <a
-                          href="#contact"
-                          className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#0070AD] dark:text-[#38BDF8] hover:text-white transition-colors group"
-                        >
-                          <span>Inquire Scope</span>
-                          <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                        </a>
-                      </div>
-                    </div>
-
+                  {/* Governed Under standard */}
+                  <div className="text-xs sm:text-sm text-white/60 pt-1">
+                    Governed Under: {currentProject.standards}
                   </div>
                 </div>
-              );
-            })}
-          </motion.div>
+
+                {/* Right 5 cols: Integrated Verified Result Panel on subtle glass surface */}
+                <div className="lg:col-span-5 p-7 sm:p-8 rounded-2xl bg-white/[0.04] border border-white/10 flex flex-col justify-between text-left shadow-lg backdrop-blur-sm">
+                  <div className="space-y-2">
+                    <div className="text-xs font-semibold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8]">
+                      Verified Result
+                    </div>
+                    {/* Big Metric: light weight with key phrase in semibold */}
+                    <div className="text-3xl sm:text-4xl lg:text-5xl font-light text-white tracking-tight leading-tight">
+                      {currentProject.metricNum}{' '}
+                      <span className="font-semibold text-white">
+                        {currentProject.metricPhrase}
+                      </span>
+                    </div>
+                    <div className="text-xs sm:text-sm text-white/70 mt-1 font-normal">
+                      Documented in project release logs
+                    </div>
+                  </div>
+
+                  <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-xs sm:text-sm text-white/75">
+                      <ShieldCheck className="w-4 h-4 text-[#5846F6]" />
+                      <span>Protected by Mutual NDA</span>
+                    </div>
+
+                    {/* Indigo link matching "Explore Technical Scope ->" in reference */}
+                    <a
+                      href="#contact"
+                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#0070AD] dark:text-[#38BDF8] hover:text-white transition-colors group"
+                    >
+                      <span>Inquire Scope</span>
+                      <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* 
+          Interactive Discipline Tab Selectors:
+          Provides immediate visual access to all 4 case studies without any text truncation.
+        */}
+        <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
+          {ACTION_PROJECTS.map((p, idx) => {
+            const isCurrent = idx === currentIndex;
+            return (
+              <button
+                key={p.id}
+                onClick={() => goToSlide(idx)}
+                className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 flex items-center gap-2 cursor-pointer ${
+                  isCurrent
+                    ? 'bg-white text-[#080B11] shadow-lg shadow-white/15 font-semibold scale-[1.02]'
+                    : 'bg-white/[0.05] hover:bg-white/[0.10] text-white/70 hover:text-white border border-white/08'
+                }`}
+              >
+                <span className={`w-2 h-2 rounded-full transition-colors ${isCurrent ? 'bg-[#5846F6]' : 'bg-white/40'}`} />
+                <span>{p.discipline}</span>
+              </button>
+            );
+          })}
         </div>
 
       </div>
