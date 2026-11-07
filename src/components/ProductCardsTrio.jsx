@@ -83,7 +83,7 @@ export default function ProductCardsTrio() {
                 }`}
               >
                 {/* TOP: Abstract Tall Gradient Image / Banner */}
-                <div className={`h-64 sm:h-72 bg-gradient-to-br ${card.gradient} p-8 flex flex-col justify-between relative overflow-hidden`}>
+                <div className={`h-72 sm:h-80 bg-gradient-to-br ${card.gradient} p-8 pb-16 sm:pb-20 flex flex-col justify-between relative overflow-hidden`}>
                   {/* Technical CAD blueprint mesh */}
                   <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none" />
                   
@@ -98,14 +98,14 @@ export default function ProductCardsTrio() {
                     <div className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
                       {card.metric}
                     </div>
-                    <div className="text-xs text-white/70 mt-0.5">
+                    <div className="text-xs text-white/80 mt-1">
                       Production Verified Metric
                     </div>
                   </div>
                 </div>
 
                 {/* BOTTOM: Overlapping White Content Card Surface */}
-                <div className="p-6 sm:p-8 bg-white dark:bg-[#11161B] -mt-10 mx-3 sm:mx-4 mb-4 rounded-2xl sm:rounded-3xl shadow-card relative z-10 flex-1 flex flex-col justify-between border border-[#E2E6EE] dark:border-white/10">
+                <div className="p-6 sm:p-8 bg-white dark:bg-[#11161B] -mt-10 sm:-mt-12 mx-3 sm:mx-4 mb-4 rounded-2xl sm:rounded-3xl shadow-card relative z-10 flex-1 flex flex-col justify-between border border-[#E2E6EE] dark:border-white/10">
                   <div className="space-y-4">
                     <h3 className="text-xl sm:text-2xl font-bold text-[#111827] dark:text-white leading-tight">
                       {card.title}
