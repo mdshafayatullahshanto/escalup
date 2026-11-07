@@ -1,0 +1,148 @@
+/* ==========================================================================
+   INFOSYS-STYLE DESIGN TOKENS FOR ESCALUP
+   Extracted from reference site DevTools analysis and UI/UX design specifications.
+   Single source of truth for typography, fluid scales, color palettes,
+   border radii, shadows, easing curves, and responsive breakpoints.
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------------
+     1. TYPOGRAPHY & FONT FAMILIES
+     ------------------------------------------------------------------------ */
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'Fragment Mono', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+
+  /* Fluid typography clamp calculations */
+  --font-size-hero: clamp(2.25rem, 5.5vw, 4.5rem);       /* Hero headline */
+  --font-size-h1: clamp(2rem, 4vw, 3.25rem);              /* Large section header */
+  --font-size-h2: clamp(1.75rem, 3vw, 2.5rem);            /* Standard section header */
+  --font-size-h3: clamp(1.25rem, 2vw, 1.625rem);          /* Subsection / card header */
+  --font-size-subhead: clamp(1rem, 1.25vw, 1.25rem);      /* Leading paragraph */
+  --font-size-body: 0.9375rem;                            /* 15px tight body */
+  --font-size-sm: 0.84375rem;                             /* 13.5px secondary */
+  --font-size-xs: 0.75rem;                                /* 12px captions & tags */
+  --font-size-label: 0.6875rem;                           /* 11px uppercase labels */
+
+  /* Font weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Line heights */
+  --line-height-tight: 1.1;
+  --line-height-heading: 1.2;
+  --line-height-body: 1.6;
+  --line-height-loose: 1.75;
+
+  /* Letter spacing */
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-snug: -0.015em;
+  --letter-spacing-normal: 0em;
+  --letter-spacing-wide: 0.05em;
+  --letter-spacing-label: 0.12em;
+
+  /* ------------------------------------------------------------------------
+     2. COLOR PALETTE
+     ------------------------------------------------------------------------ */
+  /* Page background: Soft lavender-tinted clean background */
+  --color-bg-page: #F6F7FB;
+  --color-bg-card: #FFFFFF;
+  --color-bg-panel-lavender: #EEF2F8;
+  --color-bg-panel-subtle: #F3F5FA;
+  --color-bg-dark-section: #0B0F14;
+  --color-bg-darkest: #000000;
+
+  /* Text & Ink */
+  --color-text-primary: #111827;
+  --color-text-muted: #5A6679;
+  --color-text-subtle: #8E9BAE;
+  --color-text-on-dark: #FFFFFF;
+  --color-text-on-dark-muted: #9BA8BA;
+
+  /* Accent: Violet / Indigo & Enterprise Blue */
+  --color-accent-blue: #0070AD;
+  --color-accent-violet: #5846F6;
+  --color-accent-indigo: #4F46E5;
+  --color-accent-teal: #2E756E;
+  --color-accent-teal-bright: #14F3C1;
+
+  /* Dark Navy Tags & Badges */
+  --color-badge-bg: #0B1528;
+  --color-badge-text: #FFFFFF;
+
+  /* Border lines */
+  --color-border-light: #E3E7EE;
+  --color-border-subtle: rgba(227, 231, 238, 0.7);
+  --color-border-dark: rgba(255, 255, 255, 0.12);
+
+  /* Headline accent gradients */
+  --gradient-headline-accent: linear-gradient(135deg, #0070AD 0%, #5846F6 100%);
+  --gradient-brand-accent: linear-gradient(135deg, #2E756E 0%, #14F3C1 100%);
+  --gradient-dark-overlay: linear-gradient(180deg, rgba(11, 15, 20, 0.75) 0%, rgba(11, 15, 20, 0.4) 50%, rgba(11, 15, 20, 0.9) 100%);
+
+  /* ------------------------------------------------------------------------
+     3. SHAPES & CORNER RADII
+     ------------------------------------------------------------------------ */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-3xl: 32px;
+  --radius-full: 9999px;
+
+  /* ------------------------------------------------------------------------
+     4. LAYERED ELEVATION & SHADOWS
+     ------------------------------------------------------------------------ */
+  --shadow-subtle: 0 2px 8px rgba(17, 24, 39, 0.03);
+  --shadow-card: 0 10px 30px -4px rgba(17, 24, 39, 0.06), 0 4px 10px -2px rgba(17, 24, 39, 0.02);
+  --shadow-card-hover: 0 20px 40px -10px rgba(17, 24, 39, 0.12), 0 8px 16px -4px rgba(17, 24, 39, 0.04);
+  --shadow-floating-pill: 0 8px 30px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-modal: 0 25px 60px -12px rgba(0, 0, 0, 0.25);
+
+  /* ------------------------------------------------------------------------
+     5. MOTION, TRANSITIONS & EASING
+     ------------------------------------------------------------------------ */
+  --ease-infosys: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-micro: 220ms;
+  --duration-normal: 350ms;
+  --duration-reveal: 650ms;
+  --duration-slow: 850ms;
+
+  /* ------------------------------------------------------------------------
+     6. RESPONSIVE BREAKPOINTS (CSS Query Reference)
+     ------------------------------------------------------------------------ */
+  --bp-mobile: 360px;
+  --bp-tablet: 768px;
+  --bp-laptop: 1024px;
+  --bp-desktop: 1440px;
+  --bp-wide: 1920px;
+}
+
+/* Dark mode adjustments */
+.dark {
+  --color-bg-page: #080C0F;
+  --color-bg-card: #11161B;
+  --color-bg-panel-lavender: #151C24;
+  --color-bg-panel-subtle: #0E1318;
+  --color-bg-dark-section: #000000;
+  --color-bg-darkest: #000000;
+
+  --color-text-primary: #F3F5FA;
+  --color-text-muted: #8F9CAE;
+  --color-text-subtle: #5A6679;
+  --color-text-on-dark: #FFFFFF;
+  --color-text-on-dark-muted: #9BA8BA;
+
+  --color-border-light: #1E2833;
+  --color-border-subtle: rgba(30, 40, 51, 0.7);
+  --color-border-dark: rgba(255, 255, 255, 0.1);
+
+  --shadow-card: 0 10px 30px -4px rgba(0, 0, 0, 0.4);
+  --shadow-card-hover: 0 20px 45px -10px rgba(0, 0, 0, 0.6);
+  --shadow-floating-pill: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+

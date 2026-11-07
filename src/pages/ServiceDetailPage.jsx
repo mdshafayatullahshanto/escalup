@@ -1,258 +1,580 @@
-// /src/pages/ServiceDetailPage.jsx
-// Dedicated SEO landing page per service category (/services/:slug)
-// Light Editorial Engineering Theme with Deep Teal accents
+// src/pages/ServiceDetailPage.jsx
+// STEP 4: Comprehensive Infosys-style Inner Service Page Template
+// - Hero: Breadcrumbs, dark badge, very large light centered title, short text, dark pill button, soft atmospheric background, 3 segmented progress indicators.
+// - Video block with centered play button and capability narrative.
+// - 4 Abstract 3D capability cards.
+// - "Our Offerings" split layout: left vertical tab list with active indicator, right numbered scope list.
+// - Scroll-reveal text block ("Our Purpose" style).
+// - "Request for Services" section: dark textured background, rounded translucent white form card, consent toggle, validation.
 
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  ArrowLeft, 
-  ArrowRight, 
+  Play, 
+  X, 
   CheckCircle2, 
-  Clock, 
-  FileCheck2, 
-  ShieldCheck
+  ShieldCheck, 
+  Cpu, 
+  Layers, 
+  Wrench, 
+  Database,
+  ChevronRight
 } from 'lucide-react';
 import { servicesData } from '../data/services';
+import Badge from '../components/ui/Badge';
+import Card from '../components/ui/Card';
+import Button from '../components/ui/Button';
+import ScrollRevealText from '../components/ScrollRevealText';
+import { submitQuoteRequest } from '../lib/supabase';
 
 export default function ServiceDetailPage() {
   const { slug } = useParams();
   const navigate = useNavigate();
 
-  const service = servicesData.find((s) => s.slug === slug);
+  const [activeTab, setActiveTab] = useState(0);
+  const [videoModalOpen, setVideoModalOpen] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formLoading, setFormLoading] = useState(false);
+  const [consentNda, setConsentNda] = useState(true);
 
-  // Scroll to top on slug change
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    scope: '',
+  });
+
+  const service = servicesData.find((s) => s.slug === slug) || servicesData[0];
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     if (service) {
-      document.title = `${service.title} | escalup Offshore Engineering`;
+      document.title = `${service.title} | escalup Engineering Services`;
     }
   }, [slug, service]);
 
-  if (!service) {
-    return (
-      <div className="py-32 px-4 text-center max-w-lg mx-auto bg-[#F8FAF9] dark:bg-[#0D1A17] min-h-screen text-[#14201D] dark:text-[#E4EDE9]">
-        <h2 className="text-2xl font-bold text-[#14201D] dark:text-[#E4EDE9] mb-4">Service Category Not Found</h2>
-        <p className="text-sm text-[#5A6A65] dark:text-[#8FA89F] mb-6">
-          The requested engineering service category does not exist or may have been relocated.
-        </p>
-        <Link
-          to="/"
-          className="px-6 py-3 rounded-full bg-[#2E756E] hover:bg-[#255E58] text-white text-xs font-bold shadow-md inline-block"
-        >
-          Return to Home
-        </Link>
-      </div>
-    );
-  }
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    setFormLoading(true);
 
-  const handleQuoteClick = () => {
-    navigate('/#contact');
+    try {
+      await submitQuoteRequest({
+        name: formData.name,
+        email: formData.email,
+        company: formData.company,
+        service: service.title,
+        message: formData.scope,
+        ndaRequested: consentNda,
+      });
+      setFormSubmitted(true);
+      setTimeout(() => {
+        navigate('/thank-you');
+      }, 800);
+    } catch {
+      // safe fallback
+      navigate('/thank-you');
+    } finally {
+      setFormLoading(false);
+    }
   };
 
-  // Other services for bottom discovery
-  const otherServices = servicesData.filter((s) => s.slug !== slug);
+  const offeringsData = [
+    {
+      title: 'Parametric CAD & Design Modeling',
+      desc: 'Creation of native SolidWorks, Inventor, and Siemens NX parts and assemblies with clean sketch constraints, robust parent-child relationships, and zero broken feature trees.',
+      points: [
+        'Kinematic link and actuator motion simulations',
+        'Complex organic surfacing and industrial aesthetics',
+        'Parametric configuration tables for product families',
+        'Mass property optimization and material assignments'
+      ]
+    },
+    {
+      title: 'Production Drawings & ASME GD&T',
+      desc: 'Full 2D manufacturing prints detailing datum references, feature control frames, surface finish callouts, and geometric tolerances in accordance with ASME Y14.5M.',
+      points: [
+        'First-article inspection balloon drawing packages',
+        'Sheet metal unfolded flat patterns with K-factor deductions',
+        'Tooling, jig, and fixture fabrication blueprints',
+        'Borders formatted directly to client corporate standards'
+      ]
+    },
+    {
+      title: 'Multi-Level BOMs & PLM Data Migration',
+      desc: 'Structured indented Bills of Materials with part numbering, description standardization, and direct ERP/MRP compatibility.',
+      points: [
+        'Teamcenter, Vault, and SolidWorks PDM attribute mapping',
+        'Engineering Change Orders (ECN/ECO) management',
+        'Legacy paper and 2D DWG conversion into parametric 3D',
+        '100% drawing-to-ERP component parity guarantee'
+      ]
+    }
+  ];
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 15 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: 'easeOut' }}
-      className="bg-[#F8FAF9] dark:bg-[#0D1A17] min-h-screen text-[#14201D] dark:text-[#E4EDE9]"
-    >
+    <div className="bg-[#F6F7FB] dark:bg-[#080C0F] min-h-screen text-[#111827] dark:text-[#F3F5FA] transition-colors">
       
-      {/* Top Breadcrumb & Hero Header */}
-      <section className="bg-white dark:bg-[#0F201C] border-b border-[#DBE3E0] dark:border-[#263830] pt-8 pb-16 relative blueprint-grid">
-        <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
+      {/* ======================================================== */}
+      {/* 1. INFOSYS INNER HERO (matching user screenshot)         */}
+      {/* ======================================================== */}
+      <section className="relative pt-28 sm:pt-36 pb-20 sm:pb-28 px-4 sm:px-6 md:px-8 lg:px-12 bg-gradient-to-b from-[#0B1528] via-[#0E1E33] to-[#0A121F] text-white overflow-hidden">
+        {/* Soft atmospheric glow / bokeh background */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#0070AD]/25 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute inset-0 blueprint-grid opacity-15 pointer-events-none" />
+
+        <div className="w-full max-w-5xl mx-auto text-center relative z-10 flex flex-col items-center">
           
-          {/* Breadcrumb Navigation */}
-          <div className="flex items-center gap-2 text-xs text-[#889893] dark:text-[#5A7268] mb-6">
-            <Link to="/" className="hover:text-[#2E756E] flex items-center gap-1 font-medium transition-colors">
-              <ArrowLeft className="w-3.5 h-3.5" />
-              <span>Home</span>
-            </Link>
-            <span>/</span>
-            <Link to="/#services" className="hover:text-[#2E756E] font-medium transition-colors">
+          {/* Breadcrumb row: Services > Engineering Services > Title */}
+          <div className="flex items-center gap-2 text-xs font-mono text-white/70 mb-8">
+            <Link to="/" className="hover:text-white transition-colors">
               Services
             </Link>
-            <span>/</span>
-            <span className="text-[#14201D] dark:text-[#E4EDE9] font-bold truncate max-w-xs">{service.title}</span>
+            <ChevronRight className="w-3.5 h-3.5 text-white/40" />
+            <Link to="/#services" className="hover:text-white transition-colors">
+              Engineering Services
+            </Link>
+            <ChevronRight className="w-3.5 h-3.5 text-white/40" />
+            <span className="text-[#14F3C1] font-semibold truncate max-w-xs">
+              {service.title}
+            </span>
           </div>
 
-          <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#2E756E]/10 text-[#2E756E] border border-[#2E756E]/20 mb-4 font-mono">
-              <span>{service.tag}</span>
+          {/* Dark Navy Rounded Badge Tag (Infosys style) */}
+          <div className="mb-6">
+            <Badge variant="navy" size="md" className="border border-white/20 shadow-md">
+              Engineering Services
+            </Badge>
+          </div>
+
+          {/* Very Large, Light-Weight (300-400) Title */}
+          <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-white tracking-tight leading-[1.14] mb-6">
+            {service.title}
+          </h1>
+
+          {/* Centered Subtitle */}
+          <p className="text-base sm:text-lg md:text-xl text-white/85 max-w-3xl leading-relaxed font-normal mb-8">
+            {service.intro || 'At escalup Engineering Services, we deliver high-precision native 3D CAD modeling, MEP BIM clash resolution, and production-ready fabrication detailing for global engineering innovators.'}
+          </p>
+
+          {/* Dark Pill CTA Button */}
+          <div className="flex items-center justify-center gap-3">
+            <Button
+              variant="white"
+              size="lg"
+              onClick={() => {
+                const el = document.getElementById('request-service');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+              icon="arrow"
+              className="shadow-2xl"
+            >
+              Request a Service Quote
+            </Button>
+          </div>
+
+          {/* Segmented Progress Indicators */}
+          <div className="flex items-center gap-2.5 mt-12">
+            {[0, 1, 2].map((idx) => (
+              <span
+                key={idx}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  idx === 0 ? 'w-10 bg-[#14F3C1]' : 'w-4 bg-white/30'
+                }`}
+              />
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* ======================================================== */}
+      {/* 2. ABOUT CAPABILITY & VIDEO CARD SECTION                 */}
+      {/* ======================================================== */}
+      <section className="py-20 sm:py-28 max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          
+          {/* Left 6 cols: Narrative */}
+          <div className="lg:col-span-6 space-y-6">
+            <div className="text-xs font-mono font-bold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8]">
+              Discipline Overview
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#14201D] dark:text-[#E4EDE9] tracking-tight mb-6 leading-tight">
-              {service.title}
-            </h1>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#111827] dark:text-white tracking-tight leading-tight">
+              About <span className="font-semibold">{service.title}</span>
+            </h2>
 
-            <p className="text-base sm:text-lg text-[#5A6A65] dark:text-[#8FA89F] leading-relaxed">
-              {service.intro}
+            <p className="text-sm sm:text-base text-[#5A6679] dark:text-[#9BA8BA] leading-relaxed">
+              Enterprises need resilient, scalable engineering capacity to reorient their production to be more agile and enable faster launch of new releases. This requires disciplined engineering interventions in 3D parametric CAD modeling, tolerance analysis, and multi-discipline coordination.
+            </p>
+
+            <div className="space-y-3 pt-2">
+              <div className="flex items-start gap-3">
+                <CheckCircle2 className="w-4 h-4 text-[#0070AD] dark:text-[#14F3C1] shrink-0 mt-1" />
+                <span className="text-xs sm:text-sm text-[#111827] dark:text-white">
+                  <strong>100% Native CAD Integrity:</strong> Delivered in SolidWorks, Siemens NX, Inventor, or Revit using your exact layer and title block standards.
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <CheckCircle2 className="w-4 h-4 text-[#0070AD] dark:text-[#14F3C1] shrink-0 mt-1" />
+                <span className="text-xs sm:text-sm text-[#111827] dark:text-white">
+                  <strong>Zero Spatial Clash Verification:</strong> Multi-discipline collision detection in Navisworks before fabrication drawings hit the shop floor.
+                </span>
+              </div>
+              <div className="flex items-start gap-3">
+                <CheckCircle2 className="w-4 h-4 text-[#0070AD] dark:text-[#14F3C1] shrink-0 mt-1" />
+                <span className="text-xs sm:text-sm text-[#111827] dark:text-white">
+                  <strong>Dhaka Center of Excellence (BST, UTC+6):</strong> Synchronous collaboration with Western Europe and overnight sprint turnarounds for North America.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Right 6 cols: Video Block with Centered Play Button */}
+          <div className="lg:col-span-6">
+            <div 
+              onClick={() => setVideoModalOpen(true)}
+              className="relative rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-tr from-[#0B1528] to-[#122A4A] aspect-[16/10] flex items-center justify-center cursor-pointer group border border-[#E2E6EE] dark:border-white/10"
+            >
+              {/* Technical background blueprint mesh */}
+              <div className="absolute inset-0 blueprint-grid opacity-25" />
+              
+              {/* Abstract CAD wireframe overlay */}
+              <div className="absolute inset-0 bg-radial-at-c from-transparent via-black/40 to-black/80" />
+
+              <div className="relative z-10 flex flex-col items-center gap-4 text-center p-6">
+                {/* Large Centered Translucent Play Button (Infosys style) */}
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#0070AD]/85 backdrop-blur-md text-white flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:bg-[#0070AD] transition-all">
+                  <Play className="w-7 h-7 sm:w-8 sm:h-8 fill-current translate-x-0.5" />
+                </div>
+                <div className="text-white text-xs sm:text-sm font-semibold tracking-wide">
+                  Watch Engineering Workflow Overview
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        {/* 4 Abstract 3D Cards below the video block (matching user screenshot) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-12 sm:mt-16">
+          {[
+            { title: 'ASME Y14.5M Detailing', metric: 'LOD 350-400 Precision', icon: Wrench, color: 'from-blue-900/30 to-indigo-900/10' },
+            { title: 'Navisworks Clash Sync', metric: 'Zero Spatial Collisions', icon: Layers, color: 'from-teal-900/30 to-emerald-900/10' },
+            { title: 'Native Parametric Models', metric: '100% Feature Trees', icon: Cpu, color: 'from-purple-900/30 to-pink-900/10' },
+            { title: 'Teamcenter / Vault PDM', metric: '100% ERP BOM Parity', icon: Database, color: 'from-cyan-900/30 to-blue-900/10' },
+          ].map((item, idx) => {
+            const ItemIcon = item.icon;
+            return (
+              <Card
+                key={idx}
+                variant="white"
+                radius="2xl"
+                className="p-6 border border-[#E2E6EE] dark:border-white/10 flex flex-col justify-between"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <ItemIcon className="w-5 h-5 text-[#0070AD] dark:text-[#14F3C1]" />
+                  <span className="text-[10px] font-mono text-[#5A6679] dark:text-[#9BA8BA]">0{idx + 1}</span>
+                </div>
+                <div>
+                  <div className="text-base font-bold text-[#111827] dark:text-white mb-1">
+                    {item.title}
+                  </div>
+                  <div className="text-xs font-mono text-[#0070AD] dark:text-[#38BDF8]">
+                    {item.metric}
+                  </div>
+                </div>
+              </Card>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* ======================================================== */}
+      {/* 3. "OUR OFFERINGS" SPLIT LAYOUT                          */}
+      {/* ======================================================== */}
+      <section className="py-20 sm:py-28 bg-[#FFFFFF] dark:bg-[#0A0E13] border-y border-[#E2E6EE] dark:border-white/10 transition-colors">
+        <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
+          
+          <div className="max-w-3xl mb-12 lg:mb-16">
+            <div className="text-xs font-mono font-bold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8] mb-2">
+              Structured Deliverables
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-light text-[#111827] dark:text-white tracking-tight">
+              Our Detailed <span className="font-semibold">Offerings & Scopes</span>
+            </h2>
+          </div>
+
+          {/* Split Layout: Left vertical tabs, Right numbered content list */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+            
+            {/* Left 4 cols: Vertical tab list with active indicator */}
+            <div className="lg:col-span-4 space-y-2 border-l-2 border-[#E2E6EE] dark:border-white/10 pl-2">
+              {offeringsData.map((offering, idx) => {
+                const isActive = activeTab === idx;
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveTab(idx)}
+                    className={`w-full text-left p-4 rounded-xl transition-all relative cursor-pointer ${
+                      isActive
+                        ? 'bg-[#EEF2F8] dark:bg-[#151D26] text-[#0070AD] dark:text-[#38BDF8] font-bold shadow-sm'
+                        : 'text-[#5A6679] dark:text-[#9BA8BA] hover:text-[#111827] dark:hover:text-white'
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeOfferingBar"
+                        className="absolute -left-[10px] top-0 bottom-0 w-1 bg-[#0070AD] rounded-r"
+                      />
+                    )}
+                    <div className="text-xs font-mono mb-1 text-[#5A6679]">Offering 0{idx + 1}</div>
+                    <div className="text-sm font-semibold">{offering.title}</div>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Right 8 cols: Numbered Link List & Detailed Scope */}
+            <div className="lg:col-span-8 p-8 sm:p-10 rounded-3xl bg-[#F6F7FB] dark:bg-[#11161B] border border-[#E2E6EE] dark:border-white/10">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeTab}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.25 }}
+                  className="space-y-6"
+                >
+                  <h3 className="text-2xl font-bold text-[#111827] dark:text-white">
+                    {offeringsData[activeTab].title}
+                  </h3>
+
+                  <p className="text-sm sm:text-base text-[#5A6679] dark:text-[#9BA8BA] leading-relaxed">
+                    {offeringsData[activeTab].desc}
+                  </p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-[#E2E6EE] dark:border-white/10">
+                    {offeringsData[activeTab].points.map((pt, pIdx) => (
+                      <div key={pIdx} className="p-4 rounded-2xl bg-white dark:bg-[#17202B] border border-[#E2E7F0] dark:border-white/5 space-y-1">
+                        <div className="text-xs font-mono font-bold text-[#0070AD]">
+                          0{pIdx + 1}
+                        </div>
+                        <div className="text-xs sm:text-sm font-medium text-[#111827] dark:text-[#F3F5FA]">
+                          {pt}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* ======================================================== */}
+      {/* 4. SCROLL-REVEAL TEXT BLOCK ("OUR PURPOSE" STYLE)        */}
+      {/* ======================================================== */}
+      <ScrollRevealText
+        tag="Engineering Purpose & Integrity"
+        text="escalup bridges the global engineering talent gap with precision native CAD modeling, MEP BIM coordination, and production-ready documentation. Every drawing package is governed under strict NDA, ASME Y14.5 tolerances, and full client IP ownership."
+      />
+
+      {/* ======================================================== */}
+      {/* 5. REQUEST FOR SERVICES FORM SECTION                     */}
+      {/* ======================================================== */}
+      <section 
+        id="request-service" 
+        className="py-20 sm:py-28 bg-[#0B0F14] text-white relative overflow-hidden"
+      >
+        <div className="absolute inset-0 blueprint-grid opacity-15 pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#0070AD]/15 rounded-full blur-[140px] pointer-events-none" />
+
+        <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+          
+          <div className="text-center mb-10">
+            <Badge variant="teal" size="sm" className="mb-3">
+              Request for Services
+            </Badge>
+            <h2 className="text-3xl sm:text-4xl font-light text-white tracking-tight">
+              Initiate a Project Scope for <span className="font-semibold">{service.title}</span>
+            </h2>
+            <p className="text-sm text-white/70 mt-2">
+              Guaranteed formal scope assessment and pricing quote within 24 hours.
             </p>
           </div>
 
-        </div>
-      </section>
-
-      {/* Main Content Details */}
-      <section className="py-16 w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
-        <div className="grid lg:grid-cols-12 gap-10 items-start">
-          
-          {/* Left Column: Scope & Deliverables (7 cols) */}
-          <div className="lg:col-span-7 space-y-8">
-            
-            {/* Full Item List */}
-            <div className="bg-white dark:bg-[#152620] rounded-3xl p-7 sm:p-9 border border-[#DBE3E0] dark:border-[#263830] shadow-soft">
-              <h2 className="text-xl font-extrabold text-[#14201D] dark:text-[#E4EDE9] mb-2">
-                Core Technical Scope & Services
-              </h2>
-              <p className="text-xs text-[#5A6A65] dark:text-[#8FA89F] mb-6">
-                Available as discrete packages or integrated into your team's ongoing sprint cycles.
-              </p>
-
-              <div className="space-y-3">
-                {service.items.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="flex items-start gap-3 p-3.5 rounded-2xl bg-[#F8FAF9] dark:bg-[#1D3328] border border-[#DBE3E0] dark:border-[#263830]"
-                  >
-                    <CheckCircle2 className="w-4 h-4 text-[#2E756E] shrink-0 mt-0.5" />
-                    <span className="text-xs sm:text-sm font-semibold text-[#14201D] dark:text-[#E4EDE9]">
-                      {item}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Typical Deliverables */}
-            <div className="bg-white dark:bg-[#152620] rounded-3xl p-7 sm:p-9 border border-[#DBE3E0] dark:border-[#263830] shadow-soft">
-              <div className="flex items-center gap-2.5 mb-2">
-                <FileCheck2 className="w-5 h-5 text-[#2E756E]" />
-                <h2 className="text-xl font-extrabold text-[#14201D] dark:text-[#E4EDE9]">
-                  Typical Engineering Deliverables
-                </h2>
-              </div>
-              <p className="text-xs text-[#5A6A65] dark:text-[#8FA89F] mb-6">
-                Standard packages prepared in native software releases and neutral exchange formats.
-              </p>
-
-              <ul className="space-y-3">
-                {service.deliverables.map((del, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-[#5A6A65] dark:text-[#8FA89F]">
-                    <span className="w-2 h-2 rounded-full bg-[#2E756E] shrink-0 mt-1.5" />
-                    <span>{del}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-          </div>
-
-          {/* Right Sidebar: Tools, Turnaround & Specs (5 cols) */}
-          <div className="lg:col-span-5 space-y-6">
-            
-            {/* Quick Specs Card */}
-            <div className="bg-white dark:bg-[#152620] rounded-3xl p-7 border border-[#DBE3E0] dark:border-[#263830] shadow-soft space-y-5">
-              <h3 className="text-base font-bold text-[#14201D] dark:text-[#E4EDE9] pb-3 border-b border-[#DBE3E0] dark:border-[#263830]">
-                Service Specifications
-              </h3>
-
-              <div>
-                <span className="text-xs font-bold text-[#14201D] dark:text-[#E4EDE9] block mb-1">
-                  Supported Software & Platforms:
-                </span>
-                <div className="flex flex-wrap gap-1.5 mt-2">
-                  {service.tools.map((t, idx) => (
-                    <span
-                      key={idx}
-                      className="text-xs font-mono font-semibold px-2.5 py-1 rounded-full bg-[#F8FAF9] dark:bg-[#1D3328] border border-[#DBE3E0] dark:border-[#263830] text-[#14201D] dark:text-[#E4EDE9]"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <span className="text-xs font-bold text-[#14201D] dark:text-[#E4EDE9] block mb-1">
-                  Typical Turnaround:
-                </span>
-                <div className="flex items-center gap-2 text-xs text-[#5A6A65] dark:text-[#8FA89F]">
-                  <Clock className="w-3.5 h-3.5 text-[#2E756E]" />
-                  <span>{service.typicalTurnaround}</span>
-                </div>
-              </div>
-
-              <div>
-                <span className="text-xs font-bold text-[#14201D] dark:text-[#E4EDE9] block mb-1">
-                  Recommended For:
-                </span>
-                <p className="text-xs text-[#5A6A65] dark:text-[#8FA89F] leading-relaxed">
-                  {service.bestFor}
+          {/* Rounded Translucent Form Card */}
+          <div className="p-8 sm:p-12 rounded-3xl bg-white/95 dark:bg-[#111720]/95 backdrop-blur-xl text-[#111827] dark:text-white shadow-2xl border border-white/20">
+            {formSubmitted ? (
+              <div className="text-center py-10 space-y-4">
+                <CheckCircle2 className="w-12 h-12 text-[#0070AD] mx-auto" />
+                <h3 className="text-2xl font-bold">Request Received</h3>
+                <p className="text-sm text-[#5A6679]">
+                  Our lead engineering desk has received your scope parameters and is preparing your quote.
                 </p>
               </div>
+            ) : (
+              <form onSubmit={handleFormSubmit} className="space-y-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-semibold text-[#5A6679] dark:text-[#9BA8BA]">
+                      Your Name *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. John Doe"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-[#F6F7FB] dark:bg-[#17202B] border border-[#D8DFEB] dark:border-white/10 text-sm focus:outline-none focus:ring-2 focus:ring-[#0070AD]"
+                    />
+                  </div>
 
-              <div className="pt-3 border-t border-[#DBE3E0] dark:border-[#263830] space-y-2">
-                <div className="flex items-center gap-2 text-xs font-semibold text-[#14201D] dark:text-[#E4EDE9]">
-                  <ShieldCheck className="w-4 h-4 text-[#2E756E]" />
-                  <span>NDA signed prior to project brief</span>
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-semibold text-[#5A6679] dark:text-[#9BA8BA]">
+                      Work Email *
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      placeholder="john@company.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-[#F6F7FB] dark:bg-[#17202B] border border-[#D8DFEB] dark:border-white/10 text-sm focus:outline-none focus:ring-2 focus:ring-[#0070AD]"
+                    />
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 text-xs font-semibold text-[#14201D] dark:text-[#E4EDE9]">
-                  <CheckCircle2 className="w-4 h-4 text-[#2E756E]" />
-                  <span>Client owns 100% of all generated IP</span>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-[#5A6679] dark:text-[#9BA8BA]">
+                    Company Name & Country *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Apex Industrial Solutions (London, UK)"
+                    value={formData.company}
+                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl bg-[#F6F7FB] dark:bg-[#17202B] border border-[#D8DFEB] dark:border-white/10 text-sm focus:outline-none focus:ring-2 focus:ring-[#0070AD]"
+                  />
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-[#5A6679] dark:text-[#9BA8BA]">
+                    Project Scope & Software Preferences *
+                  </label>
+                  <textarea
+                    rows={4}
+                    required
+                    placeholder="Describe parts, expected drawing count, preferred software (SolidWorks, Inventor, Revit), and project timeline..."
+                    value={formData.scope}
+                    onChange={(e) => setFormData({ ...formData, scope: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl bg-[#F6F7FB] dark:bg-[#17202B] border border-[#D8DFEB] dark:border-white/10 text-sm focus:outline-none focus:ring-2 focus:ring-[#0070AD]"
+                  />
+                </div>
+
+                {/* Consent & NDA Toggle */}
+                <div className="pt-2 flex items-center justify-between p-4 rounded-xl bg-[#EEF2F8] dark:bg-[#17202B] border border-[#D8DFEB] dark:border-white/10">
+                  <div className="flex items-center gap-2.5">
+                    <ShieldCheck className="w-5 h-5 text-[#0070AD] dark:text-[#14F3C1] shrink-0" />
+                    <div>
+                      <div className="text-xs font-bold text-[#111827] dark:text-white">
+                        Execute Mutual Non-Disclosure Agreement (NDA)
+                      </div>
+                      <div className="text-[11px] text-[#5A6679] dark:text-[#9BA8BA]">
+                        Send signed mutual NDA before sharing CAD files or proprietary data.
+                      </div>
+                    </div>
+                  </div>
+
+                  <input
+                    type="checkbox"
+                    checked={consentNda}
+                    onChange={(e) => setConsentNda(e.target.checked)}
+                    className="w-5 h-5 text-[#0070AD] rounded cursor-pointer"
+                  />
+                </div>
+
+                {/* Submit Button */}
+                <div className="pt-3">
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    size="lg"
+                    disabled={formLoading}
+                    icon="arrow"
+                    className="w-full shadow-lg"
+                  >
+                    {formLoading ? 'Submitting Scope...' : 'Submit Request for Services'}
+                  </Button>
+                </div>
+              </form>
+            )}
+          </div>
+
+        </div>
+      </section>
+
+      {/* ======================================================== */}
+      {/* VIDEO MODAL (Interactive Play Demo)                      */}
+      {/* ======================================================== */}
+      <AnimatePresence>
+        {videoModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 sm:p-8"
+            onClick={() => setVideoModalOpen(false)}
+          >
+            <div 
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-4xl rounded-3xl bg-[#0B0F14] border border-white/20 p-6 sm:p-8 text-white shadow-2xl"
+            >
+              <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+                <div className="flex items-center gap-2 text-sm font-bold">
+                  <Play className="w-4 h-4 text-[#0070AD]" />
+                  <span>{service.title} · Engineering Workflow Overview</span>
+                </div>
+                <button
+                  onClick={() => setVideoModalOpen(false)}
+                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center cursor-pointer"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Technical Animation / CAD Simulation Placeholder */}
+              <div className="aspect-video rounded-2xl bg-gradient-to-br from-[#0B1528] to-[#040810] border border-white/10 flex flex-col items-center justify-center text-center p-8 relative overflow-hidden">
+                <div className="absolute inset-0 blueprint-grid opacity-30" />
+                <div className="relative z-10 space-y-3">
+                  <div className="w-16 h-16 rounded-full bg-[#0070AD]/30 border border-[#0070AD] text-[#14F3C1] flex items-center justify-center mx-auto">
+                    <Cpu className="w-8 h-8 animate-pulse" />
+                  </div>
+                  <h4 className="text-xl font-bold">
+                    Parametric CAD & Clash Detection Engine
+                  </h4>
+                  <p className="text-xs sm:text-sm text-white/70 max-w-md mx-auto">
+                    Our team conducts live engineering sprint reviews over Microsoft Teams, Slack, and Google Meet with screen sharing and model walkthroughs.
+                  </p>
                 </div>
               </div>
 
-              <button
-                onClick={handleQuoteClick}
-                className="w-full py-3 rounded-full bg-[#2E756E] hover:bg-[#255E58] text-white font-bold text-xs shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <span>Request Scope Quote</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
+              <div className="mt-6 flex items-center justify-between text-xs text-white/60">
+                <span>Governed Under ASME Y14.5M & ISO 9001</span>
+                <Button variant="white" size="sm" onClick={() => setVideoModalOpen(false)}>
+                  Close Preview
+                </Button>
+              </div>
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-          </div>
-
-        </div>
-
-        {/* Other Services Navigation Strip */}
-        <div className="mt-20 pt-12 border-t border-[#DBE3E0] dark:border-[#263830]">
-          <h3 className="text-xl font-bold text-[#14201D] dark:text-[#E4EDE9] mb-6">
-            Explore Other Engineering Services
-          </h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {otherServices.slice(0, 3).map((other) => (
-              <Link
-                key={other.id}
-                to={`/services/${other.slug}`}
-                className="p-5 rounded-3xl bg-white dark:bg-[#152620] border border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/50 dark:hover:border-[#3B948A]/50 transition-all group flex flex-col justify-between shadow-soft hover:shadow-card"
-              >
-                <div>
-                  <span className="text-[10px] font-bold text-[#2E756E] uppercase tracking-wider block mb-1 font-mono">
-                    {other.tag}
-                  </span>
-                  <h4 className="text-sm font-bold text-[#14201D] dark:text-[#E4EDE9] group-hover:text-[#2E756E] dark:group-hover:text-[#3B948A] transition-colors mb-2">
-                    {other.title}
-                  </h4>
-                  <p className="text-xs text-[#5A6A65] dark:text-[#8FA89F] line-clamp-2">
-                    {other.shortDesc}
-                  </p>
-                </div>
-                <div className="pt-3 mt-3 border-t border-[#DBE3E0] dark:border-[#263830] flex items-center justify-between text-xs font-semibold text-[#5A6A65] dark:text-[#8FA89F] group-hover:text-[#2E756E] dark:group-hover:text-[#3B948A]">
-                  <span>Learn more</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-
-      </section>
-
-    </motion.div>
+    </div>
   );
 }

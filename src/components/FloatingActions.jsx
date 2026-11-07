@@ -1,14 +1,19 @@
+// src/components/FloatingActions.jsx
+// Floating circular assistant button fixed at bottom-right on every page (Infosys style),
+// with scroll-to-top support.
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronUp } from 'lucide-react';
-import Magnetic from './Magnetic';
+import { Sparkles, ArrowUp } from 'lucide-react';
+import AskEscalupModal from './AskEscalupModal';
 
-export default function FloatingActions() {
+export default function FloatingActions({ onOpenCalendly }) {
   const [showTopBtn, setShowTopBtn] = useState(false);
+  const [assistantModalOpen, setAssistantModalOpen] = useState(false);
 
   useEffect(() => {
     const checkScroll = () => {
-      if (window.scrollY > 400) {
+      if (window.scrollY > 600) {
         setShowTopBtn(true);
       } else {
         setShowTopBtn(false);
@@ -23,31 +28,53 @@ export default function FloatingActions() {
   };
 
   return (
-    <AnimatePresence>
-      {showTopBtn && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.8, y: 20 }}
-          transition={{ duration: 0.25, ease: 'easeOut' }}
-          className="fixed bottom-6 right-6 z-40 hidden lg:flex flex-col gap-3 items-end"
-        >
-          {/* Scroll to Top Button */}
-          <Magnetic strength={0.3}>
+    <>
+      <div className="fixed bottom-5 right-5 sm:bottom-7 sm:right-7 z-40 flex flex-col items-center gap-2.5">
+        {/* Back to top mini button if scrolled deep */}
+        <AnimatePresence>
+          {showTopBtn && (
             <motion.button
-              whileHover={{ scale: 1.1, y: -2 }}
-              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.7, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.7, y: 10 }}
+              transition={{ duration: 0.2 }}
               onClick={scrollToTop}
-              data-cursor="Top"
-              className="w-10 h-10 rounded-full bg-[#001517] border border-white/10 text-white/70 hover:text-[#14F3C1] hover:border-[#14F3C1] shadow-2xl flex items-center justify-center transition-colors cursor-pointer group"
               aria-label="Scroll to top"
+              className="w-9 h-9 rounded-full bg-white dark:bg-[#151C24] text-[#111827] dark:text-white border border-[#E2E6EE] dark:border-white/10 shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-transform cursor-pointer"
               title="Back to top"
             >
-              <ChevronUp className="w-5 h-5 group-hover:text-[#14F3C1] transition-transform group-hover:-translate-y-0.5" />
+              <ArrowUp className="w-4 h-4 text-[#0070AD] dark:text-[#38BDF8]" />
             </motion.button>
-          </Magnetic>
-        </motion.div>
-      )}
-    </AnimatePresence>
+          )}
+        </AnimatePresence>
+
+        {/* Signature Infosys Floating Circular Assistant Button */}
+        <motion.button
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.94 }}
+          onClick={() => setAssistantModalOpen(true)}
+          aria-label="Ask escalup Engineering Assistant"
+          className="relative group w-12 h-12 sm:w-13 sm:h-13 rounded-full bg-gradient-to-tr from-[#0070AD] to-[#5846F6] text-white shadow-xl flex items-center justify-center cursor-pointer border border-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5846F6] focus-visible:ring-offset-2"
+          title="Ask escalup ✦"
+        >
+          <Sparkles className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
+          
+          {/* Subtle live indicator badge */}
+          <span className="absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full bg-[#14F3C1] border-2 border-white dark:border-[#0B0F14]" />
+          
+          {/* Tooltip on hover */}
+          <span className="hidden sm:inline-block absolute right-full mr-3 px-3 py-1.5 rounded-xl bg-[#0B0F14]/90 text-white text-xs font-medium whitespace-nowrap shadow-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200">
+            Ask escalup ✦
+          </span>
+        </motion.button>
+      </div>
+
+      {/* Global Ask escalup Assistant Modal */}
+      <AskEscalupModal
+        isOpen={assistantModalOpen}
+        onClose={() => setAssistantModalOpen(false)}
+        onOpenCalendly={onOpenCalendly}
+      />
+    </>
   );
 }

@@ -8,6 +8,14 @@ export default {
   theme: {
     extend: {
       colors: {
+        page: '#F6F7FB',
+        card: '#FFFFFF',
+        lavender: '#EEF2F8',
+        darkSection: '#0B0F14',
+        accentBlue: '#0070AD',
+        accentViolet: '#5846F6',
+        accentIndigo: '#4F46E5',
+        badgeNavy: '#0B1528',
         consilio: {
           darkest: '#000D0E',
           surface: '#001517',
@@ -39,13 +47,18 @@ export default {
         borderLine: '#DBE3E0',
       },
       fontFamily: {
-        sans: ['"Golos Text"', 'Inter', 'Poppins', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['Inter', '"Golos Text"', 'system-ui', '-apple-system', 'sans-serif'],
         mono: ['"Fragment Mono"', 'monospace'],
+      },
+      transitionTimingFunction: {
+        'infosys': 'cubic-bezier(0.22, 1, 0.36, 1)',
+        'smooth': 'cubic-bezier(0.16, 1, 0.3, 1)',
       },
       boxShadow: {
         'soft': '0 4px 20px -2px rgba(20, 32, 29, 0.05)',
         'card': '0 10px 30px -4px rgba(20, 32, 29, 0.07)',
         'lift': '0 20px 35px -5px rgba(46, 117, 110, 0.12)',
+        'pill': '0 8px 30px rgba(0, 0, 0, 0.14)',
       },
     },
   },

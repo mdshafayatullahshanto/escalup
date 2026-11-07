@@ -114,8 +114,8 @@ export default function App() {
           {/* Global Footer */}
           <Footer onOpenCalendly={() => setCalendlyOpen(true)} />
 
-          {/* Desktop Floating Actions (Scroll to Top) */}
-          <FloatingActions />
+          {/* Floating Circular Assistant & Scroll to Top */}
+          <FloatingActions onOpenCalendly={() => setCalendlyOpen(true)} />
 
           {/* Global Modals with AnimatePresence */}
           <AnimatePresence>

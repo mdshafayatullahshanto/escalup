@@ -1,83 +1,87 @@
-// /src/pages/HomePage.jsx
-// Infosys-inspired corporate enterprise engineering experience for escalup
-// Seamless corporate storytelling, interactive multi-story carousel, industry solutions, and verified outcomes.
+// src/pages/HomePage.jsx
+// STEP 3 – Complete Homepage Reorganization (Strict Infosys Flow):
+// 1. Full-viewport framed hero: media inside frame, outer margin, rounded corners, rotating lightweight headline with word opacity/weight changes, scroll parallax.
+// 2. "Top Stories" carousel on light panel: image-left cards, "1/4" counter, circular prev/next arrows.
+// 3. Centered heading with gradient highlight word, short subtext, dark pill button ("I'm Curious").
+// 4. Three tall product cards with abstract gradient graphics & overlapping white content cards (center card raised).
+// 5. Black "In Action" section with horizontal carousel and arrow/counter controls.
+// 6. "Industries and Services" 4-column grid of underlined links.
+// 7. "Research, Announcements & Thought Leadership" bento grid.
+// 8. Black careers & partnership banner with heading, text, white pill button, photo on right.
+// 9. Supporting enterprise sections: NavigateYourNext, Standards Ticker, Offshore Model, FAQ Accordion, Contact Section.
 
 import React from 'react';
-import Hero from '../components/Hero';
+import FramedHero from '../components/FramedHero';
+import TopStoriesCarousel from '../components/TopStoriesCarousel';
+import CuriousSection from '../components/CuriousSection';
+import ProductCardsTrio from '../components/ProductCardsTrio';
+import InActionCarousel from '../components/InActionCarousel';
+import IndustriesServicesLinks from '../components/IndustriesServicesLinks';
+import ThoughtLeadershipBento from '../components/ThoughtLeadershipBento';
+import CareersBanner from '../components/CareersBanner';
 import LogoTicker from '../components/LogoTicker';
 import NavigateYourNext from '../components/NavigateYourNext';
-import ServicesSection from '../components/ServicesSection';
-import WhoWeWorkWith from '../components/WhoWeWorkWith';
-import ValuesSection from '../components/ValuesSection';
-import SampleProjects from '../components/SampleProjects';
-import ProcessTimeline from '../components/ProcessTimeline';
-import WhyEscalup from '../components/WhyEscalup';
-import ComparisonSection from '../components/ComparisonSection';
 import OffshoreModel from '../components/OffshoreModel';
-import PilotProject from '../components/PilotProject';
-import StatsStrip from '../components/StatsStrip';
-import ToolsSoftware from '../components/ToolsSoftware';
-import AboutManifesto from '../components/AboutManifesto';
 import FAQAccordion from '../components/FAQAccordion';
 import ContactSection from '../components/ContactSection';
-import TestimonialsSection from '../components/TestimonialsSection';
 
 export default function HomePage({ onOpenCalendly }) {
   return (
-    <main className="flex-1 w-full overflow-hidden bg-[#FFFFFF] dark:bg-[#0B1519] text-[#14201D] dark:text-[#E4EDE9]">
+    <main className="flex-1 w-full overflow-hidden bg-[#F6F7FB] dark:bg-[#080C0F] text-[#111827] dark:text-[#F3F5FA] transition-colors">
       
-      {/* 1. Infosys-Style Hero: Authoritative typography, interactive 4-story carousel, CAD 3D wireframe */}
-      <Hero onOpenCalendly={onOpenCalendly} />
+      {/* -------------------------------------------------------- */}
+      {/* 1. Full-viewport framed hero with rotating headline      */}
+      {/* -------------------------------------------------------- */}
+      <FramedHero onOpenCalendly={onOpenCalendly} />
 
-      {/* 2. Engineering Standards, Compliance & Software Marquee Ticker */}
+      {/* Engineering Compliance & CAD Platforms Marquee Ticker */}
       <LogoTicker />
 
-      {/* 3. Infosys Signature: "Navigate Your Next" Enterprise Transformation Section */}
+      {/* -------------------------------------------------------- */}
+      {/* 2. "Top Stories" carousel on a light panel               */}
+      {/* -------------------------------------------------------- */}
+      <TopStoriesCarousel />
+
+      {/* -------------------------------------------------------- */}
+      {/* 3. Centered heading with gradient highlight & dark pill  */}
+      {/* -------------------------------------------------------- */}
+      <CuriousSection onOpenCalendly={onOpenCalendly} />
+
+      {/* -------------------------------------------------------- */}
+      {/* 4. Three tall product cards (center card raised)         */}
+      {/* -------------------------------------------------------- */}
+      <ProductCardsTrio />
+
+      {/* -------------------------------------------------------- */}
+      {/* 5. Black "In Action" section with horizontal carousel    */}
+      {/* -------------------------------------------------------- */}
+      <InActionCarousel />
+
+      {/* -------------------------------------------------------- */}
+      {/* 6. "Industries and Services" 4-column underlined links   */}
+      {/* -------------------------------------------------------- */}
+      <IndustriesServicesLinks />
+
+      {/* -------------------------------------------------------- */}
+      {/* 7. "Research, Announcements & Thought Leadership" bento  */}
+      {/* -------------------------------------------------------- */}
+      <ThoughtLeadershipBento />
+
+      {/* -------------------------------------------------------- */}
+      {/* 8. Black careers banner (text, white pill, team photo)   */}
+      {/* -------------------------------------------------------- */}
+      <CareersBanner onOpenCalendly={onOpenCalendly} />
+
+      {/* Enterprise Transformation Deep Dive */}
       <NavigateYourNext onOpenCalendly={onOpenCalendly} />
 
-      {/* 4. Engineering Services & Capabilities Matrix (With Category Filter Pills) */}
-      <ServicesSection />
-
-      {/* 5. Industries & Sectors We Serve (Manufacturers, Consultancies, MEP, Hardware Innovators) */}
-      <WhoWeWorkWith />
-
-      {/* 6. Real Results & Case Studies (Quantifiable metrics: 28% cost reduction, 124 clashes caught) */}
-      <SampleProjects />
-
-      {/* 7. Engineering Principles & Hygiene (Values Grid) */}
-      <ValuesSection />
-
-      {/* 8. Verified Client Reviews (Auto-hides cleanly when empty) */}
-      <TestimonialsSection />
-
-      {/* 9. A Proven 6-Gate Delivery Framework */}
-      <ProcessTimeline />
-
-      {/* 10. The escalup Advantage */}
-      <WhyEscalup onOpenCalendly={onOpenCalendly} />
-
-      {/* 11. Symmetrical Comparison: Other Offshore Firms vs The escalup Standard */}
-      <ComparisonSection />
-
-      {/* 12. Global Delivery Engine, Live World Clock & 3 Engagement Models */}
+      {/* Global Offshore Delivery Engine & Working Hours */}
       <OffshoreModel onOpenCalendly={onOpenCalendly} />
 
-      {/* 13. Low-Risk International Trial: Small Paid Pilot Project */}
-      <PilotProject />
-
-      {/* 14. Verified Key Performance Indicators & Impact Statistics Strip */}
-      <StatsStrip />
-
-      {/* 14. Supported Engineering CAD & BIM Software Platforms */}
-      <ToolsSoftware />
-
-      {/* 15. Consolidated About escalup: Narrative, Dhaka Engineering Hub & Leadership */}
-      <AboutManifesto />
-
-      {/* 16. Frequently Asked Questions (Split Corporate Accordion) */}
+      {/* Frequently Asked Questions */}
       <FAQAccordion onOpenCalendly={onOpenCalendly} />
 
-      {/* 17. Comprehensive Enterprise RFQ & Quote Request Hub */}
+      {/* Enterprise RFQ & Scope Request */}
       <ContactSection onOpenCalendly={onOpenCalendly} />
 
     </main>
