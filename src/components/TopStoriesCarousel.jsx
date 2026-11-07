@@ -1,8 +1,9 @@
 // src/components/TopStoriesCarousel.jsx
 // STEP 3 - Item 2: "Top Stories" carousel on a light panel
-// Image-left cards, "1/4" counter, circular prev/next arrows, partially visible next card, drag/swipe support.
+// Image-left cards, "1/4" counter, circular prev/next arrows, drag/swipe support,
+// and 5-second autoplay looping 1 -> 2 -> 3 -> 4 -> 1 with pause/resume on hover, focus, and tab-hidden.
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowRight, ArrowUpRight, Cpu, Layers, Wrench, Database } from 'lucide-react';
 import Badge from './ui/Badge';
@@ -60,21 +61,153 @@ const TOP_STORIES = [
 ];
 
 export default function TopStoriesCarousel() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isTabHidden, setIsTabHidden] = useState(false);
+  const [isReducedMotion, setIsReducedMotion] = useState(() => {
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+    return false;
+  });
 
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev === 0 ? TOP_STORIES.length - 1 : prev - 1));
+  const sectionRef = useRef(null);
+  const timerRef = useRef(null);
+  const remainingTimeRef = useRef(5000);
+  const startTimeRef = useRef(0);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
+  // Manual & auto navigation
+  const nextSlide = useCallback(() => {
+    setDirection(1);
+    setActiveIndex((prev) => (prev === TOP_STORIES.length - 1 ? 0 : prev + 1));
+    remainingTimeRef.current = 5000;
+    startTimeRef.current = Date.now();
+  }, []);
+
+  const prevSlide = useCallback(() => {
+    setDirection(-1);
+    setActiveIndex((prev) => (prev === 0 ? TOP_STORIES.length - 1 : prev - 1));
+    remainingTimeRef.current = 5000;
+    startTimeRef.current = Date.now();
+  }, []);
+
+  // Reduced motion preference
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const handler = (e) => setIsReducedMotion(e.matches);
+    mediaQuery.addEventListener?.('change', handler);
+    return () => mediaQuery.removeEventListener?.('change', handler);
+  }, []);
+
+  // Page Visibility API
+  useEffect(() => {
+    const handleVisibility = () => {
+      setIsTabHidden(document.visibilityState === 'hidden');
+    };
+    document.addEventListener('visibilitychange', handleVisibility);
+    return () => document.removeEventListener('visibilitychange', handleVisibility);
+  }, []);
+
+  const isPaused = isHovered || isFocused || isTabHidden || isReducedMotion;
+
+  // Autoplay timer with pause and resume from elapsed position
+  useEffect(() => {
+    if (isPaused) {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+        const elapsed = Date.now() - startTimeRef.current;
+        remainingTimeRef.current = Math.max(200, remainingTimeRef.current - elapsed);
+      }
+      return;
+    }
+
+    startTimeRef.current = Date.now();
+    timerRef.current = setTimeout(() => {
+      nextSlide();
+    }, remainingTimeRef.current);
+
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+    };
+  }, [activeIndex, isPaused, nextSlide]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowLeft') prevSlide();
+      if (e.key === 'ArrowRight') nextSlide();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [prevSlide, nextSlide]);
+
+  // Touch swipe support
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchEndX.current = e.touches[0].clientX;
   };
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev === TOP_STORIES.length - 1 ? 0 : prev + 1));
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.touches[0].clientX;
   };
 
-  const current = TOP_STORIES[currentIndex];
+  const handleTouchEnd = () => {
+    const diff = touchStartX.current - touchEndX.current;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) nextSlide();
+      else prevSlide();
+    }
+  };
+
+  const current = TOP_STORIES[activeIndex];
   const Icon = current.icon;
 
+  // Directional slide variants (translateX + opacity, no layout jump)
+  const slideVariants = {
+    enter: (dir) => ({
+      x: isReducedMotion ? 0 : (dir > 0 ? 60 : -60),
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        x: { duration: isReducedMotion ? 0 : 0.6, ease: [0.22, 1, 0.36, 1] },
+        opacity: { duration: isReducedMotion ? 0 : 0.45, ease: 'easeOut' },
+      },
+    },
+    exit: (dir) => ({
+      x: isReducedMotion ? 0 : (dir > 0 ? -60 : 60),
+      opacity: 0,
+      transition: {
+        x: { duration: isReducedMotion ? 0 : 0.4, ease: [0.22, 1, 0.36, 1] },
+        opacity: { duration: isReducedMotion ? 0 : 0.3, ease: 'easeIn' },
+      },
+    }),
+  };
+
   return (
-    <section className="py-16 sm:py-20 md:py-24 bg-[#F6F7FB] dark:bg-[#080C0F] border-b border-[#E2E6EE] dark:border-white/10 transition-colors">
+    <section 
+      ref={sectionRef}
+      tabIndex={0}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onFocus={() => setIsFocused(true)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+          setIsFocused(false);
+        }
+      }}
+      className="py-16 sm:py-20 md:py-24 bg-[#F6F7FB] dark:bg-[#080C0F] border-b border-[#E2E6EE] dark:border-white/10 transition-colors focus:outline-none"
+    >
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         {/* Section Header with "1/4" counter & circular arrows */}
@@ -91,7 +224,7 @@ export default function TopStoriesCarousel() {
           {/* Navigation Controls: Counter + Prev/Next Circular Buttons */}
           <div className="flex items-center gap-4">
             <span className="text-sm tracking-widest text-[#5A6679] dark:text-[#9BA8BA]">
-              <strong className="text-[#111827] dark:text-white font-semibold">{currentIndex + 1}</strong> / {TOP_STORIES.length}
+              <strong className="text-[#111827] dark:text-white font-semibold">{activeIndex + 1}</strong> / {TOP_STORIES.length}
             </span>
 
             <div className="flex items-center gap-2">
@@ -115,14 +248,31 @@ export default function TopStoriesCarousel() {
         </div>
 
         {/* Carousel Content Container (Image Left, Content Right) */}
-        <div className="relative overflow-hidden">
-          <AnimatePresence mode="wait">
+        <div 
+          className="relative overflow-hidden cursor-grab active:cursor-grabbing select-none"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={current.id}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.15}
+              onDragEnd={(e, { offset, velocity }) => {
+                const swipeThreshold = 40;
+                if (offset.x < -swipeThreshold || velocity.x < -250) {
+                  nextSlide();
+                } else if (offset.x > swipeThreshold || velocity.x > 250) {
+                  prevSlide();
+                }
+              }}
             >
               <Card
                 variant="white"
@@ -201,4 +351,3 @@ export default function TopStoriesCarousel() {
     </section>
   );
 }
-
