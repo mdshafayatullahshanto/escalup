@@ -5,7 +5,7 @@
 // 3. Process (ProcessTimeline #process)
 // 4. Offshore Model (OffshoreModel #offshore-model, includes Data Security #data-security)
 // 5. Portfolio (InActionCarousel #portfolio + TopStoriesCarousel)
-// 6. About (AboutManifesto #about + CareersBanner + NavigateYourNext + ThoughtLeadershipBento)
+// 6. About (AboutManifesto #about + NavigateYourNext + ThoughtLeadershipBento)
 // 7. Contact (ContactSection #contact)
 // 8. FAQ (FAQAccordion #faq)
 
@@ -20,7 +20,6 @@ import OffshoreModel from '../components/OffshoreModel';
 import InActionCarousel from '../components/InActionCarousel';
 import TopStoriesCarousel from '../components/TopStoriesCarousel';
 import AboutManifesto from '../components/AboutManifesto';
-import CareersBanner from '../components/CareersBanner';
 import NavigateYourNext from '../components/NavigateYourNext';
 import ThoughtLeadershipBento from '../components/ThoughtLeadershipBento';
 import ContactSection from '../components/ContactSection';
@@ -65,7 +64,6 @@ export default function HomePage({ onOpenCalendly }) {
       {/* 6. ABOUT & TEAM EXTENSION                                */}
       {/* -------------------------------------------------------- */}
       <AboutManifesto onOpenCalendly={onOpenCalendly} />
-      <CareersBanner onOpenCalendly={onOpenCalendly} />
       <NavigateYourNext onOpenCalendly={onOpenCalendly} />
       <ThoughtLeadershipBento />
 
