@@ -203,24 +203,24 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
                 className="bg-white dark:bg-[#11161B] rounded-2xl p-5 border border-[#E2E6EE] dark:border-white/10 shadow-card hover:border-[#5846F6]/40 transition-all flex flex-col justify-between"
               >
                 <div>
-                  <span className="text-xs font-mono font-bold text-[#5846F6] block mb-2">0{svc.num}</span>
+                  <span className="text-xs font-mono font-bold text-[#5846F6] block mb-2">0{svc.id}</span>
                   <h4 className="text-sm font-semibold text-[#111827] dark:text-white mb-2 leading-snug">
                     {svc.title}
                   </h4>
                   <ul className="text-xs text-[#5A6679] dark:text-[#9BA8BA] space-y-1 mb-3">
-                    {svc.subServices.slice(0, 3).map((sub, i) => (
+                    {(svc.items || []).slice(0, 3).map((sub, i) => (
                       <li key={i} className="truncate">• {sub}</li>
                     ))}
-                    {svc.subServices.length > 3 && (
+                    {(svc.items || []).length > 3 && (
                       <li className="text-[11px] text-[#0070AD] dark:text-[#38BDF8]">
-                        +{svc.subServices.length - 3} more sub-services
+                        +{svc.items.length - 3} more sub-services
                       </li>
                     )}
                   </ul>
                 </div>
                 <div className="pt-3 border-t border-[#E2E6EE] dark:border-white/10 text-[11px] text-[#5A6679] dark:text-[#9BA8BA]">
                   <span className="font-semibold text-[#111827] dark:text-white">Standards: </span>
-                  <span className="truncate block">{svc.standards}</span>
+                  <span className="truncate block">{svc.standardsSummary || svc.standardsDetail}</span>
                 </div>
               </div>
             ))}

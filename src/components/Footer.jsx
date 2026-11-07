@@ -55,7 +55,7 @@ export default function Footer() {
                     color="muted"
                     className="block py-0.5"
                   >
-                    0{s.num}. {s.title}
+                    0{s.id}. {s.title}
                   </UnderlineLink>
                 </li>
               ))}
