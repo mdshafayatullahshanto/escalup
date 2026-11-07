@@ -16,7 +16,7 @@ const HERO_SLIDES = [
     id: 1,
     num: '01',
     shortLabel: 'Enterprise',
-    tag: 'Global Engineering Partnerships',
+    tag: 'Offshore Engineering Services',
     title: 'Scale Your Project Team with Dedicated Offshore Talent',
     subtitle: 'escalup is your dedicated offshore engineering partner delivering Mechanical CAD, MEP, and BIM coordination for global equipment builders and consultancies.',
     ctaPrimary: 'Request a Quote',

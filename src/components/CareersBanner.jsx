@@ -72,14 +72,6 @@ export default function CareersBanner({ onOpenCalendly }) {
               whileInView="visible"
               viewport={{ once: true, margin: '-50px' }}
             >
-              {/* Eyebrow: Reference Style (Uppercase, letterspaced, blue/indigo) */}
-              <motion.div 
-                variants={itemVariants}
-                className="text-xs font-semibold uppercase tracking-widest text-[#0070AD] dark:text-[#38BDF8]"
-              >
-                Global Engineering Partnerships
-              </motion.div>
-
               {/* Headline: Reference Style (Light 300 with signature indigo gradient) */}
               <motion.h2 
                 variants={itemVariants}
@@ -155,7 +147,7 @@ export default function CareersBanner({ onOpenCalendly }) {
                   <img
                     src={founderImg}
                     alt="Md. Shafayat Ullah Shanto - Founder & Lead Mechanical Engineer at Escalup"
-                    className="w-full h-full object-cover object-top filter grayscale contrast-105 group-hover:grayscale-0 transition-all duration-500"
+                    className="w-full h-full object-cover object-top transition-all duration-500"
                   />
                 </div>
 

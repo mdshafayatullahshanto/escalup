@@ -58,7 +58,7 @@ export default function AboutManifesto({ onOpenCalendly }) {
                 <img
                   src={founderImg}
                   alt="Md. Shafayat Ullah Shanto - Founder & Lead Mechanical Engineer at Escalup"
-                  className="w-full h-full object-cover object-top filter grayscale contrast-105"
+                  className="w-full h-full object-cover object-top"
                   loading="lazy"
                 />
               </div>

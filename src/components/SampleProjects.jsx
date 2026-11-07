@@ -27,7 +27,7 @@ export default function SampleProjects() {
         
         <SectionHeading
           eyebrow="Case Studies & Outcomes"
-          title="Quantifiable Results From Global Engineering Partnerships"
+          title="Quantifiable Results From Offshore Engineering Delivery"
           subtitle="Representative engineering packages delivered to international standards. Anonymized to respect non-disclosure agreements."
         />
 
