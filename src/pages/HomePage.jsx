@@ -1,71 +1,85 @@
 // /src/pages/HomePage.jsx
-// Complete Consilio-inspired editorial engineering experience for escalup
-// Sleek, consistent black-and-white theme with zero duplicate sections
+// Infosys-inspired corporate enterprise engineering experience for escalup
+// Seamless corporate storytelling, interactive multi-story carousel, industry solutions, and verified outcomes.
 
 import React from 'react';
 import Hero from '../components/Hero';
 import LogoTicker from '../components/LogoTicker';
-import AboutManifesto from '../components/AboutManifesto';
+import NavigateYourNext from '../components/NavigateYourNext';
 import ServicesSection from '../components/ServicesSection';
+import WhoWeWorkWith from '../components/WhoWeWorkWith';
 import ValuesSection from '../components/ValuesSection';
 import SampleProjects from '../components/SampleProjects';
-import TestimonialsSection from '../components/TestimonialsSection';
 import ProcessTimeline from '../components/ProcessTimeline';
 import WhyEscalup from '../components/WhyEscalup';
 import ComparisonSection from '../components/ComparisonSection';
 import OffshoreModel from '../components/OffshoreModel';
+import PilotProject from '../components/PilotProject';
 import StatsStrip from '../components/StatsStrip';
 import ToolsSoftware from '../components/ToolsSoftware';
+import AboutManifesto from '../components/AboutManifesto';
 import FAQAccordion from '../components/FAQAccordion';
 import ContactSection from '../components/ContactSection';
+import TestimonialsSection from '../components/TestimonialsSection';
 
 export default function HomePage({ onOpenCalendly }) {
   return (
-    <main className="flex-1 w-full overflow-hidden bg-[#F8FAF9] dark:bg-[#0D1A17] text-[#14201D] dark:text-[#E4EDE9]">
-      {/* 1. Consilio-style Hero with editorial typography, pill CTAs & CAD 3D wireframe */}
+    <main className="flex-1 w-full overflow-hidden bg-[#FFFFFF] dark:bg-[#0B1519] text-[#14201D] dark:text-[#E4EDE9]">
+      
+      {/* 1. Infosys-Style Hero: Authoritative typography, interactive 4-story carousel, CAD 3D wireframe */}
       <Hero onOpenCalendly={onOpenCalendly} />
 
-      {/* 2. Continuous Engineering Standards & Software Marquee Ticker */}
+      {/* 2. Engineering Standards, Compliance & Software Marquee Ticker */}
       <LogoTicker />
 
-      {/* 3. Consolidated About escalup: Statement, Narrative, Hub, 3 Pillars, Leadership & Ticker (Appears Once) */}
-      <AboutManifesto />
+      {/* 3. Infosys Signature: "Navigate Your Next" Enterprise Transformation Section */}
+      <NavigateYourNext onOpenCalendly={onOpenCalendly} />
 
-      {/* 4. Expert Engineering For Every Stage (Services Bento Grid) */}
+      {/* 4. Engineering Services & Capabilities Matrix (With Category Filter Pills) */}
       <ServicesSection />
 
-      {/* 5. Principles Behind Our Client Partnerships (Values Grid) */}
-      <ValuesSection />
+      {/* 5. Industries & Sectors We Serve (Manufacturers, Consultancies, MEP, Hardware Innovators) */}
+      <WhoWeWorkWith />
 
-      {/* 6. Real Results From Engineering Partnerships (Case Studies / Projects) */}
+      {/* 6. Real Results & Case Studies (Quantifiable metrics: 28% cost reduction, 124 clashes caught) */}
       <SampleProjects />
 
-      {/* 7. Client Reviews & Feedback (Auto-hides cleanly when empty) */}
+      {/* 7. Engineering Principles & Hygiene (Values Grid) */}
+      <ValuesSection />
+
+      {/* 8. Verified Client Reviews (Auto-hides cleanly when empty) */}
       <TestimonialsSection />
 
-      {/* 8. A Proven Framework For Precision Delivery (3-Phase Process Workflow) */}
+      {/* 9. A Proven 6-Gate Delivery Framework */}
       <ProcessTimeline />
 
-      {/* 9. The Advantage Of Working With escalup */}
+      {/* 10. The escalup Advantage */}
       <WhyEscalup onOpenCalendly={onOpenCalendly} />
 
-      {/* 10. Consilio-style Signature Comparison: Other Firms vs With escalup */}
+      {/* 11. Symmetrical Comparison: Other Offshore Firms vs The escalup Standard */}
       <ComparisonSection />
 
-      {/* 11. Dedicated Offshore Engagement Models & BST Time Overlaps */}
+      {/* 12. Global Delivery Engine, Live World Clock & 3 Engagement Models */}
       <OffshoreModel onOpenCalendly={onOpenCalendly} />
 
-      {/* 12. Key Metrics & Impact Statistics Strip */}
+      {/* 13. Low-Risk International Trial: Small Paid Pilot Project */}
+      <PilotProject />
+
+      {/* 14. Verified Key Performance Indicators & Impact Statistics Strip */}
       <StatsStrip />
 
-      {/* 13. Supported Engineering CAD & BIM Platforms */}
+      {/* 14. Supported Engineering CAD & BIM Software Platforms */}
       <ToolsSoftware />
 
-      {/* 14. Commonly Asked Questions (Split FAQ Layout) */}
+      {/* 15. Consolidated About escalup: Narrative, Dhaka Engineering Hub & Leadership */}
+      <AboutManifesto />
+
+      {/* 16. Frequently Asked Questions (Split Corporate Accordion) */}
       <FAQAccordion onOpenCalendly={onOpenCalendly} />
 
-      {/* 15. Comprehensive Engineering Inquiry & Quote Form */}
+      {/* 17. Comprehensive Enterprise RFQ & Quote Request Hub */}
       <ContactSection onOpenCalendly={onOpenCalendly} />
+
     </main>
   );
 }

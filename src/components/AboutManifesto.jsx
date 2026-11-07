@@ -69,7 +69,7 @@ export default function AboutManifesto() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#14201D] dark:text-[#E4EDE9] tracking-tight leading-[1.35] sm:leading-[1.38] md:leading-[1.4] mb-8 text-center"
           >
-            Escalup partners with ambitious engineering firms, manufacturers, and contractors to{' '}
+            escalup partners with ambitious engineering firms, manufacturers, and contractors to{' '}
             <span className="relative inline-block pb-2 sm:pb-2.5">
               <span className="bg-gradient-to-r from-[#1B3F3B] via-[#2E756E] to-[#3B948A] bg-clip-text text-transparent">
                 simplify technical complexity
@@ -98,10 +98,10 @@ export default function AboutManifesto() {
           {/* Main Story Narrative */}
           <div className="lg:col-span-7 space-y-5 text-sm sm:text-base text-[#5A6A65] dark:text-[#8FA89F] leading-relaxed">
             <p>
-              <strong className="text-[#2E756E] font-bold">Escalup</strong> is a Mechanical and MEP design company based in Dhaka. We work with manufacturers, developers and contractors worldwide to turn ideas into designs that are clear, practical and ready to build.
+              <strong className="text-[#2E756E] font-bold">escalup</strong> is a Mechanical and MEP design company based in Dhaka. We work with manufacturers, developers and contractors worldwide to turn ideas into designs that are clear, practical and ready to build.
             </p>
             <p>
-              Our clients share one universal challenge: moving from concept to execution without losing precision along the way. Escalup closes that gap, operating exactly where design intent meets engineering reality.
+              Our clients share one universal challenge: moving from concept to execution without losing precision along the way. escalup closes that gap, operating exactly where design intent meets engineering reality.
             </p>
             <p>
               Our work covers the full journey, from early concept to final documentation. On the mechanical side: product development, parametric 3D modeling, DFMA, GD&T, prototyping and PLM-driven data management. On the MEP side: coordinated HVAC, fire safety, and plumbing and drainage designs, supported by BIM and early clash detection. Every decision is guided by practicality, cost efficiency and long-term performance.
@@ -121,7 +121,7 @@ export default function AboutManifesto() {
                 “We believe great projects are built where engineering precision meets thoughtful design.”
               </blockquote>
               <div className="text-xs font-semibold text-[#2E756E] uppercase tracking-wider font-mono">
-                — Escalup Core Principle
+                — escalup Core Principle
               </div>
             </div>
 
@@ -130,8 +130,8 @@ export default function AboutManifesto() {
                 <MapPin className="w-4 h-4 text-[#2E756E]" />
                 <span>Offshore Engineering Center: Uttara, Dhaka</span>
               </div>
-              <p className="text-[#5A6A65] leading-relaxed">
-                Dhaka is a fast-growing engineering hub with world-class technical universities and mechanical talent. Escalup connects this top-tier talent with overseas procurement heads looking for high-fidelity deliverables at balanced offshore rates.
+              <p className="text-[#5A6A65] dark:text-[#8FA89F] leading-relaxed">
+                Dhaka is a fast-growing engineering hub with world-class technical universities and mechanical talent. escalup connects this top-tier talent with overseas procurement heads looking for high-fidelity deliverables at balanced offshore rates.
               </p>
             </div>
           </div>
