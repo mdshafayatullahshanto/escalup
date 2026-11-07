@@ -102,6 +102,22 @@ main {
   animation-play-state: paused;
 }
 
+/* Infosys Hero Segment Progress Animation (scaleX from 0 to 1 over 5s) */
+@keyframes heroProgress {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+.animate-hero-progress {
+  animation: heroProgress 5000ms linear forwards;
+  transform-origin: left;
+  will-change: transform;
+}
+
 /* Custom sleek teal scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
