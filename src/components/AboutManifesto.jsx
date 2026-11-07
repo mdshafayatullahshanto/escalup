@@ -36,10 +36,10 @@ export default function AboutManifesto({ onOpenCalendly }) {
         </div>
 
         {/* Main Narrative Block */}
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center mb-16 sm:mb-20">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-14 items-stretch mb-16 sm:mb-20">
           
           {/* Narrative Paragraphs */}
-          <div className="lg:col-span-7 space-y-6 text-sm sm:text-base text-[#475569] dark:text-[#9BA8BA] leading-relaxed">
+          <div className="lg:col-span-7 space-y-6 text-sm sm:text-base text-[#475569] dark:text-[#9BA8BA] leading-relaxed flex flex-col justify-center">
             <p className="text-base sm:text-lg text-[#111827] dark:text-white font-normal leading-relaxed">
               Escalup is an offshore engineering services company. We provide Mechanical Design, BIM and MEP Design support to international clients, including technology-focused and AI-driven companies.
             </p>
@@ -51,10 +51,10 @@ export default function AboutManifesto({ onOpenCalendly }) {
             </p>
           </div>
 
-          {/* Founder Card */}
-          <div className="lg:col-span-5">
-            <div className="bg-white dark:bg-[#11161B] rounded-3xl p-6 sm:p-8 border border-[#E2E6EE] dark:border-white/10 shadow-card flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
-              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden shadow-xs border border-[#E2E6EE] dark:border-white/10 shrink-0 bg-[#EEF2F8] dark:bg-[#151D26]">
+          {/* Founder Card: Matching height with narrative block, large prominent portrait */}
+          <div className="lg:col-span-5 flex flex-col">
+            <div className="w-full h-full bg-white dark:bg-[#11161B] rounded-3xl p-6 sm:p-7 lg:p-6 xl:p-8 border border-[#E2E6EE] dark:border-white/10 shadow-card flex flex-col sm:flex-row items-center sm:items-stretch gap-5 sm:gap-6 text-center sm:text-left">
+              <div className="w-40 sm:w-44 md:w-48 lg:w-40 xl:w-48 self-stretch shrink-0 rounded-2xl overflow-hidden shadow-xs border border-[#E2E6EE] dark:border-white/10 bg-[#EEF2F8] dark:bg-[#151D26] relative min-h-[200px]">
                 <img
                   src={founderImg}
                   alt="Md. Shafayat Ullah Shanto - Founder & Lead Mechanical Engineer at Escalup"
@@ -63,14 +63,14 @@ export default function AboutManifesto({ onOpenCalendly }) {
                 />
               </div>
 
-              <div className="space-y-1.5 flex-1">
-                <h4 className="text-lg font-medium text-[#111827] dark:text-white">
+              <div className="flex-1 flex flex-col justify-center space-y-2">
+                <h4 className="text-lg sm:text-xl font-medium text-[#111827] dark:text-white tracking-tight">
                   <em><strong>Md. Shafayat Ullah Shanto</strong></em>
                 </h4>
                 <p className="text-xs sm:text-sm text-[#0070AD] dark:text-[#38BDF8] font-medium">
                   Founder & Lead Mechanical Engineer, Escalup
                 </p>
-                <p className="text-xs text-[#5A6679] dark:text-[#9BA8BA] pt-1">
+                <p className="text-xs sm:text-sm text-[#5A6679] dark:text-[#9BA8BA] leading-relaxed pt-0.5">
                   Mechanical design, NPI, PLM governance, and MEP systems engineering.
                 </p>
                 <div className="pt-2">
@@ -78,7 +78,7 @@ export default function AboutManifesto({ onOpenCalendly }) {
                     href="https://www.linkedin.com/in/md-shafayat-ullah-shanto-262456209/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs text-[#5846F6] hover:underline"
+                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-[#5846F6] hover:underline"
                   >
                     <LinkedInIcon className="w-3.5 h-3.5" />
                     <span>LinkedIn Profile</span>
