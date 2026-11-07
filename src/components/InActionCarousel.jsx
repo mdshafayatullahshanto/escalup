@@ -1,9 +1,13 @@
 // src/components/InActionCarousel.jsx
-// SECTION 1: Black "In Action" section with a horizontal peek carousel (next card ~15% visible, drag/swipe, 1/4 counter, round arrows).
-// Unified design system: Inter-only font, light-weight heading, indigo accents, zero green/teal, zero monospace, zero stray dots.
+// SECTION 1: "Real Delivery, Measurable Impact"
+// Unified near-black/indigo dark tone, max-w-[1400px] container,
+// true 4-slide horizontal peek carousel where EVERY slide has the exact same rich structure.
+// Next slide peeks ~15% on the right at opacity ~0.5 and scale ~0.985.
+// Drag/swipe, keyboard arrows, 6s autoplay with pause on hover/focus/tab-hidden,
+// light-weight heading with "Measurable Impact." in semibold, 15px deliverables, indigo link.
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight, ArrowUpRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import Badge from './ui/Badge';
 
@@ -14,9 +18,14 @@ const ACTION_PROJECTS = [
     discipline: 'Mechanical Solid Modeling',
     clientType: 'European Automation Equipment Builder',
     outcome: 'Eliminated 18 shop-floor interference points prior to tooling manufacture.',
-    metric: '18 Clashes Prevented',
+    metricNum: '18',
+    metricPhrase: 'Clashes Prevented',
     standards: 'ASME Y14.5M · ISO 1101 · SolidWorks Native',
-    deliverables: ['3D Parametric CAD Assembly', '2D Manufacturing Drawings with GD&T', 'Full Multi-Level Indented BOM'],
+    deliverables: [
+      '3D Parametric CAD Assembly',
+      '2D Manufacturing Drawings with GD&T',
+      'Full Multi-Level Indented BOM'
+    ],
   },
   {
     id: 2,
@@ -24,9 +33,14 @@ const ACTION_PROJECTS = [
     discipline: 'MEP BIM Coordination',
     clientType: 'Commercial MEP Contracting Firm',
     outcome: 'Delivered coordinated Revit models with zero spatial collisions in medical gas and duct risers.',
-    metric: '124 Spatial Collisions Solved',
+    metricNum: '124',
+    metricPhrase: 'Spatial Collisions Solved',
     standards: 'Autodesk Revit · Navisworks · ASHRAE 90.1',
-    deliverables: ['LOD 350-400 Coordinated Revit Models', 'Navisworks Clash Resolution Matrix', 'Contractor Spool & Shop Drawings'],
+    deliverables: [
+      'LOD 350-400 Coordinated Revit Models',
+      'Navisworks Clash Resolution Matrix',
+      'Contractor Spool & Shop Drawings'
+    ],
   },
   {
     id: 3,
@@ -34,9 +48,14 @@ const ACTION_PROJECTS = [
     discipline: 'DFMA & Tooling Detailing',
     clientType: 'Industrial Electronics Manufacturer',
     outcome: 'Standardized bend deductions and flat patterns, cutting press brake cycle time by 28%.',
-    metric: '28% Cycle Time Cut',
+    metricNum: '28%',
+    metricPhrase: 'Cycle Time Cut',
     standards: 'Sheet Metal DIN 6935 · K-Factor 0.44',
-    deliverables: ['Unfolded DXF Flat Patterns for Laser Cutting', 'Forming & Bend Sequence Drawings', 'Tooling & Inspection Fixture Prints'],
+    deliverables: [
+      'Unfolded DXF Flat Patterns for Laser Cutting',
+      'Forming & Bend Sequence Drawings',
+      'Tooling & Inspection Fixture Prints'
+    ],
   },
   {
     id: 4,
@@ -44,67 +63,160 @@ const ACTION_PROJECTS = [
     discipline: 'PLM Vault Data Governance',
     clientType: 'Energy Systems Supplier',
     outcome: 'Converted 1,400+ legacy 2D drawings into native parametric models with 100% ERP BOM parity.',
-    metric: '1,400+ Drawings Standardized',
+    metricNum: '1,400+',
+    metricPhrase: 'Drawings Standardized',
     standards: 'Siemens NX · Teamcenter PDM · ASME Y14.100',
-    deliverables: ['Native 3D NX Models with Feature Trees', 'Teamcenter Vault Attribute Mapping', 'Drawing Border & Title Block Migration'],
+    deliverables: [
+      'Native 3D NX Models with Feature Trees',
+      'Teamcenter Vault Attribute Mapping',
+      'Drawing Border & Title Block Migration'
+    ],
   }
 ];
 
 export default function InActionCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isTabHidden, setIsTabHidden] = useState(false);
+  const [isReducedMotion, setIsReducedMotion] = useState(() => {
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+    return false;
+  });
+  const [isDesktop, setIsDesktop] = useState(() => {
+    if (typeof window !== 'undefined') return window.innerWidth >= 1024;
+    return true;
+  });
 
-  const prevSlide = () => {
+  const sectionRef = useRef(null);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
+  const prevSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev === 0 ? ACTION_PROJECTS.length - 1 : prev - 1));
-  };
+  }, []);
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev === ACTION_PROJECTS.length - 1 ? 0 : prev + 1));
+  }, []);
+
+  // Window resize listener for peek calculations
+  useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth >= 1024);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Reduced motion preference
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const handler = (e) => setIsReducedMotion(e.matches);
+    mediaQuery.addEventListener?.('change', handler);
+    return () => mediaQuery.removeEventListener?.('change', handler);
+  }, []);
+
+  // Page Visibility API
+  useEffect(() => {
+    const handleVisibility = () => {
+      setIsTabHidden(document.visibilityState === 'hidden');
+    };
+    document.addEventListener('visibilitychange', handleVisibility);
+    return () => document.removeEventListener('visibilitychange', handleVisibility);
+  }, []);
+
+  // 6-second optional autoplay, pauses on hover, focus, or hidden tab
+  const isPaused = isHovered || isFocused || isTabHidden;
+  useEffect(() => {
+    if (isPaused || isReducedMotion) return;
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [isPaused, isReducedMotion, nextSlide]);
+
+  // Keyboard navigation when focused inside section
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowLeft') prevSlide();
+      if (e.key === 'ArrowRight') nextSlide();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [prevSlide, nextSlide]);
+
+  // Touch swipe support on mobile/tablet
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchEndX.current = e.touches[0].clientX;
   };
 
-  const nextIndex = (currentIndex + 1) % ACTION_PROJECTS.length;
-  const current = ACTION_PROJECTS[currentIndex];
-  const nextProject = ACTION_PROJECTS[nextIndex];
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const diff = touchStartX.current - touchEndX.current;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) nextSlide();
+      else prevSlide();
+    }
+  };
 
   return (
-    <section className="py-20 sm:py-28 md:py-32 bg-[#0B0F14] text-white border-b border-white/10 relative overflow-hidden font-sans">
-      {/* Background radial glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#5846F6]/10 rounded-full blur-[160px] pointer-events-none" />
+    <section 
+      ref={sectionRef}
+      tabIndex={0}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onFocus={() => setIsFocused(true)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+          setIsFocused(false);
+        }
+      }}
+      className="w-full bg-[#080B11] bg-gradient-to-b from-[#080B11] via-[#0B0F18] to-[#080B11] text-white py-14 sm:py-20 md:py-24 border-y border-white/10 relative overflow-hidden font-sans focus:outline-none"
+    >
+      {/* Subtle ambient lighting */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-[#5846F6]/06 rounded-full blur-[160px] pointer-events-none" />
 
-      <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16 relative z-10">
+      {/* Shared ~1400px centered container with equal padding */}
+      <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
         
-        {/* Section Header with Controls: No stray dots, no mono text */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 lg:mb-16">
+        {/* Section Header with Controls */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10 sm:mb-12 lg:mb-14">
           <div>
             <div className="mb-3">
               <Badge variant="navy" size="sm" className="bg-[#121926] text-[#A5B4FC] border border-white/10">
                 Engineering in Action
               </Badge>
             </div>
-            {/* Light-weight heading with ONE semibold phrase */}
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-white tracking-tight">
+            {/* Light-weight heading with ONLY "Measurable Impact." in semibold */}
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-white tracking-tight leading-tight">
               Real Delivery, <span className="font-semibold text-white">Measurable Impact.</span>
             </h2>
           </div>
 
-          {/* Navigation Controls: Counter + Round Arrows */}
+          {/* Navigation Controls: Counter + Round Arrow Buttons */}
           <div className="flex items-center gap-4">
-            <span className="text-sm tracking-wider text-white/60">
-              <strong className="text-white font-medium">{currentIndex + 1}</strong> / {ACTION_PROJECTS.length}
+            <span className="text-sm font-medium tracking-wider text-white/70">
+              <strong className="text-white font-semibold">{currentIndex + 1}</strong> / {ACTION_PROJECTS.length}
             </span>
 
             <div className="flex items-center gap-2">
               <button
                 onClick={prevSlide}
-                aria-label="Previous in action case"
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95"
+                aria-label="Previous case study"
+                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-white flex items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5846F6]"
               >
                 <ArrowLeft className="w-4 h-4" />
               </button>
 
               <button
                 onClick={nextSlide}
-                aria-label="Next in action case"
-                className="w-10 h-10 rounded-full bg-white text-[#111827] hover:bg-white/90 flex items-center justify-center transition-all cursor-pointer shadow-lg hover:scale-105 active:scale-95"
+                aria-label="Next case study"
+                className="w-10 h-10 rounded-full bg-white text-[#111827] hover:bg-white/90 flex items-center justify-center transition-all cursor-pointer shadow-lg hover:scale-105 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5846F6]"
               >
                 <ArrowRight className="w-4 h-4" />
               </button>
@@ -112,120 +224,132 @@ export default function InActionCarousel() {
           </div>
         </div>
 
-        {/* Horizontal Peek Carousel (Next card ~15% visible on the right) */}
-        <div className="relative">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
-            
-            {/* Active Card (85% width on large screens) */}
-            <div className="lg:col-span-10">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={current.id}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                  drag="x"
-                  dragConstraints={{ left: 0, right: 0 }}
-                  onDragEnd={(e, { offset }) => {
-                    if (offset.x < -40) nextSlide();
-                    if (offset.x > 40) prevSlide();
+        {/* 
+          Horizontal Peek Carousel:
+          4 slides, each using the exact SAME full card structure.
+          Next slide peeks ~15% on the right at opacity ~0.5 and scale ~0.985.
+        */}
+        <div 
+          className="relative w-full overflow-hidden cursor-grab active:cursor-grabbing select-none"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          <motion.div
+            className="flex items-stretch gap-5 sm:gap-6 will-change-transform"
+            animate={{
+              x: `calc(-${currentIndex * (isDesktop ? 85 : 88)}% - ${currentIndex * (isDesktop ? 1.5 : 1.25)}rem)`
+            }}
+            transition={{
+              duration: isReducedMotion ? 0 : 0.6,
+              ease: [0.22, 1, 0.36, 1]
+            }}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            onDragEnd={(e, { offset, velocity }) => {
+              const swipeThreshold = 40;
+              if (offset.x < -swipeThreshold || velocity.x < -250) {
+                nextSlide();
+              } else if (offset.x > swipeThreshold || velocity.x > 250) {
+                prevSlide();
+              }
+            }}
+          >
+            {ACTION_PROJECTS.map((project, idx) => {
+              const isActive = idx === currentIndex;
+
+              return (
+                <div
+                  key={project.id}
+                  onClick={() => {
+                    if (!isActive) setCurrentIndex(idx);
                   }}
-                  className="p-8 sm:p-12 lg:p-14 rounded-3xl bg-[#11161F] border border-white/15 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center cursor-grab active:cursor-grabbing"
+                  className={`shrink-0 w-[88%] sm:w-[86%] lg:w-[85%] rounded-3xl p-6 sm:p-10 lg:p-12 transition-all duration-500 ${
+                    isActive
+                      ? 'bg-[#0E1420] border border-white/10 shadow-2xl opacity-100 scale-100 cursor-default pointer-events-auto'
+                      : 'bg-[#0E1420]/75 border border-white/06 shadow-lg opacity-50 hover:opacity-75 scale-[0.985] cursor-pointer'
+                  }`}
                 >
-                  {/* Left 7 cols: Case Narrative */}
-                  <div className="lg:col-span-7 space-y-5">
-                    <div className="flex flex-wrap items-center gap-2.5">
-                      <Badge variant="navy" size="xs" className="bg-[#182232] text-[#A5B4FC] border border-white/10">
-                        {current.discipline}
-                      </Badge>
-                      <span className="text-xs text-white/60">
-                        {current.clientType}
-                      </span>
-                    </div>
-
-                    <h3 className="text-2xl sm:text-3xl font-light text-white leading-tight">
-                      {current.title}
-                    </h3>
-
-                    <p className="text-sm sm:text-base text-white/80 leading-relaxed font-normal">
-                      {current.outcome}
-                    </p>
-
-                    <div className="space-y-2 pt-2">
-                      <div className="text-xs font-semibold uppercase tracking-wider text-[#A5B4FC]">
-                        Key Production Deliverables:
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+                    
+                    {/* Left 7 cols: Case Narrative */}
+                    <div className="lg:col-span-7 space-y-5 text-left">
+                      <div className="flex flex-wrap items-center gap-2.5">
+                        <Badge variant="navy" size="xs" className="bg-[#182232] text-[#A5B4FC] border border-white/10">
+                          {project.discipline}
+                        </Badge>
+                        <span className="text-sm text-white/75 font-normal">
+                          {project.clientType}
+                        </span>
                       </div>
-                      {current.deliverables.map((item, idx) => (
-                        <div key={idx} className="flex items-center gap-2 text-xs sm:text-sm text-white/90">
-                          {/* Indigo Accent Check */}
-                          <CheckCircle2 className="w-4 h-4 text-[#5846F6] shrink-0" />
-                          <span>{item}</span>
+
+                      <h3 className="text-2xl sm:text-3xl font-light text-white leading-tight">
+                        {project.title}
+                      </h3>
+
+                      <p className="text-sm sm:text-[15px] text-white/80 leading-relaxed font-normal">
+                        {project.outcome}
+                      </p>
+
+                      {/* Deliverables list: 15px text and indigo check icons */}
+                      <div className="space-y-2 pt-2">
+                        <div className="text-xs font-semibold uppercase tracking-wider text-[#A5B4FC]">
+                          Key Production Deliverables:
                         </div>
-                      ))}
+                        {project.deliverables.map((item, dIdx) => (
+                          <div key={dIdx} className="flex items-center gap-2.5 text-[15px] text-white/90">
+                            <CheckCircle2 className="w-4 h-4 text-[#5846F6] shrink-0" />
+                            <span>{item}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Governed Under standard (minimum 14px, WCAG AA compliant) */}
+                      <div className="text-sm text-white/70 pt-1">
+                        Governed Under: {project.standards}
+                      </div>
                     </div>
 
-                    <div className="text-xs text-white/50 pt-1">
-                      Governed Under: {current.standards}
+                    {/* Right 5 cols: Inner "Verified Result" Panel on subtle lighter surface with NO heavy border */}
+                    <div className="lg:col-span-5 p-6 sm:p-8 rounded-2xl bg-[#141A26]/85 border border-white/08 flex flex-col justify-between text-left shadow-lg">
+                      <div className="space-y-2">
+                        <div className="text-xs font-medium text-[#A5B4FC] uppercase tracking-wider">
+                          Verified Result
+                        </div>
+                        {/* Big text: light weight with key phrase in semibold */}
+                        <div className="text-3xl sm:text-4xl lg:text-5xl font-light text-white tracking-tight leading-tight">
+                          {project.metricNum}{' '}
+                          <span className="font-semibold text-white">
+                            {project.metricPhrase}
+                          </span>
+                        </div>
+                        <div className="text-sm text-white/70 mt-1">
+                          Documented in project release logs
+                        </div>
+                      </div>
+
+                      <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
+                        <div className="flex items-center gap-2 text-sm text-white/75">
+                          <ShieldCheck className="w-4 h-4 text-[#5846F6]" />
+                          <span>Protected by Mutual NDA</span>
+                        </div>
+
+                        {/* Indigo link with arrow and hover animation */}
+                        <a
+                          href="#contact"
+                          className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#5846F6] hover:text-[#8172FC] transition-colors group"
+                        >
+                          <span>Inquire Scope</span>
+                          <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        </a>
+                      </div>
                     </div>
+
                   </div>
-
-                  {/* Right 5 cols: Metric Card in Black/Indigo */}
-                  <div className="lg:col-span-5 p-8 rounded-2xl bg-black/40 border border-white/10 flex flex-col justify-between text-left">
-                    <div className="space-y-2">
-                      <div className="text-xs font-medium text-[#A5B4FC] uppercase tracking-wider">
-                        Verified Result
-                      </div>
-                      <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
-                        {current.metric}
-                      </div>
-                      <div className="text-xs text-white/60">
-                        Documented in project release logs
-                      </div>
-                    </div>
-
-                    <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
-                      <div className="flex items-center gap-2 text-xs text-white/80">
-                        <ShieldCheck className="w-4 h-4 text-[#5846F6]" />
-                        <span>Protected by Mutual NDA</span>
-                      </div>
-
-                      <a
-                        href="#contact"
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#A5B4FC] hover:text-white transition-colors"
-                      >
-                        <span>Inquire Scope</span>
-                        <ArrowUpRight className="w-3.5 h-3.5" />
-                      </a>
-                    </div>
-                  </div>
-
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-            {/* Next Card ~15% Peek (Visible on desktop) */}
-            <div 
-              onClick={nextSlide}
-              className="hidden lg:flex lg:col-span-2 p-6 rounded-3xl bg-[#11161F]/60 hover:bg-[#11161F] border border-white/10 opacity-70 hover:opacity-100 transition-all cursor-pointer flex-col justify-between overflow-hidden"
-              title="View next case"
-            >
-              <div className="space-y-3">
-                <Badge variant="navy" size="xs" className="bg-[#182232] text-[#A5B4FC] border border-white/10">
-                  {nextProject.discipline.split(' ')[0]}
-                </Badge>
-                <div className="text-xs font-medium text-white/50">Next Case</div>
-                <h4 className="text-sm font-light text-white line-clamp-3">
-                  {nextProject.title}
-                </h4>
-              </div>
-              <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-[#A5B4FC]">
-                <span>{nextProject.metric}</span>
-                <ArrowRight className="w-4 h-4" />
-              </div>
-            </div>
-
-          </div>
+                </div>
+              );
+            })}
+          </motion.div>
         </div>
 
       </div>
