@@ -15,7 +15,6 @@ import {
   Wrench, 
   RefreshCw 
 } from 'lucide-react';
-import SectionHeading from './SectionHeading';
 
 const PHASES = [
   {
@@ -119,11 +118,23 @@ export default function ProcessTimeline() {
     <section id="process" className="py-20 md:py-28 bg-[#F6F7FB] dark:bg-[#080C0F] text-[#111827] dark:text-white border-b border-[#E2E6EE] dark:border-white/10 relative scroll-mt-12 transition-colors">
       <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         
-        <SectionHeading
-          eyebrow="Design Approach"
-          title="Structured Engineering Design Methodology"
-          subtitle="A structured engineering design methodology built on precision, thorough analysis, and iterative refinement. It applies to both product design and building services design. Every deliverable is checked against the applicable standards (ASME, ISO, ASHRAE, NFPA, BNBC, IPC), managed through controlled product data and change records, and prepared for real-world manufacturing or construction. The process stays adaptable to changing project requirements."
-        />
+        {/* Section Header */}
+        <div className="max-w-4xl mx-auto text-center mb-16 sm:mb-20">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#0070AD]/10 text-[#0070AD] dark:text-[#38BDF8] border border-[#0070AD]/20 mb-4">
+            <span>Design Approach</span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-tight mb-4">
+            Structured Engineering{' '}
+            <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
+              Design Methodology
+            </span>
+          </h2>
+
+          <p className="text-sm sm:text-base text-[#5A6679] dark:text-[#9BA8BA] leading-relaxed max-w-3xl mx-auto font-normal">
+            A structured engineering design methodology built on precision, thorough analysis, and iterative refinement. It applies to both product design and building services design. Every deliverable is checked against the applicable standards (ASME, ISO, ASHRAE, NFPA, BNBC, IPC), managed through controlled product data and change records, and prepared for real-world manufacturing or construction. The process stays adaptable to changing project requirements.
+          </p>
+        </div>
 
         {/* 3 Main Phase Columns */}
         <motion.div

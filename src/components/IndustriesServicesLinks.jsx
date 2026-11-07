@@ -54,7 +54,10 @@ export default function IndustriesServicesLinks() {
             Engineering Directory
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#111827] dark:text-white tracking-tight">
-            Industries and Services <span className="font-semibold">Capability Matrix</span>
+            Industries and Services{' '}
+            <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
+              Capability Matrix
+            </span>
           </h2>
           <p className="text-sm text-[#5A6679] dark:text-[#9BA8BA] mt-2">
             Explore dedicated offshore engineering teams across mechanical, MEP, and manufacturing disciplines.

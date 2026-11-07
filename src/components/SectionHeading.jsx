@@ -47,8 +47,8 @@ export default function SectionHeading({
     >
       {eyebrow && (
         <motion.div variants={itemVariants}>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3.5 bg-[#2E756E]/10 dark:bg-[#3B948A]/15 text-[#2E756E] dark:text-[#3B948A] border border-[#2E756E]/20 dark:border-[#3B948A]/30">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#2E756E] animate-pulse"></span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-3.5 bg-[#0070AD]/10 text-[#0070AD] dark:text-[#38BDF8] border border-[#0070AD]/20">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#0070AD] animate-pulse"></span>
             {eyebrow}
           </div>
         </motion.div>
@@ -56,7 +56,7 @@ export default function SectionHeading({
 
       <motion.h2
         variants={itemVariants}
-        className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight leading-tight text-[#14201D] dark:text-[#E4EDE9]"
+        className="text-2xl sm:text-3xl md:text-4xl font-light tracking-tight leading-tight text-[#111827] dark:text-white"
       >
         {title}
       </motion.h2>

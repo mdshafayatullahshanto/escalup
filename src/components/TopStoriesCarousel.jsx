@@ -217,7 +217,10 @@ export default function TopStoriesCarousel() {
               Featured Case Insights
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#111827] dark:text-white tracking-tight">
-              Top Engineering <span className="font-semibold">Stories & Outcomes</span>
+              Top Engineering{' '}
+              <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
+                Stories & Outcomes
+              </span>
             </h2>
           </div>
 

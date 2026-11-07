@@ -123,7 +123,7 @@ export default function ContactSection({ onOpenCalendly }) {
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-tight mb-4">
             Request a{' '}
-            <span className="font-semibold text-[#111827] dark:text-white">
+            <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
               Detailed Engineering Quote.
             </span>
           </h2>
