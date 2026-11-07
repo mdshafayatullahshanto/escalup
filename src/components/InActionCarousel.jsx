@@ -62,7 +62,7 @@ const ACTION_PROJECTS = [
     title: 'Turbine Housing Assembly Drawing Border Migration',
     discipline: 'PLM Vault Data Governance',
     clientType: 'Energy Systems Supplier',
-    outcome: 'Converted 1,400+ legacy 2D drawings into native parametric models with 100% ERP BOM parity under formal ECN revision control.',
+    outcome: 'Converted 1,400+ legacy 2D drawings into native parametric models with ERP BOM parity under formal ECN revision control.',
     metricNum: '1,400+',
     metricPhrase: 'Drawings Standardized',
     standards: 'Siemens NX · Teamcenter PDM · ASME Y14.100',
@@ -218,6 +218,7 @@ export default function InActionCarousel() {
 
   return (
     <section 
+      id="portfolio"
       ref={sectionRef}
       tabIndex={0}
       onMouseEnter={() => setIsHovered(true)}
@@ -349,7 +350,7 @@ export default function InActionCarousel() {
                     <span>Protected by Mutual NDA</span>
                   </div>
                   <span className="font-medium text-[#0070AD] dark:text-[#38BDF8]">
-                    100% Native CAD
+                    Native Parametric CAD
                   </span>
                 </div>
               </div>

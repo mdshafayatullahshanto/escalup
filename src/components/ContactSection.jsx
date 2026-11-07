@@ -129,7 +129,7 @@ export default function ContactSection({ onOpenCalendly }) {
           </h2>
 
           <p className="text-sm sm:text-base md:text-lg text-[#5A6679] dark:text-[#9BA8BA] leading-relaxed max-w-2xl mx-auto font-normal">
-            Send us your drawings, CAD files, or project brief. We will review your technical specifications and return a comprehensive quote within 24 hours.
+            Share your project requirements. We will review them and respond with a proposed scope. Work is carried out under a mutual NDA, and the client owns all project IP.
           </p>
         </div>
 

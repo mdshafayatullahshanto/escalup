@@ -1,12 +1,19 @@
 // /src/data/company.js
-// Central company contact info, working hours, and conversion links
+// Central company positioning, contact info, and operational details
 
 export const companyData = {
-  name: 'escalup',
-  tagline: 'Offshore Engineering Services | CAD · MEP · BIM',
-  subheadline: 'We bring people and engineering together to build things better.',
-  description: 'escalup is your offshore engineering partner. We deliver Mechanical, Product and MEP design support for manufacturers, engineering firms and contractors worldwide, with clear communication and production-ready documentation.',
+  name: 'Escalup',
+  tagline: 'Offshore Engineering Services | Mechanical Design · BIM · MEP',
+  subheadline: 'Scale Your Project Team with Dedicated Offshore Talent.',
+  description: 'Escalup is an offshore engineering services company. We provide Mechanical Design, BIM and MEP Design support to large international clients, including AI-driven and technology-focused companies, through an offshore model. Data security is a strict requirement for us. We handle project data in a Microsoft environment primarily and adapt to the client\'s software and environment when needed.',
   
+  founder: {
+    name: 'Md. Shafayat Ullah Shanto',
+    formattedName: '***Md. Shafayat Ullah Shanto***',
+    title: 'Founder & Lead Mechanical Engineer, Escalup',
+    bio: 'A mechanical engineer with a background in mechanical design, industrial product development, CAD modeling, engineering documentation, PLM and MEP engineering, including HVAC, fire protection and plumbing systems.'
+  },
+
   location: {
     area: 'Uttara',
     city: 'Dhaka',
@@ -32,41 +39,15 @@ export const companyData = {
 
   workingHours: {
     timezone: 'Asia/Dhaka (BST, UTC+6)',
-    schedule: 'Monday – Friday, 10:00 – 19:00 BST',
-    weekendSupport: 'Available on-demand for critical project releases',
-    overlaps: [
-      {
-        city: 'London (Europe)',
-        zone: 'GMT / BST',
-        overlapHours: '4 – 5 Hours Morning Overlap',
-        note: 'Review submissions in your morning; overnight drafting turnaround'
-      },
-      {
-        city: 'Dubai (Middle East)',
-        zone: 'GST (UTC+4)',
-        overlapHours: '6 – 7 Hours Direct Alignment',
-        note: 'Near synchronous business hours collaboration'
-      },
-      {
-        city: 'Sydney (Asia-Pacific)',
-        zone: 'AEST / AEDT',
-        overlapHours: '5 – 6 Hours Shared Workday',
-        note: 'Direct daytime standups and milestone reviews'
-      },
-      {
-        city: 'New York (North America)',
-        zone: 'EST / EDT',
-        overlapHours: 'Dedicated Overnight Sprints',
-        note: 'Submit requests at 5 PM EST, receive deliverables by 9 AM EST'
-      }
-    ]
+    schedule: 'Monday – Friday, agreed with client at project start',
+    note: 'Working hours and availability are agreed with you at project start.'
   },
 
-  trustBadges: [
-    'NDA executed before kickoff',
-    'Client owns 100% of IP & source CAD',
-    'Guaranteed quote within 24 hours',
-    'Time-zone overlap: International Regional Hubs',
-    'ASME & ISO international drawing standards'
+  commitments: [
+    'Work carried out under a mutual NDA',
+    'Native parametric CAD files in client drawing format',
+    'Client owns all project IP',
+    'Data handled primarily in a Microsoft 365 environment',
+    'Adaptable to client software, templates, and secure platforms'
   ]
 };

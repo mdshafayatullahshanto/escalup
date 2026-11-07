@@ -1,77 +1,101 @@
-// /src/components/ProcessTimeline.jsx
-// Consilio-style structured engineering delivery framework (3 major phases / 6 detailed execution gates)
-// Light Editorial Engineering Theme with Deep Teal accents
+// src/components/ProcessTimeline.jsx
+// DESIGN APPROACH (Single process for all 7 services)
+// 9 Steps in exact sequence with structured engineering design methodology
 
 import React from 'react';
 import { motion } from 'framer-motion';
 import { 
-  MessageSquareCheck, 
+  FileSearch, 
   Lightbulb, 
   Box, 
-  CheckCheck, 
-  FileCheck, 
-  HeadphonesIcon
+  Calculator, 
+  FileText, 
+  CheckCircle2, 
+  ThumbsUp, 
+  Wrench, 
+  RefreshCw 
 } from 'lucide-react';
 import SectionHeading from './SectionHeading';
 
 const PHASES = [
   {
     phase: 'Phase 01',
-    phaseTitle: 'Discover & Align',
+    phaseTitle: 'Specification & Concept',
     steps: [
       {
         num: '01',
-        title: 'Requirement & Scope Discussion',
-        desc: 'Align on design briefs, manufacturing constraints, CAD formats, and international drafting standards under strict NDA.',
-        icon: MessageSquareCheck,
-        badge: 'Gate 1'
+        title: 'Requirements & Scope',
+        desc: 'Review project brief, models, CAD/BIM standards, software environment, and client drawing borders under mutual NDA.',
+        icon: FileSearch,
+        badge: 'Step 1'
       },
       {
         num: '02',
-        title: 'Concept & Feasibility Assessment',
-        desc: 'Conduct initial engineering trade studies, mechanism layout sketches, and feasibility reviews before modeling.',
+        title: 'Concept Design',
+        desc: 'Preliminary architecture, design trade studies, kinematics layouts, and spatial feasibility verification.',
         icon: Lightbulb,
-        badge: 'Gate 2'
+        badge: 'Step 2'
+      },
+      {
+        num: '03',
+        title: 'CAD / BIM Modeling',
+        desc: '3D parametric solid modeling, surfacing, sheet metal flat patterns, or coordinated Revit LOD 300–400 assemblies.',
+        icon: Box,
+        badge: 'Step 3'
       }
     ]
   },
   {
     phase: 'Phase 02',
-    phaseTitle: 'Model & Validate',
+    phaseTitle: 'Analysis & Documentation',
     steps: [
       {
-        num: '03',
-        title: 'Parametric 3D CAD & BIM Modeling',
-        desc: 'Build parametric 3D CAD parts, sheet metal components, or coordinated MEP Revit assemblies with strict layer rules.',
-        icon: Box,
-        badge: 'Gate 3'
+        num: '04',
+        title: 'Engineering Calculations & Analysis',
+        desc: 'Structural mechanics, FEA numerical simulation, HVAC heat loads, and pipe/duct sizing.',
+        icon: Calculator,
+        badge: 'Step 4'
       },
       {
-        num: '04',
-        title: 'Engineering Review & Clash Audits',
-        desc: 'Perform tolerance stack-up audits, FEA stress validation, and Navisworks clash detection tests with regular client review gates.',
-        icon: CheckCheck,
-        badge: 'Gate 4'
+        num: '05',
+        title: 'Detailed Drawings, GD&T & BOM',
+        desc: 'Manufacturing drawings with ASME Y14.5 / ISO 1101 GD&T, tolerance stacks, multi-level BOMs, and spool drawings.',
+        icon: FileText,
+        badge: 'Step 5'
+      },
+      {
+        num: '06',
+        title: 'Review, Simulation & Coordination',
+        desc: 'Drawing verification, design gate audits, collision detection, and Navisworks multi-discipline clash resolution.',
+        icon: CheckCircle2,
+        badge: 'Step 6'
       }
     ]
   },
   {
     phase: 'Phase 03',
-    phaseTitle: 'Deliver & Support',
+    phaseTitle: 'Approval & Handover',
     steps: [
       {
-        num: '05',
-        title: 'Production Drawing Release & Sign-Off',
-        desc: 'Generate fabrication drawings to ASME Y14.5 standards with GD&T, comprehensive BOMs, and CAM-ready DXF exports.',
-        icon: FileCheck,
-        badge: 'Gate 5'
+        num: '07',
+        title: 'Client Approval',
+        desc: 'Formal deliverable presentation and technical review; advancing to next phase strictly upon client sign-off.',
+        icon: ThumbsUp,
+        badge: 'Step 7'
       },
       {
-        num: '06',
-        title: 'Ongoing Revision & Production Support',
-        desc: 'Support your shop floor and field contractors through fabrication, assembly, prototype adjustments, and engineering changes.',
-        icon: HeadphonesIcon,
-        badge: 'Gate 6'
+        num: '08',
+        title: 'Manufacturing / Construction Support',
+        desc: 'DFM/DFMA shop-floor support, vendor coordination, CNC/CAM constraints, and contractor field RFIs.',
+        icon: Wrench,
+        badge: 'Step 8'
+      },
+      {
+        num: '09',
+        title: 'Feedback, Change Management & Continuous Improvement',
+        desc: 'Tracked revisions, formal ECN / ECO / ECR documentation, configuration governance, and workflow refinement.',
+        icon: RefreshCw,
+        badge: 'Step 9'
       }
     ]
   }
@@ -82,23 +106,23 @@ export default function ProcessTimeline() {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
-      transition: { staggerChildren: 0.1 }
+      transition: { staggerChildren: 0.08 }
     }
   };
 
   const item = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 18 },
     show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } }
   };
 
   return (
-    <section id="process" className="py-20 md:py-28 bg-white dark:bg-[#0F201C] border-b border-[#DBE3E0] dark:border-[#263830] relative scroll-mt-12">
-      <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
+    <section id="process" className="py-20 md:py-28 bg-[#F6F7FB] dark:bg-[#080C0F] text-[#111827] dark:text-white border-b border-[#E2E6EE] dark:border-white/10 relative scroll-mt-12 transition-colors">
+      <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         
         <SectionHeading
-          eyebrow="Proven Workflow"
-          title="A Structured Framework For Precision Engineering"
-          subtitle="Every project follows a structured engineering gate process designed to prevent errors, catch site clashes early, and eliminate late rework."
+          eyebrow="Design Approach"
+          title="Structured Engineering Design Methodology"
+          subtitle="A structured engineering design methodology built on precision, thorough analysis, and iterative refinement. It applies to both product design and building services design. Every deliverable is checked against the applicable standards (ASME, ISO, ASHRAE, NFPA, BNBC, IPC), managed through controlled product data and change records, and prepared for real-world manufacturing or construction. The process stays adaptable to changing project requirements."
         />
 
         {/* 3 Main Phase Columns */}
@@ -110,51 +134,48 @@ export default function ProcessTimeline() {
           className="grid lg:grid-cols-3 gap-8"
         >
           {PHASES.map((phaseGroup, pIdx) => (
-            <div key={pIdx} className="space-y-6">
+            <div key={pIdx} className="space-y-5">
               {/* Phase Header */}
-              <div className="flex items-center justify-between pb-3 border-b border-[#DBE3E0] dark:border-[#263830]">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#2E756E] font-mono">
+              <div className="flex items-center justify-between pb-3 border-b border-[#E2E6EE] dark:border-white/10">
+                <span className="text-xs font-semibold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8]">
                   {phaseGroup.phase}
                 </span>
-                <span className="text-sm font-bold text-[#14201D] dark:text-[#E4EDE9]">
+                <span className="text-sm font-semibold text-[#111827] dark:text-white">
                   {phaseGroup.phaseTitle}
                 </span>
               </div>
 
               {/* Steps inside phase */}
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {phaseGroup.steps.map((step) => {
                   const Icon = step.icon;
                   return (
                     <motion.div
                       key={step.num}
                       variants={item}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={{ once: true, margin: '-30px' }}
-                      whileHover={{ y: -6 }}
-                      className="bg-[#F8FAF9] dark:bg-[#152620] hover:bg-white dark:hover:bg-[#1D3328] rounded-3xl p-6 sm:p-7 border border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/50 dark:hover:border-[#3B948A]/50 shadow-soft hover:shadow-card transition-all duration-300 flex flex-col justify-between group cursor-default"
+                      whileHover={{ y: -4 }}
+                      className="bg-white dark:bg-[#11161B] hover:border-[#5846F6]/40 dark:hover:border-[#5846F6]/40 rounded-2xl p-5 sm:p-6 border border-[#E2E6EE] dark:border-white/10 shadow-card transition-all duration-300 flex flex-col justify-between group cursor-default"
                     >
                       <div>
-                        <div className="flex items-center justify-between mb-5">
-                          <div className="w-12 h-12 rounded-2xl bg-white dark:bg-[#1D3328] border border-[#DBE3E0] dark:border-[#263830] text-[#2E756E] flex items-center justify-center group-hover:bg-[#2E756E] group-hover:text-white group-hover:border-[#2E756E] transition-all shadow-xs">
-                            <Icon className="w-6 h-6" />
+                        <div className="flex items-center justify-between mb-4">
+                          <div className="w-10 h-10 rounded-xl bg-[#F6F7FB] dark:bg-[#151D26] border border-[#E2E6EE] dark:border-white/10 text-[#0070AD] dark:text-[#38BDF8] flex items-center justify-center group-hover:bg-[#5846F6] group-hover:text-white transition-all shadow-xs">
+                            <Icon className="w-5 h-5" />
                           </div>
                           <div className="flex items-center gap-2">
-                            <span className="text-[10px] font-bold uppercase font-mono px-2 py-0.5 rounded bg-[#2E756E]/10 text-[#2E756E] border border-[#2E756E]/20">
+                            <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-[#0070AD]/10 dark:bg-[#38BDF8]/10 text-[#0070AD] dark:text-[#38BDF8]">
                               {step.badge}
                             </span>
-                            <span className="text-2xl font-black font-mono text-[#2E756E]/25 group-hover:text-[#2E756E] transition-colors">
+                            <span className="text-xl font-bold text-[#9BA8BA]/40 group-hover:text-[#5846F6] transition-colors">
                               {step.num}
                             </span>
                           </div>
                         </div>
 
-                        <h3 className="text-lg font-bold text-[#14201D] dark:text-[#E4EDE9] mb-2.5 group-hover:text-[#2E756E] dark:group-hover:text-[#3B948A] transition-colors leading-snug">
+                        <h3 className="text-base font-semibold text-[#111827] dark:text-white mb-2 group-hover:text-[#0070AD] dark:group-hover:text-[#38BDF8] transition-colors leading-snug">
                           {step.title}
                         </h3>
 
-                        <p className="text-xs sm:text-sm text-[#5A6A65] dark:text-[#8FA89F] leading-relaxed">
+                        <p className="text-xs sm:text-sm text-[#475569] dark:text-[#9BA8BA] leading-relaxed">
                           {step.desc}
                         </p>
                       </div>

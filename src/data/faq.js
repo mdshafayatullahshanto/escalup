@@ -1,50 +1,40 @@
 // /src/data/faq.js
-// Frequently Asked Questions for international engineering prospects
+// Frequently Asked Questions for Escalup (exact 7 in order)
 
 export const faqData = [
   {
     id: 1,
-    question: 'How does offshore engineering support work with escalup?',
-    answer: 'You share your brief, drawings, or models via our secure portal or your own system. We review the technical scope, send a detailed quote with fixed milestone timelines within 24 hours, and kick off immediately under a mutual NDA. Our engineers work directly as a seamless extension of your in-house team, holding regular video standups and delivering files in your native formats.'
+    question: 'Late design changes keep delaying our product releases. How do you reduce this?',
+    answer: 'Late changes usually come from requirements that were not fully defined at the start. We begin with a requirements and scope review. We then check materials, loads, failure modes and mechanism behavior during concept and calculation stages, before detailed design starts. Issues are found earlier, when changes are cheaper to make.'
   },
   {
     id: 2,
-    question: 'Which services can I outsource to you?',
-    answer: 'We cover seven core engineering disciplines: Mechanical Design & Product Development, Manufacturing Engineering & DFMA, CAD Modeling & FEA Simulation, Engineering Standards & GD&T, MEP Design & BIM Coordination, PLM & BOM Management, and Engineering Feasibility Consultancy. You can outsource a single component detailing task or hand off an entire multi-month engineering package.'
+    question: 'We have old parts with no CAD data, or models from different software. Can you work with them?',
+    answer: 'Yes. We rebuild models from legacy drawings, physical parts, or 3D scan data. We also work with neutral formats such as STEP and IGES. Rebuilt models are fully parametric, so your team can edit them. They are delivered in your required software and drawing format.'
   },
   {
     id: 3,
-    question: 'Which software and file formats do you work with?',
-    answer: 'We work across all industry-standard CAD, BIM, and simulation packages including SolidWorks, Autodesk Revit, AutoCAD, Inventor, Siemens NX, Fusion 360, Navisworks, Ansys, and Teamcenter. Deliverables include native parametric part/assembly files, STEP, IGES, Parasolid (.x_t), DWG, DXF, PDF, RVT, and IFC. Tell us your exact release version and we will mirror your environment.'
+    question: 'Our designs look correct in CAD but are costly or difficult to manufacture. How do you prevent this?',
+    answer: 'We review every design for manufacturing and assembly before release. This covers machining limits, sheet metal bend rules, injection molding requirements, and assembly sequence. Where a feature is expensive or not practical to make, we suggest a change and explain the reason.'
   },
   {
     id: 4,
-    question: 'How do you protect our confidential data and IP?',
-    answer: 'Intellectual Property protection is absolute. We execute a mutual Non-Disclosure Agreement (NDA) before any project documents or CAD files are transmitted. All IP, 3D models, drawings, and patents remain 100% your exclusive property. We operate on secure access-controlled servers, employ encrypted communications, and can work directly inside your cloud VDI, Teamcenter, or BIM 360 repository.'
+    question: 'Our parts do not fit at assembly, or suppliers question our drawings. What causes this and how do you help?',
+    answer: 'These problems usually come from missing or incorrect tolerances, or unclear GD&T. We apply ASME Y14.5 or ISO 1101 as required and run tolerance stack-up analysis (worst-case and RSS) on critical fits. Every drawing is checked before release, so the manufacturer can read it without questions.'
   },
   {
     id: 5,
-    question: 'What is your typical turnaround time?',
-    answer: 'Small drafting tasks, drawing revisions, and 3D modeling updates typically take 1 to 3 working days. Medium to large design packages are planned with structured milestones in the preliminary quote. Most importantly, we reply to every initial inquiry and quote request within 24 hours.'
+    question: 'Wrong revisions and BOM mismatches reach production. How do you handle product data?',
+    answer: 'We structure the BOM, manage variants, and record every change through ECN, ECO and ECR documents. Revisions are version-controlled. We can work inside your PLM system, such as Teamcenter or Autodesk Vault, or follow your data rules. Repetitive CAD tasks can be automated with scripts or CAD APIs.'
   },
   {
     id: 6,
-    question: 'How do we communicate across time zones?',
-    answer: 'escalup is based in Dhaka (BST, UTC+6). Our working hours provide convenient real-time overlap with international client time zones across Europe, the Middle East, and the Asia-Pacific region. We use Microsoft Teams, Zoom, Google Meet, Slack, or email for regular coordination and scheduled technical reviews.'
+    question: 'How do you protect our data and manage communication when the team is in a different country?',
+    answer: 'Each project has one point of contact. Scope, deliverables and file formats are agreed in writing before work starts, and any scope change is agreed with you before we begin. Project data is handled in a Microsoft 365 environment with multi-factor authentication and project-level access, under a mutual NDA signed before any data is shared. Communication runs through Microsoft Teams and Outlook, or your preferred platform. If your project needs a dedicated software or a secure environment, we work inside it and follow your security policies.'
   },
   {
     id: 7,
-    question: 'What is your pricing model?',
-    answer: 'We provide three flexible engagement models: Fixed-Price for defined project scopes (predictable budget), Monthly Retainer for dedicated full-time equivalent (FTE) engineers integrated into your team, and On-Demand Hourly rates for flexible ad-hoc overflow. We recommend the most cost-effective path in your quote within 24 hours.'
-  },
-  {
-    id: 8,
-    question: 'Can we start with a small trial project?',
-    answer: 'Yes! We actively encourage new international clients to start with a small, paid pilot project (e.g., detailing a sub-assembly, converting 2D drawings to parametric 3D CAD, or running a clash test). This allows you to evaluate our technical precision, drawing standards, and communication firsthand before committing to a larger scope.'
-  },
-  {
-    id: 9,
-    question: 'Can you work to our company standards and templates?',
-    answer: 'Absolutely. During kickoff, we ingest your title blocks, border templates, dimensioning styles, ASME/ISO drafting conventions, layer naming rules, and revision control procedures. Our deliverables will look identical to drawings created by your own senior in-house team.'
+    question: 'Clashes between HVAC, fire, plumbing and structure are found only on site. How do you avoid this?',
+    answer: 'We coordinate all MEP systems in a shared BIM model and run clash detection before drawings are issued. Designs are based on load calculations and follow the applicable codes: ASHRAE and NFPA for HVAC, NFPA, BNBC, RSC, PWD and JICA for fire, and BNBC and IPC for plumbing. The clash report is delivered with the drawings.'
   }
 ];

@@ -67,7 +67,7 @@ export const projectsData = [
     description: 'Restructured legacy drawing repositories and multi-level BOMs for a 450-part industrial product range, instituting strict ECN/ECO revision workflows and standard parts catalogs.',
     scope: 'Multi-Level Indented BOMs · PDM Schema Setup · ECN Workflow · Legacy Audit',
     tools: ['Siemens Teamcenter', 'SolidWorks PDM', 'SAP PLM'],
-    metrics: '100% drawing-to-BOM parity achieved',
+    metrics: 'Drawing-to-BOM parity achieved',
     featured: false
   }
 ];

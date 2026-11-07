@@ -19,70 +19,70 @@ const PILLARS = [
   {
     id: 'capacity',
     num: '01',
-    tabLabel: 'Capacity & Agility',
-    title: 'Scale CAD Capacity On-Demand Without Long-Term Overhead',
-    badge: '50–70% Cost Efficiency',
-    headline: 'Eliminate internal drawing backlogs during busy release cycles.',
-    desc: 'Hiring local mechanical or BIM drafters onshore takes 2–3 months and introduces fixed payroll liabilities. escalup plugs directly into your engineering standups within 48 hours, absorbing overflow CAD packages, detail drafting, and 3D modeling on flexible terms.',
+    tabLabel: 'Capacity & Support',
+    title: 'Scale CAD Capacity With Dedicated Offshore Talent',
+    badge: 'Offshore Extension',
+    headline: 'Add engineering capacity to your team during peak release cycles.',
+    desc: 'When your workload grows, Escalup adds engineering capacity to your team. This can be overflow 3D parametric CAD modeling, MEP clash resolution, or dedicated mechanical and MEP specialists for an upcoming release. Our engineers join your standups, work to your drawing standards, and follow the same Design Approach on every project.',
     benefits: [
-      'Zero long-term payroll liabilities or termination overhead',
-      'Assigned named engineers who learn your product architecture',
-      'Flexible engagement: Project-Based, Dedicated FTE, or Hourly Buckets',
-      'Scale team size up or down with 30 days notice'
+      'Engineers work under your drawing standards and environment',
+      'Assigned engineers who follow your product architecture',
+      'Flexible engagement: Project-based, overflow support, or dedicated engineers',
+      'Team size and engagement terms agreed per project'
     ],
-    metric: '50–70%',
-    metricLabel: 'Typical cost savings vs onshore contracting rates'
+    metric: 'Agile Scale',
+    metricLabel: 'On-demand CAD and MEP engineering capacity'
   },
   {
     id: 'coordination',
     num: '02',
-    tabLabel: 'Multi-Discipline Clash Sync',
-    title: 'Multi-Discipline Engineering Coordination Side-by-Side',
-    badge: 'Zero Spatial Clashes',
-    headline: 'Resolve spatial collisions before fabrication drawings hit the shop floor.',
-    desc: 'When mechanical equipment, electrical cable trays, plumbing risers, and HVAC ductwork are modeled in silos, clashes are only discovered during assembly or on the construction site. Our mechanical, MEP, and BIM engineers review models collaboratively in Navisworks.',
+    tabLabel: 'Multi-Discipline Coordination',
+    title: 'Multi-Discipline Engineering Coordination',
+    badge: 'Spatial Clash Resolution',
+    headline: 'Resolve spatial collisions before drawings are released.',
+    desc: 'We coordinate all MEP systems in a shared BIM model and run clash detection before drawings are issued. Designs are based on load calculations and follow applicable codes: ASHRAE and NFPA for HVAC, NFPA, BNBC, RSC, PWD and JICA for fire, and BNBC and IPC for plumbing.',
     benefits: [
-      'ASME Y14.5 & ISO 1101 geometric tolerance compliance',
-      'Full clash detection matrix with Navisworks resolution logs',
-      'LOD 300 to 400 fabrication-ready Revit MEP assemblies',
-      'Fewer shop floor revisions, scrap material, and contractor delays'
+      'ASME Y14.5 & ISO 1101 geometric dimensioning and tolerancing',
+      'Clash detection reports delivered with drawings',
+      'LOD 300 to 400 coordinated Revit MEP assemblies',
+      'Prevents shop-floor binding, scrap material, and contractor delays'
     ],
-    metric: '124+',
-    metricLabel: 'Site clashes caught virtually before field installation'
+    metric: 'Clash Matrix',
+    metricLabel: 'Spatial clashes solved prior to construction release'
   },
   {
     id: 'native',
     num: '03',
     tabLabel: 'Native CAD Integrity',
-    title: 'Native Software Integrity — Never Generic File Translations',
-    badge: '100% Parametric Models',
+    title: 'Native Software Integrity — Client Drawing Borders',
+    badge: 'Parametric CAD',
     headline: 'We model inside your preferred software and corporate templates.',
-    desc: 'Many offshore agencies export generic STEP files that break parametric feature trees and layer definitions. escalup works directly in your native platforms (SolidWorks, Inventor, Revit, Siemens NX) using your customized title blocks, part numbering, and revision tables.',
+    desc: 'Escalup delivers native parametric CAD files in your corporate drawing format. We work directly in your required software (SolidWorks, Siemens NX, Inventor, Revit, Creo) using your customized title blocks, part numbering, and revision rules.',
     benefits: [
-      'Clean feature trees with fully defined sketches and mates',
+      'Clean feature trees with fully defined sketches and constraints',
       'Conforms to client drawing borders, fonts, and BOM templates',
-      'Indented multi-level BOMs ready for direct ERP/MRP import',
-      'Strict revision control under ECN/ECO governance'
+      'Indented multi-level BOMs ready for production',
+      'Strict revision control under ECN / ECO / ECR governance'
     ],
-    metric: '100%',
-    metricLabel: 'Native parametric feature tree integrity guaranteed'
+    metric: 'Native CAD',
+    metricLabel: 'Parametric modeling in client drawing formats'
   },
   {
     id: 'synchronous',
     num: '04',
-    tabLabel: 'Real-Time Timezone Overlap',
-    title: 'Synchronous Global Collaboration with Dhaka Engineering Center',
-    badge: 'BST (UTC+6) Alignment',
-    headline: 'Live video standups and rapid overnight drafting turnarounds.',
-    desc: 'Operating from Dhaka (BST, UTC+6), our lead engineering desk offers 4–5 hours of direct morning overlap with London and Western Europe, near-synchronous alignment with Dubai and the Middle East, shared workdays with Sydney, and dedicated overnight drafting sprints for North America.',
+    tabLabel: 'Data Security & Communication',
+    title: 'Controlled Communication & Microsoft 365 Security',
+    badge: 'Mutual NDA Governance',
+    headline: 'Project communication and secure data handling.',
+    desc: 'Each project has one point of contact. Scope, deliverables and file formats are agreed in writing before work starts, and any scope change is agreed with you before we begin. Project data is handled in a Microsoft 365 environment with multi-factor authentication and project-level access, under a mutual NDA.',
     benefits: [
-      'Fluent international business English with zero technical jargon',
-      'Live Slack, Teams, or Google Meet sprint reviews',
-      'Submit design markups at 5 PM EST; receive revised drawings by 9 AM EST',
-      'Direct contact with assigned Principal Engineering Leads'
+      'One point of contact for each project',
+      'Project communication through Microsoft Teams, Outlook, or preferred platform',
+      'Work devices encrypted with BitLocker and protected with Microsoft Defender',
+      'Client owns all project data, models, drawings and documents'
     ],
-    metric: '24h',
-    metricLabel: 'Guaranteed formal scope and price quote turnaround'
+    metric: 'Microsoft 365',
+    metricLabel: 'Project-level access isolation and mutual NDA'
   }
 ];
 

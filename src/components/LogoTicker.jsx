@@ -12,7 +12,7 @@ const PLATFORMS = [
   { name: 'Navisworks Manage', category: 'Clash Detection' },
   { name: 'Carrier HAP', category: 'HVAC Load Analysis' },
   { name: 'Siemens NX', category: 'Advanced CAD/CAM' },
-  { name: 'ISO 9001 Compliance', category: 'Quality Control' },
+  { name: 'ASME & ISO Standards', category: 'Quality & Tolerances' },
   { name: 'Autodesk Inventor', category: 'Mechanical Assembly' },
   { name: 'AutoCAD MEP', category: 'Coordinated Systems' },
   { name: 'Tekla Structures', category: 'Structural Detailing' }
@@ -27,7 +27,7 @@ export default function LogoTicker() {
           <span className="sm:hidden uppercase text-[11px] font-semibold text-[#111827] dark:text-white tracking-wider">Supported Platforms</span>
           <span className="hidden sm:inline uppercase text-[11px] font-semibold text-[#111827] dark:text-white tracking-wider leading-tight">Supported Engineering Environments &amp; Compliance</span>
         </div>
-        <span className="hidden sm:inline-block text-[11px] text-[#5A6679] dark:text-[#9BA8BA] whitespace-nowrap flex-shrink-0">100% Native Files · Zero Translation Loss</span>
+        <span className="hidden sm:inline-block text-[11px] text-[#5A6679] dark:text-[#9BA8BA] whitespace-nowrap flex-shrink-0">Native Parametric CAD Files · Client Drawing Borders</span>
       </div>
 
       <div className="flex overflow-hidden relative [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">

@@ -1,32 +1,27 @@
 // /src/data/tools.js
-// Engineering software and platforms supported by escalup
+// Software expertise supported by Escalup
 
 export const toolsData = [
   {
-    category: '3D CAD & Modeling',
-    description: 'Parametric modeling, surface modeling, sheet metal, and mechanical assembly drafting',
-    tools: ['SolidWorks', 'Siemens NX', 'Autodesk Inventor', 'Fusion 360', 'AutoCAD']
+    category: 'CAD and Visualization',
+    description: '3D parametric solid modeling, surfacing, drafting, and architectural BIM modeling',
+    tools: ['SolidWorks', 'Siemens NX', 'Inventor', 'Fusion 360', 'Tekla', 'Creo', 'Revit', 'AutoCAD']
   },
   {
-    category: 'BIM & MEP Coordination',
-    description: 'Building Information Modeling, HVAC/plumbing routing, and multi-discipline spatial clash detection',
-    tools: ['Autodesk Revit', 'AutoCAD MEP', 'Navisworks Manage', 'Carrier HAP', 'Elite Fire']
+    category: 'Simulation Software',
+    description: 'Finite element analysis (FEA), computational fluid dynamics, stress analysis, and mathematical modeling',
+    tools: ['Ansys Fluent', 'MATLAB & Simulink']
   },
   {
-    category: 'Simulation & Analysis (CAE)',
-    description: 'Finite element analysis (FEA), stress, deformation, thermal, and kinematic computational validation',
-    tools: ['Ansys Mechanical', 'SolidWorks Simulation', 'Inventor Nastran', 'MATLAB']
+    category: 'PLM Software',
+    description: 'Product lifecycle management, revision control, BOM architecture, and data vaults',
+    tools: ['Teamcenter', 'SAP', 'Autodesk Vault']
   },
   {
-    category: 'PLM, PDM & Data Management',
-    description: 'Enterprise data vaults, engineering change management (ECO/ECN), and BOM synchronization',
-    tools: ['Siemens Teamcenter', 'SolidWorks PDM Professional', 'Autodesk Vault', 'SAP PLM']
-  },
-  {
-    category: 'Engineering Automation',
-    description: 'Custom scripting for CAD parameterization, automated drawing generation, and batch file processing',
-    tools: ['Python', 'SolidWorks API', 'AutoLISP', 'VBA Macro Scripting']
+    category: 'Render & Editing',
+    description: 'High-fidelity technical visualization, rendering, and technical graphic editing',
+    tools: ['KeyShot', 'Blender', 'Adobe Illustrator', 'Adobe Photoshop']
   }
 ];
 
-export const toolsNote = 'Using a different platform or legacy release? Tell us your software and version and we will match your exact environment.';
+export const toolsNote = 'We adapt to the client\'s software, platform, and environment when required. Software and environment requirements are confirmed at the Requirements & Scope stage.';

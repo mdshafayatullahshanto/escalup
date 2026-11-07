@@ -6,47 +6,39 @@ import UnderlineLink from './ui/UnderlineLink';
 
 const DIRECTORY_COLUMNS = [
   {
-    title: 'Mechanical Design & CAD',
+    title: 'Mechanical & Production',
     links: [
-      { label: 'SolidWorks 3D Parametric Modeling', to: '/services/mechanical-design-cad' },
-      { label: 'Siemens NX Complex Solid Assemblies', to: '/services/mechanical-design-cad' },
-      { label: 'Autodesk Inventor Machine Design', to: '/services/mechanical-design-cad' },
-      { label: 'Kinematic & Dynamic Mechanism Simulation', to: '/services/mechanical-design-cad' },
-      { label: 'Reverse Engineering from 3D Scan Data', to: '/services/mechanical-design-cad' },
-      { label: 'Finite Element Analysis (FEA) Stress Checks', to: '/services/mechanical-design-cad' },
+      { label: '1. Mechanical Design & Product Development', to: '/services/mechanical-design-product-development' },
+      { label: '2. CAD, Parametric Modeling & Simulation', to: '/services/cad-parametric-modeling-simulation' },
+      { label: '3. Design for Manufacturing & Production Engineering', to: '/services/dfma-production-engineering' },
+      { label: '4. Engineering Standards, GD&T & Quality', to: '/services/engineering-standards-gdt-quality' },
     ]
   },
   {
-    title: 'MEP Design & BIM Coordination',
+    title: 'Digital, PM & BIM',
     links: [
-      { label: 'Autodesk Revit MEP LOD 300–400 Modeling', to: '/services/mep-design-bim' },
-      { label: 'Navisworks Spatial Clash Detection', to: '/services/mep-design-bim' },
-      { label: 'HVAC Duct & Pipe Sizing (Carrier HAP)', to: '/services/mep-design-bim' },
-      { label: 'Plumbing & Drainage Engineering Drawings', to: '/services/mep-design-bim' },
-      { label: 'Fire Protection & Sprinkler Network Layouts', to: '/services/mep-design-bim' },
-      { label: 'Contractor Spool & Fabrication Drawings', to: '/services/mep-design-bim' },
+      { label: '5. PLM, Digital Engineering & Automation', to: '/services/plm-digital-engineering-automation' },
+      { label: '6. Engineering Project Management & Offshore Support', to: '/services/project-management-offshore-support' },
+      { label: '7. BIM & MEP Design Engineering', to: '/services/bim-mep-design-engineering' },
+      { label: 'International Standards Summary', to: '/services/mechanical-design-product-development' },
     ]
   },
   {
-    title: 'DFMA & Production Detailing',
+    title: 'Methodology & Security',
     links: [
-      { label: 'ASME Y14.5M Geometric Tolerancing (GD&T)', to: '/services/dfma-production-detailing' },
-      { label: 'Sheet Metal Flat Patterns & Bend Deduction', to: '/services/dfma-production-detailing' },
-      { label: 'Tooling, Jigs & Fixture Manufacturing Prints', to: '/services/dfma-production-detailing' },
-      { label: 'CNC & CAM Machine Shop Preparation', to: '/services/dfma-production-detailing' },
-      { label: 'Multi-Level Indented Bills of Materials (BOM)', to: '/services/plm-bom-engineering-data' },
-      { label: 'Engineering Change Orders (ECN / ECO)', to: '/services/plm-bom-engineering-data' },
+      { label: '9-Step Design Approach', href: '#process' },
+      { label: 'Microsoft 365 Data Security', href: '#data-security' },
+      { label: 'Mutual NDA & Client IP Ownership', href: '#offshore-model' },
+      { label: 'Client Environment Integration', href: '#data-security' },
     ]
   },
   {
-    title: 'Industries We Support',
+    title: 'Offshore Engineering Support',
     links: [
-      { label: 'Packaging & Automated Machinery Builders', href: '#industries' },
-      { label: 'Commercial MEP & HVAC Contractors', href: '#industries' },
-      { label: 'Consumer Electronics & Hardware Startups', href: '#industries' },
-      { label: 'Engineering & Architectural Consultancies', href: '#industries' },
-      { label: 'Heavy Equipment & Structural Fabricators', href: '#industries' },
-      { label: 'Global Dedicated Offshore CAD Desks', href: '#offshore-model' },
+      { label: 'Dedicated Engineering Desks', href: '#offshore-model' },
+      { label: 'Project-Based & Overflow Support', href: '#offshore-model' },
+      { label: 'Revision Handling & Support', href: '#offshore-model' },
+      { label: 'Schedule an Engineering Intro Call', href: '#contact' },
     ]
   }
 ];

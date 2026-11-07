@@ -77,7 +77,7 @@ export default function CareersBanner({ onOpenCalendly }) {
                 variants={itemVariants}
                 className="text-xs font-semibold uppercase tracking-widest text-[#0070AD] dark:text-[#38BDF8]"
               >
-                Careers & Global Engineering Partnerships
+                Global Engineering Partnerships
               </motion.div>
 
               {/* Headline: Reference Style (Light 300 with signature indigo gradient) */}
@@ -96,22 +96,26 @@ export default function CareersBanner({ onOpenCalendly }) {
                 variants={itemVariants}
                 className="text-sm sm:text-base text-[#475569] dark:text-[#9BA8BA] max-w-xl leading-relaxed font-normal"
               >
-                Whether you need overflow 3D parametric CAD modeling, MEP clash resolution, or full-time dedicated drafters for an upcoming release, escalup delivers production-ready engineering under strict mutual NDA.
+                When your workload grows, Escalup adds engineering capacity to your team. This can be overflow 3D parametric CAD modeling, MEP clash resolution, or dedicated mechanical and MEP specialists for an upcoming release. Our engineers join your standups, work to your drawing standards, and follow the same Design Approach on every project. Team size and engagement terms are agreed per project.
               </motion.p>
 
-              {/* Clean bullet proof points matching reference card style (Image 3) */}
+              {/* Clean bullet proof points */}
               <motion.div variants={itemVariants} className="space-y-2.5 pt-1">
                 <div className="flex items-center gap-2.5 text-sm sm:text-[15px] text-[#1E293B] dark:text-white/90">
                   <CheckCircle2 className="w-4 h-4 text-[#5846F6] shrink-0" />
-                  <span>Dedicated mechanical & MEP specialists assigned to your standups</span>
+                  <span>Native parametric CAD files in the client's drawing format</span>
                 </div>
                 <div className="flex items-center gap-2.5 text-sm sm:text-[15px] text-[#1E293B] dark:text-white/90">
                   <CheckCircle2 className="w-4 h-4 text-[#5846F6] shrink-0" />
-                  <span>100% native CAD parametric files in your corporate drawing borders</span>
+                  <span>Work carried out under a mutual NDA</span>
                 </div>
                 <div className="flex items-center gap-2.5 text-sm sm:text-[15px] text-[#1E293B] dark:text-white/90">
                   <CheckCircle2 className="w-4 h-4 text-[#5846F6] shrink-0" />
-                  <span>Strict mutual NDA execution with zero client IP exposure</span>
+                  <span>Client owns all project IP</span>
+                </div>
+                <div className="flex items-center gap-2.5 text-sm sm:text-[15px] text-[#1E293B] dark:text-white/90">
+                  <CheckCircle2 className="w-4 h-4 text-[#5846F6] shrink-0" />
+                  <span>Project data in a Microsoft 365 environment, adaptable to client tools</span>
                 </div>
               </motion.div>
 
@@ -132,7 +136,7 @@ export default function CareersBanner({ onOpenCalendly }) {
 
                 <div className="flex items-center gap-2 text-sm text-[#5A6679] dark:text-[#9BA8BA]">
                   <ShieldCheck className="w-4 h-4 text-[#5846F6]" />
-                  <span>Client owns 100% of IP</span>
+                  <span>Client owns all project IP</span>
                 </div>
               </motion.div>
             </motion.div>
@@ -150,7 +154,7 @@ export default function CareersBanner({ onOpenCalendly }) {
                 <div className="w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-card relative bg-[#EEF2F8] dark:bg-[#151D26] border border-[#E2E6EE] dark:border-white/10 group">
                   <img
                     src={founderImg}
-                    alt="Md. Shafayatullah Shanto - Founder & Principal Engineer at escalup"
+                    alt="Md. Shafayat Ullah Shanto - Founder & Lead Mechanical Engineer at Escalup"
                     className="w-full h-full object-cover object-top filter grayscale contrast-105 group-hover:grayscale-0 transition-all duration-500"
                   />
                 </div>
@@ -158,10 +162,10 @@ export default function CareersBanner({ onOpenCalendly }) {
                 {/* Caption positioned cleanly BELOW the portrait */}
                 <div className="pt-4 text-left">
                   <h4 className="text-base sm:text-lg font-medium text-[#111827] dark:text-white tracking-tight">
-                    Md. Shafayatullah Shanto
+                    <em><strong>Md. Shafayat Ullah Shanto</strong></em>
                   </h4>
                   <p className="text-sm text-[#5A6679] dark:text-[#9BA8BA] mt-0.5 font-normal">
-                    Founder & Lead Mechanical Engineer, escalup
+                    Founder & Lead Mechanical Engineer, Escalup
                   </p>
                 </div>
               </div>

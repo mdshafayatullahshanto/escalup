@@ -14,9 +14,9 @@ const TRIO_CARDS = [
     tag: 'Mechanical CAD',
     title: 'Parametric Mechanical Modeling',
     subtitle: 'Kinematic assemblies, surface modeling, and sheet metal flat patterns built directly in SolidWorks, Siemens NX, and Inventor.',
-    metric: '100% Native Files',
-    benefits: ['Zero generic STEP file conversions', 'Client title block & layer standardization', 'Full parametric feature trees'],
-    link: '/services/mechanical-design-cad',
+    metric: 'Native CAD Files',
+    benefits: ['Parametric CAD assemblies in client formats', 'Client title block & layer standardization', 'Full parametric feature trees'],
+    link: '/services/mechanical-design-product-development',
     gradient: 'from-[#0B1528] via-[#0F223D] to-[#0070AD]/40',
     icon: Cpu,
     raised: false,
@@ -25,10 +25,10 @@ const TRIO_CARDS = [
     id: 2,
     tag: 'Flagship BIM & Facilities',
     title: 'MEP Design & BIM Coordination',
-    subtitle: 'Multi-discipline clash detection in Navisworks, HVAC load sizing (HAP), and LOD 300–400 Revit fabrication assemblies.',
-    metric: 'Zero Spatial Clashes',
+    subtitle: 'Multi-discipline clash detection in Navisworks, HVAC load sizing, and LOD 300–400 Revit fabrication assemblies.',
+    metric: 'Spatial Clash Resolution',
     benefits: ['Pre-construction clash resolution logs', 'ASME & ASHRAE standards compliance', 'Spool & shop drawings for contractors'],
-    link: '/services/mep-design-bim',
+    link: '/services/bim-mep-design-engineering',
     gradient: 'from-[#0A161F] via-[#0D2E3A] to-[#14F3C1]/30',
     icon: Layers,
     raised: true, // Center card is raised/larger
@@ -38,9 +38,9 @@ const TRIO_CARDS = [
     tag: 'Manufacturing Precision',
     title: 'DFMA & Production Detailing',
     subtitle: 'Design for Manufacturing & Assembly (DFMA), ASME Y14.5 GD&T tolerance stacks, and tooling fixture designs for the factory floor.',
-    metric: '28% Cost Reduction',
-    benefits: ['Prevents shop-floor binding & scrap', 'Sheet metal K-factor bend deduction', 'CNC & CAM manufacturing readiness'],
-    link: '/services/dfma-production-detailing',
+    metric: 'Production Optimization',
+    benefits: ['Prevents shop-floor binding & scrap', 'Sheet metal bend deduction standards', 'CNC & CAM manufacturing readiness'],
+    link: '/services/dfma-production-engineering',
     gradient: 'from-[#120F24] via-[#241B4B] to-[#5846F6]/40',
     icon: Wrench,
     raised: false,
@@ -49,7 +49,7 @@ const TRIO_CARDS = [
 
 export default function ProductCardsTrio() {
   return (
-    <section className="py-20 sm:py-28 md:py-32 bg-[#F6F7FB] dark:bg-[#080C0F] border-b border-[#E2E6EE] dark:border-white/10 transition-colors">
+    <section id="services" className="py-20 sm:py-28 md:py-32 bg-[#F6F7FB] dark:bg-[#080C0F] border-b border-[#E2E6EE] dark:border-white/10 transition-colors scroll-mt-12">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         {/* Section Header */}

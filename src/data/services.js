@@ -1,208 +1,209 @@
 // /src/data/services.js
-// Complete data for the 7 engineering service categories
+// The 7 core engineering service categories for Escalup (strict order everywhere)
 
 export const servicesData = [
   {
     id: 1,
     slug: 'mechanical-design-product-development',
     title: 'Mechanical Design & Product Development',
-    shortDesc: 'End-to-end mechanical engineering from initial concept and kinematics to 3D parametric CAD and functional prototypes.',
+    shortDesc: 'Mechanical design principles, full lifecycle product development (NPI), systems kinematics, material selection, eco-design, and automation.',
     iconName: 'Cpu',
-    tag: 'Core Mechanical',
-    intro: 'We partner with manufacturers, OEMs, and product innovators to translate mechanical concepts into production-ready physical hardware. Whether developing new products from scratch (NPI) or modernizing existing machinery, our team applies rigorous mechanical engineering principles to ensure functionality, structural integrity, and commercial viability.',
+    tag: 'Service 01',
+    standardsSummary: 'ISO 12100, ISO 286, ASME Y14.100',
+    standardsDetail: 'ISO 12100 (risk assessment and risk reduction), ISO 286 (limits and fits), ISO 14040 (life cycle assessment for eco-design), ASME Y14.100 (engineering drawing practices)',
+    intro: 'Escalup delivers mechanical design and product development support for international engineering teams and manufacturers. From early concept definition and kinematic mechanism modeling to full lifecycle product development, we apply established mechanical engineering principles to deliver reliable, production-ready designs.',
     items: [
-      'Mechanical Design & Applied Mechanics',
-      'Product Design & Development (NPI)',
-      '3D CAD Modeling & Parametric Design',
-      'Mechanical Systems & Mechanism Design',
-      'Kinematics & Linkage Design',
-      'Reverse Engineering & Scan-to-CAD',
-      'Product Concept Development & Optimization'
+      'Mechanical Design Principles & Applied Mechanics',
+      'Product Design & Full Lifecycle Development (NPI)',
+      'Systems, Kinematics, Linkages & Mechanisms',
+      'Material Selection & Failure Mode Analysis',
+      'Sustainability & Eco-Design in Product Development',
+      'Automation and Customization'
     ],
     deliverables: [
-      'Fully parametric 3D CAD assemblies (SolidWorks, NX, Inventor, STEP)',
-      'Motion simulation files & kinematics curves',
-      'Concept sketches & 3D visualization renders',
-      'Reverse-engineered CAD solid models from point clouds/scans',
-      'Detailed mechanical design reports & specifications'
+      'Parametric 3D CAD parts and assemblies in client drawing format',
+      'Kinematic mechanism simulations and motion curves',
+      'Material selection and failure mode reports',
+      'Detailed manufacturing drawings with applied standards',
+      'Design verification and technical documentation'
     ],
-    tools: ['SolidWorks', 'Siemens NX', 'Autodesk Inventor', 'Fusion 360', 'AutoCAD'],
-    typicalTurnaround: '3 - 10 business days for components, milestone schedules for assemblies',
-    bestFor: 'Equipment manufacturers, consumer product companies, industrial machinery builders'
+    tools: ['SolidWorks', 'Siemens NX', 'Inventor', 'Fusion 360', 'Creo']
   },
   {
     id: 2,
-    slug: 'manufacturing-engineering-dfma',
-    title: 'Manufacturing Engineering & DFMA',
-    shortDesc: 'Design for Manufacturing and Assembly optimization across sheet metal, CNC machining, injection molding, and tooling.',
-    iconName: 'Wrench',
-    tag: 'Production Ready',
-    intro: 'Engineering drawings mean little if parts cannot be produced efficiently. We apply rigorous Design for Manufacturing & Assembly (DFMA) guidelines to strip unnecessary machining cost, simplify fastener counts, prevent assembly errors, and ensure tooling feasibility before steel is cut.',
+    slug: 'cad-parametric-modeling-simulation',
+    title: 'CAD, Parametric Modeling & Simulation',
+    shortDesc: '3D modeling, parametric and surfacing design, prototyping mockups, reverse engineering, FEA numerical simulation, and Model-Based Definition.',
+    iconName: 'Box',
+    tag: 'Service 02',
+    standardsSummary: 'ISO 10303 (STEP), ISO 16792, ASME V&V 10',
+    standardsDetail: 'ISO 10303 / STEP (CAD data exchange), ISO 16792 and ASME Y14.41 (digital product definition data practices), ASME V&V 10 (verification and validation of computational solid mechanics)',
+    intro: 'We provide parametric CAD modeling and numerical simulation support for technology-focused companies and equipment builders. Our models feature structured feature trees and adhere to digital product definition standards, ensuring seamless integration into client repositories.',
     items: [
-      'Design for Manufacturing & Assembly (DFMA)',
-      'CNC Machining & CAM Design',
-      'Sheet Metal & Structural Fabrication Design',
-      'Plastic Injection Molding & Tooling Design',
-      'Manufacturing Process Selection & Optimization',
-      'Prototype Development & 3D Printing',
-      'Production-Ready Design & Assembly Documentation'
+      '3D Modeling, Parametric & Surfacing Design',
+      'Mockup Design & Rapid Prototyping (3D Printing)',
+      'Reverse Engineering & Scan-to-CAD',
+      'FEA & Numerical Simulation (Stress, Structural)',
+      'Model-Based Definition (MBD) & Digital Product Definition'
     ],
     deliverables: [
-      'DFMA review reports with cost & assembly reduction metrics',
-      'Flat patterns with bend tables & K-factors for sheet metal',
-      'Draft angle and parting line analyses for injection molded parts',
-      'Tooling and fixture designs (jigs & fixtures)',
-      'Exploded assembly instructions & shop floor work instructions'
+      'Native parametric 3D CAD models with editable feature trees',
+      'Reverse-engineered solid models from 3D scan data',
+      'FEA stress, deflection, and structural calculation summaries',
+      'Model-Based Definition (MBD) 3D annotations',
+      'Neutral exchange formats (STEP AP242, IGES, Parasolid)'
     ],
-    tools: ['SolidWorks Sheet Metal & Plastics', 'Siemens NX CAM', 'Inventor CAM', 'Fusion 360'],
-    typicalTurnaround: '2 - 5 business days per design iteration / review package',
-    bestFor: 'Contract manufacturers, fabrication shops, hardware startups entering production'
+    tools: ['SolidWorks', 'Siemens NX', 'Inventor', 'Ansys Fluent', 'MATLAB & Simulink']
   },
   {
     id: 3,
-    slug: 'cad-modeling-simulation-validation',
-    title: 'CAD Modeling, Simulation & Design Validation',
-    shortDesc: 'Rigorous structural FEA, stress, thermal, motion simulation, and accurate 2D engineering drafting.',
-    iconName: 'Activity',
-    tag: 'Validation & FEA',
-    intro: 'Eliminate costly physical prototyping failures before production. escalup provides comprehensive Finite Element Analysis (FEA), stress analysis, mechanism motion simulation, and engineering validation to guarantee your designs perform reliably under real-world static, dynamic, and thermal loads.',
+    slug: 'dfma-production-engineering',
+    title: 'Design for Manufacturing & Production Engineering',
+    shortDesc: 'Manufacturing processes and machining constraints (CNC/CAM), DFMA, sheet metal fabrication, plastic injection molding, and production drawings.',
+    iconName: 'Wrench',
+    tag: 'Service 03',
+    standardsSummary: 'ISO 2768, ISO 13920, ISO 20457, AWS A2.4',
+    standardsDetail: 'ISO 2768 (general tolerances), ISO 13920 (welding general tolerances), ISO 20457 (plastic moulded parts tolerances), AWS A2.4 (welding symbols)',
+    intro: 'Our production engineering team reviews designs against real-world manufacturing constraints before fabrication begins. We optimize parts for CNC machining, sheet metal forming, and plastic injection molding to prevent assembly interference and eliminate unnecessary production costs.',
     items: [
-      '3D Parametric & Surface Modeling',
-      '2D Engineering Drawings',
-      'Finite Element Analysis (FEA)',
-      'Structural & Stress Analysis',
-      'Motion & Mechanism Simulation',
-      'Engineering Design Verification & Validation',
-      'Material Selection & Failure Analysis'
+      'Manufacturing Processes & Machining Constraints (CNC/CAM)',
+      'Design for Manufacturing & Assembly (DFMA)',
+      'Sheet Metal & Structural Fabrication Design',
+      'Plastic Injection Molding & Tooling DFM',
+      'Detailed Drawings & BOM for Manufacturing Design'
     ],
     deliverables: [
-      'Complete FEA simulation reports with safety factors (von Mises, deflection)',
-      'Thermal gradient & heat transfer simulation summaries',
-      'Dynamic motion trajectory & load reaction charts',
-      'Detailed 2D drawings according to ISO/ASME Y14 standards',
-      'Material recommendation matrices with strength-to-weight tradeoffs'
+      'DFMA review reports and geometry optimization recommendations',
+      'Unfolded sheet metal flat patterns with tooling and bend specs',
+      'Tooling and injection molding draft analysis reports',
+      'Complete 2D manufacturing drawings with BOM',
+      'Fabrication and weldment detail prints with standard weld symbols'
     ],
-    tools: ['Ansys Mechanical', 'SolidWorks Simulation', 'Inventor Nastran', 'MATLAB'],
-    typicalTurnaround: '3 - 7 business days depending on meshing complexity & boundary conditions',
-    bestFor: 'Structural engineers, heavy machinery OEMs, aerospace & automotive tier-suppliers'
+    tools: ['SolidWorks', 'Siemens NX', 'Inventor', 'Tekla', 'AutoCAD']
   },
   {
     id: 4,
     slug: 'engineering-standards-gdt-quality',
-    title: 'Engineering Standards, GD&T & Quality Assurance',
-    shortDesc: 'ASME Y14.5 / ISO 1101 GD&T application, 1D/2D tolerance stack-up analysis, and drawing verification audits.',
+    title: 'Engineering Standards, GD&T & Quality',
+    shortDesc: 'Geometric Dimensioning & Tolerancing (ASME Y14.5 / ISO 1101), tolerance stack-up analysis, regulatory standards, and drawing gate audits.',
     iconName: 'CheckCircle2',
-    tag: 'Precision Standards',
-    intro: 'Loose tolerances cause assemblies to jam; overly tight tolerances inflate fabrication costs by 300%. escalup provides professional Geometric Dimensioning & Tolerancing (GD&T) to communicate functional requirements clearly between design engineering and quality inspection.',
+    tag: 'Service 04',
+    standardsSummary: 'ASME Y14.5, ISO 1101, ISO 5459',
+    standardsDetail: 'ASME Y14.5, ISO 1101, ISO 5459 (datums), ISO 14405 (size tolerancing), ISO 8015 (GPS fundamentals)',
+    intro: 'We apply ASME and ISO dimensioning standards to define precise functional relationships between mating components. Our engineers perform 1D and statistical tolerance stack-up analyses to ensure assembly fit and provide clear inspection criteria for suppliers.',
     items: [
-      'Geometric Dimensioning & Tolerancing (GD&T)',
-      'Tolerance Stack-Up Analysis',
-      'Engineering Drawing Review & Verification',
-      'International Engineering Standards Compliance',
-      'Design Quality Review & Design Gate Audits',
-      'Material Specifications & Engineering Documentation',
-      'Design for Reliability & Quality Improvement'
+      'Geometric Dimensioning & Tolerancing (ASME Y14.5 / ISO 1101)',
+      'Tolerance Stack-Up Analysis (1D / Worst-Case / RSS)',
+      'Design Standards & Regulatory Compliance',
+      'Drawing Quality Verification & Design Gate Audits'
     ],
     deliverables: [
-      'ASME Y14.5-2018 / ISO 1101 compliant 2D manufacturing drawings',
-      'Worst-case & Statistical (RSS) tolerance stack-up calculation sheets',
-      'Engineering drawing redline audits & compliance reports',
-      'Datum scheme definition & CMM inspection plan recommendations',
-      'Standardized title blocks & drawing revision control sheets'
+      'Production drawings compliant with ASME Y14.5 or ISO 1101',
+      'Tolerance stack-up calculation sheets (worst-case and RSS)',
+      'Drawing quality verification and compliance checklists',
+      'Datum scheme definitions and functional gauge considerations',
+      'Standardized drawing borders and title block configurations'
     ],
-    tools: ['AutoCAD', 'SolidWorks Drafting', 'Inventor Detailing', 'Excel Tolerance Worksheets'],
-    typicalTurnaround: '1 - 3 business days for drawing sets, 48h drawing audits',
-    bestFor: 'Precision engineering firms, defense contractors, medical device developers'
+    tools: ['AutoCAD', 'SolidWorks', 'Inventor', 'Siemens NX']
   },
   {
     id: 5,
-    slug: 'mep-design-bim-coordination',
-    title: 'MEP Design & BIM Coordination',
-    shortDesc: 'Complete HVAC, plumbing, drainage, fire protection engineering, and clash-resolved BIM Revit models (LOD 200 - 400).',
-    iconName: 'Layers',
-    tag: 'Built Environment',
-    intro: 'We deliver coordinated mechanical, electrical, plumbing, and fire safety design packages for commercial buildings, industrial facilities, and residential complexes. Our engineers calculate accurate loads, route systems logically, and coordinate everything in Revit BIM to detect and resolve spatial clashes before construction begins.',
+    slug: 'plm-digital-engineering-automation',
+    title: 'PLM, Digital Engineering & Automation',
+    shortDesc: 'Product data management, engineering change management (ECN/ECO/ECR), BOM architecture, CAD API automation, and software scripting.',
+    iconName: 'Database',
+    tag: 'Service 05',
+    standardsSummary: 'ISO 10007, STEP AP242',
+    standardsDetail: 'ISO 10007 (configuration management), ISO 10303-242 / STEP AP242 (product data exchange)',
+    intro: 'Escalup organizes engineering data and automates repetitive modeling workflows. We configure multi-level BOM architectures, execute formal Engineering Change Orders (ECO/ECN), and write custom CAD API scripts to support consistent data governance.',
     items: [
-      'HVAC System Design',
-      'Cooling Load Calculation & Energy Analysis',
-      'Ventilation & Air Distribution Design',
-      'Duct & Pipe Design',
-      'VRF, Chiller, AHU & FCU System Design',
-      'Fire Detection, Alarm & Protection System Design',
-      'Plumbing & Water Supply Design',
-      'Drainage System Design',
-      'Tank & Pump Calculation',
-      'MEP BIM Modeling & Coordination',
-      'Clash Detection & Resolution',
-      'MEP Shop Drawings & Technical Documentation'
+      'PLM & Product Data Management',
+      'Engineering Change Management (ECN / ECO / ECR)',
+      'BOM Architecture & Variant Configuration',
+      'CAD API Automation & Customization',
+      'Software Scripting for Engineering'
     ],
     deliverables: [
-      'HAP / Hourly Analysis cooling and heating load calculation reports',
-      'LOD 300 / 350 / 400 Revit MEP models (.rvt, .ifc)',
-      'Navisworks clash detection reports with assigned resolution actions',
-      'Fabrication & construction shop drawings (.dwg, .pdf)',
-      'Pipe & duct sizing schedules, pump head calculations, riser diagrams'
+      'Multi-level indented Engineering and Manufacturing BOMs',
+      'Documented ECN, ECO, and ECR engineering change records',
+      'PLM vault attribute mapping and part revision control records',
+      'Custom CAD API macros and automation scripts',
+      'Variant configuration matrices and data schemas'
     ],
-    tools: ['Autodesk Revit MEP', 'AutoCAD MEP', 'Navisworks Manage', 'HAP (Carrier)', 'Elite Fire'],
-    typicalTurnaround: '5 - 15 business days per design stage or submission milestone',
-    bestFor: 'General contractors, MEP consultants, design-build firms, BIM managers'
+    tools: ['Teamcenter', 'SAP', 'Autodesk Vault', 'SolidWorks PDM']
   },
   {
     id: 6,
-    slug: 'plm-bom-engineering-data-management',
-    title: 'PLM, BOM & Engineering Data Management',
-    shortDesc: 'Structured Bill of Materials (BOM), Engineering Change Management (ECN/ECO), and PDM/PLM system configuration.',
-    iconName: 'Database',
-    tag: 'Data Architecture',
-    intro: 'Disorganized CAD files, untracked revisions, and broken part numbers cost engineering teams thousands of wasted hours. We structure engineering data, build precise multi-level BOMs, organize part numbering conventions, and manage Engineering Change Orders (ECO/ECN) to maintain clean revision history.',
+    slug: 'project-management-offshore-support',
+    title: 'Engineering Project Management & Offshore Support',
+    shortDesc: 'Technical scope management, architecture review, risk assessment (DFMEA), Agile/Scrum project management, and offshore client communication.',
+    iconName: 'Briefcase',
+    tag: 'Service 06',
+    standardsSummary: 'ISO 21502, ISO 31000, IEC 60812',
+    standardsDetail: 'ISO 21502 (project management guidance), ISO 31000 (risk management), IEC 60812 and the AIAG & VDA FMEA Handbook (FMEA / DFMEA)',
+    intro: 'We support international engineering leadership through dedicated technical project management and offshore engineering engagement. Our team participates in client standups, tracks technical deliverables through milestone gates, and performs root-cause analysis when issues arise.',
     items: [
-      'Product Lifecycle Management (PLM)',
-      'Bill of Materials (BOM) Development',
-      'Product Data & Document Management',
-      'Engineering Change Management (ECN/ECO/ECR)',
-      'Product Configuration & Variant Management',
-      'CAD Data & Revision Control',
-      'Digital Product Documentation'
+      'Project Management & Technical Scope Management',
+      'Architecture Review',
+      'Engineering Risk Assessment & Mitigation (DFMEA)',
+      'Agile / Scrum Project Management',
+      'Cross-Functional Team Leadership & Mentorship',
+      'Offshore Client Engagement & Technical Stakeholder Communication',
+      'Analytical Problem-Solving & Root-Cause Analysis (RCA)'
     ],
     deliverables: [
-      'Indented multi-level Engineering & Manufacturing BOMs (EBOM/MBOM)',
-      'ECN / ECO documentation and change impact assessment packages',
-      'CAD vault organization & metadata schema templates',
-      'Part numbering systems & standard hardware libraries',
-      'ERP / MRP integration export spreadsheets'
+      'Project scope baseline and milestone delivery schedules',
+      'Design Failure Mode and Effects Analysis (DFMEA) matrices',
+      'Root-cause analysis (RCA) investigation summaries',
+      'Regular technical status updates and progress logs',
+      'Technical architecture and engineering review documentation'
     ],
-    tools: ['Siemens Teamcenter', 'SolidWorks PDM Professional', 'Autodesk Vault', 'SAP PLM', 'Excel/VBA'],
-    typicalTurnaround: '2 - 7 business days depending on assembly size and legacy audit depth',
-    bestFor: 'Growing manufacturers migrating to PDM/PLM, engineering teams facing revision chaos'
+    tools: ['Microsoft Teams', 'Outlook', 'SharePoint', 'Jira']
   },
   {
     id: 7,
-    slug: 'engineering-consultancy-project-management',
-    title: 'Engineering Consultancy, Project Management & Automation',
-    shortDesc: 'Feasibility studies, technical risk assessments, CAD automation scripts, and dedicated offshore project coordination.',
-    iconName: 'Briefcase',
-    tag: 'Consultancy & Tech',
-    intro: 'Beyond drafting, escalup provides senior engineering guidance. From technical feasibility studies and root-cause failure investigations to CAD macro automation and remote project management, we help overseas leaders streamline workflows and accelerate delivery cycles.',
+    slug: 'bim-mep-design-engineering',
+    title: 'BIM & MEP Design Engineering',
+    shortDesc: 'BIM modeling for MEP, HVAC system design, ventilation, fire-safety, plumbing and drainage, load calculations, duct and pipe design, and clash coordination.',
+    iconName: 'Layers',
+    tag: 'Service 07',
+    standardsSummary: 'ISO 19650, ASHRAE, NFPA, IPC',
+    standardsDetail: 'BIM and data: ISO 19650, ISO 16739 / IFC; HVAC: ASHRAE 62.1, ASHRAE 55, ASHRAE 90.1, NFPA 90A, IMC, SMACNA; Fire: NFPA 13, NFPA 14, NFPA 20, NFPA 72, NFPA 92, NFPA 101; Plumbing: IPC; Local codes: BNBC, RSC, PWD, JICA',
+    intro: 'Our BIM and MEP engineering team delivers coordinated mechanical, plumbing, and fire-safety packages for commercial and industrial facilities. We perform rigorous load calculations, route ductwork and piping, and resolve multi-discipline spatial clashes in Revit and Navisworks prior to site installation.',
     items: [
-      'Engineering Feasibility Studies',
-      'Technical Design Review & Consultancy',
-      'Engineering Project Planning & Management',
-      'Engineering Risk Assessment & Mitigation',
-      'Failure Investigation & Root Cause Analysis',
-      'CAD Automation & Customization',
-      'Engineering Workflow Optimization',
-      'Technical Scope & Design Coordination',
-      'Client & Stakeholder Technical Communication'
+      'Building Information Modeling (BIM) for MEP',
+      'HVAC System Design',
+      'Ventilation & Air Distribution Design',
+      'Fire-Safety Design',
+      'Plumbing and Drainage Design',
+      'Load Calculation & Energy Analysis',
+      'Duct & Pipe Design',
+      'Tank & Pump Calculation',
+      'Coordination & Clash Detection',
+      'MEP Documentation'
     ],
     deliverables: [
-      'Comprehensive technical feasibility reports & trade studies',
-      'Custom Python / SolidWorks API automation scripts to accelerate repetitive tasks',
-      'Risk assessment matrices (FMEA) & mitigation roadmaps',
-      'Weekly agile engineering progress dashboards & milestone tracking',
-      'Executive technical presentations for stakeholders'
+      'Coordinated Revit MEP models (LOD 300 to 400)',
+      'Navisworks multi-discipline clash detection reports',
+      'Cooling and heating load calculation reports',
+      'HVAC ductwork, piping layouts, and equipment schedules',
+      'Fire sprinkler, standpipe layouts, and pump room details',
+      'Plumbing riser diagrams, water supply, and drainage layouts',
+      'Contractor shop drawings and pre-fabrication spool sheets'
     ],
-    tools: ['Python', 'SolidWorks API', 'MS Project', 'Jira', 'Power BI'],
-    typicalTurnaround: 'Tailored milestone-based consulting packages or dedicated monthly advisory',
-    bestFor: 'Engineering directors, procurement managers, startups needing technical oversight'
+    tools: ['Revit', 'AutoCAD', 'Navisworks Manage', 'Carrier HAP']
   }
 ];
+
+// Summary table data for the Services page
+export const standardsSummaryTable = [
+  { service: 'Mechanical Design', keyStandards: 'ISO 12100, ISO 286, ASME Y14.100' },
+  { service: 'CAD & Simulation', keyStandards: 'ISO 10303 (STEP), ISO 16792, ASME V&V 10' },
+  { service: 'DFM', keyStandards: 'ISO 2768, ISO 13920, ISO 20457, AWS A2.4' },
+  { service: 'GD&T & Quality', keyStandards: 'ASME Y14.5, ISO 1101, ISO 5459' },
+  { service: 'PLM', keyStandards: 'ISO 10007, STEP AP242' },
+  { service: 'Project Management', keyStandards: 'ISO 21502, ISO 31000, IEC 60812' },
+  { service: 'BIM & MEP', keyStandards: 'ISO 19650, ASHRAE, NFPA, IPC' }
+];
+
+export const standardsDisclaimer = 'We apply the standards required by the project and the client. The governing standards and editions are confirmed at the Requirements & Scope stage.';
