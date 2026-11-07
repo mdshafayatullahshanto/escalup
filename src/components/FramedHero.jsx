@@ -112,15 +112,15 @@ export default function FramedHero({ onOpenCalendly }) {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-medium tracking-wider bg-white/15 backdrop-blur-md border border-white/20 text-white select-none"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-sans font-medium tracking-wider bg-white/15 backdrop-blur-md border border-white/20 text-white select-none"
           >
-            <Sparkles className="w-3.5 h-3.5 text-[#14F3C1]" />
+            <Sparkles className="w-3.5 h-3.5 text-[#A5B4FC]" />
             <span>{slide.tag}</span>
           </motion.div>
 
           {/* Slide Numbers: e.g. 01 / 03 */}
-          <div className="text-xs font-mono tracking-widest text-white/70">
-            <span className="text-white font-bold">0{activeSlide + 1}</span> / 0{HERO_SLIDES.length}
+          <div className="text-xs font-sans tracking-widest text-white/70">
+            <span className="text-white font-semibold">0{activeSlide + 1}</span> / 0{HERO_SLIDES.length}
           </div>
         </div>
 
@@ -167,13 +167,13 @@ export default function FramedHero({ onOpenCalendly }) {
                   icon="none"
                   className="w-full sm:w-auto"
                 >
-                  <Calendar className="w-4 h-4 text-[#14F3C1] mr-1.5" />
+                  <Calendar className="w-4 h-4 text-white mr-1.5" />
                   <span>{slide.ctaSecondary}</span>
                 </Button>
               </div>
 
               {/* Key Highlights Ribbon */}
-              <div className="pt-2 text-[11px] sm:text-xs font-mono text-[#A0D4CE] tracking-wide">
+              <div className="pt-2 text-[11px] sm:text-xs font-sans text-white/80 tracking-wide">
                 {slide.stats}
               </div>
             </motion.div>
@@ -181,7 +181,7 @@ export default function FramedHero({ onOpenCalendly }) {
         </div>
 
         {/* Bottom Segmented Progress Indicators */}
-        <div className="relative z-10 pt-4 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="relative z-10 pt-4 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between gap-4 font-sans">
           {/* 3 Segmented Progress Bars */}
           <div className="flex items-center gap-2.5 w-full sm:w-auto">
             {HERO_SLIDES.map((s, idx) => {
@@ -198,7 +198,7 @@ export default function FramedHero({ onOpenCalendly }) {
                       initial={{ width: '0%' }}
                       animate={{ width: '100%' }}
                       transition={{ duration: 7, ease: 'linear' }}
-                      className="absolute inset-0 bg-[#14F3C1]"
+                      className="absolute inset-0 bg-white"
                     />
                   )}
                 </button>
@@ -207,13 +207,13 @@ export default function FramedHero({ onOpenCalendly }) {
           </div>
 
           {/* Quick Slide Navigation Labels */}
-          <div className="hidden md:flex items-center gap-6 text-xs font-mono text-white/70">
+          <div className="hidden md:flex items-center gap-6 text-xs text-white/70">
             {HERO_SLIDES.map((s, idx) => (
               <button
                 key={s.id}
                 onClick={() => setActiveSlide(idx)}
                 className={`transition-colors cursor-pointer ${
-                  activeSlide === idx ? 'text-white font-bold' : 'hover:text-white/90'
+                  activeSlide === idx ? 'text-white font-semibold' : 'hover:text-white/90'
                 }`}
               >
                 0{idx + 1} · {s.tag.split(' ')[0]}
@@ -221,7 +221,7 @@ export default function FramedHero({ onOpenCalendly }) {
             ))}
           </div>
 
-          <div className="text-[11px] font-mono text-white/50">
+          <div className="text-[11px] text-white/50">
             Navigate your next ✦
           </div>
         </div>

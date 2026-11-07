@@ -1,6 +1,7 @@
 // /src/components/OffshoreModel.jsx
-// Detailed offshore engagement models, live world clock, and comparison table
-// Light Editorial Engineering Theme with Deep Teal accents
+// SECTION 4: "Your Offshore Engineering Team, Without the Overhead"
+// Light-weight heading, lavender background, white cards with stagger fade-in on scroll, icons in indigo.
+// Zero green/teal, zero monospace, zero stray dots.
 
 import React from 'react';
 import { motion } from 'framer-motion';
@@ -13,8 +14,9 @@ import {
   MessageSquare, 
   Zap
 } from 'lucide-react';
-import SectionHeading from './SectionHeading';
 import WorldClock from './WorldClock';
+import Badge from './ui/Badge';
+import Button from './ui/Button';
 
 const PILLARS = [
   {
@@ -91,19 +93,38 @@ const ENGAGEMENT_MODELS = [
   }
 ];
 
-export default function OffshoreModel() {
+export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
+  const handleQuoteClick = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    const contactEl = document.getElementById('contact');
+    if (contactEl) contactEl.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <section id="offshore-model" className="py-20 md:py-28 bg-[#F8FAF9] dark:bg-[#0D1A17] border-b border-[#DBE3E0] dark:border-[#263830] relative scroll-mt-12">
+    <section id="offshore-model" className="py-20 sm:py-28 md:py-32 bg-[#F6F7FC] dark:bg-[#080C0F] border-b border-[#E2E6EE] dark:border-white/10 font-sans relative scroll-mt-12 transition-colors">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
-        {/* Section Heading */}
-        <SectionHeading
-          eyebrow="Global Delivery Engine"
-          title="Your Offshore Engineering Team, Without the Overhead"
-          subtitle="escalup works as an extension of your in-house team. You share the brief, we deliver production-ready CAD and MEP documentation, on time and under NDA."
-        />
+        {/* Section Header: Light-weight heading with ONE highlighted phrase */}
+        <div className="max-w-4xl mx-auto text-center mb-16 sm:mb-20">
+          <div className="mb-3">
+            <Badge variant="navy" size="sm" className="bg-[#121926] text-[#A5B4FC] border border-white/10">
+              Global Delivery Engine
+            </Badge>
+          </div>
 
-        {/* 6 Value Pillars with Staggered Entrance */}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-tight mb-4">
+            Your Offshore Engineering Team,{' '}
+            <span className="font-semibold text-[#111827] dark:text-white">
+              Without the Overhead.
+            </span>
+          </h2>
+
+          <p className="text-sm sm:text-base md:text-lg text-[#5A6679] dark:text-[#9BA8BA] leading-relaxed max-w-2xl mx-auto font-normal">
+            escalup works as an extension of your in-house team. You share the brief, we deliver production-ready CAD and MEP documentation, on time and under NDA.
+          </p>
+        </div>
+
+        {/* 6 Value Pillars with Staggered Fade-In on Scroll & Indigo Icons */}
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -123,20 +144,21 @@ export default function OffshoreModel() {
               <motion.div
                 key={pillar.id}
                 variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } }
+                  hidden: { opacity: 0, y: 16 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } }
                 }}
-                whileHover={{ y: -5 }}
-                className="bg-white dark:bg-[#152620] hover:bg-white dark:hover:bg-[#1D3328] rounded-3xl p-6 border border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40 dark:hover:border-[#3B948A]/40 transition-all duration-300 flex items-start gap-4 cursor-default shadow-soft hover:shadow-card"
+                whileHover={{ y: -4 }}
+                className="bg-white dark:bg-[#11161F] rounded-3xl p-6 sm:p-7 border border-[#E2E6EE] dark:border-white/10 transition-all duration-300 flex items-start gap-4 cursor-default shadow-card hover:shadow-card-hover"
               >
-                <div className="w-11 h-11 rounded-2xl bg-[#F8FAF9] dark:bg-[#1D3328] border border-[#DBE3E0] dark:border-[#263830] text-[#2E756E] shrink-0 flex items-center justify-center mt-0.5 shadow-xs">
+                {/* Indigo Icon Container */}
+                <div className="w-11 h-11 rounded-2xl bg-[#5846F6]/10 text-[#5846F6] shrink-0 flex items-center justify-center mt-0.5 shadow-xs">
                   <Icon className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-[#14201D] dark:text-[#E4EDE9] mb-1.5">
+                  <h3 className="text-base font-medium text-[#111827] dark:text-white mb-1.5">
                     {pillar.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#5A6A65] dark:text-[#8FA89F] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#5A6679] dark:text-[#9BA8BA] leading-relaxed font-normal">
                     {pillar.desc}
                   </p>
                 </div>
@@ -146,17 +168,17 @@ export default function OffshoreModel() {
         </motion.div>
 
         {/* Live World Clock Widget */}
-        <div className="mb-16">
+        <div className="mb-16 sm:mb-20">
           <WorldClock />
         </div>
 
         {/* Engagement Models Comparison */}
-        <div className="mb-16">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-[#14201D] dark:text-[#E4EDE9]">
-              Choose Your Engagement Model
+        <div>
+          <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+            <h3 className="text-2xl sm:text-3xl font-light text-[#111827] dark:text-white tracking-tight">
+              Choose Your <span className="font-semibold">Engagement Model</span>
             </h3>
-            <p className="text-xs sm:text-sm text-[#5A6A65] dark:text-[#8FA89F] mt-2">
+            <p className="text-xs sm:text-sm text-[#5A6679] dark:text-[#9BA8BA] mt-2 font-normal">
               Select the structure that best fits your workflow, volume, and budget.
             </p>
           </div>
@@ -169,67 +191,80 @@ export default function OffshoreModel() {
               hidden: { opacity: 0 },
               show: {
                 opacity: 1,
-                transition: { staggerChildren: 0.12 }
+                transition: { staggerChildren: 0.1 }
               }
             }}
-            className="grid lg:grid-cols-3 gap-6"
+            className="grid lg:grid-cols-3 gap-6 sm:gap-8 items-stretch"
           >
             {ENGAGEMENT_MODELS.map((model) => (
               <motion.div
                 key={model.id}
                 variants={{
-                  hidden: { opacity: 0, y: 25 },
-                  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } }
+                  hidden: { opacity: 0, y: 20 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } }
                 }}
-                whileHover={{ y: -6 }}
-                className={`rounded-3xl p-7 flex flex-col justify-between transition-all duration-300 ${
+                whileHover={{ y: -4 }}
+                className={`rounded-3xl p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 ${
                   model.popular
-                    ? 'bg-white dark:bg-[#1D3328] border-2 border-[#2E756E] shadow-xl relative ring-4 ring-[#2E756E]/10'
-                    : 'bg-white dark:bg-[#152620] border border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40 dark:hover:border-[#3B948A]/40 shadow-soft'
+                    ? 'bg-white dark:bg-[#11161F] border-2 border-[#5846F6] shadow-xl relative'
+                    : 'bg-white dark:bg-[#11161F] border border-[#E2E6EE] dark:border-white/10 shadow-card hover:shadow-card-hover'
                 }`}
               >
+                {/* Popular Pill Tag */}
                 {model.popular && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#2E756E] text-white text-[11px] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full shadow-md flex items-center gap-1.5">
-                    <Zap className="w-3 h-3 fill-white" />
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#111827] text-white text-[11px] font-semibold uppercase tracking-wider px-3.5 py-1 rounded-full shadow-md flex items-center gap-1.5 border border-white/20">
+                    <Zap className="w-3 h-3 text-[#A5B4FC] fill-current" />
                     <span>{model.badge}</span>
                   </div>
                 )}
 
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <h4 className="text-xl font-bold text-[#14201D] dark:text-[#E4EDE9]">{model.name}</h4>
+                    <h4 className="text-xl font-semibold text-[#111827] dark:text-white">{model.name}</h4>
                     {!model.popular && (
-                      <span className="text-[10px] font-semibold uppercase tracking-wider text-[#2E756E] bg-[#2E756E]/10 border border-[#2E756E]/20 px-2.5 py-0.5 rounded-full font-mono">
+                      <span className="text-[11px] font-medium text-[#5A6679] dark:text-[#9BA8BA] bg-[#EEF2F8] dark:bg-[#1A232E] px-2.5 py-0.5 rounded-full">
                         {model.badge}
                       </span>
                     )}
                   </div>
 
-                  <p className="text-xs text-[#5A6A65] dark:text-[#8FA89F] mb-6 leading-relaxed">
+                  <p className="text-xs text-[#5A6679] dark:text-[#9BA8BA] mb-6 leading-relaxed">
                     {model.tagline}
                   </p>
 
-                  <div className="space-y-4 pt-4 border-t border-[#DBE3E0] dark:border-[#263830] text-xs">
+                  <div className="space-y-3.5 pt-4 border-t border-[#E2E6EE] dark:border-white/10 text-xs">
                     <div>
-                      <span className="font-bold text-[#14201D] dark:text-[#E4EDE9] block mb-0.5">Best For:</span>
-                      <span className="text-[#5A6A65] dark:text-[#8FA89F]">{model.bestFor}</span>
+                      <span className="font-semibold text-[#111827] dark:text-white block mb-0.5">Best For:</span>
+                      <span className="text-[#5A6679] dark:text-[#9BA8BA]">{model.bestFor}</span>
                     </div>
 
                     <div>
-                      <span className="font-bold text-[#14201D] dark:text-[#E4EDE9] block mb-0.5">Commercial Structure:</span>
-                      <span className="text-[#14201D] dark:text-[#E4EDE9] font-medium">{model.pricing}</span>
+                      <span className="font-semibold text-[#111827] dark:text-white block mb-0.5">Commercial Structure:</span>
+                      <span className="text-[#111827] dark:text-white font-medium">{model.pricing}</span>
                     </div>
 
                     <div>
-                      <span className="font-bold text-[#14201D] dark:text-[#E4EDE9] block mb-0.5">Team Arrangement:</span>
-                      <span className="text-[#5A6A65] dark:text-[#8FA89F]">{model.team}</span>
+                      <span className="font-semibold text-[#111827] dark:text-white block mb-0.5">Team Arrangement:</span>
+                      <span className="text-[#5A6679] dark:text-[#9BA8BA]">{model.team}</span>
                     </div>
 
                     <div>
-                      <span className="font-bold text-[#14201D] dark:text-[#E4EDE9] block mb-0.5">Flexibility:</span>
-                      <span className="text-[#5A6A65] dark:text-[#8FA89F]">{model.flexibility}</span>
+                      <span className="font-semibold text-[#111827] dark:text-white block mb-0.5">Flexibility:</span>
+                      <span className="text-[#5A6679] dark:text-[#9BA8BA]">{model.flexibility}</span>
                     </div>
                   </div>
+                </div>
+
+                <div className="pt-6 mt-6 border-t border-[#E2E6EE] dark:border-white/10">
+                  <Button
+                    variant={model.popular ? 'primary' : 'outline'}
+                    size="sm"
+                    onClick={handleQuoteClick}
+                    icon="arrow"
+                    className="w-full"
+                  >
+                    Select Model
+                  </Button>
                 </div>
               </motion.div>
             ))}

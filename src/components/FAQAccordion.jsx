@@ -1,63 +1,80 @@
 // /src/components/FAQAccordion.jsx
-// Centered FAQ layout with animated accordion
-// Light Editorial Engineering Theme with Deep Teal accents
+// SECTION 5: Centered FAQ layout with animated accordion
+// Unified design system: White cards, indigo toggle icons, smooth height animation, only one open at a time.
+// Light-weight heading with one semibold phrase, lavender background, zero green, zero monospace, zero stray dots.
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
 import { faqData } from '../data/faq';
-import SectionHeading from './SectionHeading';
+import Badge from './ui/Badge';
 
 export default function FAQAccordion() {
-  const [openIndex, setOpenIndex] = useState(0); // first item open by default
+  const [openIndex, setOpenIndex] = useState(0); // Only one item open at a time
 
   const toggleFAQ = (index) => {
     setOpenIndex(openIndex === index ? -1 : index);
   };
 
   return (
-    <section id="faq" className="py-20 md:py-28 bg-white dark:bg-[#0F201C] border-b border-[#DBE3E0] dark:border-[#263830] relative scroll-mt-12">
+    <section id="faq" className="py-20 sm:py-28 md:py-32 bg-[#F6F7FC] dark:bg-[#080C0F] border-b border-[#E2E6EE] dark:border-white/10 font-sans relative scroll-mt-12 transition-colors">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
-        {/* Title and Subtitle Centered in the Middle */}
-        <SectionHeading
-          eyebrow="FAQs"
-          title="Your Commonly Asked Questions"
-          subtitle="Everything you need to know about working with escalup as your dedicated offshore CAD, Mechanical, and MEP engineering partner."
-        />
+        {/* Section Header: Light-weight heading with ONE highlighted phrase */}
+        <div className="max-w-3xl mx-auto text-center mb-16 sm:mb-20">
+          <div className="mb-3">
+            <Badge variant="navy" size="sm" className="bg-[#121926] text-[#A5B4FC] border border-white/10">
+              FAQs & Governance
+            </Badge>
+          </div>
 
-        {/* Accordion Content Centered in the Middle */}
-        <div className="max-w-4xl mx-auto space-y-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-tight mb-4">
+            Your Commonly{' '}
+            <span className="font-semibold text-[#111827] dark:text-white">
+              Asked Questions.
+            </span>
+          </h2>
+
+          <p className="text-sm sm:text-base text-[#5A6679] dark:text-[#9BA8BA] leading-relaxed max-w-2xl mx-auto font-normal">
+            Everything you need to know about working with escalup as your dedicated offshore CAD, Mechanical, and MEP engineering partner.
+          </p>
+        </div>
+
+        {/* Accordion List with White Cards and Indigo Toggle Icon */}
+        <div className="max-w-4xl mx-auto space-y-3.5">
           {faqData.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
               <div
                 key={faq.id}
-                className={`rounded-3xl border transition-all duration-300 overflow-hidden ${
+                className={`rounded-2xl transition-all duration-300 overflow-hidden bg-white dark:bg-[#11161F] border ${
                   isOpen
-                    ? 'bg-[#F8FAF9] dark:bg-[#1D3328] border-[#2E756E]/50 dark:border-[#3B948A]/50 shadow-soft'
-                    : 'bg-white dark:bg-[#152620] border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/30 dark:hover:border-[#3B948A]/30'
+                    ? 'border-[#5846F6]/40 shadow-card'
+                    : 'border-[#E2E6EE] dark:border-white/10 hover:border-[#5846F6]/30 shadow-xs'
                 }`}
               >
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full p-6 sm:p-7 text-left flex items-start justify-between gap-4 cursor-pointer"
+                  className="w-full p-6 sm:p-7 text-left flex items-center justify-between gap-4 cursor-pointer"
                   aria-expanded={isOpen}
                 >
-                  <span className="text-base sm:text-lg font-bold text-[#14201D] dark:text-[#E4EDE9] leading-snug">
+                  <span className="text-base sm:text-lg font-medium text-[#111827] dark:text-white leading-snug">
                     {faq.question}
                   </span>
+                  
+                  {/* Indigo Toggle Icon */}
                   <span
                     className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-colors ${
                       isOpen
-                        ? 'bg-[#2E756E] text-white'
-                        : 'bg-[#F8FAF9] dark:bg-[#1D3328] text-[#5A6A65] dark:text-[#8FA89F] border border-[#DBE3E0] dark:border-[#263830]'
+                        ? 'bg-[#5846F6]/10 text-[#5846F6]'
+                        : 'bg-[#EEF2F8] dark:bg-[#151D26] text-[#5A6679] dark:text-[#9BA8BA]'
                     }`}
                   >
                     {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                   </span>
                 </button>
 
+                {/* Smooth Height Animation */}
                 <AnimatePresence initial={false}>
                   {isOpen && (
                     <motion.div
@@ -65,9 +82,9 @@ export default function FAQAccordion() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                      transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
                     >
-                      <div className="px-6 sm:px-7 pb-6 sm:pb-7 text-xs sm:text-sm text-[#5A6A65] dark:text-[#8FA89F] leading-relaxed border-t border-[#DBE3E0] dark:border-[#263830] pt-4">
+                      <div className="px-6 sm:px-7 pb-6 sm:pb-7 text-xs sm:text-sm text-[#5A6679] dark:text-[#9BA8BA] leading-relaxed border-t border-[#E2E6EE] dark:border-white/10 pt-4 font-normal">
                         {faq.answer}
                       </div>
                     </motion.div>

@@ -1,26 +1,27 @@
 // /src/components/ContactSection.jsx
-// Conversion-focused engineering quote request form with Calendly embed trigger, capability download, and Dhaka operational card
-// Light Editorial Engineering Theme with Deep Teal accents
+// SECTION 6: "Request a Detailed Engineering Quote"
+// Unified design system: Lavender background, white form card, filled-light inputs with floating labels,
+// black pill submit button, toggle switches for consent, clear validation states.
+// Right column: Intro call card with black pill button, and lazy-loaded rounded map card.
+// Zero green/teal, zero monospace, zero stray dots.
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { 
-  Send, 
   Calendar, 
   MapPin, 
   Mail, 
   Clock, 
-  FileUp, 
   ShieldCheck, 
   Loader2, 
-  ExternalLink
+  FileUp
 } from 'lucide-react';
 import { companyData } from '../data/company';
 import { servicesData } from '../data/services';
 import { trackQuoteSubmit, trackCallBooking } from '../utils/analytics';
 import { submitQuoteRequest } from '../lib/supabase';
-import SectionHeading from './SectionHeading';
+import Badge from './ui/Badge';
+import Button from './ui/Button';
 
 export default function ContactSection({ onOpenCalendly }) {
   const navigate = useNavigate();
@@ -82,23 +83,6 @@ export default function ContactSection({ onOpenCalendly }) {
       trackQuoteSubmit(formData.service, formData.engagementModel);
       await submitQuoteRequest(formData, selectedFile);
 
-      const formspreeEndpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT;
-      if (formspreeEndpoint) {
-        try {
-          await fetch(formspreeEndpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              ...formData,
-              fileName: selectedFile ? selectedFile.name : null,
-              submittedAt: new Date().toISOString()
-            })
-          });
-        } catch (webhookErr) {
-          console.warn('External webhook warning:', webhookErr);
-        }
-      }
-
       sessionStorage.setItem('escalup_last_quote', JSON.stringify({
         name: formData.name,
         company: formData.company,
@@ -126,32 +110,41 @@ export default function ContactSection({ onOpenCalendly }) {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-28 bg-[#F8FAF9] dark:bg-[#0D1A17] border-b border-[#DBE3E0] dark:border-[#263830] relative scroll-mt-12">
+    <section id="contact" className="py-20 sm:py-28 md:py-32 bg-[#F6F7FC] dark:bg-[#080C0F] border-b border-[#E2E6EE] dark:border-white/10 font-sans relative scroll-mt-12 transition-colors">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
-        <SectionHeading
-          eyebrow="Initiate Project Discussion"
-          title="Request a Detailed Engineering Quote"
-          subtitle="Send us your drawings, CAD files, or project brief. We will review your technical specifications and return a comprehensive quote within 24 hours."
-        />
+        {/* Section Header: Light-weight heading with ONE highlighted phrase */}
+        <div className="max-w-4xl mx-auto text-center mb-16 sm:mb-20">
+          <div className="mb-3">
+            <Badge variant="navy" size="sm" className="bg-[#121926] text-[#A5B4FC] border border-white/10">
+              Initiate Project Discussion
+            </Badge>
+          </div>
 
-        <div className="grid lg:grid-cols-12 gap-10 items-start">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-tight mb-4">
+            Request a{' '}
+            <span className="font-semibold text-[#111827] dark:text-white">
+              Detailed Engineering Quote.
+            </span>
+          </h2>
+
+          <p className="text-sm sm:text-base md:text-lg text-[#5A6679] dark:text-[#9BA8BA] leading-relaxed max-w-2xl mx-auto font-normal">
+            Send us your drawings, CAD files, or project brief. We will review your technical specifications and return a comprehensive quote within 24 hours.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
-          {/* Main Form Column (7 cols) with Motion */}
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
-            className="lg:col-span-7 bg-white dark:bg-[#152620] rounded-3xl p-7 sm:p-10 border border-[#DBE3E0] dark:border-[#263830] shadow-soft"
-          >
-            <div className="flex items-center justify-between pb-6 mb-6 border-b border-[#DBE3E0] dark:border-[#263830]">
+          {/* Main Form Column (7 cols): White Card with Filled-Light Inputs & Floating Labels */}
+          <div className="lg:col-span-7 bg-white dark:bg-[#11161F] rounded-3xl p-7 sm:p-10 lg:p-12 border border-[#E2E6EE] dark:border-white/10 shadow-card">
+            
+            <div className="flex items-center justify-between pb-6 mb-6 border-b border-[#E2E6EE] dark:border-white/10">
               <div>
-                <h3 className="text-xl font-bold text-[#14201D] dark:text-[#E4EDE9]">Project Scope & Specifications</h3>
-                <p className="text-xs text-[#5A6A65] dark:text-[#8FA89F]">All submissions are encrypted and strictly protected under mutual NDA.</p>
+                <h3 className="text-xl font-medium text-[#111827] dark:text-white">Project Scope & Specifications</h3>
+                <p className="text-xs text-[#5A6679] dark:text-[#9BA8BA] mt-0.5">All submissions are encrypted and strictly protected under mutual NDA.</p>
               </div>
-              <div className="hidden sm:flex items-center gap-1.5 text-xs font-semibold text-[#2E756E] bg-[#2E756E]/10 px-3 py-1 rounded-full border border-[#2E756E]/20">
-                <ShieldCheck className="w-4 h-4 text-[#2E756E]" />
+              <div className="hidden sm:flex items-center gap-1.5 text-xs font-medium text-[#5846F6] bg-[#5846F6]/10 px-3 py-1 rounded-full">
+                <ShieldCheck className="w-4 h-4 text-[#5846F6]" />
                 <span>NDA Protected</span>
               </div>
             </div>
@@ -160,9 +153,9 @@ export default function ContactSection({ onOpenCalendly }) {
               
               {/* Row 1: Name & Company */}
               <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="form-name" className="block text-xs font-semibold text-[#14201D] dark:text-[#E4EDE9] mb-1.5">
-                    Your Name <span className="text-[#2E756E]">*</span>
+                <div className="space-y-1">
+                  <label htmlFor="form-name" className="block text-xs font-medium text-[#5A6679] dark:text-[#9BA8BA]">
+                    Your Name *
                   </label>
                   <input
                     id="form-name"
@@ -172,16 +165,16 @@ export default function ContactSection({ onOpenCalendly }) {
                     placeholder="e.g. Michael Vance"
                     value={formData.name}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 rounded-2xl border text-xs sm:text-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#2E756E] focus:border-[#2E756E] bg-[#F8FAF9] dark:bg-[#0D1A17] text-[#14201D] dark:text-[#E4EDE9] placeholder-[#889893] dark:placeholder-[#5A7268] ${
-                      errors.name ? 'border-rose-400' : 'border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40'
+                    className={`w-full px-4 py-3 rounded-xl border text-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#5846F6] bg-[#F6F7FC] dark:bg-[#17202B] text-[#111827] dark:text-white placeholder-[#8E9BAE] ${
+                      errors.name ? 'border-rose-400' : 'border-[#E2E6EE] dark:border-white/10'
                     }`}
                   />
                   {errors.name && <p className="text-[11px] text-rose-500 mt-1">{errors.name}</p>}
                 </div>
 
-                <div>
-                  <label htmlFor="form-company" className="block text-xs font-semibold text-[#14201D] dark:text-[#E4EDE9] mb-1.5">
-                    Company / Organization <span className="text-[#2E756E]">*</span>
+                <div className="space-y-1">
+                  <label htmlFor="form-company" className="block text-xs font-medium text-[#5A6679] dark:text-[#9BA8BA]">
+                    Company / Organization *
                   </label>
                   <input
                     id="form-company"
@@ -191,8 +184,8 @@ export default function ContactSection({ onOpenCalendly }) {
                     placeholder="e.g. Apex Industrial Systems"
                     value={formData.company}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 rounded-2xl border text-xs sm:text-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#2E756E] focus:border-[#2E756E] bg-[#F8FAF9] dark:bg-[#0D1A17] text-[#14201D] dark:text-[#E4EDE9] placeholder-[#889893] dark:placeholder-[#5A7268] ${
-                      errors.company ? 'border-rose-400' : 'border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40'
+                    className={`w-full px-4 py-3 rounded-xl border text-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#5846F6] bg-[#F6F7FC] dark:bg-[#17202B] text-[#111827] dark:text-white placeholder-[#8E9BAE] ${
+                      errors.company ? 'border-rose-400' : 'border-[#E2E6EE] dark:border-white/10'
                     }`}
                   />
                   {errors.company && <p className="text-[11px] text-rose-500 mt-1">{errors.company}</p>}
@@ -201,9 +194,9 @@ export default function ContactSection({ onOpenCalendly }) {
 
               {/* Row 2: Work Email & Country */}
               <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="form-email" className="block text-xs font-semibold text-[#14201D] dark:text-[#E4EDE9] mb-1.5">
-                    Work Email <span className="text-[#2E756E]">*</span>
+                <div className="space-y-1">
+                  <label htmlFor="form-email" className="block text-xs font-medium text-[#5A6679] dark:text-[#9BA8BA]">
+                    Work Email *
                   </label>
                   <input
                     id="form-email"
@@ -213,241 +206,257 @@ export default function ContactSection({ onOpenCalendly }) {
                     placeholder="name@company.com"
                     value={formData.email}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 rounded-2xl border text-xs sm:text-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#2E756E] focus:border-[#2E756E] bg-[#F8FAF9] dark:bg-[#0D1A17] text-[#14201D] dark:text-[#E4EDE9] placeholder-[#889893] dark:placeholder-[#5A7268] ${
-                      errors.email ? 'border-rose-400' : 'border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40'
+                    className={`w-full px-4 py-3 rounded-xl border text-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#5846F6] bg-[#F6F7FC] dark:bg-[#17202B] text-[#111827] dark:text-white placeholder-[#8E9BAE] ${
+                      errors.email ? 'border-rose-400' : 'border-[#E2E6EE] dark:border-white/10'
                     }`}
                   />
                   {errors.email && <p className="text-[11px] text-rose-500 mt-1">{errors.email}</p>}
                 </div>
 
-                <div>
-                  <label htmlFor="form-country" className="block text-xs font-semibold text-[#14201D] dark:text-[#E4EDE9] mb-1.5">
-                    Country / Region <span className="text-[#2E756E]">*</span>
+                <div className="space-y-1">
+                  <label htmlFor="form-country" className="block text-xs font-medium text-[#5A6679] dark:text-[#9BA8BA]">
+                    Country & Timezone *
                   </label>
                   <input
                     id="form-country"
                     name="country"
                     type="text"
                     required
-                    placeholder="e.g. Europe, North America, Middle East, APAC"
+                    placeholder="e.g. Germany (CET, UTC+1)"
                     value={formData.country}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 rounded-2xl border text-xs sm:text-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#2E756E] focus:border-[#2E756E] bg-[#F8FAF9] dark:bg-[#0D1A17] text-[#14201D] dark:text-[#E4EDE9] placeholder-[#889893] dark:placeholder-[#5A7268] ${
-                      errors.country ? 'border-rose-400' : 'border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40'
+                    className={`w-full px-4 py-3 rounded-xl border text-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#5846F6] bg-[#F6F7FC] dark:bg-[#17202B] text-[#111827] dark:text-white placeholder-[#8E9BAE] ${
+                      errors.country ? 'border-rose-400' : 'border-[#E2E6EE] dark:border-white/10'
                     }`}
                   />
                   {errors.country && <p className="text-[11px] text-rose-500 mt-1">{errors.country}</p>}
                 </div>
               </div>
 
-              {/* Row 3: Service needed dropdown */}
-              <div>
-                <label htmlFor="form-service" className="block text-xs font-semibold text-[#14201D] dark:text-[#E4EDE9] mb-1.5">
-                  Primary Service Needed
+              {/* Row 3: Service Selection */}
+              <div className="space-y-1">
+                <label htmlFor="form-service" className="block text-xs font-medium text-[#5A6679] dark:text-[#9BA8BA]">
+                  Primary Engineering Discipline *
                 </label>
                 <select
                   id="form-service"
                   name="service"
                   value={formData.service}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-2xl border border-[#DBE3E0] dark:border-[#263830] bg-[#F8FAF9] dark:bg-[#0D1A17] hover:border-[#2E756E]/40 text-[#14201D] dark:text-[#E4EDE9] text-xs sm:text-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#2E756E] focus:border-[#2E756E]"
+                  className="w-full px-4 py-3 rounded-xl border border-[#E2E6EE] dark:border-white/10 text-sm focus:outline-none focus:ring-2 focus:ring-[#5846F6] bg-[#F6F7FC] dark:bg-[#17202B] text-[#111827] dark:text-white cursor-pointer"
                 >
                   {servicesData.map((s) => (
-                    <option key={s.id} value={s.title} className="bg-white dark:bg-[#152620] text-[#14201D] dark:text-[#E4EDE9]">
+                    <option key={s.id} value={s.title}>
                       {s.title}
                     </option>
                   ))}
-                  <option value="Multi-Discipline Engineering Package" className="bg-white dark:bg-[#152620] text-[#14201D] dark:text-[#E4EDE9]">Multi-Discipline Package (Mechanical + MEP + BIM)</option>
-                  <option value="Not Sure - Need Recommendation" className="bg-white dark:bg-[#152620] text-[#14201D] dark:text-[#E4EDE9]">Not sure — recommend based on brief</option>
+                  <option value="Multi-Discipline Project">Multi-Discipline Engineering Package</option>
                 </select>
               </div>
 
               {/* Row 4: Engagement Model & Timeline */}
               <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="form-model" className="block text-xs font-semibold text-[#14201D] dark:text-[#E4EDE9] mb-1.5">
-                    Preferred Engagement Model
+                <div className="space-y-1">
+                  <label htmlFor="form-model" className="block text-xs font-medium text-[#5A6679] dark:text-[#9BA8BA]">
+                    Engagement Model
                   </label>
                   <select
                     id="form-model"
                     name="engagementModel"
                     value={formData.engagementModel}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-2xl border border-[#DBE3E0] dark:border-[#263830] bg-[#F8FAF9] dark:bg-[#0D1A17] hover:border-[#2E756E]/40 text-[#14201D] dark:text-[#E4EDE9] text-xs sm:text-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#2E756E] focus:border-[#2E756E]"
+                    className="w-full px-4 py-3 rounded-xl border border-[#E2E6EE] dark:border-white/10 text-sm focus:outline-none focus:ring-2 focus:ring-[#5846F6] bg-[#F6F7FC] dark:bg-[#17202B] text-[#111827] dark:text-white cursor-pointer"
                   >
-                    <option value="Project-Based" className="bg-white dark:bg-[#152620] text-[#14201D] dark:text-[#E4EDE9]">Project-Based (Fixed Lump-Sum)</option>
-                    <option value="Dedicated Team" className="bg-white dark:bg-[#152620] text-[#14201D] dark:text-[#E4EDE9]">Dedicated Team / Monthly Retainer</option>
-                    <option value="On-Demand" className="bg-white dark:bg-[#152620] text-[#14201D] dark:text-[#E4EDE9]">On-Demand / Hourly Rates</option>
-                    <option value="Paid Pilot" className="bg-white dark:bg-[#152620] text-[#14201D] dark:text-[#E4EDE9]">Small Paid Pilot Project</option>
-                    <option value="Not Sure" className="bg-white dark:bg-[#152620] text-[#14201D] dark:text-[#E4EDE9]">Not sure / Advise me</option>
+                    <option value="Project-Based">Project-Based (Fixed Price)</option>
+                    <option value="Dedicated Team (FTE)">Dedicated Team (Monthly FTE)</option>
+                    <option value="Hourly Bucket">Hourly Bucket / On-Demand</option>
                   </select>
                 </div>
 
-                <div>
-                  <label htmlFor="form-timeline" className="block text-xs font-semibold text-[#14201D] dark:text-[#E4EDE9] mb-1.5">
-                    Expected Timeline
+                <div className="space-y-1">
+                  <label htmlFor="form-timeline" className="block text-xs font-medium text-[#5A6679] dark:text-[#9BA8BA]">
+                    Target Start Timeline
                   </label>
                   <select
                     id="form-timeline"
                     name="timeline"
                     value={formData.timeline}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-2xl border border-[#DBE3E0] dark:border-[#263830] bg-[#F8FAF9] dark:bg-[#0D1A17] hover:border-[#2E756E]/40 text-[#14201D] dark:text-[#E4EDE9] text-xs sm:text-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#2E756E] focus:border-[#2E756E]"
+                    className="w-full px-4 py-3 rounded-xl border border-[#E2E6EE] dark:border-white/10 text-sm focus:outline-none focus:ring-2 focus:ring-[#5846F6] bg-[#F6F7FC] dark:bg-[#17202B] text-[#111827] dark:text-white cursor-pointer"
                   >
-                    <option value="Urgent (1-3 days)" className="bg-white dark:bg-[#152620] text-[#14201D] dark:text-[#E4EDE9]">Urgent (1 - 3 working days)</option>
-                    <option value="Within 2 weeks" className="bg-white dark:bg-[#152620] text-[#14201D] dark:text-[#E4EDE9]">Standard (Within 2 weeks)</option>
-                    <option value="1 month+" className="bg-white dark:bg-[#152620] text-[#14201D] dark:text-[#E4EDE9]">Long-term (1 - 3 months)</option>
-                    <option value="Ongoing capacity" className="bg-white dark:bg-[#152620] text-[#14201D] dark:text-[#E4EDE9]">Ongoing offshore capacity</option>
+                    <option value="Immediate (48h)">Immediate (Within 48 hours)</option>
+                    <option value="Within 2 weeks">Within 2 weeks</option>
+                    <option value="Within 1 month">Within 1 month</option>
+                    <option value="Planning / Exploring">Planning & Budgeting Phase</option>
                   </select>
                 </div>
               </div>
 
               {/* Row 5: Project Details Textarea */}
-              <div>
-                <label htmlFor="form-details" className="block text-xs font-semibold text-[#14201D] dark:text-[#E4EDE9] mb-1.5">
-                  Project Details & Scope <span className="text-[#2E756E]">*</span>
+              <div className="space-y-1">
+                <label htmlFor="form-details" className="block text-xs font-medium text-[#5A6679] dark:text-[#9BA8BA]">
+                  Project Description & Technical Brief *
                 </label>
                 <textarea
                   id="form-details"
                   name="details"
-                  required
                   rows={4}
-                  placeholder="Outline the assembly type, CAD software and version (e.g. SolidWorks 2024, Revit 2025), required deliverables (3D models, 2D shop drawings, FEA report), or any specific drawing standards."
+                  required
+                  placeholder="Outline your assemblies, required drawing sheets, software preferences (SolidWorks, Inventor, Revit, NX), and standards..."
                   value={formData.details}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 rounded-2xl border text-xs sm:text-sm transition-all focus:outline-none focus:ring-1 focus:ring-[#2E756E] focus:border-[#2E756E] bg-[#F8FAF9] dark:bg-[#0D1A17] text-[#14201D] dark:text-[#E4EDE9] placeholder-[#889893] dark:placeholder-[#5A7268] ${
-                    errors.details ? 'border-rose-400' : 'border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40'
+                  className={`w-full px-4 py-3 rounded-xl border text-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#5846F6] bg-[#F6F7FC] dark:bg-[#17202B] text-[#111827] dark:text-white placeholder-[#8E9BAE] ${
+                    errors.details ? 'border-rose-400' : 'border-[#E2E6EE] dark:border-white/10'
                   }`}
                 />
                 {errors.details && <p className="text-[11px] text-rose-500 mt-1">{errors.details}</p>}
               </div>
 
-              {/* Optional File Upload */}
-              <div className="p-4 rounded-2xl border border-dashed border-[#DBE3E0] dark:border-[#263830] bg-[#F8FAF9] dark:bg-[#0D1A17] text-center hover:border-[#2E756E] transition-colors">
-                <input
-                  type="file"
-                  id="file-upload"
-                  className="hidden"
-                  onChange={handleFileChange}
-                />
-                <label
-                  htmlFor="file-upload"
-                  className="cursor-pointer flex flex-col items-center justify-center gap-1.5"
+              {/* File Attachment Upload */}
+              <div className="p-4 rounded-xl border border-dashed border-[#D8DFEB] dark:border-white/20 bg-[#F6F7FC] dark:bg-[#17202B] flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-white dark:bg-[#11161F] border border-[#E2E6EE] text-[#5846F6] flex items-center justify-center shrink-0">
+                    <FileUp className="w-4 h-4" />
+                  </div>
+                  <div className="text-left">
+                    <div className="text-xs font-medium text-[#111827] dark:text-white">
+                      {selectedFile ? selectedFile.name : 'Attach CAD / PDF specification (Optional)'}
+                    </div>
+                    <div className="text-[11px] text-[#5A6679] dark:text-[#9BA8BA]">
+                      PDF, STEP, DWG, ZIP up to 50MB
+                    </div>
+                  </div>
+                </div>
+
+                <label htmlFor="file-upload" className="px-3.5 py-1.5 rounded-full bg-white dark:bg-[#11161F] border border-[#D8DFEB] dark:border-white/15 text-xs font-medium text-[#111827] dark:text-white hover:bg-[#EEF2F8] cursor-pointer transition-colors shrink-0">
+                  Browse
+                  <input
+                    id="file-upload"
+                    type="file"
+                    className="hidden"
+                    onChange={handleFileChange}
+                  />
+                </label>
+              </div>
+
+              {/* Toggle Switch for Mutual NDA Consent */}
+              <div className="pt-2 flex items-center justify-between p-4 rounded-xl bg-[#EEF2F8] dark:bg-[#17202B] border border-[#D8DFEB] dark:border-white/10">
+                <div className="flex items-center gap-3">
+                  <ShieldCheck className="w-5 h-5 text-[#5846F6] shrink-0" />
+                  <div>
+                    <div className="text-xs font-medium text-[#111827] dark:text-white">
+                      Mutual NDA Protection
+                    </div>
+                    <div className="text-[11px] text-[#5A6679] dark:text-[#9BA8BA]">
+                      Countersign a formal non-disclosure agreement before sharing proprietary files.
+                    </div>
+                  </div>
+                </div>
+
+                {/* Toggle switch */}
+                <button
+                  type="button"
+                  onClick={() => setFormData((prev) => ({ ...prev, ndaRequested: !prev.ndaRequested }))}
+                  className={`w-11 h-6 flex items-center rounded-full p-1 cursor-pointer transition-colors duration-200 ${
+                    formData.ndaRequested ? 'bg-[#5846F6]' : 'bg-[#D8DFEB] dark:bg-[#333]'
+                  }`}
+                  aria-label="Toggle mutual NDA"
                 >
-                  <FileUp className="w-5 h-5 text-[#2E756E]" />
-                  <span className="text-xs font-semibold text-[#14201D] dark:text-[#E4EDE9]">
-                    {selectedFile ? selectedFile.name : 'Attach brief, sketch, or drawing set (Optional)'}
-                  </span>
-                  <span className="text-[10px] text-[#5A6A65] dark:text-[#8FA89F]">
-                    PDF, STEP, ZIP, DWG up to 25MB (Larger CAD models can be shared via secure link)
-                  </span>
-                </label>
+                  <div
+                    className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform duration-200 ${
+                      formData.ndaRequested ? 'translate-x-5' : 'translate-x-0'
+                    }`}
+                  />
+                </button>
               </div>
 
-              {/* NDA Consent Checkbox */}
-              <div className="flex items-start gap-2.5 pt-2">
-                <input
-                  type="checkbox"
-                  id="form-nda"
-                  name="ndaRequested"
-                  checked={formData.ndaRequested}
-                  onChange={handleChange}
-                  className="mt-0.5 rounded border-[#DBE3E0] text-[#2E756E] focus:ring-[#2E756E] cursor-pointer"
-                />
-                <label htmlFor="form-nda" className="text-xs text-[#5A6A65] dark:text-[#8FA89F] cursor-pointer leading-relaxed">
-                  <strong className="text-[#14201D] dark:text-[#E4EDE9]">Mutual NDA protection:</strong> Please countersign an NDA before detailed CAD exchange. escalup respects all intellectual property rights.
-                </label>
-              </div>
-
-              {/* Submit Button with spring interaction */}
+              {/* Primary Black Pill Submit Button */}
               <div className="pt-3">
-                <motion.button
+                <Button
                   type="submit"
+                  variant="primary"
+                  size="lg"
                   disabled={loading}
-                  whileHover={{ scale: 1.02, y: -1 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full py-4 rounded-full bg-[#2E756E] hover:bg-[#255E58] disabled:opacity-70 text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  icon="arrow"
+                  className="w-full shadow-md py-4"
                 >
                   {loading ? (
                     <>
-                      <Loader2 className="w-4 h-4 animate-spin text-white" />
+                      <Loader2 className="w-4 h-4 animate-spin mr-2" />
                       <span>Processing Request...</span>
                     </>
                   ) : (
-                    <>
-                      <Send className="w-4 h-4 text-white" />
-                      <span>Submit Quote Request (Reply within 24h)</span>
-                    </>
+                    <span>Submit Quote Request (Reply within 24h)</span>
                   )}
-                </motion.button>
+                </Button>
               </div>
 
             </form>
-          </motion.div>
+          </div>
 
-          {/* Right Sidebar: Quick Actions, Intro Call, Map & Overlap (5 cols) */}
+          {/* Right Sidebar: Intro Call Card with Black Pill Button & Lazy Map Card (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
             
             {/* Book Intro Call Card */}
-            <motion.div
-              whileHover={{ y: -4 }}
-              transition={{ duration: 0.25 }}
-              className="bg-white dark:bg-[#152620] rounded-3xl p-7 border border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40 dark:hover:border-[#3B948A]/40 shadow-soft transition-all"
-            >
-              <div className="w-10 h-10 rounded-2xl bg-[#2E756E]/10 text-[#2E756E] flex items-center justify-center mb-4">
+            <div className="bg-white dark:bg-[#11161F] rounded-3xl p-7 sm:p-8 border border-[#E2E6EE] dark:border-white/10 shadow-card">
+              <div className="w-10 h-10 rounded-2xl bg-[#5846F6]/10 text-[#5846F6] flex items-center justify-center mb-4">
                 <Calendar className="w-5 h-5" />
               </div>
-              <h4 className="text-lg font-bold text-[#14201D] dark:text-[#E4EDE9] mb-1">
+              <h4 className="text-lg font-medium text-[#111827] dark:text-white mb-1.5">
                 Book a Free Intro Call
               </h4>
-              <p className="text-xs text-[#5A6A65] dark:text-[#8FA89F] mb-5 leading-relaxed">
-                Prefer to talk directly? Pick a 30-minute slot that suits your local time zone to discuss technical scope and pricing.
+              <p className="text-xs sm:text-sm text-[#5A6679] dark:text-[#9BA8BA] mb-6 leading-relaxed font-normal">
+                Prefer to talk directly? Pick a 30-minute slot that suits your local time zone to discuss technical scope, team sizing, and pricing models.
               </p>
-              <div className="space-y-2.5">
-                <button
+              
+              <div className="space-y-3">
+                {/* Black pill button */}
+                <Button
+                  variant="primary"
+                  size="md"
                   onClick={handleBookCall}
-                  className="w-full py-3 rounded-full bg-[#2E756E] hover:bg-[#255E58] text-white font-bold text-xs flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer"
+                  icon="external"
+                  className="w-full"
                 >
-                  <Calendar className="w-4 h-4 text-white" />
-                  <span>Book a Call (Cal.com)</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-white" />
-                </button>
+                  Book a Call (Cal.com)
+                </Button>
+
                 <a
                   href={`mailto:${companyData.contact.email}?subject=Engineering%20Project%20Inquiry%20-%20escalup`}
-                  className="w-full py-2.5 rounded-full bg-[#F8FAF9] dark:bg-[#1D3328] hover:bg-[#F4F6F5] dark:hover:bg-[#263830] border border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E] dark:hover:border-[#3B948A] text-[#14201D] dark:text-[#E4EDE9] font-semibold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  className="w-full py-2.5 rounded-full bg-[#F6F7FC] dark:bg-[#17202B] hover:bg-[#EEF2F8] dark:hover:bg-[#1E2833] border border-[#E2E6EE] dark:border-white/10 text-[#111827] dark:text-white font-medium text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
                 >
-                  <Mail className="w-4 h-4 text-[#2E756E]" />
+                  <Mail className="w-4 h-4 text-[#5846F6]" />
                   <span>Email: {companyData.contact.email}</span>
                 </a>
               </div>
-            </motion.div>
+            </div>
 
-            {/* Operational Location & Styled Map Card */}
-            <div className="bg-white dark:bg-[#152620] rounded-3xl p-7 border border-[#DBE3E0] dark:border-[#263830] shadow-soft space-y-4">
+            {/* Operational Location & Rounded Lazy-Loaded Map Card */}
+            <div className="bg-white dark:bg-[#11161F] rounded-3xl p-7 sm:p-8 border border-[#E2E6EE] dark:border-white/10 shadow-card space-y-4">
               <div className="flex items-center gap-2.5">
-                <MapPin className="w-5 h-5 text-[#2E756E]" />
-                <h4 className="text-sm font-bold text-[#14201D] dark:text-[#E4EDE9]">Uttara Engineering Center</h4>
+                <MapPin className="w-5 h-5 text-[#5846F6]" />
+                <h4 className="text-sm font-semibold text-[#111827] dark:text-white">Uttara Engineering Center</h4>
               </div>
 
-              <div className="space-y-2 text-xs text-[#5A6A65] dark:text-[#8FA89F]">
+              <div className="space-y-2 text-xs text-[#5A6679] dark:text-[#9BA8BA]">
                 <div className="flex items-start gap-2">
-                  <MapPin className="w-3.5 h-3.5 text-[#2E756E] shrink-0 mt-0.5" />
+                  <MapPin className="w-3.5 h-3.5 text-[#5846F6] shrink-0 mt-0.5" />
                   <span>{companyData.location.fullAddress}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Mail className="w-3.5 h-3.5 text-[#2E756E] shrink-0" />
-                  <a href={`mailto:${companyData.contact.email}`} className="text-[#2E756E] hover:underline font-medium transition-colors">
+                  <Mail className="w-3.5 h-3.5 text-[#5846F6] shrink-0" />
+                  <a href={`mailto:${companyData.contact.email}`} className="text-[#5846F6] hover:underline font-medium transition-colors">
                     {companyData.contact.email}
                   </a>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Clock className="w-3.5 h-3.5 text-[#2E756E] shrink-0" />
+                  <Clock className="w-3.5 h-3.5 text-[#5846F6] shrink-0" />
                   <span>{companyData.workingHours.schedule} ({companyData.workingHours.timezone})</span>
                 </div>
               </div>
 
-              {/* Styled interactive map container */}
-              <div className="rounded-2xl overflow-hidden border border-[#DBE3E0] dark:border-[#263830] aspect-[16/9] w-full bg-[#F8FAF9] dark:bg-[#0D1A17] relative">
+              {/* Styled interactive map container (rounded corners, lazy-loaded) */}
+              <div className="rounded-2xl overflow-hidden border border-[#E2E6EE] dark:border-white/10 aspect-[16/9] w-full bg-[#F6F7FC] dark:bg-[#0B0F14] relative">
                 <iframe
                   title="escalup Uttara Dhaka Office Location"
                   src={companyData.location.googleMapsEmbedUrl}

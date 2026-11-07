@@ -32,7 +32,7 @@ export default function ScrollRevealText({
 
   return (
     <div ref={containerRef} className={`py-16 sm:py-24 max-w-5xl mx-auto px-4 text-center ${className}`}>
-      <div className="text-xs font-mono font-bold uppercase tracking-widest text-[#0070AD] dark:text-[#38BDF8] mb-6">
+      <div className="text-xs font-semibold uppercase tracking-widest text-[#0070AD] dark:text-[#A5B4FC] mb-6 font-sans">
         {tag}
       </div>
 
@@ -50,3 +50,4 @@ export default function ScrollRevealText({
     </div>
   );
 }
+

@@ -1,6 +1,6 @@
 // /src/components/WorldClock.jsx
 // Live World Clock widget displaying real-time hours across global hubs and Dhaka headquarters
-// Light Editorial Engineering Theme with Deep Teal accents
+// Unified design system: Clean Inter sans font, indigo accents, zero green, zero monospace.
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
@@ -75,7 +75,7 @@ export default function WorldClock() {
       });
       return formatter.format(time);
     } catch {
-      return '--:--';
+      return '--:--:--';
     }
   };
 
@@ -93,20 +93,19 @@ export default function WorldClock() {
   };
 
   return (
-    <div className="bg-white dark:bg-[#152620] rounded-3xl border border-[#DBE3E0] dark:border-[#263830] p-6 shadow-soft">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-5 border-b border-[#DBE3E0] dark:border-[#263830] gap-2">
+    <div className="bg-white dark:bg-[#11161F] rounded-3xl p-6 sm:p-8 border border-[#E2E6EE] dark:border-white/10 shadow-card font-sans">
+      <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#E2E6EE] dark:border-white/10">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-[#2E756E]/10 text-[#2E756E] flex items-center justify-center">
-            <Globe2 className="w-4 h-4 text-[#2E756E]" />
+          <div className="w-8 h-8 rounded-full bg-[#5846F6]/10 text-[#5846F6] flex items-center justify-center">
+            <Globe2 className="w-4 h-4" />
           </div>
           <div>
-            <h4 className="text-sm font-bold text-[#14201D] dark:text-[#E4EDE9]">Global Time-Zone Coordination</h4>
-            <p className="text-xs text-[#5A6A65] dark:text-[#8FA89F]">Real-time operational overlap with international engineering desks</p>
+            <h4 className="text-sm font-semibold text-[#111827] dark:text-white">Global Time-Zone Coordination</h4>
+            <p className="text-xs text-[#5A6679] dark:text-[#9BA8BA]">Real-time operational overlap with international engineering desks</p>
           </div>
         </div>
-        <div className="flex items-center gap-2 text-xs font-semibold text-[#2E756E] bg-[#2E756E]/10 px-3 py-1 rounded-full border border-[#2E756E]/20 self-start sm:self-auto">
-          <span className="w-2 h-2 rounded-full bg-[#2E756E] animate-pulse"></span>
-          <span>Dhaka Engineering Hub: Active</span>
+        <div className="text-xs font-medium text-[#5846F6] dark:text-[#A5B4FC] bg-[#5846F6]/10 px-3 py-1 rounded-full">
+          Dhaka Engineering Hub: Active
         </div>
       </div>
 
@@ -118,36 +117,36 @@ export default function WorldClock() {
           return (
             <motion.div
               key={hub.city}
-              whileHover={{ y: -3, scale: 1.02 }}
+              whileHover={{ y: -2 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
               className={`p-3.5 rounded-2xl border transition-colors cursor-default ${
                 hub.isHQ
-                  ? 'bg-[#F4F6F5] dark:bg-[#1D3328] border-[#2E756E] ring-1 ring-[#2E756E]/20 shadow-sm'
-                  : 'bg-[#F8FAF9] dark:bg-[#0D1A17] border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40'
+                  ? 'bg-[#F6F7FC] dark:bg-[#151D26] border-[#5846F6]/30 shadow-xs'
+                  : 'bg-white dark:bg-[#11161F] border-[#E2E6EE] dark:border-white/10 hover:border-[#5846F6]/30'
               }`}
             >
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="text-xs font-bold text-[#14201D] dark:text-[#E4EDE9] flex items-center gap-1.5">
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-xs font-bold text-[#111827] dark:text-white flex items-center gap-1.5">
                   {hub.city}
                   {hub.isHQ && (
-                    <span className="text-[10px] font-bold bg-[#2E756E] text-white px-1.5 py-0.2 rounded-full">
+                    <span className="text-[10px] font-bold bg-[#5846F6] text-white px-1.5 py-0.2 rounded-full">
                       HQ
                     </span>
                   )}
                 </span>
-                <span className="text-[10px] font-mono text-[#889893]">{hub.offset}</span>
+                <span className="text-[10px] text-[#8E9BAE]">{hub.offset}</span>
               </div>
 
-              <div className="font-mono text-base font-bold text-[#14201D] dark:text-[#E4EDE9] tracking-tight mb-1">
+              <div className="text-base font-semibold text-[#111827] dark:text-white tracking-tight mb-1">
                 {formatHubTime(hub.timeZone)}
               </div>
 
-              <div className="text-[11px] text-[#5A6A65] dark:text-[#8FA89F] flex items-center gap-1.5">
+              <div className="text-[11px] text-[#5A6679] dark:text-[#9BA8BA] flex items-center gap-1.5">
                 <span
                   className={`w-1.5 h-1.5 rounded-full ${
-                    isWorkHours ? 'bg-[#2E756E] animate-pulse' : 'bg-[#DBE3E0]'
+                    isWorkHours ? 'bg-[#5846F6]' : 'bg-[#D8DFEB]'
                   }`}
-                ></span>
+                />
                 <span className="truncate">
                   {hub.overlapNote || (hub.isHQ ? '10:00 - 19:00 BST' : 'Operational')}
                 </span>
@@ -157,12 +156,12 @@ export default function WorldClock() {
         })}
       </div>
 
-      <div className="mt-4 pt-3 border-t border-[#DBE3E0] dark:border-[#263830] flex flex-wrap items-center justify-between text-xs text-[#5A6A65] dark:text-[#8FA89F] gap-2">
-        <span className="flex items-center gap-1.5 text-[#14201D] dark:text-[#E4EDE9]">
-          <CheckCircle2 className="w-3.5 h-3.5 text-[#2E756E]" />
+      <div className="mt-4 pt-3 border-t border-[#E2E6EE] dark:border-white/10 flex flex-wrap items-center justify-between text-xs text-[#5A6679] dark:text-[#9BA8BA] gap-2">
+        <span className="flex items-center gap-1.5 text-[#111827] dark:text-white">
+          <CheckCircle2 className="w-3.5 h-3.5 text-[#5846F6]" />
           Synchronous communication available during European & Middle East mornings.
         </span>
-        <span className="text-[11px] text-[#2E756E] font-medium">
+        <span className="text-[11px] text-[#5846F6] font-medium">
           Fast async overnight sprints for North America
         </span>
       </div>

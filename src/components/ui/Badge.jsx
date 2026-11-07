@@ -25,8 +25,8 @@ export default function Badge({
     blue: 'bg-[#0070AD]/10 text-[#0070AD] border border-[#0070AD]/25 dark:bg-[#0070AD]/20 dark:text-[#38BDF8]',
     // Violet
     violet: 'bg-[#5846F6]/10 text-[#5846F6] border border-[#5846F6]/25 dark:bg-[#5846F6]/20 dark:text-[#A78BFA]',
-    // Engineering Teal
-    teal: 'bg-[#2E756E]/15 text-[#2E756E] border border-[#2E756E]/25 dark:bg-[#14F3C1]/15 dark:text-[#14F3C1]',
+    // Indigo accent
+    indigo: 'bg-[#4F46E5]/10 text-[#4F46E5] border border-[#4F46E5]/25 dark:bg-[#4F46E5]/20 dark:text-[#818CF8]',
     // Light subtle
     light: 'bg-white/80 dark:bg-white/10 text-[#111827] dark:text-white border border-[#E5E7EB] dark:border-white/15',
     // Outline
@@ -42,3 +42,4 @@ export default function Badge({
     </span>
   );
 }
+

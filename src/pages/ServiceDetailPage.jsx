@@ -126,7 +126,7 @@ export default function ServiceDetailPage() {
         <div className="w-full max-w-5xl mx-auto text-center relative z-10 flex flex-col items-center">
           
           {/* Breadcrumb row: Services > Engineering Services > Title */}
-          <div className="flex items-center gap-2 text-xs font-mono text-white/70 mb-8">
+          <div className="flex items-center gap-2 text-xs text-white/70 mb-8 font-sans">
             <Link to="/" className="hover:text-white transition-colors">
               Services
             </Link>
@@ -135,7 +135,7 @@ export default function ServiceDetailPage() {
               Engineering Services
             </Link>
             <ChevronRight className="w-3.5 h-3.5 text-white/40" />
-            <span className="text-[#14F3C1] font-semibold truncate max-w-xs">
+            <span className="text-[#A5B4FC] font-semibold truncate max-w-xs">
               {service.title}
             </span>
           </div>
@@ -179,7 +179,7 @@ export default function ServiceDetailPage() {
               <span
                 key={idx}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
-                  idx === 0 ? 'w-10 bg-[#14F3C1]' : 'w-4 bg-white/30'
+                  idx === 0 ? 'w-10 bg-[#5846F6]' : 'w-4 bg-white/30'
                 }`}
               />
             ))}
@@ -191,12 +191,12 @@ export default function ServiceDetailPage() {
       {/* ======================================================== */}
       {/* 2. ABOUT CAPABILITY & VIDEO CARD SECTION                 */}
       {/* ======================================================== */}
-      <section className="py-20 sm:py-28 max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
+      <section className="py-20 sm:py-28 max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16 font-sans">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
           {/* Left 6 cols: Narrative */}
           <div className="lg:col-span-6 space-y-6">
-            <div className="text-xs font-mono font-bold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8]">
+            <div className="text-xs font-semibold uppercase tracking-wider text-[#0070AD] dark:text-[#A5B4FC]">
               Discipline Overview
             </div>
 
@@ -210,19 +210,19 @@ export default function ServiceDetailPage() {
 
             <div className="space-y-3 pt-2">
               <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-4 h-4 text-[#0070AD] dark:text-[#14F3C1] shrink-0 mt-1" />
+                <CheckCircle2 className="w-4 h-4 text-[#5846F6] shrink-0 mt-1" />
                 <span className="text-xs sm:text-sm text-[#111827] dark:text-white">
                   <strong>100% Native CAD Integrity:</strong> Delivered in SolidWorks, Siemens NX, Inventor, or Revit using your exact layer and title block standards.
                 </span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-4 h-4 text-[#0070AD] dark:text-[#14F3C1] shrink-0 mt-1" />
+                <CheckCircle2 className="w-4 h-4 text-[#5846F6] shrink-0 mt-1" />
                 <span className="text-xs sm:text-sm text-[#111827] dark:text-white">
                   <strong>Zero Spatial Clash Verification:</strong> Multi-discipline collision detection in Navisworks before fabrication drawings hit the shop floor.
                 </span>
               </div>
               <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-4 h-4 text-[#0070AD] dark:text-[#14F3C1] shrink-0 mt-1" />
+                <CheckCircle2 className="w-4 h-4 text-[#5846F6] shrink-0 mt-1" />
                 <span className="text-xs sm:text-sm text-[#111827] dark:text-white">
                   <strong>Dhaka Center of Excellence (BST, UTC+6):</strong> Synchronous collaboration with Western Europe and overnight sprint turnarounds for North America.
                 </span>
@@ -273,14 +273,14 @@ export default function ServiceDetailPage() {
                 className="p-6 border border-[#E2E6EE] dark:border-white/10 flex flex-col justify-between"
               >
                 <div className="flex items-center justify-between mb-4">
-                  <ItemIcon className="w-5 h-5 text-[#0070AD] dark:text-[#14F3C1]" />
-                  <span className="text-[10px] font-mono text-[#5A6679] dark:text-[#9BA8BA]">0{idx + 1}</span>
+                  <ItemIcon className="w-5 h-5 text-[#5846F6]" />
+                  <span className="text-[10px] text-[#5A6679] dark:text-[#9BA8BA]">0{idx + 1}</span>
                 </div>
                 <div>
                   <div className="text-base font-bold text-[#111827] dark:text-white mb-1">
                     {item.title}
                   </div>
-                  <div className="text-xs font-mono text-[#0070AD] dark:text-[#38BDF8]">
+                  <div className="text-xs font-medium text-[#5846F6] dark:text-[#A5B4FC]">
                     {item.metric}
                   </div>
                 </div>
@@ -297,7 +297,7 @@ export default function ServiceDetailPage() {
         <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
           
           <div className="max-w-3xl mb-12 lg:mb-16">
-            <div className="text-xs font-mono font-bold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8] mb-2">
+            <div className="text-xs font-semibold uppercase tracking-wider text-[#0070AD] dark:text-[#A5B4FC] mb-2">
               Structured Deliverables
             </div>
             <h2 className="text-3xl sm:text-4xl font-light text-[#111827] dark:text-white tracking-tight">
@@ -306,7 +306,7 @@ export default function ServiceDetailPage() {
           </div>
 
           {/* Split Layout: Left vertical tabs, Right numbered content list */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start font-sans">
             
             {/* Left 4 cols: Vertical tab list with active indicator */}
             <div className="lg:col-span-4 space-y-2 border-l-2 border-[#E2E6EE] dark:border-white/10 pl-2">
@@ -318,17 +318,17 @@ export default function ServiceDetailPage() {
                     onClick={() => setActiveTab(idx)}
                     className={`w-full text-left p-4 rounded-xl transition-all relative cursor-pointer ${
                       isActive
-                        ? 'bg-[#EEF2F8] dark:bg-[#151D26] text-[#0070AD] dark:text-[#38BDF8] font-bold shadow-sm'
+                        ? 'bg-[#EEF2F8] dark:bg-[#151D26] text-[#5846F6] dark:text-[#A5B4FC] font-semibold shadow-sm'
                         : 'text-[#5A6679] dark:text-[#9BA8BA] hover:text-[#111827] dark:hover:text-white'
                     }`}
                   >
                     {isActive && (
                       <motion.div
                         layoutId="activeOfferingBar"
-                        className="absolute -left-[10px] top-0 bottom-0 w-1 bg-[#0070AD] rounded-r"
+                        className="absolute -left-[10px] top-0 bottom-0 w-1 bg-[#5846F6] rounded-r"
                       />
                     )}
-                    <div className="text-xs font-mono mb-1 text-[#5A6679]">Offering 0{idx + 1}</div>
+                    <div className="text-xs mb-1 text-[#5A6679]">Offering 0{idx + 1}</div>
                     <div className="text-sm font-semibold">{offering.title}</div>
                   </button>
                 );
@@ -357,7 +357,7 @@ export default function ServiceDetailPage() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-[#E2E6EE] dark:border-white/10">
                     {offeringsData[activeTab].points.map((pt, pIdx) => (
                       <div key={pIdx} className="p-4 rounded-2xl bg-white dark:bg-[#17202B] border border-[#E2E7F0] dark:border-white/5 space-y-1">
-                        <div className="text-xs font-mono font-bold text-[#0070AD]">
+                        <div className="text-xs font-semibold text-[#5846F6]">
                           0{pIdx + 1}
                         </div>
                         <div className="text-xs sm:text-sm font-medium text-[#111827] dark:text-[#F3F5FA]">
@@ -480,7 +480,7 @@ export default function ServiceDetailPage() {
                 {/* Consent & NDA Toggle */}
                 <div className="pt-2 flex items-center justify-between p-4 rounded-xl bg-[#EEF2F8] dark:bg-[#17202B] border border-[#D8DFEB] dark:border-white/10">
                   <div className="flex items-center gap-2.5">
-                    <ShieldCheck className="w-5 h-5 text-[#0070AD] dark:text-[#14F3C1] shrink-0" />
+                    <ShieldCheck className="w-5 h-5 text-[#5846F6] shrink-0" />
                     <div>
                       <div className="text-xs font-bold text-[#111827] dark:text-white">
                         Execute Mutual Non-Disclosure Agreement (NDA)
@@ -495,7 +495,7 @@ export default function ServiceDetailPage() {
                     type="checkbox"
                     checked={consentNda}
                     onChange={(e) => setConsentNda(e.target.checked)}
-                    className="w-5 h-5 text-[#0070AD] rounded cursor-pointer"
+                    className="w-5 h-5 text-[#5846F6] rounded cursor-pointer"
                   />
                 </div>
 
@@ -552,7 +552,7 @@ export default function ServiceDetailPage() {
               <div className="aspect-video rounded-2xl bg-gradient-to-br from-[#0B1528] to-[#040810] border border-white/10 flex flex-col items-center justify-center text-center p-8 relative overflow-hidden">
                 <div className="absolute inset-0 blueprint-grid opacity-30" />
                 <div className="relative z-10 space-y-3">
-                  <div className="w-16 h-16 rounded-full bg-[#0070AD]/30 border border-[#0070AD] text-[#14F3C1] flex items-center justify-center mx-auto">
+                  <div className="w-16 h-16 rounded-full bg-[#5846F6]/20 border border-[#5846F6]/40 text-[#A5B4FC] flex items-center justify-center mx-auto">
                     <Cpu className="w-8 h-8 animate-pulse" />
                   </div>
                   <h4 className="text-xl font-bold">

@@ -57,9 +57,6 @@ export default function FloatingAssistant({ onOpenAssistant }) {
       >
         <Sparkles className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
         
-        {/* Subtle pulsing beacon */}
-        <span className="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-[#14F3C1] border-2 border-white dark:border-[#0B0F14]" />
-        
         {/* Tooltip on hover */}
         <span className="absolute right-full mr-3 px-3 py-1.5 rounded-xl bg-[#0B0F14]/90 text-white text-xs font-medium whitespace-nowrap shadow-lg opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200">
           Ask escalup ✦

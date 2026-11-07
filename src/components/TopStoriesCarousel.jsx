@@ -78,9 +78,9 @@ export default function TopStoriesCarousel() {
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         {/* Section Header with "1/4" counter & circular arrows */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-12">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-12 font-sans">
           <div>
-            <div className="text-xs font-mono font-bold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8] mb-2">
+            <div className="text-xs font-semibold uppercase tracking-wider text-[#0070AD] dark:text-[#A5B4FC] mb-2">
               Featured Case Insights
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#111827] dark:text-white tracking-tight">
@@ -90,8 +90,8 @@ export default function TopStoriesCarousel() {
 
           {/* Navigation Controls: Counter + Prev/Next Circular Buttons */}
           <div className="flex items-center gap-4">
-            <span className="text-sm font-mono tracking-widest text-[#5A6679] dark:text-[#9BA8BA]">
-              <strong className="text-[#111827] dark:text-white font-bold">{currentIndex + 1}</strong> / {TOP_STORIES.length}
+            <span className="text-sm tracking-widest text-[#5A6679] dark:text-[#9BA8BA]">
+              <strong className="text-[#111827] dark:text-white font-semibold">{currentIndex + 1}</strong> / {TOP_STORIES.length}
             </span>
 
             <div className="flex items-center gap-2">
@@ -139,12 +139,12 @@ export default function TopStoriesCarousel() {
                     <Badge variant={current.badgeVariant} size="sm">
                       {current.tag}
                     </Badge>
-                    <Icon className="w-8 h-8 text-[#0070AD] dark:text-[#14F3C1] opacity-75" />
+                    <Icon className="w-8 h-8 text-[#5846F6] dark:text-[#A5B4FC] opacity-75" />
                   </div>
 
                   {/* Impact Metric Banner */}
                   <div className="relative z-10 my-auto py-6">
-                    <div className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#111827] dark:text-white tracking-tight">
+                    <div className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#111827] dark:text-white tracking-tight">
                       {current.metric}
                     </div>
                     <div className="text-xs sm:text-sm font-medium text-[#5A6679] dark:text-[#9BA8BA] mt-1 max-w-xs">
@@ -152,7 +152,7 @@ export default function TopStoriesCarousel() {
                     </div>
                   </div>
 
-                  <div className="relative z-10 text-xs font-mono text-[#0070AD] dark:text-[#38BDF8]">
+                  <div className="relative z-10 text-xs font-medium text-[#0070AD] dark:text-[#A5B4FC]">
                     {current.tools}
                   </div>
                 </div>
@@ -160,7 +160,7 @@ export default function TopStoriesCarousel() {
                 {/* RIGHT: Content Details (7 cols) */}
                 <div className="lg:col-span-7 p-8 sm:p-12 flex flex-col justify-between">
                   <div className="space-y-4">
-                    <div className="text-xs font-mono text-[#5A6679] dark:text-[#9BA8BA] uppercase tracking-wider">
+                    <div className="text-xs text-[#5A6679] dark:text-[#9BA8BA] uppercase tracking-wider font-medium">
                       Case Insight · 0{current.id}
                     </div>
 
@@ -174,7 +174,7 @@ export default function TopStoriesCarousel() {
                   </div>
 
                   <div className="pt-8 border-t border-[#E2E6EE] dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div className="text-xs font-mono text-[#5A6679] dark:text-[#9BA8BA]">
+                    <div className="text-xs text-[#5A6679] dark:text-[#9BA8BA]">
                       Production Documentation Delivered Under ASME & ISO
                     </div>
 
@@ -201,3 +201,4 @@ export default function TopStoriesCarousel() {
     </section>
   );
 }
+

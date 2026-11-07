@@ -43,7 +43,7 @@ export default function Footer() {
           
           {/* Column 1: Services */}
           <div className="space-y-4">
-            <h4 className="text-sm font-bold uppercase tracking-wider text-[#111827] dark:text-white font-mono">
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-[#111827] dark:text-white">
               Engineering Services
             </h4>
             <ul className="space-y-2.5 text-xs sm:text-sm">
@@ -74,7 +74,7 @@ export default function Footer() {
 
           {/* Column 2: Industries & Sectors */}
           <div className="space-y-4">
-            <h4 className="text-sm font-bold uppercase tracking-wider text-[#111827] dark:text-white font-mono">
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-[#111827] dark:text-white">
               Industries & Sectors
             </h4>
             <ul className="space-y-2.5 text-xs sm:text-sm">
@@ -108,7 +108,7 @@ export default function Footer() {
 
           {/* Column 3: Company & Delivery */}
           <div className="space-y-4">
-            <h4 className="text-sm font-bold uppercase tracking-wider text-[#111827] dark:text-white font-mono">
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-[#111827] dark:text-white">
               Company & Operations
             </h4>
             <ul className="space-y-2.5 text-xs sm:text-sm">
@@ -142,7 +142,7 @@ export default function Footer() {
 
           {/* Column 4: Governance & Support */}
           <div className="space-y-4">
-            <h4 className="text-sm font-bold uppercase tracking-wider text-[#111827] dark:text-white font-mono">
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-[#111827] dark:text-white">
               Standards & Support
             </h4>
             <ul className="space-y-2.5 text-xs sm:text-sm">
@@ -193,7 +193,7 @@ export default function Footer() {
 
             {locationOpen && (
               <div className="absolute bottom-full left-0 mb-2 w-64 p-3 rounded-2xl bg-white dark:bg-[#151D26] border border-[#D8DFEB] dark:border-white/10 shadow-xl text-xs space-y-1.5 z-20">
-                <div className="text-[10px] font-mono font-bold uppercase text-[#5A6679] dark:text-[#9BA8BA] px-2">
+                <div className="text-[10px] font-semibold uppercase tracking-wider text-[#5A6679] dark:text-[#9BA8BA] px-2">
                   Operating Engineering Center
                 </div>
                 <div className="flex items-center justify-between px-2 py-1.5 rounded-lg bg-[#EEF2F8] dark:bg-[#1E2833] font-medium text-[#111827] dark:text-white">
@@ -248,7 +248,7 @@ export default function Footer() {
           </div>
 
           {/* Copyright Row */}
-          <div className="text-xs text-[#5A6679] dark:text-[#9BA8BA] font-mono">
+          <div className="text-xs text-[#5A6679] dark:text-[#9BA8BA]">
             Copyright © 2026 escalup. All rights reserved.
           </div>
 

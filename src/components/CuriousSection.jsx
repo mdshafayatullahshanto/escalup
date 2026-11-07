@@ -22,7 +22,7 @@ export default function CuriousSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
-          className="text-xs font-mono font-bold uppercase tracking-widest text-[#0070AD] dark:text-[#38BDF8] mb-4"
+          className="text-xs font-semibold uppercase tracking-widest text-[#0070AD] dark:text-[#A5B4FC] mb-4 font-sans"
         >
           The Engineering Edge
         </motion.div>

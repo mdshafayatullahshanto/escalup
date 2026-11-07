@@ -95,21 +95,21 @@ export default function CustomCursor() {
           width: cursorText ? 76 : (hovered ? 48 : 32),
           height: cursorText ? 76 : (hovered ? 48 : 32),
           backgroundColor: cursorText
-            ? '#2E756E'
-            : (hovered ? 'rgba(46, 117, 110, 0.12)' : 'rgba(46, 117, 110, 0.04)'),
+            ? '#5846F6'
+            : (hovered ? 'rgba(88, 70, 246, 0.12)' : 'rgba(88, 70, 246, 0.04)'),
           borderColor: cursorText
-            ? '#2E756E'
-            : (hovered ? '#2E756E' : 'rgba(46, 117, 110, 0.4)'),
+            ? '#5846F6'
+            : (hovered ? '#5846F6' : 'rgba(88, 70, 246, 0.3)'),
           borderWidth: cursorText ? '0px' : (hovered ? '1.5px' : '1px'),
           boxShadow: cursorText
-            ? '0 8px 25px rgba(46, 117, 110, 0.4)'
+            ? '0 8px 25px rgba(88, 70, 246, 0.4)'
             : 'none',
           scale: clicked ? 0.9 : 1,
         }}
         transition={{ type: 'spring', damping: 22, stiffness: 300 }}
       >
         {cursorText && (
-          <span className="text-[11px] font-black uppercase tracking-widest text-white select-none font-mono">
+          <span className="text-[11px] font-bold uppercase tracking-widest text-white select-none font-sans">
             {cursorText}
           </span>
         )}
@@ -117,7 +117,7 @@ export default function CustomCursor() {
 
       {/* Inner Precision Tracking Dot */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[99999] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#2E756E] shadow-[0_0_8px_rgba(46,117,110,0.6)] transition-opacity duration-200"
+        className="fixed top-0 left-0 pointer-events-none z-[99999] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#5846F6] shadow-[0_0_8px_rgba(88,70,246,0.6)] transition-opacity duration-200"
         style={{
           x: dotX,
           y: dotY,

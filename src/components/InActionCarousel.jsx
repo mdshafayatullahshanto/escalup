@@ -1,5 +1,6 @@
 // src/components/InActionCarousel.jsx
-// STEP 3 - Item 5: Black "In Action" section with a horizontal carousel and the same arrow/counter controls.
+// SECTION 1: Black "In Action" section with a horizontal peek carousel (next card ~15% visible, drag/swipe, 1/4 counter, round arrows).
+// Unified design system: Inter-only font, light-weight heading, indigo accents, zero green/teal, zero monospace, zero stray dots.
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -16,7 +17,6 @@ const ACTION_PROJECTS = [
     metric: '18 Clashes Prevented',
     standards: 'ASME Y14.5M · ISO 1101 · SolidWorks Native',
     deliverables: ['3D Parametric CAD Assembly', '2D Manufacturing Drawings with GD&T', 'Full Multi-Level Indented BOM'],
-    gradient: 'from-blue-900/40 via-indigo-900/20 to-transparent',
   },
   {
     id: 2,
@@ -27,7 +27,6 @@ const ACTION_PROJECTS = [
     metric: '124 Spatial Collisions Solved',
     standards: 'Autodesk Revit · Navisworks · ASHRAE 90.1',
     deliverables: ['LOD 350-400 Coordinated Revit Models', 'Navisworks Clash Resolution Matrix', 'Contractor Spool & Shop Drawings'],
-    gradient: 'from-teal-900/40 via-emerald-900/20 to-transparent',
   },
   {
     id: 3,
@@ -38,7 +37,6 @@ const ACTION_PROJECTS = [
     metric: '28% Cycle Time Cut',
     standards: 'Sheet Metal DIN 6935 · K-Factor 0.44',
     deliverables: ['Unfolded DXF Flat Patterns for Laser Cutting', 'Forming & Bend Sequence Drawings', 'Tooling & Inspection Fixture Prints'],
-    gradient: 'from-purple-900/40 via-pink-900/20 to-transparent',
   },
   {
     id: 4,
@@ -49,7 +47,6 @@ const ACTION_PROJECTS = [
     metric: '1,400+ Drawings Standardized',
     standards: 'Siemens NX · Teamcenter PDM · ASME Y14.100',
     deliverables: ['Native 3D NX Models with Feature Trees', 'Teamcenter Vault Attribute Mapping', 'Drawing Border & Title Block Migration'],
-    gradient: 'from-cyan-900/40 via-blue-900/20 to-transparent',
   }
 ];
 
@@ -64,35 +61,35 @@ export default function InActionCarousel() {
     setCurrentIndex((prev) => (prev === ACTION_PROJECTS.length - 1 ? 0 : prev + 1));
   };
 
+  const nextIndex = (currentIndex + 1) % ACTION_PROJECTS.length;
   const current = ACTION_PROJECTS[currentIndex];
+  const nextProject = ACTION_PROJECTS[nextIndex];
 
   return (
-    <section className="py-20 sm:py-28 md:py-32 bg-[#0B0F14] text-white border-b border-white/10 relative overflow-hidden">
-      {/* Background blueprint aesthetics */}
-      <div className="absolute inset-0 blueprint-grid opacity-10 pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#0070AD]/10 rounded-full blur-[140px] pointer-events-none" />
+    <section className="py-20 sm:py-28 md:py-32 bg-[#0B0F14] text-white border-b border-white/10 relative overflow-hidden font-sans">
+      {/* Background radial glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#5846F6]/10 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16 relative z-10">
         
-        {/* Section Header with Controls */}
+        {/* Section Header with Controls: No stray dots, no mono text */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 lg:mb-16">
           <div>
-            <div className="text-xs font-mono font-bold uppercase tracking-widest text-[#14F3C1] mb-2 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#14F3C1]" />
-              <span>Engineering in Action</span>
+            <div className="mb-3">
+              <Badge variant="navy" size="sm" className="bg-[#121926] text-[#A5B4FC] border border-white/10">
+                Engineering in Action
+              </Badge>
             </div>
+            {/* Light-weight heading with ONE semibold phrase */}
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-white tracking-tight">
-              Real Delivery,{' '}
-              <span className="font-semibold text-white">
-                Measurable Impact.
-              </span>
+              Real Delivery, <span className="font-semibold text-white">Measurable Impact.</span>
             </h2>
           </div>
 
-          {/* Navigation Controls: Counter + Prev/Next Buttons */}
+          {/* Navigation Controls: Counter + Round Arrows */}
           <div className="flex items-center gap-4">
-            <span className="text-sm font-mono tracking-widest text-white/60">
-              <strong className="text-white font-bold">{currentIndex + 1}</strong> / {ACTION_PROJECTS.length}
+            <span className="text-sm tracking-wider text-white/60">
+              <strong className="text-white font-medium">{currentIndex + 1}</strong> / {ACTION_PROJECTS.length}
             </span>
 
             <div className="flex items-center gap-2">
@@ -107,7 +104,7 @@ export default function InActionCarousel() {
               <button
                 onClick={nextSlide}
                 aria-label="Next in action case"
-                className="w-10 h-10 rounded-full bg-[#0070AD] hover:bg-[#005c8f] text-white flex items-center justify-center transition-all cursor-pointer shadow-lg hover:scale-105 active:scale-95"
+                className="w-10 h-10 rounded-full bg-white text-[#111827] hover:bg-white/90 flex items-center justify-center transition-all cursor-pointer shadow-lg hover:scale-105 active:scale-95"
               >
                 <ArrowRight className="w-4 h-4" />
               </button>
@@ -115,87 +112,120 @@ export default function InActionCarousel() {
           </div>
         </div>
 
-        {/* Horizontal Carousel Display */}
+        {/* Horizontal Peek Carousel (Next card ~15% visible on the right) */}
         <div className="relative">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={current.id}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className="p-8 sm:p-12 lg:p-16 rounded-3xl sm:rounded-[36px] bg-[#111720] border border-white/15 shadow-2xl relative overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                
-                {/* Left 7 cols: Case Narrative */}
-                <div className="lg:col-span-7 space-y-6">
-                  <div className="flex flex-wrap items-center gap-2.5">
-                    <Badge variant="teal" size="sm">
-                      {current.discipline}
-                    </Badge>
-                    <span className="text-xs font-mono text-white/50">
-                      {current.clientType}
-                    </span>
-                  </div>
-
-                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-light text-white leading-tight">
-                    {current.title}
-                  </h3>
-
-                  <p className="text-sm sm:text-base text-white/80 leading-relaxed font-normal">
-                    {current.outcome}
-                  </p>
-
-                  <div className="space-y-2 pt-2">
-                    <div className="text-xs font-mono font-bold uppercase tracking-wider text-[#14F3C1]">
-                      Key Production Deliverables:
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+            
+            {/* Active Card (85% width on large screens) */}
+            <div className="lg:col-span-10">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={current.id}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  onDragEnd={(e, { offset }) => {
+                    if (offset.x < -40) nextSlide();
+                    if (offset.x > 40) prevSlide();
+                  }}
+                  className="p-8 sm:p-12 lg:p-14 rounded-3xl bg-[#11161F] border border-white/15 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center cursor-grab active:cursor-grabbing"
+                >
+                  {/* Left 7 cols: Case Narrative */}
+                  <div className="lg:col-span-7 space-y-5">
+                    <div className="flex flex-wrap items-center gap-2.5">
+                      <Badge variant="navy" size="xs" className="bg-[#182232] text-[#A5B4FC] border border-white/10">
+                        {current.discipline}
+                      </Badge>
+                      <span className="text-xs text-white/60">
+                        {current.clientType}
+                      </span>
                     </div>
-                    {current.deliverables.map((item, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-xs sm:text-sm text-white/90">
-                        <CheckCircle2 className="w-4 h-4 text-[#14F3C1] shrink-0" />
-                        <span>{item}</span>
+
+                    <h3 className="text-2xl sm:text-3xl font-light text-white leading-tight">
+                      {current.title}
+                    </h3>
+
+                    <p className="text-sm sm:text-base text-white/80 leading-relaxed font-normal">
+                      {current.outcome}
+                    </p>
+
+                    <div className="space-y-2 pt-2">
+                      <div className="text-xs font-semibold uppercase tracking-wider text-[#A5B4FC]">
+                        Key Production Deliverables:
                       </div>
-                    ))}
-                  </div>
-
-                  <div className="text-xs font-mono text-white/50 pt-2">
-                    Governed Under: {current.standards}
-                  </div>
-                </div>
-
-                {/* Right 5 cols: Large Metric Panel */}
-                <div className="lg:col-span-5 p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md flex flex-col justify-between text-left">
-                  <div className="space-y-2">
-                    <div className="text-xs font-mono text-[#0070AD] uppercase tracking-wider">
-                      Verified Result
+                      {current.deliverables.map((item, idx) => (
+                        <div key={idx} className="flex items-center gap-2 text-xs sm:text-sm text-white/90">
+                          {/* Indigo Accent Check */}
+                          <CheckCircle2 className="w-4 h-4 text-[#5846F6] shrink-0" />
+                          <span>{item}</span>
+                        </div>
+                      ))}
                     </div>
-                    <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-                      {current.metric}
-                    </div>
-                    <div className="text-xs text-white/70 font-mono">
-                      Documented in project release logs
+
+                    <div className="text-xs text-white/50 pt-1">
+                      Governed Under: {current.standards}
                     </div>
                   </div>
 
-                  <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-xs text-white/80 font-mono">
-                      <ShieldCheck className="w-4 h-4 text-[#14F3C1]" />
-                      <span>Protected by Mutual NDA</span>
+                  {/* Right 5 cols: Metric Card in Black/Indigo */}
+                  <div className="lg:col-span-5 p-8 rounded-2xl bg-black/40 border border-white/10 flex flex-col justify-between text-left">
+                    <div className="space-y-2">
+                      <div className="text-xs font-medium text-[#A5B4FC] uppercase tracking-wider">
+                        Verified Result
+                      </div>
+                      <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
+                        {current.metric}
+                      </div>
+                      <div className="text-xs text-white/60">
+                        Documented in project release logs
+                      </div>
                     </div>
 
-                    <a
-                      href="#contact"
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-[#14F3C1] hover:underline"
-                    >
-                      <span>Inquire Scope</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </a>
-                  </div>
-                </div>
+                    <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
+                      <div className="flex items-center gap-2 text-xs text-white/80">
+                        <ShieldCheck className="w-4 h-4 text-[#5846F6]" />
+                        <span>Protected by Mutual NDA</span>
+                      </div>
 
+                      <a
+                        href="#contact"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#A5B4FC] hover:text-white transition-colors"
+                      >
+                        <span>Inquire Scope</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </a>
+                    </div>
+                  </div>
+
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Next Card ~15% Peek (Visible on desktop) */}
+            <div 
+              onClick={nextSlide}
+              className="hidden lg:flex lg:col-span-2 p-6 rounded-3xl bg-[#11161F]/60 hover:bg-[#11161F] border border-white/10 opacity-70 hover:opacity-100 transition-all cursor-pointer flex-col justify-between overflow-hidden"
+              title="View next case"
+            >
+              <div className="space-y-3">
+                <Badge variant="navy" size="xs" className="bg-[#182232] text-[#A5B4FC] border border-white/10">
+                  {nextProject.discipline.split(' ')[0]}
+                </Badge>
+                <div className="text-xs font-medium text-white/50">Next Case</div>
+                <h4 className="text-sm font-light text-white line-clamp-3">
+                  {nextProject.title}
+                </h4>
               </div>
-            </motion.div>
-          </AnimatePresence>
+              <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-[#A5B4FC]">
+                <span>{nextProject.metric}</span>
+                <ArrowRight className="w-4 h-4" />
+              </div>
+            </div>
+
+          </div>
         </div>
 
       </div>

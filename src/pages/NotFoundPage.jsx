@@ -1,40 +1,41 @@
 // /src/pages/NotFoundPage.jsx
-// 404 error page matching light editorial engineering theme
+// 404 error page matching Infosys corporate style
+// Unified design system: Lavender background, white card, indigo accents, black pill button
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Home } from 'lucide-react';
+import { Home, ArrowRight } from 'lucide-react';
+import Button from '../components/ui/Button';
 
 export default function NotFoundPage() {
   return (
-    <div className="min-h-[80vh] bg-[#F8FAF9] dark:bg-[#0D1A17] py-24 px-4 flex items-center justify-center blueprint-grid text-[#14201D] dark:text-[#E4EDE9]">
-      <div className="max-w-md w-full bg-white dark:bg-[#152620] rounded-3xl p-8 border border-[#DBE3E0] dark:border-[#263830] shadow-soft text-center">
-        <div className="w-14 h-14 rounded-2xl bg-[#2E756E]/10 text-[#2E756E] mx-auto flex items-center justify-center mb-6 font-mono font-black text-xl border border-[#2E756E]/20">
+    <div className="min-h-[80vh] bg-[#F6F7FC] dark:bg-[#080C0F] py-24 px-4 flex items-center justify-center text-[#111827] dark:text-[#F3F5FA] font-sans">
+      <div className="max-w-md w-full bg-white dark:bg-[#11161F] rounded-3xl p-8 sm:p-10 border border-[#E2E6EE] dark:border-white/10 shadow-card text-center">
+        <div className="w-14 h-14 rounded-2xl bg-[#5846F6]/10 text-[#5846F6] mx-auto flex items-center justify-center mb-6 font-bold text-xl border border-[#5846F6]/20">
           404
         </div>
         
-        <h1 className="text-2xl font-extrabold text-[#14201D] dark:text-[#E4EDE9] mb-2">
-          Page Not Found
+        <h1 className="text-2xl font-light text-[#111827] dark:text-white mb-2">
+          Page <span className="font-semibold">Not Found</span>
         </h1>
         
-        <p className="text-xs sm:text-sm text-[#5A6A65] dark:text-[#8FA89F] mb-8 leading-relaxed">
+        <p className="text-xs sm:text-sm text-[#5A6679] dark:text-[#9BA8BA] mb-8 leading-relaxed">
           The engineering page or drawing archive you are looking for does not exist or has been relocated.
         </p>
 
         <div className="space-y-3">
-          <Link
-            to="/"
-            className="w-full py-3 rounded-full bg-[#2E756E] hover:bg-[#255E58] text-white font-bold text-xs shadow-sm transition-all flex items-center justify-center gap-2"
-          >
-            <Home className="w-4 h-4 text-white" />
-            <span>Return to Homepage</span>
+          <Link to="/" className="block">
+            <Button variant="primary" size="md" className="w-full">
+              <Home className="w-4 h-4 text-white" />
+              <span>Return to Homepage</span>
+            </Button>
           </Link>
           
-          <Link
-            to="/#services"
-            className="w-full py-2.5 rounded-full bg-[#F8FAF9] dark:bg-[#1D3328] hover:bg-[#F4F6F5] dark:hover:bg-[#263830] text-[#14201D] dark:text-[#E4EDE9] font-semibold text-xs border border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E] dark:hover:border-[#3B948A] transition-colors block text-center"
-          >
-            Browse Engineering Services
+          <Link to="/#services" className="block">
+            <Button variant="outline" size="md" className="w-full">
+              <span>Browse Engineering Services</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Button>
           </Link>
         </div>
       </div>

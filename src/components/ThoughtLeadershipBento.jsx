@@ -65,9 +65,9 @@ export default function ThoughtLeadershipBento() {
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
         
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12 lg:mb-16">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12 lg:mb-16 font-sans">
           <div>
-            <div className="text-xs font-mono font-bold uppercase tracking-widest text-[#0070AD] dark:text-[#38BDF8] mb-2">
+            <div className="text-xs font-semibold uppercase tracking-widest text-[#0070AD] dark:text-[#A5B4FC] mb-2">
               Engineering Knowledge & Perspectives
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight">
@@ -80,7 +80,7 @@ export default function ThoughtLeadershipBento() {
 
           <a
             href="#contact"
-            className="text-xs sm:text-sm font-bold text-[#0070AD] dark:text-[#38BDF8] hover:underline flex items-center gap-1 shrink-0"
+            className="text-xs sm:text-sm font-semibold text-[#5846F6] dark:text-[#A5B4FC] hover:underline flex items-center gap-1 shrink-0"
           >
             <span>View All Engineering Reports</span>
             <ArrowRight className="w-4 h-4" />
@@ -102,12 +102,12 @@ export default function ThoughtLeadershipBento() {
                   <Badge variant="navy" size="sm">
                     {BENTO_ARTICLES[0].badge}
                   </Badge>
-                  <span className="text-xs font-mono text-[#5A6679] dark:text-[#9BA8BA]">
+                  <span className="text-xs text-[#5A6679] dark:text-[#9BA8BA]">
                     {BENTO_ARTICLES[0].date} · {BENTO_ARTICLES[0].readTime}
                   </span>
                 </div>
 
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-light text-[#111827] dark:text-white leading-tight group-hover:text-[#0070AD] transition-colors">
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-light text-[#111827] dark:text-white leading-tight group-hover:text-[#5846F6] transition-colors">
                   {BENTO_ARTICLES[0].title}
                 </h3>
 
@@ -118,7 +118,7 @@ export default function ThoughtLeadershipBento() {
 
               {/* Bottom Visual / Read More Link */}
               <div className="pt-8 mt-8 border-t border-[#E2E6EE] dark:border-white/10 flex items-center justify-between">
-                <div className="text-xs font-mono text-[#5A6679] dark:text-[#9BA8BA]">
+                <div className="text-xs text-[#5A6679] dark:text-[#9BA8BA]">
                   Engineering Strategy · Operations Research
                 </div>
 
@@ -149,12 +149,12 @@ export default function ThoughtLeadershipBento() {
                       <Badge variant="navy" size="xs">
                         {article.badge}
                       </Badge>
-                      <span className="text-[11px] font-mono text-[#5A6679] dark:text-[#9BA8BA]">
+                      <span className="text-[11px] text-[#5A6679] dark:text-[#9BA8BA]">
                         {article.date}
                       </span>
                     </div>
 
-                    <h4 className="text-base sm:text-lg font-medium text-[#111827] dark:text-white group-hover:text-[#0070AD] transition-colors line-clamp-2 mb-2 leading-snug">
+                    <h4 className="text-base sm:text-lg font-medium text-[#111827] dark:text-white group-hover:text-[#5846F6] transition-colors line-clamp-2 mb-2 leading-snug">
                       {article.title}
                     </h4>
 
@@ -164,7 +164,7 @@ export default function ThoughtLeadershipBento() {
                   </div>
 
                   <div className="mt-4 pt-3 border-t border-[#E2E6EE] dark:border-white/10 flex items-center justify-between text-xs">
-                    <span className="text-[11px] font-mono text-[#5A6679] dark:text-[#9BA8BA]">
+                    <span className="text-[11px] text-[#5A6679] dark:text-[#9BA8BA]">
                       {article.readTime}
                     </span>
                     <UnderlineLink href="#contact" color="blue" icon="arrow" className="text-xs font-bold">

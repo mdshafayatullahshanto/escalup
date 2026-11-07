@@ -1,6 +1,6 @@
 // /src/pages/ThankYouPage.jsx
-// Conversion tracking thank you page with confetti celebration, confirmation SLA, and Calendly accelerator
-// Light Editorial Engineering Theme with Deep Teal accents
+// Confirmation page shown after quote submission
+// Unified design system: Lavender background, white card, indigo accents, black pill button, zero green/mono
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -12,10 +12,12 @@ import {
   ShieldCheck, 
   Mail, 
   FileCheck2, 
-  ExternalLink 
+  ArrowLeft 
 } from 'lucide-react';
 import { companyData } from '../data/company';
 import { trackCallBooking } from '../utils/analytics';
+import Badge from '../components/ui/Badge';
+import Button from '../components/ui/Button';
 
 export default function ThankYouPage({ onOpenCalendly }) {
   const [submissionInfo] = useState(() => {
@@ -36,7 +38,7 @@ export default function ThankYouPage({ onOpenCalendly }) {
         particleCount: 80,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ['#2E756E', '#14201D', '#5A6A65', '#DBE3E0']
+        colors: ['#5846F6', '#0070AD', '#111827', '#E2E6EE']
       });
     } catch {
       // safe fallback
@@ -53,90 +55,93 @@ export default function ThankYouPage({ onOpenCalendly }) {
   };
 
   return (
-    <div className="min-h-[85vh] bg-[#F8FAF9] dark:bg-[#0D1A17] py-20 px-4 sm:px-6 lg:px-8 flex items-center justify-center blueprint-grid">
-      <div className="max-w-2xl w-full bg-white dark:bg-[#152620] rounded-3xl p-8 sm:p-12 border border-[#DBE3E0] dark:border-[#263830] shadow-soft text-center relative overflow-hidden">
+    <div className="min-h-[85vh] bg-[#F6F7FC] dark:bg-[#080C0F] py-20 px-4 sm:px-6 lg:px-8 flex items-center justify-center font-sans">
+      <div className="max-w-2xl w-full bg-white dark:bg-[#11161F] rounded-3xl p-8 sm:p-12 border border-[#E2E6EE] dark:border-white/10 shadow-card text-center relative overflow-hidden">
         
         {/* Animated Check Icon */}
-        <div className="w-16 h-16 rounded-2xl bg-[#2E756E]/10 text-[#2E756E] mx-auto flex items-center justify-center mb-6 shadow-xs animate-bounce">
-          <CheckCircle2 className="w-9 h-9 text-[#2E756E]" />
+        <div className="w-16 h-16 rounded-2xl bg-[#5846F6]/10 text-[#5846F6] mx-auto flex items-center justify-center mb-6 shadow-xs animate-bounce">
+          <CheckCircle2 className="w-9 h-9 text-[#5846F6]" />
         </div>
 
-        <span className="text-xs font-bold uppercase tracking-wider text-[#2E756E] px-3.5 py-1.5 rounded-full bg-[#2E756E]/10 border border-[#2E756E]/20 inline-block mb-3 font-mono">
-          Request Successfully Received
-        </span>
+        <div className="flex justify-center mb-4">
+          <Badge variant="navy">Request Successfully Received</Badge>
+        </div>
 
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#14201D] dark:text-[#E4EDE9] tracking-tight mb-4">
-          Thank you for reaching out to escalup.
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#111827] dark:text-white tracking-tight mb-4">
+          Thank you for reaching out to <span className="font-semibold text-[#111827] dark:text-white">escalup.</span>
         </h1>
 
-        <div className="p-4 rounded-2xl bg-[#F8FAF9] dark:bg-[#0D1A17] border border-[#DBE3E0] dark:border-[#263830] text-[#14201D] dark:text-[#E4EDE9] font-bold text-sm sm:text-base flex items-center justify-center gap-2 mb-6 shadow-xs">
-          <Clock className="w-5 h-5 text-[#2E756E]" />
+        <div className="p-4 rounded-2xl bg-[#EEF2F8] dark:bg-[#161D27] border border-[#E2E6EE] dark:border-white/10 text-[#111827] dark:text-white font-medium text-sm sm:text-base flex items-center justify-center gap-2 mb-6">
+          <Clock className="w-5 h-5 text-[#5846F6]" />
           <span>We will reply with a detailed quote within 24 hours.</span>
         </div>
 
-        <p className="text-xs sm:text-sm text-[#5A6A65] dark:text-[#8FA89F] leading-relaxed mb-8 max-w-lg mx-auto">
+        <p className="text-xs sm:text-sm text-[#5A6679] dark:text-[#9BA8BA] leading-relaxed mb-8 max-w-lg mx-auto">
           {submissionInfo?.name ? (
-            <>Thank you, <strong className="text-[#14201D] dark:text-[#E4EDE9]">{submissionInfo.name}</strong> from <strong className="text-[#14201D] dark:text-[#E4EDE9]">{submissionInfo.company}</strong>. </>
+            <>Thank you, <strong className="text-[#111827] dark:text-white">{submissionInfo.name}</strong> from <strong className="text-[#111827] dark:text-white">{submissionInfo.company}</strong>. </>
           ) : null}
           Our lead engineering desk in Uttara, Dhaka is reviewing your technical requirements. We will prepare an itemized milestone estimate and drawing timeline.
         </p>
 
         {/* 3 Steps What Happens Next */}
-        <div className="bg-[#F8FAF9] dark:bg-[#0D1A17] rounded-2xl p-6 border border-[#DBE3E0] dark:border-[#263830] text-left mb-8 space-y-3.5">
-          <h4 className="text-xs font-bold text-[#14201D] dark:text-[#E4EDE9] uppercase tracking-wider font-mono">
+        <div className="bg-[#F6F7FC] dark:bg-[#0B0F14] rounded-2xl p-6 border border-[#E2E6EE] dark:border-white/10 text-left mb-8 space-y-3.5">
+          <h4 className="text-xs font-semibold text-[#111827] dark:text-white uppercase tracking-wider">
             What Happens Next:
           </h4>
-          <div className="space-y-2.5 text-xs text-[#5A6A65] dark:text-[#8FA89F]">
+          <div className="space-y-2.5 text-xs text-[#5A6679] dark:text-[#9BA8BA]">
             <div className="flex items-start gap-2.5">
-              <ShieldCheck className="w-4 h-4 text-[#2E756E] shrink-0 mt-0.5" />
+              <ShieldCheck className="w-4 h-4 text-[#5846F6] shrink-0 mt-0.5" />
               <span>
-                <strong className="text-[#14201D] dark:text-[#E4EDE9]">1. NDA Execution:</strong> We countersign your confidentiality agreement before examining proprietary CAD models or drawings.
+                <strong className="text-[#111827] dark:text-white">1. NDA Execution:</strong> We countersign your confidentiality agreement before examining proprietary CAD models or drawings.
               </span>
             </div>
             <div className="flex items-start gap-2.5">
-              <FileCheck2 className="w-4 h-4 text-[#2E756E] shrink-0 mt-0.5" />
+              <FileCheck2 className="w-4 h-4 text-[#5846F6] shrink-0 mt-0.5" />
               <span>
-                <strong className="text-[#14201D] dark:text-[#E4EDE9]">2. Technical Review:</strong> Our senior mechanical and MEP engineers evaluate tolerances, drafting scope, and tooling feasibility.
+                <strong className="text-[#111827] dark:text-white">2. Technical Review:</strong> Our senior mechanical and MEP engineers evaluate tolerances, drafting scope, and tooling feasibility.
               </span>
             </div>
             <div className="flex items-start gap-2.5">
-              <Mail className="w-4 h-4 text-[#2E756E] shrink-0 mt-0.5" />
+              <Mail className="w-4 h-4 text-[#5846F6] shrink-0 mt-0.5" />
               <span>
-                <strong className="text-[#14201D] dark:text-[#E4EDE9]">3. Fixed Quote & Milestones:</strong> You receive a clear, binding proposal with delivery dates and payment terms.
+                <strong className="text-[#111827] dark:text-white">3. Fixed Quote & Milestones:</strong> You receive a clear, binding proposal with delivery dates and payment terms.
               </span>
             </div>
           </div>
         </div>
 
         {/* Accelerated Next Action: Book a Call on Cal.com */}
-        <div className="p-6 rounded-2xl border-2 border-dashed border-[#2E756E]/40 bg-[#F8FAF9] dark:bg-[#0D1A17] mb-8">
-          <h4 className="font-bold text-sm text-[#14201D] dark:text-[#E4EDE9] mb-1">
+        <div className="p-6 rounded-2xl border border-dashed border-[#5846F6]/40 bg-[#EEF2F8]/60 dark:bg-[#161D27]/60 mb-8">
+          <h4 className="font-semibold text-sm text-[#111827] dark:text-white mb-1">
             Want to accelerate your kickoff?
           </h4>
-          <p className="text-xs text-[#5A6A65] dark:text-[#8FA89F] mb-4">
+          <p className="text-xs text-[#5A6679] dark:text-[#9BA8BA] mb-4">
             Skip the email delay and reserve 30 minutes with our Principal Engineer right away.
           </p>
-          <button
+          <Button
             onClick={handleBookCall}
-            className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#2E756E] hover:bg-[#255E58] text-white font-bold text-xs shadow-sm transition-all inline-flex items-center justify-center gap-2 cursor-pointer"
+            variant="primary"
+            size="md"
+            icon="arrow"
+            className="w-full sm:w-auto"
           >
             <Calendar className="w-4 h-4 text-white" />
             <span>Open Booking Calendar (Cal.com)</span>
-            <ExternalLink className="w-3.5 h-3.5 text-white" />
-          </button>
+          </Button>
         </div>
 
         {/* Return Links */}
-        <div className="flex items-center justify-center gap-4 text-xs font-semibold text-[#889893] dark:text-[#5A7268]">
-          <Link to="/" className="text-[#2E756E] hover:underline flex items-center gap-1">
-            <span>← Return to Home</span>
+        <div className="flex items-center justify-center gap-4 text-xs font-medium text-[#5A6679] dark:text-[#9BA8BA]">
+          <Link to="/" className="text-[#5846F6] hover:underline flex items-center gap-1">
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>Return to Home</span>
           </Link>
           <span>·</span>
-          <Link to="/#services" className="hover:text-[#14201D] dark:hover:text-[#E4EDE9] transition-colors">
+          <Link to="/#services" className="hover:text-[#111827] dark:hover:text-white transition-colors">
             Explore All Services
           </Link>
           <span>·</span>
-          <a href={`mailto:${companyData.contact.email}`} className="hover:text-[#14201D] transition-colors">
+          <a href={`mailto:${companyData.contact.email}`} className="hover:text-[#111827] dark:hover:text-white transition-colors">
             Contact Support
           </a>
         </div>

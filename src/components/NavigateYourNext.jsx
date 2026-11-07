@@ -1,21 +1,25 @@
-// /src/components/NavigateYourNext.jsx
-// Infosys-inspired enterprise engineering transformation section:
-// Explains how global engineering directors & procurement heads navigate their next project release with escalup.
+// src/components/NavigateYourNext.jsx
+// SECTION 3: "Navigate Your Next with Precision Engineering"
+// Left vertical tab list with active indicator bar and white highlighted active row;
+// Right content panel that swaps with a smooth crossfade;
+// Dark stat card uses black/indigo (zero green, zero monospace, light-weight heading).
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   CheckCircle2, 
   ArrowRight, 
-  ShieldCheck, 
   Calendar,
-  Sparkles
+  ShieldCheck
 } from 'lucide-react';
+import Badge from './ui/Badge';
+import Button from './ui/Button';
 
 const PILLARS = [
   {
     id: 'capacity',
-    tabLabel: '01. Capacity & Agility',
+    num: '01',
+    tabLabel: 'Capacity & Agility',
     title: 'Scale CAD Capacity On-Demand Without Long-Term Overhead',
     badge: '50–70% Cost Efficiency',
     headline: 'Eliminate internal drawing backlogs during busy release cycles.',
@@ -31,7 +35,8 @@ const PILLARS = [
   },
   {
     id: 'coordination',
-    tabLabel: '02. Multi-Discipline Clash Sync',
+    num: '02',
+    tabLabel: 'Multi-Discipline Clash Sync',
     title: 'Multi-Discipline Engineering Coordination Side-by-Side',
     badge: 'Zero Spatial Clashes',
     headline: 'Resolve spatial collisions before fabrication drawings hit the shop floor.',
@@ -47,7 +52,8 @@ const PILLARS = [
   },
   {
     id: 'native',
-    tabLabel: '03. Native CAD Integrity',
+    num: '03',
+    tabLabel: 'Native CAD Integrity',
     title: 'Native Software Integrity — Never Generic File Translations',
     badge: '100% Parametric Models',
     headline: 'We model inside your preferred software and corporate templates.',
@@ -63,7 +69,8 @@ const PILLARS = [
   },
   {
     id: 'synchronous',
-    tabLabel: '04. Real-Time Timezone Overlap',
+    num: '04',
+    tabLabel: 'Real-Time Timezone Overlap',
     title: 'Synchronous Global Collaboration with Dhaka Engineering Center',
     badge: 'BST (UTC+6) Alignment',
     headline: 'Live video standups and rapid overnight drafting turnarounds.',
@@ -85,7 +92,7 @@ export default function NavigateYourNext({ onOpenCalendly }) {
   const activePillar = PILLARS.find((p) => p.id === activeTab) || PILLARS[0];
 
   const handleQuoteClick = (e) => {
-    e.preventDefault();
+    if (e && e.preventDefault) e.preventDefault();
     const contactEl = document.getElementById('contact');
     if (contactEl) {
       contactEl.scrollIntoView({ behavior: 'smooth' });
@@ -101,145 +108,159 @@ export default function NavigateYourNext({ onOpenCalendly }) {
   };
 
   return (
-    <section id="navigate-next" className="py-20 md:py-28 bg-[#FFFFFF] dark:bg-[#0B1519] border-b border-[#DBE3E0] dark:border-[#263830] relative overflow-hidden scroll-mt-12">
+    <section id="navigate-next" className="py-20 sm:py-28 md:py-32 bg-[#F6F7FC] dark:bg-[#080C0F] border-b border-[#E2E6EE] dark:border-white/10 font-sans relative overflow-hidden scroll-mt-12 transition-colors">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16 relative z-10">
         
-        {/* Infosys Header Structure */}
-        <div className="max-w-4xl mx-auto text-center mb-12 lg:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#2E756E]/10 dark:bg-[#3B948A]/15 text-[#2E756E] dark:text-[#3B948A] border border-[#2E756E]/20 dark:border-[#3B948A]/30 mb-4 font-mono">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>The Enterprise Offshore Transformation</span>
+        {/* Section Header: Light-weight heading with ONE highlighted phrase */}
+        <div className="max-w-4xl mx-auto text-center mb-16 sm:mb-20">
+          <div className="mb-3">
+            <Badge variant="navy" size="sm" className="bg-[#121926] text-[#A5B4FC] border border-white/10">
+              The Enterprise Offshore Transformation
+            </Badge>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#14201D] dark:text-[#E4EDE9] tracking-tight leading-tight mb-5">
-            Navigate Your Next with Precision Engineering
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-tight mb-4">
+            Navigate Your Next with{' '}
+            <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
+              Precision Engineering.
+            </span>
           </h2>
 
-          <p className="text-sm sm:text-base md:text-lg text-[#5A6A65] dark:text-[#8FA89F] leading-relaxed max-w-3xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg text-[#5A6679] dark:text-[#9BA8BA] leading-relaxed max-w-2xl mx-auto font-normal">
             Global engineering firms face rising local payroll costs, drafting backlogs, and costly on-site fabrication rework. Here is how escalup solves each operational bottleneck.
           </p>
         </div>
 
-        {/* Infosys Interactive Horizontal Navigation Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 mb-10 max-w-5xl mx-auto">
-          {PILLARS.map((pillar) => {
-            const isActive = activeTab === pillar.id;
-            return (
-              <button
-                key={pillar.id}
-                onClick={() => setActiveTab(pillar.id)}
-                className={`relative px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold font-mono transition-all cursor-pointer ${
-                  isActive
-                    ? 'text-white shadow-md'
-                    : 'bg-[#F4F6F5] dark:bg-[#152620] text-[#5A6A65] dark:text-[#8FA89F] hover:text-[#14201D] dark:hover:text-[#E4EDE9] border border-[#DBE3E0] dark:border-[#263830]'
-                }`}
-              >
-                {isActive && (
-                  <motion.div
-                    layoutId="activeNextPillar"
-                    className="absolute inset-0 bg-[#2E756E] dark:bg-[#3B948A] rounded-full"
-                    transition={{ type: 'spring', stiffness: 380, damping: 28 }}
-                  />
-                )}
-                <span className="relative z-10">{pillar.tabLabel}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Tab Content Display Card */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activePillar.id}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.35, ease: 'easeOut' }}
-            className="max-w-6xl mx-auto rounded-3xl bg-[#F8FAF9] dark:bg-[#152620] border border-[#DBE3E0] dark:border-[#263830] p-7 sm:p-10 lg:p-12 shadow-soft"
-          >
-            <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-              
-              {/* Left Column: Deep Narrative & Bullet Points (7 cols) */}
-              <div className="lg:col-span-7 space-y-5 text-left">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold font-mono uppercase tracking-wider text-[#2E756E] dark:text-[#14F3C1] bg-[#2E756E]/10 dark:bg-[#14F3C1]/10 border border-[#2E756E]/20 dark:border-[#14F3C1]/20">
-                  <span>{activePillar.badge}</span>
-                </div>
-
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-[#14201D] dark:text-[#E4EDE9] leading-snug">
-                  {activePillar.title}
-                </h3>
-
-                <p className="text-xs sm:text-sm text-[#5A6A65] dark:text-[#8FA89F] leading-relaxed">
-                  {activePillar.desc}
-                </p>
-
-                {/* Benefits List */}
-                <div className="space-y-3 pt-2">
-                  {activePillar.benefits.map((b, idx) => (
-                    <div key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-[#14201D] dark:text-[#E4EDE9]">
-                      <CheckCircle2 className="w-4 h-4 text-[#2E756E] dark:text-[#14F3C1] shrink-0 mt-0.5" />
-                      <span>{b}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Bottom CTA Actions */}
-                <div className="pt-4 flex flex-col sm:flex-row items-start sm:items-center gap-3">
-                  <a
-                    href="#contact"
-                    onClick={handleQuoteClick}
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#2E756E] hover:bg-[#255E58] text-white font-bold text-xs uppercase tracking-wider shadow-sm transition-all cursor-pointer group"
-                  >
-                    <span>Request Scope Quote</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                  </a>
+        {/* Split Layout: Left Vertical Tab List, Right Content Panel */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start max-w-6xl mx-auto">
+          
+          {/* LEFT: Vertical Tab List (4 cols) */}
+          <div className="lg:col-span-4 space-y-2.5">
+            {PILLARS.map((pillar) => {
+              const isActive = activeTab === pillar.id;
+              return (
+                <div key={pillar.id} className="relative">
+                  {/* Indigo active indicator bar on the left edge */}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeVerticalPillarBar"
+                      className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#5846F6] rounded-r"
+                    />
+                  )}
 
                   <button
-                    onClick={handleBookCall}
-                    className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white dark:bg-[#0D1A17] hover:bg-[#F4F6F5] dark:hover:bg-[#1E3036] text-[#14201D] dark:text-[#E4EDE9] border border-[#DBE3E0] dark:border-[#263830] font-semibold text-xs transition-colors cursor-pointer"
+                    onClick={() => setActiveTab(pillar.id)}
+                    className={`w-full text-left p-4 sm:p-5 rounded-2xl transition-all flex items-center justify-between cursor-pointer ${
+                      isActive
+                        ? 'bg-white dark:bg-[#11161F] text-[#111827] dark:text-white font-semibold shadow-card border border-[#E2E6EE] dark:border-white/10'
+                        : 'bg-[#EEF2F8]/70 dark:bg-[#121926]/40 text-[#5A6679] dark:text-[#9BA8BA] hover:text-[#111827] dark:hover:text-white hover:bg-white/80 dark:hover:bg-white/5 border border-transparent'
+                    }`}
                   >
-                    <Calendar className="w-4 h-4 text-[#2E756E] dark:text-[#3B948A]" />
-                    <span>Discuss Requirements (Cal.com)</span>
+                    <div className="flex items-center gap-3">
+                      <span className={`text-xs font-semibold ${isActive ? 'text-[#5846F6]' : 'text-[#8E9BAE]'}`}>
+                        {pillar.num}
+                      </span>
+                      <span className="text-sm sm:text-base">
+                        {pillar.tabLabel}
+                      </span>
+                    </div>
+
+                    <ArrowRight className={`w-4 h-4 transition-transform ${isActive ? 'text-[#5846F6] translate-x-1' : 'opacity-0'}`} />
                   </button>
                 </div>
-              </div>
+              );
+            })}
+          </div>
 
-              {/* Right Column: High-Impact Metric Box & Deliverables (5 cols) */}
-              <div className="lg:col-span-5 space-y-5">
-                
-                {/* Metric Hero Card */}
-                <div className="p-8 rounded-3xl bg-gradient-to-br from-[#142F2C] via-[#102724] to-[#0A1B19] text-white shadow-xl border border-[#2E756E]/40 text-center relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-48 h-48 bg-[#2E756E]/20 rounded-full blur-2xl pointer-events-none" />
+          {/* RIGHT: Content Swapping Panel with Smooth Crossfade (8 cols) */}
+          <div className="lg:col-span-8">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activePillar.id}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+                className="rounded-3xl bg-white dark:bg-[#11161F] border border-[#E2E6EE] dark:border-white/10 p-7 sm:p-10 lg:p-12 shadow-card"
+              >
+                <div className="space-y-6">
                   
-                  <div className="relative z-10">
-                    <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#A0D4CE] block mb-2">
-                      Verified Operational Outcome
-                    </span>
-                    <div className="text-4xl sm:text-5xl lg:text-6xl font-black text-white font-mono tracking-tight mb-2">
-                      {activePillar.metric}
-                    </div>
-                    <p className="text-xs text-[#D4E2DE] max-w-xs mx-auto leading-relaxed">
-                      {activePillar.metricLabel}
+                  {/* Badge */}
+                  <div>
+                    <Badge variant="navy" size="sm" className="bg-[#182232] text-[#A5B4FC] border border-white/10">
+                      {activePillar.badge}
+                    </Badge>
+                  </div>
+
+                  {/* Title & Description */}
+                  <div className="space-y-3">
+                    <h3 className="text-2xl sm:text-3xl font-light text-[#111827] dark:text-white leading-snug">
+                      {activePillar.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-[#5A6679] dark:text-[#9BA8BA] leading-relaxed font-normal">
+                      {activePillar.desc}
                     </p>
                   </div>
-                </div>
 
-                {/* Reassurance Micro-Card */}
-                <div className="p-5 rounded-2xl bg-white dark:bg-[#0D1A17] border border-[#DBE3E0] dark:border-[#263830] text-xs space-y-2.5 shadow-xs">
-                  <div className="flex items-center gap-2 font-bold text-[#14201D] dark:text-[#E4EDE9]">
-                    <ShieldCheck className="w-4 h-4 text-[#2E756E] dark:text-[#14F3C1]" />
-                    <span>Enterprise Governance & Intellectual Property</span>
+                  {/* Benefits List with Indigo Checks */}
+                  <div className="space-y-3 pt-2">
+                    {activePillar.benefits.map((b, idx) => (
+                      <div key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-[#111827] dark:text-[#F3F5FA]">
+                        <CheckCircle2 className="w-4 h-4 text-[#5846F6] shrink-0 mt-0.5" />
+                        <span>{b}</span>
+                      </div>
+                    ))}
                   </div>
-                  <p className="text-[#5A6A65] dark:text-[#8FA89F] leading-relaxed">
-                    All CAD geometry, drawing releases, calculation sheets, and BOMs are developed under mutual Non-Disclosure Agreements. You retain 100% intellectual property ownership of all source files.
-                  </p>
+
+                  {/* Dark Stat Card in Black / Indigo (NOT GREEN) */}
+                  <div className="p-6 sm:p-7 rounded-2xl bg-[#0B0F14] text-white border border-white/10 shadow-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div>
+                      <div className="text-xs uppercase tracking-wider text-[#A5B4FC] font-medium mb-1">
+                        Verified Operational Outcome
+                      </div>
+                      <div className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+                        {activePillar.metric}
+                      </div>
+                      <div className="text-xs text-white/70 mt-0.5">
+                        {activePillar.metricLabel}
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2 text-xs text-white/80 shrink-0">
+                      <ShieldCheck className="w-4 h-4 text-[#5846F6]" />
+                      <span>Governed under mutual NDA</span>
+                    </div>
+                  </div>
+
+                  {/* CTAs */}
+                  <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                    <Button
+                      variant="primary"
+                      size="md"
+                      onClick={handleQuoteClick}
+                      icon="arrow"
+                      className="shadow-sm"
+                    >
+                      Request Scope Quote
+                    </Button>
+
+                    <Button
+                      variant="outline"
+                      size="md"
+                      onClick={handleBookCall}
+                      icon="none"
+                    >
+                      <Calendar className="w-4 h-4 text-[#5846F6] mr-1.5" />
+                      <span>Discuss on Cal.com</span>
+                    </Button>
+                  </div>
+
                 </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
-              </div>
-
-            </div>
-          </motion.div>
-        </AnimatePresence>
+        </div>
 
       </div>
     </section>

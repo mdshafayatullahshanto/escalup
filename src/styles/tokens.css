@@ -65,8 +65,6 @@
   --color-accent-blue: #0070AD;
   --color-accent-violet: #5846F6;
   --color-accent-indigo: #4F46E5;
-  --color-accent-teal: #2E756E;
-  --color-accent-teal-bright: #14F3C1;
 
   /* Dark Navy Tags & Badges */
   --color-badge-bg: #0B1528;
@@ -79,7 +77,7 @@
 
   /* Headline accent gradients */
   --gradient-headline-accent: linear-gradient(135deg, #0070AD 0%, #5846F6 100%);
-  --gradient-brand-accent: linear-gradient(135deg, #2E756E 0%, #14F3C1 100%);
+  --gradient-brand-accent: linear-gradient(135deg, #0070AD 0%, #5846F6 100%);
   --gradient-dark-overlay: linear-gradient(180deg, rgba(11, 15, 20, 0.75) 0%, rgba(11, 15, 20, 0.4) 50%, rgba(11, 15, 20, 0.9) 100%);
 
   /* ------------------------------------------------------------------------
