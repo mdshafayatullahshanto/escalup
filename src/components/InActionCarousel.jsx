@@ -4,6 +4,7 @@
 // Light lavender page background (#F6F7FB), white card with soft lavender-tinted metric panel (#EEF2F8),
 // light-weight heading with signature indigo gradient, dark pill badges and navigation arrows,
 // clean deliverables list with indigo checkmarks, zero clipping, fully responsive.
+// Includes 5-second autoplay looping 1 -> 2 -> 3 -> 4 -> 1 with pause/resume on hover, focus, and tab-hidden.
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -74,7 +75,7 @@ const ACTION_PROJECTS = [
 ];
 
 export default function InActionCarousel() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -87,24 +88,35 @@ export default function InActionCarousel() {
   });
 
   const sectionRef = useRef(null);
+  const timerRef = useRef(null);
+  const remainingTimeRef = useRef(5000);
+  const startTimeRef = useRef(0);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
-  const prevSlide = useCallback(() => {
-    setDirection(-1);
-    setCurrentIndex((prev) => (prev === 0 ? ACTION_PROJECTS.length - 1 : prev - 1));
-  }, []);
-
+  // Manual & auto navigation
   const nextSlide = useCallback(() => {
     setDirection(1);
-    setCurrentIndex((prev) => (prev === ACTION_PROJECTS.length - 1 ? 0 : prev + 1));
+    setActiveIndex((prev) => (prev === ACTION_PROJECTS.length - 1 ? 0 : prev + 1));
+    remainingTimeRef.current = 5000;
+    startTimeRef.current = Date.now();
   }, []);
 
-  const goToSlide = (targetIndex) => {
-    if (targetIndex === currentIndex) return;
-    setDirection(targetIndex > currentIndex ? 1 : -1);
-    setCurrentIndex(targetIndex);
-  };
+  const prevSlide = useCallback(() => {
+    setDirection(-1);
+    setActiveIndex((prev) => (prev === 0 ? ACTION_PROJECTS.length - 1 : prev - 1));
+    remainingTimeRef.current = 5000;
+    startTimeRef.current = Date.now();
+  }, []);
+
+  const goToSlide = useCallback((targetIndex) => {
+    setActiveIndex((prev) => {
+      if (targetIndex === prev) return prev;
+      setDirection(targetIndex > prev ? 1 : -1);
+      return targetIndex;
+    });
+    remainingTimeRef.current = 5000;
+  }, []);
 
   // Reduced motion preference
   useEffect(() => {
@@ -123,15 +135,32 @@ export default function InActionCarousel() {
     return () => document.removeEventListener('visibilitychange', handleVisibility);
   }, []);
 
-  // 6-second autoplay, pauses on hover, focus, or hidden tab
-  const isPaused = isHovered || isFocused || isTabHidden;
+  const isPaused = isHovered || isFocused || isTabHidden || isReducedMotion;
+
+  // Autoplay timer with pause and resume from elapsed position
   useEffect(() => {
-    if (isPaused || isReducedMotion) return;
-    const interval = setInterval(() => {
+    if (isPaused) {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+        const elapsed = Date.now() - startTimeRef.current;
+        remainingTimeRef.current = Math.max(200, remainingTimeRef.current - elapsed);
+      }
+      return;
+    }
+
+    startTimeRef.current = Date.now();
+    timerRef.current = setTimeout(() => {
       nextSlide();
-    }, 6000);
-    return () => clearInterval(interval);
-  }, [isPaused, isReducedMotion, nextSlide]);
+    }, remainingTimeRef.current);
+
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+    };
+  }, [activeIndex, isPaused, nextSlide]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -161,27 +190,28 @@ export default function InActionCarousel() {
     }
   };
 
-  const currentProject = ACTION_PROJECTS[currentIndex];
+  const currentProject = ACTION_PROJECTS[activeIndex];
 
+  // Directional slide variants (translateX + opacity, no layout jump)
   const slideVariants = {
     enter: (dir) => ({
-      x: dir > 0 ? 30 : -30,
+      x: isReducedMotion ? 0 : (dir > 0 ? 60 : -60),
       opacity: 0,
     }),
     center: {
       x: 0,
       opacity: 1,
       transition: {
-        x: { duration: isReducedMotion ? 0 : 0.45, ease: [0.22, 1, 0.36, 1] },
-        opacity: { duration: isReducedMotion ? 0 : 0.35, ease: 'easeOut' },
+        x: { duration: isReducedMotion ? 0 : 0.6, ease: [0.22, 1, 0.36, 1] },
+        opacity: { duration: isReducedMotion ? 0 : 0.45, ease: 'easeOut' },
       },
     },
     exit: (dir) => ({
-      x: dir > 0 ? -30 : 30,
+      x: isReducedMotion ? 0 : (dir > 0 ? -60 : 60),
       opacity: 0,
       transition: {
-        x: { duration: isReducedMotion ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] },
-        opacity: { duration: isReducedMotion ? 0 : 0.25, ease: 'easeIn' },
+        x: { duration: isReducedMotion ? 0 : 0.4, ease: [0.22, 1, 0.36, 1] },
+        opacity: { duration: isReducedMotion ? 0 : 0.3, ease: 'easeIn' },
       },
     }),
   };
@@ -226,7 +256,7 @@ export default function InActionCarousel() {
           {/* Navigation Controls: Counter + Round Arrow Buttons (Matching Reference) */}
           <div className="flex items-center gap-4 self-start sm:self-auto">
             <span className="text-sm font-medium tracking-wider text-[#5A6679] dark:text-[#9BA8BA]">
-              <strong className="text-[#111827] dark:text-white font-semibold">{currentIndex + 1}</strong> / {ACTION_PROJECTS.length}
+              <strong className="text-[#111827] dark:text-white font-semibold">{activeIndex + 1}</strong> / {ACTION_PROJECTS.length}
             </span>
 
             <div className="flex items-center gap-2">
@@ -384,7 +414,7 @@ export default function InActionCarousel() {
         */}
         <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
           {ACTION_PROJECTS.map((p, idx) => {
-            const isCurrent = idx === currentIndex;
+            const isCurrent = idx === activeIndex;
             return (
               <button
                 key={p.id}
