@@ -18,7 +18,14 @@ import { companyData } from '../data/company';
 import { trackCallBooking } from '../utils/analytics';
 
 export default function ThankYouPage({ onOpenCalendly }) {
-  const [submissionInfo, setSubmissionInfo] = useState(null);
+  const [submissionInfo] = useState(() => {
+    try {
+      const stored = sessionStorage.getItem('escalup_last_quote');
+      return stored ? JSON.parse(stored) : null;
+    } catch {
+      return null;
+    }
+  });
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
@@ -33,15 +40,6 @@ export default function ThankYouPage({ onOpenCalendly }) {
       });
     } catch {
       // safe fallback
-    }
-
-    const stored = sessionStorage.getItem('escalup_last_quote');
-    if (stored) {
-      try {
-        setSubmissionInfo(JSON.parse(stored));
-      } catch {
-        // ignore
-      }
     }
   }, []);
 

@@ -1,6 +1,7 @@
 // /src/components/Hero.jsx
-// Infosys-inspired corporate hero section with interactive 4-story carousel,
-// progress indicators, authoritative corporate typography, CAD 3D wireframe, and trust assurance.
+// 100% faithful Infosys-style cinematic hero section:
+// Panoramic snow-capped mountain backdrop, authoritative enterprise typography,
+// interactive 4-story capability carousel with progress indicators, and instant RFQ action.
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -15,12 +16,12 @@ import {
   Layers, 
   Wrench, 
   Database,
-  ChevronRight,
-  Sparkles
+  Sparkles,
+  ChevronDown
 } from 'lucide-react';
-import CADWireframeVisual from './CADWireframeVisual';
 import { trackCallBooking } from '../utils/analytics';
 import { companyData } from '../data/company';
+import mountainHeroBg from '../assets/mountain-hero.jpg';
 
 const HERO_STORIES = [
   {
@@ -73,7 +74,7 @@ export default function Hero({ onOpenCalendly }) {
   const [activeStoryIdx, setActiveStoryIdx] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Auto-slide every 6.5 seconds unless paused
+  // Auto-slide every 6.5 seconds unless hovered
   useEffect(() => {
     if (isPaused) return;
     const interval = setInterval(() => {
@@ -116,226 +117,259 @@ export default function Hero({ onOpenCalendly }) {
     { text: 'BST (UTC+6) Live Sync', icon: Globe },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.05,
-      },
-    },
-  };
-
-  const childVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
-  };
-
   return (
-    <section className="relative overflow-hidden min-h-[calc(100vh-6rem)] flex flex-col justify-between pt-8 sm:pt-12 pb-6 border-b border-[#DBE3E0] dark:border-[#263830] bg-[#FFFFFF] dark:bg-[#0B1519] blueprint-grid">
+    <section className="relative min-h-screen flex flex-col justify-between pt-20 xs:pt-24 sm:pt-28 lg:pt-32 pb-6 sm:pb-8 text-white overflow-hidden">
       
-      {/* Ambient background light gradients */}
-      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#2E756E]/5 dark:bg-[#3B948A]/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 left-10 w-[400px] h-[400px] bg-[#2E756E]/5 dark:bg-[#3B948A]/5 rounded-full blur-[120px] pointer-events-none" />
+      {/* ======================================================== */}
+      {/* 1. CINEMATIC MOUNTAIN HERO BACKGROUND (INFOSYS STYLE)   */}
+      {/* ======================================================== */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src={mountainHeroBg}
+          alt="Majestic mountain landscape - Navigate your next"
+          className="w-full h-full object-cover object-center scale-105 animate-pulse"
+          style={{ animationDuration: '10s' }}
+        />
+        {/* Cinematic Vignette Overlay: Deep blue at top, clear center, rich dark teal/black at bottom */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0B1519]/85 via-[#0B1519]/45 to-[#071012] backdrop-contrast-125" />
+        <div className="absolute inset-0 bg-radial-at-c from-transparent via-[#0B1519]/35 to-[#071012]/85" />
+      </div>
 
+      {/* ======================================================== */}
+      {/* 2. HERO CONTENT & HEADLINES                              */}
+      {/* ======================================================== */}
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16 relative z-10 flex-1 flex flex-col justify-center">
         
-        {/* Main Grid: Copy Left, 3D Interactive Visual Right */}
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center mb-10 lg:mb-12">
+        <div className="max-w-4xl space-y-4 sm:space-y-5 text-left">
           
-          {/* Left Column: Authoritative Infosys Corporate Copy & CTAs (7 cols) */}
+          {/* Eyebrow Pill */}
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="lg:col-span-7 space-y-4 sm:space-y-5 lg:space-y-6 text-left"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[10px] sm:text-xs font-mono font-bold uppercase tracking-widest bg-white/15 backdrop-blur-md border border-white/25 text-white"
           >
-            {/* Infosys Signature Eyebrow Banner */}
-            <motion.div variants={childVariants} className="flex items-center gap-3">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-[#2E756E]/10 dark:bg-[#3B948A]/15 text-[#2E756E] dark:text-[#3B948A] border border-[#2E756E]/20 dark:border-[#3B948A]/30 font-mono">
-                <Sparkles className="w-3.5 h-3.5 text-[#2E756E] dark:text-[#3B948A]" />
-                <span>Navigate Your Next · Offshore Engineering Services</span>
-              </div>
-            </motion.div>
-
-            {/* Main Headline */}
-            <motion.h1
-              variants={childVariants}
-              className="text-[1.85rem] xs:text-[2.1rem] sm:text-4xl md:text-5xl lg:text-5xl xl:text-[3.6rem] 2xl:text-[4.25rem] font-extrabold text-[#14201D] dark:text-[#E4EDE9] tracking-tight leading-[1.14] sm:leading-[1.18] md:leading-[1.15]"
-            >
-              We bring people and engineering together to{' '}
-              <span className="relative inline-block pb-2 sm:pb-2.5">
-                <span className="bg-gradient-to-r from-[#142F2C] via-[#2E756E] to-[#3B948A] dark:from-[#A0D4CE] dark:via-[#3B948A] dark:to-[#14F3C1] bg-clip-text text-transparent">
-                  build things better.
-                </span>
-                <svg
-                  className="absolute bottom-0 left-0 w-full h-2 sm:h-2.5 overflow-visible pointer-events-none"
-                  viewBox="0 0 100 8"
-                  preserveAspectRatio="none"
-                >
-                  <defs>
-                    <linearGradient id="heroUnderlineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#1B3F3B" stopOpacity="0.4" />
-                      <stop offset="50%" stopColor="#2E756E" stopOpacity="0.6" />
-                      <stop offset="100%" stopColor="#3B948A" stopOpacity="0.4" />
-                    </linearGradient>
-                  </defs>
-                  <path d="M0 3 Q 50 7 100 3" stroke="url(#heroUnderlineGrad)" strokeWidth="2.4" strokeLinecap="round" fill="none" />
-                </svg>
-              </span>
-            </motion.h1>
-
-            {/* Corporate Sub-headline */}
-            <motion.p
-              variants={childVariants}
-              className="text-sm sm:text-base lg:text-lg xl:text-xl text-[#5A6A65] dark:text-[#8FA89F] max-w-2xl leading-relaxed"
-            >
-              <strong className="text-[#2E756E] dark:text-[#3B948A] font-bold">escalup</strong> is your dedicated offshore engineering partner delivering Mechanical, Product, and MEP design support for global manufacturers, consultancies, and contractors worldwide — with clear communication and production-ready documentation.
-            </motion.p>
-
-            {/* Action Buttons */}
-            <motion.div
-              variants={childVariants}
-              className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 pt-1"
-            >
-              {/* Primary Request a Quote Button */}
-              <motion.a
-                href="#contact"
-                onClick={handleQuoteClick}
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full sm:w-auto px-7 py-3.5 lg:px-8 lg:py-4 rounded-full bg-[#2E756E] hover:bg-[#255E58] text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer group"
-              >
-                <span>Request a Quote</span>
-                <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 text-white group-hover:translate-x-1.5 transition-transform" />
-              </motion.a>
-
-              {/* Secondary Intro Call Button */}
-              <motion.button
-                onClick={handleBookCall}
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full sm:w-auto px-6 py-3.5 lg:px-7 lg:py-4 rounded-full bg-[#F4F6F5] dark:bg-[#152620] hover:bg-[#E1EDEA] dark:hover:bg-[#1D3328] text-[#14201D] dark:text-[#E4EDE9] border border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40 dark:hover:border-[#3B948A]/40 font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 cursor-pointer shadow-xs"
-              >
-                <Calendar className="w-4 h-4 lg:w-5 lg:h-5 text-[#2E756E] dark:text-[#3B948A]" />
-                <span>Book a Free Intro Call</span>
-              </motion.button>
-
-              {/* Explore Disciplines link */}
-              <a
-                href="#services"
-                onClick={handleServicesClick}
-                className="hidden sm:inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#14201D] dark:text-[#E4EDE9] hover:text-[#2E756E] dark:hover:text-[#3B948A] transition-colors py-2 px-3 rounded-lg cursor-pointer"
-              >
-                <span>Explore Capabilities</span>
-                <ChevronRight className="w-4 h-4" />
-              </a>
-            </motion.div>
-
-            {/* Enterprise Trust Chips */}
-            <motion.div variants={childVariants} className="pt-3 border-t border-[#DBE3E0] dark:border-[#263830]">
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                {trustChips.map((chip, idx) => {
-                  const Icon = chip.icon;
-                  return (
-                    <div
-                      key={idx}
-                      className="flex items-center gap-2 text-xs font-medium text-[#14201D] dark:text-[#E4EDE9] bg-[#F8FAF9] dark:bg-[#152620] px-2.5 py-2 rounded-xl border border-[#DBE3E0] dark:border-[#263830] shadow-xs cursor-default"
-                    >
-                      <Icon className="w-3.5 h-3.5 text-[#2E756E] dark:text-[#3B948A] shrink-0" />
-                      <span className="leading-snug text-[11px] truncate">{chip.text}</span>
-                    </div>
-                  );
-                })}
-              </div>
-            </motion.div>
-
+            <Sparkles className="w-3.5 h-3.5 text-[#14F3C1]" />
+            <span>Navigate Your Next · Offshore Engineering Services</span>
           </motion.div>
 
-          {/* Right Column: CAD Wireframe (5 cols) */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="hidden lg:flex lg:col-span-5 justify-center items-center"
+          {/* Authoritative Main Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="text-[1.85rem] xs:text-[2.2rem] sm:text-4xl md:text-5xl lg:text-6xl xl:text-[3.8rem] 2xl:text-[4.2rem] font-extrabold text-white tracking-tight leading-[1.12] sm:leading-[1.14]"
           >
-            <CADWireframeVisual />
+            We bring people and engineering together to{' '}
+            <span className="relative inline-block pb-2">
+              <span className="bg-gradient-to-r from-white via-[#A0D4CE] to-[#14F3C1] bg-clip-text text-transparent">
+                build things better.
+              </span>
+              <svg
+                className="absolute bottom-0 left-0 w-full h-2 sm:h-2.5 overflow-visible pointer-events-none"
+                viewBox="0 0 100 8"
+                preserveAspectRatio="none"
+              >
+                <defs>
+                  <linearGradient id="heroMountainGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#2E756E" stopOpacity="0.6" />
+                    <stop offset="50%" stopColor="#14F3C1" stopOpacity="0.9" />
+                    <stop offset="100%" stopColor="#3B948A" stopOpacity="0.6" />
+                  </linearGradient>
+                </defs>
+                <path d="M0 3 Q 50 7 100 3" stroke="url(#heroMountainGrad)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+              </svg>
+            </span>
+          </motion.h1>
+
+          {/* Enterprise Sub-headline */}
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-xs sm:text-sm md:text-base lg:text-lg text-[#D4E2DE] max-w-2xl leading-relaxed font-normal"
+          >
+            <strong className="text-white font-bold">escalup</strong> is your offshore engineering partner delivering Mechanical, Product, and MEP design support for global manufacturers, consultancies, and contractors — with clear communication and production-ready documentation.
+          </motion.p>
+
+          {/* Action Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.28 }}
+            className="flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-3 pt-1"
+          >
+            {/* Primary Request a Quote Button */}
+            <a
+              href="#contact"
+              onClick={handleQuoteClick}
+              className="px-6 py-3 sm:px-8 sm:py-3.5 rounded-full bg-[#2E756E] hover:bg-[#255E58] text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-xl transition-all flex items-center justify-center gap-2 group cursor-pointer"
+            >
+              <span>Request a Quote</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
+            </a>
+
+            {/* Secondary Intro Call Button */}
+            <button
+              onClick={handleBookCall}
+              className="px-5 py-3 sm:px-7 sm:py-3.5 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/30 text-white font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer"
+            >
+              <Calendar className="w-4 h-4 text-[#14F3C1]" />
+              <span>Book a Free Intro Call</span>
+            </button>
+
+            {/* Explore Disciplines */}
+            <a
+              href="#services"
+              onClick={handleServicesClick}
+              className="hidden sm:inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-white/80 hover:text-white transition-colors py-2 px-3 cursor-pointer"
+            >
+              <span>Explore Capabilities</span>
+              <ChevronDown className="w-4 h-4" />
+            </a>
+          </motion.div>
+
+          {/* Trust Chips Bar */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="pt-1"
+          >
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2.5 max-w-3xl">
+              {trustChips.map((chip, idx) => {
+                const Icon = chip.icon;
+                return (
+                  <div
+                    key={idx}
+                    className="flex items-center gap-1.5 sm:gap-2 text-[10px] xs:text-[11px] sm:text-xs text-white/90 bg-white/10 backdrop-blur-md px-2.5 py-1.5 xs:px-3 xs:py-2 rounded-xl border border-white/15"
+                  >
+                    <Icon className="w-3 h-3 xs:w-3.5 xs:h-3.5 text-[#14F3C1] shrink-0" />
+                    <span className="truncate">{chip.text}</span>
+                  </div>
+                );
+              })}
+            </div>
           </motion.div>
 
         </div>
 
-        {/* ======================================================== */}
-        {/* INFOSYS SIGNATURE 4-STORY INTERACTIVE CAROUSEL BAR      */}
-        {/* ======================================================== */}
-        <div 
-          className="mt-6 pt-6 border-t border-[#DBE3E0] dark:border-[#263830]"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
-          <div className="flex items-center justify-between mb-3 text-xs font-mono text-[#5A6A65] dark:text-[#8FA89F]">
-            <span className="uppercase tracking-wider font-bold text-[#14201D] dark:text-[#E4EDE9] flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#2E756E] dark:bg-[#14F3C1]"></span>
-              <span>Engineering Capabilities · Interactive Highlights</span>
-            </span>
-            <span className="text-[11px]">Click or hover to explore</span>
+      </div>
+
+      {/* ======================================================== */}
+      {/* 3. INFOSYS INTERACTIVE 4-STORY PROGRESS CAROUSEL         */}
+      {/* ======================================================== */}
+      <div 
+        className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16 relative z-10 mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-white/15"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        <div className="flex items-center justify-between mb-2.5 sm:mb-3 text-xs font-mono text-[#A0D4CE]">
+          <span className="uppercase tracking-wider font-bold text-white flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#14F3C1]"></span>
+            <span className="text-[11px] sm:text-xs">Engineering Capabilities · Interactive Highlights</span>
+          </span>
+          <span className="hidden sm:inline text-[11px] text-white/60">Click or hover to explore</span>
+        </div>
+
+        {/* Mobile Pills (<640px) */}
+        <div className="flex sm:hidden items-center gap-1.5 overflow-x-auto pb-2.5 no-scrollbar">
+          {HERO_STORIES.map((story, idx) => {
+            const isActive = activeStoryIdx === idx;
+            return (
+              <button
+                key={story.id}
+                onClick={() => setActiveStoryIdx(idx)}
+                className={`px-3 py-1.5 rounded-full text-[10px] font-mono font-bold whitespace-nowrap transition-all border ${
+                  isActive
+                    ? 'bg-[#14F3C1] text-black border-[#14F3C1]'
+                    : 'bg-black/50 text-white/80 border-white/20'
+                }`}
+              >
+                {story.num} {story.category.split(' ')[0]}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Mobile Single Active Card View (<640px) */}
+        <div className="block sm:hidden">
+          <div
+            onClick={() => {
+              const servicesEl = document.getElementById('services');
+              if (servicesEl) servicesEl.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="p-3.5 rounded-2xl border border-[#14F3C1] bg-black/80 shadow-2xl relative overflow-hidden text-left backdrop-blur-md cursor-pointer"
+          >
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#14F3C1]">
+                {activeStory.num} · {activeStory.category}
+              </span>
+              <span className="text-[10px] font-mono text-[#14F3C1] font-semibold">{activeStory.metric}</span>
+            </div>
+            <h3 className="text-xs font-bold text-white mb-1">
+              {activeStory.headline}
+            </h3>
+            <p className="text-[11px] text-[#A0D4CE] leading-relaxed line-clamp-2">
+              {activeStory.summary}
+            </p>
+            <div className="mt-2 pt-2 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-white/60">
+              <span>{activeStory.tools}</span>
+              <span className="text-[#14F3C1] font-bold flex items-center gap-1">Details →</span>
+            </div>
           </div>
+        </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {HERO_STORIES.map((story, idx) => {
-              const isActive = activeStoryIdx === idx;
-              const Icon = story.icon;
+        {/* Tablet and Desktop Grid View (>=640px) */}
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {HERO_STORIES.map((story, idx) => {
+            const isActive = activeStoryIdx === idx;
+            const Icon = story.icon;
 
-              return (
-                <div
-                  key={story.id}
-                  onClick={() => setActiveStoryIdx(idx)}
-                  className={`p-3.5 rounded-2xl border transition-all cursor-pointer relative overflow-hidden text-left ${
-                    isActive
-                      ? 'bg-white dark:bg-[#152620] border-[#2E756E] dark:border-[#3B948A] shadow-md ring-1 ring-[#2E756E]/20'
-                      : 'bg-[#F8FAF9] dark:bg-[#0D1A17] border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40 dark:hover:border-[#3B948A]/40'
-                  }`}
-                >
-                  {/* Top Animated Progress Indicator Bar for Active Slide */}
-                  {isActive && (
-                    <motion.div
-                      layoutId="heroStoryProgress"
-                      className="absolute top-0 left-0 right-0 h-1 bg-[#2E756E] dark:bg-[#14F3C1]"
-                    />
-                  )}
+            return (
+              <div
+                key={story.id}
+                onClick={() => setActiveStoryIdx(idx)}
+                className={`p-3.5 rounded-2xl border transition-all cursor-pointer relative overflow-hidden text-left backdrop-blur-md ${
+                  isActive
+                    ? 'bg-black/75 border-[#14F3C1] shadow-2xl ring-1 ring-[#14F3C1]/30'
+                    : 'bg-black/40 border-white/15 hover:border-white/35 hover:bg-black/60'
+                }`}
+              >
+                {/* Top Animated Progress Indicator Bar for Active Slide */}
+                {isActive && (
+                  <motion.div
+                    layoutId="heroStoryProgressMountain"
+                    className="absolute top-0 left-0 right-0 h-1 bg-[#14F3C1]"
+                  />
+                )}
 
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#2E756E] dark:text-[#3B948A]">
-                      {story.num} · {story.category}
-                    </span>
-                    <Icon className={`w-4 h-4 ${isActive ? 'text-[#2E756E] dark:text-[#14F3C1]' : 'text-[#889893]'}`} />
-                  </div>
-
-                  <h3 className="text-xs font-bold text-[#14201D] dark:text-[#E4EDE9] line-clamp-1 mb-1">
-                    {story.headline}
-                  </h3>
-
-                  <p className="text-[11px] text-[#5A6A65] dark:text-[#8FA89F] line-clamp-2 leading-relaxed">
-                    {story.summary}
-                  </p>
-
-                  <div className="mt-2.5 pt-2 border-t border-[#DBE3E0]/70 dark:border-[#263830]/70 flex items-center justify-between text-[10px] font-mono">
-                    <span className="text-emerald-700 dark:text-[#14F3C1] font-semibold">{story.metric}</span>
-                    <span className="text-[#889893] dark:text-[#5A7268]">{story.tools.split('·')[0]}</span>
-                  </div>
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#14F3C1]">
+                    {story.num} · {story.category}
+                  </span>
+                  <Icon className={`w-4 h-4 ${isActive ? 'text-[#14F3C1]' : 'text-white/40'}`} />
                 </div>
-              );
-            })}
-          </div>
 
-          {/* Active Story Expansion Details Strip */}
+                <h3 className="text-xs font-bold text-white line-clamp-1 mb-1">
+                  {story.headline}
+                </h3>
+
+                <p className="text-[11px] text-[#A0D4CE] line-clamp-2 leading-relaxed">
+                  {story.summary}
+                </p>
+
+                <div className="mt-2.5 pt-2 border-t border-white/10 flex items-center justify-between text-[10px] font-mono">
+                  <span className="text-[#14F3C1] font-semibold">{story.metric}</span>
+                  <span className="text-white/60">{story.tools.split('·')[0]}</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Active Story Expansion Details Strip (Visible on Tablet and Desktop) */}
+        <div className="hidden sm:block">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeStory.id}
@@ -343,31 +377,31 @@ export default function Hero({ onOpenCalendly }) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -4 }}
               transition={{ duration: 0.25 }}
-              className="mt-3 py-2.5 px-4 rounded-xl bg-[#F4F6F5] dark:bg-[#152620] border border-[#DBE3E0] dark:border-[#263830] flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs gap-2"
+              className="mt-3 py-2 px-4 rounded-xl bg-black/60 backdrop-blur-md border border-white/15 flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs gap-2"
             >
-              <div className="flex items-center gap-2 text-[#14201D] dark:text-[#E4EDE9]">
-                <span className="font-bold uppercase tracking-wider text-[11px] font-mono text-[#2E756E] dark:text-[#3B948A]">
+              <div className="flex items-center gap-2 text-white">
+                <span className="font-bold uppercase tracking-wider text-[11px] font-mono text-[#14F3C1]">
                   Active Focus:
                 </span>
                 <span className="font-semibold">{activeStory.headline}</span>
-                <span className="hidden md:inline text-[#889893]">·</span>
-                <span className="hidden md:inline text-[#5A6A65] dark:text-[#8FA89F] font-mono">{activeStory.tools}</span>
+                <span className="hidden md:inline text-white/40">·</span>
+                <span className="hidden md:inline text-[#A0D4CE] font-mono">{activeStory.tools}</span>
               </div>
 
               <a
                 href={activeStory.anchor}
                 onClick={handleServicesClick}
-                className="text-[#2E756E] dark:text-[#14F3C1] hover:underline font-bold text-[11px] font-mono flex items-center gap-1 shrink-0"
+                className="text-[#14F3C1] hover:underline font-bold text-[11px] font-mono flex items-center gap-1 shrink-0 cursor-pointer"
               >
                 <span>View Full Technical Scope</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </a>
             </motion.div>
           </AnimatePresence>
-
         </div>
 
       </div>
+
     </section>
   );
 }

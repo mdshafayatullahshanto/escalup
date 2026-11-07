@@ -101,7 +101,7 @@ export default function NavigateYourNext({ onOpenCalendly }) {
   };
 
   return (
-    <section className="py-20 md:py-28 bg-[#FFFFFF] dark:bg-[#0B1519] border-b border-[#DBE3E0] dark:border-[#263830] relative overflow-hidden">
+    <section id="navigate-next" className="py-20 md:py-28 bg-[#FFFFFF] dark:bg-[#0B1519] border-b border-[#DBE3E0] dark:border-[#263830] relative overflow-hidden scroll-mt-12">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16 relative z-10">
         
         {/* Infosys Header Structure */}
