@@ -40,9 +40,11 @@ export default function HomePage({ onOpenCalendly }) {
       {/* -------------------------------------------------------- */}
       {/* 2. SERVICES                                              */}
       {/* -------------------------------------------------------- */}
-      <CuriousSection onOpenCalendly={onOpenCalendly} />
-      <ProductCardsTrio />
-      <IndustriesServicesLinks />
+      <div id="services" className="scroll-mt-16">
+        <CuriousSection onOpenCalendly={onOpenCalendly} />
+        <ProductCardsTrio />
+        <IndustriesServicesLinks />
+      </div>
 
       {/* -------------------------------------------------------- */}
       {/* 3. PROCESS (Design Approach - 9 Steps)                   */}

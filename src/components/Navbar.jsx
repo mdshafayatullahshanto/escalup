@@ -41,6 +41,8 @@ export default function Navbar({ onOpenCalendly }) {
   const location = useLocation();
   const navigate = useNavigate();
   const overlayRef = useRef(null);
+  const isClickScrollingRef = useRef(false);
+  const clickTimeoutRef = useRef(null);
 
   // Monitor scroll depth for subtle background blur enhancement
   useEffect(() => {
@@ -52,26 +54,67 @@ export default function Navbar({ onOpenCalendly }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Update active section based on scroll position
+  // Update active section based on scroll position across sections of any height
   useEffect(() => {
     if (location.pathname !== '/') return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = entry.target.id;
-            if (id) setActiveSection(id);
+    const handleScrollSpy = () => {
+      if (isClickScrollingRef.current) return;
+
+      // When near the top, highlight 'home'
+      if (window.scrollY < 120) {
+        setActiveSection('home');
+        return;
+      }
+
+      // When near the bottom of the page, highlight 'faq'
+      const isBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100;
+      if (isBottom) {
+        setActiveSection('faq');
+        return;
+      }
+
+      const headerOffset = 180;
+
+      // Find all registered section elements
+      const sectionElements = NAV_ITEMS.map((item) => ({
+        id: item.id,
+        el: document.getElementById(item.id),
+      })).filter((item) => item.el !== null);
+
+      // 1. Check if headerOffset is inside the section's bounding rect
+      let matchedId = null;
+      for (const { id, el } of sectionElements) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= headerOffset && rect.bottom > headerOffset) {
+          matchedId = id;
+          break;
+        }
+      }
+
+      // 2. Fallback: closest section whose top is <= headerOffset
+      if (!matchedId) {
+        let maxTop = -Infinity;
+        for (const { id, el } of sectionElements) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= headerOffset && rect.top > maxTop) {
+            maxTop = rect.top;
+            matchedId = id;
           }
-        });
-      },
-      { threshold: 0.25, rootMargin: '-80px 0px -40% 0px' }
-    );
+        }
+      }
 
-    const sections = NAV_ITEMS.map((item) => document.getElementById(item.id)).filter(Boolean);
-    sections.forEach((el) => observer.observe(el));
+      if (matchedId) {
+        setActiveSection(matchedId);
+      }
+    };
 
-    return () => observer.disconnect();
+    window.addEventListener('scroll', handleScrollSpy, { passive: true });
+    handleScrollSpy();
+    return () => {
+      window.removeEventListener('scroll', handleScrollSpy);
+      if (clickTimeoutRef.current) clearTimeout(clickTimeoutRef.current);
+    };
   }, [location.pathname]);
 
   // Prevent background body scroll when mobile menu overlay is open
@@ -103,6 +146,16 @@ export default function Navbar({ onOpenCalendly }) {
     setMenuOverlayOpen(false);
 
     if (href.startsWith('#')) {
+      const targetId = href.slice(1);
+      if (targetId) {
+        setActiveSection(targetId);
+        isClickScrollingRef.current = true;
+        if (clickTimeoutRef.current) clearTimeout(clickTimeoutRef.current);
+        clickTimeoutRef.current = setTimeout(() => {
+          isClickScrollingRef.current = false;
+        }, 900);
+      }
+
       if (location.pathname === '/') {
         const targetEl = document.querySelector(href);
         if (targetEl) {
