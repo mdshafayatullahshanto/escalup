@@ -66,26 +66,25 @@ export default function ThoughtLeadershipBento() {
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-10 lg:mb-12 font-sans">
-          <div>
-            <div className="mb-3.5">
-              <GlassBadge>Engineering Knowledge & Perspectives</GlassBadge>
-            </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight">
-              Research, Announcements &{' '}
-              <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
-                Thought Leadership
-              </span>
-            </h2>
+        <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-12 font-sans">
+          <div className="mb-3.5 flex justify-center">
+            <GlassBadge>Engineering Knowledge & Perspectives</GlassBadge>
           </div>
-
-          <a
-            href="#contact"
-            className="text-xs sm:text-sm font-semibold text-[#5846F6] dark:text-[#A5B4FC] hover:underline flex items-center gap-1 shrink-0"
-          >
-            <span>View All Engineering Reports</span>
-            <ArrowRight className="w-4 h-4" />
-          </a>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-tight mb-3">
+            Research, Announcements &{' '}
+            <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
+              Thought Leadership
+            </span>
+          </h2>
+          <div className="flex justify-center pt-1">
+            <a
+              href="#contact"
+              className="text-xs sm:text-sm font-semibold text-[#5846F6] dark:text-[#A5B4FC] hover:underline inline-flex items-center gap-1.5"
+            >
+              <span>View All Engineering Reports</span>
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
         </div>
 
         {/* Bento Grid Layout (1 Large Card on Left, 3 Stacked on Right) */}
