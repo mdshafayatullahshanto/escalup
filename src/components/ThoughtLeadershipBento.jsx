@@ -5,6 +5,7 @@
 import React from 'react';
 import { ArrowRight, BookOpen, FileText, Newspaper, TrendingUp } from 'lucide-react';
 import Badge from './ui/Badge';
+import GlassBadge from './ui/GlassBadge';
 import Card from './ui/Card';
 import UnderlineLink from './ui/UnderlineLink';
 
@@ -67,8 +68,8 @@ export default function ThoughtLeadershipBento() {
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12 lg:mb-16 font-sans">
           <div>
-            <div className="text-xs font-semibold uppercase tracking-widest text-[#0070AD] dark:text-[#A5B4FC] mb-2">
-              Engineering Knowledge & Perspectives
+            <div className="mb-3.5">
+              <GlassBadge>Engineering Knowledge & Perspectives</GlassBadge>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight">
               Research, Announcements &{' '}

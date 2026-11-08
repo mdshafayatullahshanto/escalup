@@ -13,6 +13,7 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import Badge from './ui/Badge';
+import GlassBadge from './ui/GlassBadge';
 import Button from './ui/Button';
 
 const PILLARS = [
@@ -113,10 +114,8 @@ export default function NavigateYourNext({ onOpenCalendly }) {
         
         {/* Section Header: Light-weight heading with ONE highlighted phrase */}
         <div className="max-w-4xl mx-auto text-center mb-16 sm:mb-20">
-          <div className="mb-3">
-            <Badge variant="navy" size="sm" className="bg-[#121926] text-[#A5B4FC] border border-white/10">
-              The Enterprise Offshore Transformation
-            </Badge>
+          <div className="mb-4">
+            <GlassBadge>The Enterprise Offshore Transformation</GlassBadge>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-tight mb-4">

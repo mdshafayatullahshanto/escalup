@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowRight, ArrowUpRight, Cpu, Layers, Wrench, Database } from 'lucide-react';
 import Badge from './ui/Badge';
 import Card from './ui/Card';
+import GlassBadge from './ui/GlassBadge';
 
 const TOP_STORIES = [
   {
@@ -213,8 +214,8 @@ export default function TopStoriesCarousel() {
         {/* Section Header with "1/4" counter & circular arrows */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-12 font-sans">
           <div>
-            <div className="text-xs font-semibold uppercase tracking-wider text-[#0070AD] dark:text-[#A5B4FC] mb-2">
-              Featured Case Insights
+            <div className="mb-3.5">
+              <GlassBadge>Featured Case Insights</GlassBadge>
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#111827] dark:text-white tracking-tight">
               Top Engineering{' '}

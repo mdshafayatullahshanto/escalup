@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
 import { faqData } from '../data/faq';
-import Badge from './ui/Badge';
+import GlassBadge from './ui/GlassBadge';
 
 export default function FAQAccordion() {
   const [openIndex, setOpenIndex] = useState(0); // Only one item open at a time
@@ -22,10 +22,8 @@ export default function FAQAccordion() {
         
         {/* Section Header: Light-weight heading with ONE highlighted phrase */}
         <div className="max-w-3xl mx-auto text-center mb-16 sm:mb-20">
-          <div className="mb-3">
-            <Badge variant="navy" size="sm" className="bg-[#121926] text-[#A5B4FC] border border-white/10">
-              FAQs & Governance
-            </Badge>
+          <div className="mb-4">
+            <GlassBadge>FAQs & Governance</GlassBadge>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-tight mb-4">

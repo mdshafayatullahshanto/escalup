@@ -19,6 +19,8 @@ export default function Badge({
   };
 
   const variantStyles = {
+    // Dynamic Glassmorphism
+    glass: 'bg-white/70 dark:bg-white/[0.06] backdrop-blur-md text-[#0070AD] dark:text-[#38BDF8] border border-[#0070AD]/20 dark:border-white/15 shadow-[0_2px_10px_rgba(0,112,173,0.06),inset_0_1px_1px_rgba(255,255,255,0.7)] dark:shadow-[0_2px_12px_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.12)]',
     // Infosys signature dark-navy badge
     navy: 'bg-[#0B1528] text-white shadow-xs',
     // Corporate Blue

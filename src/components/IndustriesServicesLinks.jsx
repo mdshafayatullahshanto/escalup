@@ -3,6 +3,7 @@
 
 import React from 'react';
 import UnderlineLink from './ui/UnderlineLink';
+import GlassBadge from './ui/GlassBadge';
 
 const DIRECTORY_COLUMNS = [
   {
@@ -50,8 +51,8 @@ export default function IndustriesServicesLinks() {
         
         {/* Section Header */}
         <div className="max-w-3xl mb-12 lg:mb-16">
-          <div className="text-xs font-mono font-bold uppercase tracking-widest text-[#0070AD] dark:text-[#38BDF8] mb-2">
-            Engineering Directory
+          <div className="mb-4">
+            <GlassBadge>Engineering Directory</GlassBadge>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#111827] dark:text-white tracking-tight">
             Industries and Services{' '}

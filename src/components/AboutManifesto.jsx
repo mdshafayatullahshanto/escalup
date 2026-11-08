@@ -7,6 +7,7 @@ import { CheckCircle2 } from 'lucide-react';
 import { LinkedInIcon } from './Icons';
 import founderImg from '../assets/founder.png';
 import Button from './ui/Button';
+import GlassBadge from './ui/GlassBadge';
 
 export default function AboutManifesto({ onOpenCalendly }) {
   const handleBookCall = () => {
@@ -23,8 +24,8 @@ export default function AboutManifesto({ onOpenCalendly }) {
         
         {/* Top Header Block */}
         <div className="max-w-4xl mx-auto text-center mb-14 md:mb-18">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#0070AD]/10 text-[#0070AD] dark:text-[#38BDF8] border border-[#0070AD]/20 mb-6">
-            <span>About Escalup</span>
+          <div className="mb-6">
+            <GlassBadge>About Escalup</GlassBadge>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-tight mb-8">
@@ -95,9 +96,9 @@ export default function AboutManifesto({ onOpenCalendly }) {
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             <div className="lg:col-span-8 space-y-4">
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8]">
-                Team Extension
-              </span>
+              <div className="mb-2">
+                <GlassBadge>Team Extension</GlassBadge>
+              </div>
               <h3 className="text-2xl sm:text-3xl font-light text-[#111827] dark:text-white tracking-tight">
                 Scaling Your Project Team
               </h3>

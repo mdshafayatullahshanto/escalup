@@ -4,6 +4,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Button from './ui/Button';
+import GlassBadge from './ui/GlassBadge';
 
 export default function CuriousSection() {
   const handleCuriousClick = (e) => {
@@ -16,15 +17,15 @@ export default function CuriousSection() {
     <section className="py-20 sm:py-28 md:py-32 bg-[#F6F7FB] dark:bg-[#080C0F] border-b border-[#E2E6EE] dark:border-white/10 transition-colors">
       <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 md:px-8 text-center flex flex-col items-center">
         
-        {/* Uppercase Eyebrow */}
+        {/* Glassmorphism Eyebrow */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
-          className="text-xs font-semibold uppercase tracking-widest text-[#0070AD] dark:text-[#A5B4FC] mb-4 font-sans"
+          className="mb-4"
         >
-          The Engineering Edge
+          <GlassBadge>The Engineering Edge</GlassBadge>
         </motion.div>
 
         {/* Centered Heading with Gradient Highlight Word */}

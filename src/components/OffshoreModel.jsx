@@ -17,7 +17,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 import Button from './ui/Button';
-import Badge from './ui/Badge';
+import GlassBadge from './ui/GlassBadge';
 import { servicesData } from '../data/services';
 
 const PROJECT_STEPS = [
@@ -157,10 +157,8 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
         
         {/* Header Block */}
         <div className="max-w-4xl mx-auto text-center mb-16 sm:mb-20">
-          <div className="mb-3">
-            <Badge variant="navy" size="sm" className="bg-[#121926] text-[#A5B4FC] border border-white/10">
-              Offshore Model
-            </Badge>
+          <div className="mb-4">
+            <GlassBadge>Offshore Model</GlassBadge>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-tight mb-4">
@@ -401,10 +399,8 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
         <div id="data-security" className="scroll-mt-16 pt-8">
           
           <div className="max-w-4xl mx-auto text-center mb-14">
-            <div className="mb-3">
-              <Badge variant="navy" size="sm" className="bg-[#121926] text-[#A5B4FC] border border-white/10">
-                Data Security
-              </Badge>
+            <div className="mb-4">
+              <GlassBadge>Data Security</GlassBadge>
             </div>
             <h3 className="text-3xl sm:text-4xl font-light text-[#111827] dark:text-white tracking-tight mb-3">
               Data Security &{' '}

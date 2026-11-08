@@ -10,6 +10,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowRight, ArrowUpRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import Badge from './ui/Badge';
+import GlassBadge from './ui/GlassBadge';
 
 const ACTION_PROJECTS = [
   {
@@ -240,9 +241,9 @@ export default function InActionCarousel() {
         {/* Section Header with Controls */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-8 sm:mb-10 lg:mb-12">
           <div>
-            {/* Eyebrow: Reference Style (Uppercase, letterspaced, blue/indigo) */}
-            <div className="text-xs font-semibold uppercase tracking-widest text-[#0070AD] dark:text-[#38BDF8] mb-3">
-              Core Delivery Outcomes
+            {/* Glassmorphism Eyebrow Badge */}
+            <div className="mb-3.5">
+              <GlassBadge>Core Delivery Outcomes</GlassBadge>
             </div>
             
             {/* Headline: Reference Style (Light 300 with signature indigo gradient) */}

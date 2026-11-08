@@ -3,6 +3,7 @@
 
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import GlassBadge from './ui/GlassBadge';
 
 function Word({ children, progress, range }) {
   const opacity = useTransform(progress, range, [0.2, 1]);
@@ -32,8 +33,8 @@ export default function ScrollRevealText({
 
   return (
     <div ref={containerRef} className={`py-16 sm:py-24 max-w-5xl mx-auto px-4 text-center ${className}`}>
-      <div className="text-xs font-semibold uppercase tracking-widest text-[#0070AD] dark:text-[#A5B4FC] mb-6 font-sans">
-        {tag}
+      <div className="mb-6 flex justify-center">
+        <GlassBadge>{tag}</GlassBadge>
       </div>
 
       <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light tracking-tight leading-[1.3] text-[#9BA8BA]">

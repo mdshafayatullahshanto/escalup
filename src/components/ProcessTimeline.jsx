@@ -15,6 +15,7 @@ import {
   Wrench, 
   RefreshCw 
 } from 'lucide-react';
+import GlassBadge from './ui/GlassBadge';
 
 const PHASES = [
   {
@@ -120,8 +121,8 @@ export default function ProcessTimeline() {
         
         {/* Section Header */}
         <div className="max-w-4xl mx-auto text-center mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#0070AD]/10 text-[#0070AD] dark:text-[#38BDF8] border border-[#0070AD]/20 mb-4">
-            <span>Design Approach</span>
+          <div className="mb-4">
+            <GlassBadge>Design Approach</GlassBadge>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-tight mb-4">

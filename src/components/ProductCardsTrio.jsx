@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Cpu, Layers, Wrench, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Badge from './ui/Badge';
+import GlassBadge from './ui/GlassBadge';
 
 const TRIO_CARDS = [
   {
@@ -54,8 +55,8 @@ export default function ProductCardsTrio() {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-          <div className="text-xs font-semibold uppercase tracking-widest text-[#0070AD] dark:text-[#38BDF8] mb-3">
-            Core Engineering Pillars
+          <div className="mb-4">
+            <GlassBadge>Core Engineering Pillars</GlassBadge>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-tight">
             Specialized Engineering Capabilities,{' '}

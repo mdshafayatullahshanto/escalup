@@ -19,7 +19,7 @@ import {
   ChevronRight
 } from 'lucide-react';
 import { servicesData, standardsSummaryTable } from '../data/services';
-import Badge from '../components/ui/Badge';
+import GlassBadge from '../components/ui/GlassBadge';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import ScrollRevealText from '../components/ScrollRevealText';
@@ -102,9 +102,7 @@ export default function ServiceDetailPage() {
           </div>
 
           <div className="mb-6">
-            <Badge variant="navy" size="md" className="border border-white/20 shadow-md">
-              {service.tag}
-            </Badge>
+            <GlassBadge>{service.tag}</GlassBadge>
           </div>
 
           <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-white tracking-tight leading-[1.14] mb-6">
@@ -152,8 +150,8 @@ export default function ServiceDetailPage() {
           
           {/* Left Narrative */}
           <div className="lg:col-span-6 space-y-6">
-            <div className="text-xs font-semibold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8]">
-              Discipline Overview
+            <div className="mb-2">
+              <GlassBadge>Discipline Overview</GlassBadge>
             </div>
 
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#111827] dark:text-white tracking-tight leading-tight">
@@ -236,8 +234,8 @@ export default function ServiceDetailPage() {
         <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
           
           <div className="max-w-3xl mb-12">
-            <div className="text-xs font-semibold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8] mb-2">
-              Capabilities Breakdown
+            <div className="mb-3.5">
+              <GlassBadge>Capabilities Breakdown</GlassBadge>
             </div>
             <h2 className="text-3xl sm:text-4xl font-light text-[#111827] dark:text-white tracking-tight">
               Scope of <span className="font-semibold">{service.title}</span>
@@ -273,8 +271,8 @@ export default function ServiceDetailPage() {
         <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
           
           <div className="max-w-3xl mb-10">
-            <div className="text-xs font-semibold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8] mb-2">
-              Compliance & Quality
+            <div className="mb-3.5">
+              <GlassBadge>Compliance & Quality</GlassBadge>
             </div>
             <h2 className="text-3xl sm:text-4xl font-light text-[#111827] dark:text-white tracking-tight">
               International <span className="font-semibold">Standards Summary</span>
@@ -341,9 +339,9 @@ export default function ServiceDetailPage() {
         <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
           
           <div className="text-center mb-10">
-            <Badge variant="teal" size="sm" className="mb-3">
-              Request for Services
-            </Badge>
+            <div className="mb-3.5 flex justify-center">
+              <GlassBadge>Request for Services</GlassBadge>
+            </div>
             <h2 className="text-3xl sm:text-4xl font-light text-white tracking-tight">
               Initiate a Project Scope for <span className="font-semibold">{service.title}</span>
             </h2>

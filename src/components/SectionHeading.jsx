@@ -4,6 +4,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import GlassBadge from './ui/GlassBadge';
 
 export default function SectionHeading({
   eyebrow,
@@ -46,11 +47,8 @@ export default function SectionHeading({
       className={`max-w-3xl mb-12 md:mb-16 ${isCenter ? 'mx-auto text-center' : 'text-left'} ${className}`}
     >
       {eyebrow && (
-        <motion.div variants={itemVariants}>
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-3.5 bg-[#0070AD]/10 text-[#0070AD] dark:text-[#38BDF8] border border-[#0070AD]/20">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#0070AD] animate-pulse"></span>
-            {eyebrow}
-          </div>
+        <motion.div variants={itemVariants} className="mb-3.5">
+          <GlassBadge>{eyebrow}</GlassBadge>
         </motion.div>
       )}
 
