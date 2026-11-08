@@ -14,8 +14,8 @@ export default function CuriousSection() {
   };
 
   return (
-    <section className="py-20 sm:py-28 md:py-32 bg-[#F6F7FB] dark:bg-[#080C0F] border-b border-[#E2E6EE] dark:border-white/10 transition-colors">
-      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 md:px-8 text-center flex flex-col items-center">
+    <section className="pt-12 sm:pt-16 pb-8 sm:pb-10 bg-[#F6F7FB] dark:bg-[#080C0F] transition-colors">
+      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
         
         {/* Glassmorphism Eyebrow */}
         <motion.div
@@ -23,7 +23,7 @@ export default function CuriousSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
-          className="mb-4"
+          className="mb-3.5"
         >
           <GlassBadge>The Engineering Edge</GlassBadge>
         </motion.div>
@@ -34,7 +34,7 @@ export default function CuriousSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-[#111827] dark:text-white tracking-tight leading-[1.16] mb-6"
+          className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-[1.16] mb-4 [text-wrap:balance]"
         >
           Transforming engineering capacity with{' '}
           <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
@@ -48,7 +48,7 @@ export default function CuriousSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-sm sm:text-base md:text-lg text-[#5A6679] dark:text-[#9BA8BA] max-w-2xl leading-relaxed mb-8"
+          className="text-sm sm:text-base md:text-lg text-[#5A6679] dark:text-[#9BA8BA] max-w-2xl leading-relaxed mb-6 font-normal"
         >
           Discover how equipment manufacturers and building consultancies scale their engineering teams without local payroll liability or quality trade-offs.
         </motion.p>
@@ -62,10 +62,10 @@ export default function CuriousSection() {
         >
           <Button
             variant="primary"
-            size="lg"
+            size="md"
             onClick={handleCuriousClick}
             icon="arrow"
-            className="shadow-xl px-8 py-3.5 sm:py-4 text-sm font-semibold"
+            className="shadow-md px-7 py-3 text-sm font-semibold"
           >
             I'm Curious
           </Button>

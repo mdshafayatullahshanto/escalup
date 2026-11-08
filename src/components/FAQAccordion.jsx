@@ -17,12 +17,12 @@ export default function FAQAccordion() {
   };
 
   return (
-    <section id="faq" className="py-20 sm:py-28 md:py-32 bg-[#F6F7FC] dark:bg-[#080C0F] border-b border-[#E2E6EE] dark:border-white/10 font-sans relative scroll-mt-12 transition-colors">
-      <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
+    <section id="faq" className="py-12 sm:py-16 md:py-20 bg-[#F6F7FC] dark:bg-[#080C0F] border-b border-[#E2E6EE] dark:border-white/10 font-sans relative scroll-mt-12 transition-colors">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header: Light-weight heading with ONE highlighted phrase */}
-        <div className="max-w-3xl mx-auto text-center mb-16 sm:mb-20">
-          <div className="mb-4">
+        <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-12">
+          <div className="mb-3.5">
             <GlassBadge>FAQs & Governance</GlassBadge>
           </div>
 
@@ -39,7 +39,7 @@ export default function FAQAccordion() {
         </div>
 
         {/* Accordion List with White Cards and Indigo Toggle Icon */}
-        <div className="max-w-4xl mx-auto space-y-3.5">
+        <div className="max-w-3xl mx-auto space-y-3">
           {faqData.map((faq, index) => {
             const isOpen = openIndex === index;
             return (

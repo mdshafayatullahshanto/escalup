@@ -62,11 +62,11 @@ const BENTO_ARTICLES = [
 
 export default function ThoughtLeadershipBento() {
   return (
-    <section className="py-20 sm:py-28 md:py-32 bg-[#F6F7FB] dark:bg-[#080C0F] border-b border-[#E2E6EE] dark:border-white/10 transition-colors">
-      <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
+    <section className="py-12 sm:py-16 md:py-20 bg-[#F6F7FB] dark:bg-[#080C0F] border-b border-[#E2E6EE] dark:border-white/10 transition-colors">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12 lg:mb-16 font-sans">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-10 lg:mb-12 font-sans">
           <div>
             <div className="mb-3.5">
               <GlassBadge>Engineering Knowledge & Perspectives</GlassBadge>

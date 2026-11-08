@@ -109,12 +109,12 @@ export default function NavigateYourNext({ onOpenCalendly }) {
   };
 
   return (
-    <section id="navigate-next" className="py-20 sm:py-28 md:py-32 bg-[#F6F7FC] dark:bg-[#080C0F] border-b border-[#E2E6EE] dark:border-white/10 font-sans relative overflow-hidden scroll-mt-12 transition-colors">
-      <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16 relative z-10">
+    <section id="navigate-next" className="py-12 sm:py-16 md:py-20 bg-[#F6F7FC] dark:bg-[#080C0F] border-b border-[#E2E6EE] dark:border-white/10 font-sans relative overflow-hidden scroll-mt-12 transition-colors">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header: Light-weight heading with ONE highlighted phrase */}
-        <div className="max-w-4xl mx-auto text-center mb-16 sm:mb-20">
-          <div className="mb-4">
+        <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-12">
+          <div className="mb-3.5">
             <GlassBadge>The Enterprise Offshore Transformation</GlassBadge>
           </div>
 
@@ -131,7 +131,7 @@ export default function NavigateYourNext({ onOpenCalendly }) {
         </div>
 
         {/* Split Layout: Left Vertical Tab List, Right Content Panel */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start w-full">
           
           {/* LEFT: Vertical Tab List (4 cols) */}
           <div className="lg:col-span-4 space-y-2.5">

@@ -224,7 +224,7 @@ export default function FramedHero({ onOpenCalendly }) {
     <section
       id="hero"
       aria-label="Escalup Enterprise Hero"
-      className="w-full min-h-screen relative overflow-hidden flex flex-col justify-between pt-24 sm:pt-28 pb-6 sm:pb-8 px-4 sm:px-6 md:px-8 lg:px-12 bg-[#F8FAFC] dark:bg-[#080C0F] text-[#111827] dark:text-white transition-colors select-none"
+      className="w-full min-h-[560px] lg:min-h-[640px] lg:h-[calc(100vh-4rem)] lg:max-h-[820px] relative overflow-hidden flex flex-col justify-between pt-24 sm:pt-28 pb-5 sm:pb-6 px-4 sm:px-6 lg:px-8 bg-[#F8FAFC] dark:bg-[#080C0F] text-[#111827] dark:text-white transition-colors select-none"
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
@@ -299,7 +299,7 @@ export default function FramedHero({ onOpenCalendly }) {
       {/* ------------------------------------------------------------- */}
       {/* 2. TOP HERO ROW: FLOATING BADGE & 01 / 03 COUNTER             */}
       {/* ------------------------------------------------------------- */}
-      <div className="w-full max-w-[1720px] mx-auto flex items-center justify-between pt-2 sm:pt-4 relative z-10">
+      <div className="w-full max-w-7xl mx-auto flex items-center justify-between pt-1 sm:pt-2 relative z-10">
         
         {/* Top-Left Floating Badge */}
         <motion.div
@@ -326,7 +326,7 @@ export default function FramedHero({ onOpenCalendly }) {
       {/* ------------------------------------------------------------- */}
       {/* 3. CENTER HERO CONTENT: HEADLINE, SUBTITLE, BUTTONS & STATS   */}
       {/* ------------------------------------------------------------- */}
-      <div className="w-full max-w-5xl mx-auto text-center my-auto py-8 sm:py-12 relative z-10 flex flex-col items-center justify-center min-h-[380px] sm:min-h-[420px]">
+      <div className="w-full max-w-4xl mx-auto text-center my-auto py-4 sm:py-6 relative z-10 flex flex-col items-center justify-center">
         
         <AnimatePresence mode="wait">
           <motion.div
@@ -396,7 +396,7 @@ export default function FramedHero({ onOpenCalendly }) {
       {/* ------------------------------------------------------------- */}
       {/* 4. BOTTOM BAR: PLAY/PAUSE, 3 PROGRESS BARS, TABS & NEXT LINK  */}
       {/* ------------------------------------------------------------- */}
-      <div className="w-full max-w-[1720px] mx-auto pt-6 flex flex-col md:flex-row items-center justify-between gap-4 relative z-10 border-t border-[#E2E6EE]/80 dark:border-white/10">
+      <div className="w-full max-w-7xl mx-auto pt-4 sm:pt-5 flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 relative z-10 border-t border-[#E2E6EE]/80 dark:border-white/10">
         
         {/* Left: Pause/Play Button + 3 Segmented Progress Bars */}
         <div className="flex items-center gap-3">

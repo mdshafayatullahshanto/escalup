@@ -116,12 +116,12 @@ export default function ProcessTimeline() {
   };
 
   return (
-    <section id="process" className="py-20 md:py-28 bg-[#F6F7FB] dark:bg-[#080C0F] text-[#111827] dark:text-white border-b border-[#E2E6EE] dark:border-white/10 relative scroll-mt-12 transition-colors">
-      <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+    <section id="process" className="py-12 sm:py-16 md:py-20 bg-[#F6F7FB] dark:bg-[#080C0F] text-[#111827] dark:text-white border-b border-[#E2E6EE] dark:border-white/10 relative scroll-mt-12 transition-colors">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="max-w-4xl mx-auto text-center mb-16 sm:mb-20">
-          <div className="mb-4">
+        <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-12">
+          <div className="mb-3.5">
             <GlassBadge>Design Approach</GlassBadge>
           </div>
 
@@ -143,7 +143,7 @@ export default function ProcessTimeline() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: '-40px' }}
-          className="grid lg:grid-cols-3 gap-8"
+          className="grid lg:grid-cols-3 gap-6 lg:gap-8"
         >
           {PHASES.map((phaseGroup, pIdx) => (
             <div key={pIdx} className="space-y-5">

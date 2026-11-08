@@ -199,7 +199,7 @@ export default function Navbar({ onOpenCalendly }) {
             : 'bg-transparent'
         }`}
       >
-        <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 flex items-center justify-between">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
           {/* LEFT: Circular Hamburger [ ≡ ] + Brand Logo */}
           <div className="flex items-center gap-3 sm:gap-4 shrink-0">

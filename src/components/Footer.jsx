@@ -36,11 +36,11 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-white dark:bg-[#070B0E] text-[#111827] dark:text-[#F3F5FA] pt-16 sm:pt-20 pb-12 border-t border-[#E2E6EE] dark:border-white/10 transition-colors font-sans">
-      <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+    <footer className="bg-white dark:bg-[#070B0E] text-[#111827] dark:text-[#F3F5FA] pt-12 sm:pt-16 pb-10 border-t border-[#E2E6EE] dark:border-white/10 transition-colors font-sans">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Top: 4 Link Columns Architecture */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 pb-14 border-b border-[#E2E6EE] dark:border-white/10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 pb-10 border-b border-[#E2E6EE] dark:border-white/10">
           
           {/* Column 1: Services (All 7 in exact order) */}
           <div className="space-y-4">

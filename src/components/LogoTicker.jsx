@@ -21,7 +21,7 @@ const PLATFORMS = [
 export default function LogoTicker() {
   return (
     <div className="w-full border-y border-[#E2E6EE] dark:border-white/10 bg-[#F6F7FC] dark:bg-[#0B0F14] py-4 sm:py-5 overflow-hidden relative select-none font-sans">
-      <div className="max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 mb-3 flex items-center justify-between gap-4 text-xs text-[#5A6679] dark:text-[#9BA8BA]">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-3 flex items-center justify-between gap-4 text-xs text-[#5A6679] dark:text-[#9BA8BA]">
         <div className="flex items-center gap-2 font-medium tracking-wide min-w-0">
           <span className="w-1.5 h-1.5 rounded-full bg-[#5846F6] flex-shrink-0" />
           <span className="sm:hidden uppercase text-[11px] font-semibold text-[#111827] dark:text-white tracking-wider">Supported Platforms</span>

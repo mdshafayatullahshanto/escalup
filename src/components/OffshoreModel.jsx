@@ -152,12 +152,12 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
   };
 
   return (
-    <section id="offshore-model" className="py-20 sm:py-28 bg-[#F6F7FB] dark:bg-[#080C0F] text-[#111827] dark:text-white border-b border-[#E2E6EE] dark:border-white/10 font-sans relative scroll-mt-12 transition-colors">
-      <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+    <section id="offshore-model" className="py-12 sm:py-16 md:py-20 bg-[#F6F7FB] dark:bg-[#080C0F] text-[#111827] dark:text-white border-b border-[#E2E6EE] dark:border-white/10 font-sans relative scroll-mt-12 transition-colors">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Block */}
-        <div className="max-w-4xl mx-auto text-center mb-16 sm:mb-20">
-          <div className="mb-4">
+        <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-12">
+          <div className="mb-3.5">
             <GlassBadge>Offshore Model</GlassBadge>
           </div>
 
@@ -168,7 +168,7 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg text-[#0070AD] dark:text-[#38BDF8] font-medium mb-4">
+          <p className="text-base sm:text-lg text-[#0070AD] dark:text-[#38BDF8] font-medium mb-3">
             A dedicated engineering partner for your mechanical, BIM and MEP design work.
           </p>
 
@@ -178,7 +178,7 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
         </div>
 
         {/* 1. What We Support: All 7 Services */}
-        <div className="mb-20">
+        <div className="mb-12 sm:mb-14">
           <div className="flex items-center justify-between mb-8 pb-3 border-b border-[#E2E6EE] dark:border-white/10">
             <div>
               <span className="text-xs font-semibold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8]">
@@ -229,8 +229,8 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
         </div>
 
         {/* 2. How a Project Works (Steps 1 - 7) */}
-        <div className="mb-20">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+        <div className="mb-10 sm:mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
             <span className="text-xs font-semibold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8]">
               Execution Cycle
             </span>
@@ -269,7 +269,7 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
         </div>
 
         {/* 3. Communication & Deliverables Grid */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-20">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 mb-10 sm:mb-12">
           
           {/* Communication Panel */}
           <div className="bg-white dark:bg-[#11161B] rounded-3xl p-8 border border-[#E2E6EE] dark:border-white/10 shadow-card">
@@ -318,7 +318,7 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
         </div>
 
         {/* 4. Standards, Revision Handling & Engagement Terms */}
-        <div className="grid md:grid-cols-3 gap-6 mb-20">
+        <div className="grid md:grid-cols-3 gap-6 mb-10 sm:mb-12">
           
           {/* Standards */}
           <div className="bg-white dark:bg-[#11161B] rounded-2xl p-6 border border-[#E2E6EE] dark:border-white/10 shadow-card flex flex-col justify-between">
@@ -378,8 +378,8 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
         </div>
 
         {/* Offshore CTA Band */}
-        <div className="mb-24 bg-white dark:bg-[#11161B] rounded-3xl p-8 sm:p-10 border border-[#E2E6EE] dark:border-white/10 shadow-card text-center max-w-3xl mx-auto">
-          <p className="text-base sm:text-lg text-[#111827] dark:text-white font-medium mb-5">
+        <div className="mb-12 sm:mb-14 bg-white dark:bg-[#11161B] rounded-3xl p-6 sm:p-8 border border-[#E2E6EE] dark:border-white/10 shadow-card text-center max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg text-[#111827] dark:text-white font-medium mb-4">
             Share your project requirements. We will review them and respond with a proposed scope.
           </p>
           <Button
@@ -396,10 +396,10 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
         {/* ------------------------------------------------------------- */}
         {/* NEW SECTION: DATA SECURITY & CLIENT ENVIRONMENT               */}
         {/* ------------------------------------------------------------- */}
-        <div id="data-security" className="scroll-mt-16 pt-8">
+        <div id="data-security" className="scroll-mt-16 pt-4">
           
-          <div className="max-w-4xl mx-auto text-center mb-14">
-            <div className="mb-4">
+          <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-10">
+            <div className="mb-3.5">
               <GlassBadge>Data Security</GlassBadge>
             </div>
             <h3 className="text-3xl sm:text-4xl font-light text-[#111827] dark:text-white tracking-tight mb-3">
@@ -408,12 +408,12 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
                 Client Environment
               </span>
             </h3>
-            <p className="text-sm sm:text-base text-[#475569] dark:text-[#9BA8BA] max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base text-[#475569] dark:text-[#9BA8BA] max-w-2xl mx-auto font-normal">
               Client data security is a core requirement of every Escalup engagement. We work under your rules, in your environment, when you require it.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 mb-12">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 mb-4">
             
             {/* Data Security Card */}
             <div className="bg-white dark:bg-[#11161B] rounded-3xl p-8 border border-[#E2E6EE] dark:border-white/10 shadow-card space-y-4">

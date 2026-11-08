@@ -230,13 +230,13 @@ export default function InActionCarousel() {
           setIsFocused(false);
         }
       }}
-      className="w-full bg-[#F6F7FB] dark:bg-[#080C0F] text-[#111827] dark:text-white py-16 sm:py-20 md:py-24 border-y border-[#E2E6EE] dark:border-white/10 relative overflow-hidden font-sans focus:outline-none transition-colors"
+      className="w-full bg-[#F6F7FB] dark:bg-[#080C0F] text-[#111827] dark:text-white py-12 sm:py-16 md:py-20 border-y border-[#E2E6EE] dark:border-white/10 relative overflow-hidden font-sans focus:outline-none transition-colors"
     >
       {/* Subtle ambient lighting */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-[#5846F6]/05 dark:bg-[#5846F6]/06 rounded-full blur-[160px] pointer-events-none" />
 
-      {/* Shared ~1400px centered container */}
-      <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
+      {/* Shared centered container */}
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header with Controls */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-8 sm:mb-10 lg:mb-12">

@@ -46,12 +46,12 @@ const DIRECTORY_COLUMNS = [
 
 export default function IndustriesServicesLinks() {
   return (
-    <section className="py-20 sm:py-28 bg-[#FFFFFF] dark:bg-[#0A0E13] border-b border-[#E2E6EE] dark:border-white/10 transition-colors">
-      <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
+    <section className="py-12 sm:py-16 md:py-20 bg-[#FFFFFF] dark:bg-[#0A0E13] border-b border-[#E2E6EE] dark:border-white/10 transition-colors">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="max-w-3xl mb-12 lg:mb-16">
-          <div className="mb-4">
+        <div className="max-w-3xl mb-8 sm:mb-10 lg:mb-12">
+          <div className="mb-3.5">
             <GlassBadge>Engineering Directory</GlassBadge>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#111827] dark:text-white tracking-tight">
@@ -66,7 +66,7 @@ export default function IndustriesServicesLinks() {
         </div>
 
         {/* 4-Column Grid of Thin Underlined Links */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {DIRECTORY_COLUMNS.map((col, idx) => (
             <div key={idx} className="space-y-4">
               <h3 className="text-base font-bold text-[#111827] dark:text-white pb-3 border-b border-[#E2E6EE] dark:border-white/10 flex items-center justify-between">
