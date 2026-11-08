@@ -1,15 +1,18 @@
 // src/components/FramedHero.jsx
-// STEP 3 - Item 1: Full-viewport hero
-// 3 Auto-rotating slides (01 Enterprise, 02 Native, 03 BIM) with 5000ms CSS progress sync,
-// single activeIndex source of truth, hover/focus pause & resume, Page Visibility API,
-// touch swipe navigation, accessible pause/play control, reduced motion support,
-// and balanced headline typography.
+// Full-bleed technical hero section matching escalup-hero-redesign.html
+// Features:
+// - Fixed full-bleed animated background (interactive CAD grid, glowing ambient orbs, SVG noise grain, mouse parallax)
+// - NO photo, NO rounded card
+// - 3 Auto-rotating slides (01 Enterprise, 02 Native, 03 BIM) with 5000ms CSS progress sync
+// - Pause on hover, focus, tab hidden, and prefers-reduced-motion
+// - Top row: Floating badge + 01/03 counter
+// - Center: Light-weight headline + colorful gradient focus phrase, subtitle, action buttons, stats ribbon
+// - Bottom bar: Accessible play/pause, 3 segmented progress bars, slide tabs, and "Navigate your next +" link
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { Calendar, Sparkles, Pause, Play } from 'lucide-react';
-import mountainHeroBg from '../assets/mountain-hero.jpg';
-import Button from './ui/Button';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Calendar, Sparkles, Pause, Play, ArrowRight } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 const HERO_SLIDES = [
   {
@@ -17,7 +20,8 @@ const HERO_SLIDES = [
     num: '01',
     shortLabel: 'Enterprise',
     tag: 'Offshore Engineering Services',
-    title: 'Scale Your Project Team with Dedicated Offshore Talent',
+    line1: 'Scale Your Project Team with',
+    line2: 'Dedicated Offshore Talent',
     subtitle: 'escalup is your dedicated offshore engineering partner delivering Mechanical CAD, MEP, and BIM coordination for global equipment builders and consultancies.',
     ctaPrimary: 'Request a Quote',
     ctaSecondary: 'Schedule an Engineering Intro Call',
@@ -28,8 +32,9 @@ const HERO_SLIDES = [
     num: '02',
     shortLabel: 'Native',
     tag: 'CAD, Parametric Modeling & Simulation',
-    title: 'Parametric CAD capacity at production velocity.',
-    subtitle: 'SolidWorks, Siemens NX, Inventor, and Creo modeling support integrated into your engineering team.',
+    line1: 'Parametric CAD Capacity at',
+    line2: 'Production Velocity',
+    subtitle: 'SolidWorks, Siemens NX, Inventor, and Creo modeling support integrated into your engineering team under your drawing standards.',
     ctaPrimary: 'Explore Capabilities',
     ctaSecondary: 'Schedule an Engineering Intro Call',
     stats: 'Native Drawing Formats · ASME Y14.5 Tolerancing · Controlled Revision History',
@@ -39,8 +44,9 @@ const HERO_SLIDES = [
     num: '03',
     shortLabel: 'BIM',
     tag: 'BIM & MEP Design Engineering',
-    title: 'Multi-discipline BIM & MEP coordination before construction.',
-    subtitle: 'Revit and Navisworks coordination, HVAC sizing, plumbing, and clash detection to support construction and fabrication.',
+    line1: 'Multi-Discipline BIM & MEP Coordination',
+    line2: 'Before Construction',
+    subtitle: 'Revit and Navisworks coordination, HVAC sizing, plumbing, and clash detection to support construction and fabrication without delays.',
     ctaPrimary: 'Schedule a Review',
     ctaSecondary: 'Schedule an Engineering Intro Call',
     stats: 'Spatial Clash Resolution · ASHRAE & NFPA Compliance · Contractor Spool Drawings',
@@ -48,9 +54,11 @@ const HERO_SLIDES = [
 ];
 
 export default function FramedHero({ onOpenCalendly }) {
-  // Single source of truth for active slide
   const [activeIndex, setActiveIndex] = useState(0);
-  const [slideKey, setSlideKey] = useState(0); // increments to restart CSS animation smoothly
+  const [slideKey, setSlideKey] = useState(0); // restarts CSS progress animation
+
+  // Mouse Parallax coordinates (-1 to 1)
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   // Pause states
   const [isHovered, setIsHovered] = useState(false);
@@ -69,19 +77,16 @@ export default function FramedHero({ onOpenCalendly }) {
     return false;
   });
 
-  // Touch swipe coordinates
+  const { isDark } = useTheme();
+
+  // Touch gesture tracking
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
-
-  // Parallax scroll effect
-  const { scrollY } = useScroll();
-  const scale = useTransform(scrollY, [0, 600], [1, 1.05]);
-  const yParallax = useTransform(scrollY, [0, 600], [0, 80]);
 
   // Combined pause state
   const isPaused = isHovered || isFocused || isTabHidden || isUserPaused;
 
-  // Navigation handlers
+  // Slide navigation
   const nextSlide = useCallback(() => {
     setActiveIndex((prev) => (prev + 1) % HERO_SLIDES.length);
     setSlideKey((k) => k + 1);
@@ -95,12 +100,6 @@ export default function FramedHero({ onOpenCalendly }) {
   const goToSlide = useCallback((index) => {
     setActiveIndex(index);
     setSlideKey((k) => k + 1);
-  }, []);
-
-  // Preload background image & assets to prevent any flashing
-  useEffect(() => {
-    const img = new Image();
-    img.src = mountainHeroBg;
   }, []);
 
   // Listen for prefers-reduced-motion changes
@@ -123,21 +122,31 @@ export default function FramedHero({ onOpenCalendly }) {
     return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
   }, []);
 
-  // Fallback timer when prefers-reduced-motion is active but user explicitly hits play
+  // Fallback timer when CSS progress bar animation is not used or reduced motion is active
   useEffect(() => {
-    if (!isReducedMotion || isPaused) return;
+    if (isPaused) return;
     const timer = setTimeout(() => {
       nextSlide();
     }, 5000);
     return () => clearTimeout(timer);
-  }, [isReducedMotion, isPaused, activeIndex, slideKey, nextSlide]);
+  }, [isPaused, activeIndex, slideKey, nextSlide]);
 
-  // Handle animation completion from active CSS progress bar
-  const handleProgressAnimationEnd = () => {
-    nextSlide();
+  // Mouse Parallax listener
+  const handleMouseMove = (e) => {
+    if (isReducedMotion) return;
+    const { innerWidth, innerHeight } = window;
+    const x = (e.clientX / innerWidth - 0.5) * 2;
+    const y = (e.clientY / innerHeight - 0.5) * 2;
+    setMousePos({ x, y });
   };
 
-  // Mobile touch gesture handlers
+  // Keyboard arrow listeners
+  const handleKeyDown = (e) => {
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+  };
+
+  // Touch swipe handlers
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
     touchEndX.current = e.touches[0].clientX;
@@ -148,26 +157,24 @@ export default function FramedHero({ onOpenCalendly }) {
   };
 
   const handleTouchEnd = () => {
-    const diff = touchStartX.current - touchEndX.current;
-    const minSwipeDistance = 45; // min px threshold
-    if (Math.abs(diff) > minSwipeDistance) {
-      if (diff > 0) {
-        nextSlide();
-      } else {
-        prevSlide();
-      }
+    const distance = touchStartX.current - touchEndX.current;
+    if (distance > 50) {
+      nextSlide();
+    } else if (distance < -50) {
+      prevSlide();
     }
   };
 
-  const slide = HERO_SLIDES[activeIndex];
-
   const handleQuoteClick = (e) => {
     if (e && e.preventDefault) e.preventDefault();
-    const el = document.getElementById('contact');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    const contactEl = document.getElementById('contact');
+    if (contactEl) {
+      contactEl.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
-  const handleBookCall = () => {
+  const handleBookCall = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
     if (onOpenCalendly) {
       onOpenCalendly();
     } else {
@@ -175,248 +182,302 @@ export default function FramedHero({ onOpenCalendly }) {
     }
   };
 
-  // Staggered motion variants for smooth 600ms content entrance
-  const contentContainerVariants = {
-    initial: {},
+  const handleNavigateNext = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    const el = document.getElementById('services') || document.getElementById('navigate-next');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const currentSlide = HERO_SLIDES[activeIndex];
+
+  // Motion variants for smooth text entrance
+  const textContainerVariants = {
+    initial: { opacity: 0 },
     animate: {
+      opacity: 1,
       transition: {
         staggerChildren: isReducedMotion ? 0 : 0.08,
+        delayChildren: isReducedMotion ? 0 : 0.04,
       },
     },
     exit: {
-      transition: {
-        staggerChildren: isReducedMotion ? 0 : 0.04,
-        staggerDirection: -1,
-      },
+      opacity: 0,
+      transition: { duration: 0.2 },
     },
   };
 
-  const contentItemVariants = {
-    initial: {
-      opacity: 0,
-      y: isReducedMotion ? 0 : 18,
-    },
+  const textItemVariants = {
+    initial: { opacity: 0, y: isReducedMotion ? 0 : 16 },
     animate: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: isReducedMotion ? 0.2 : 0.6,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
-    exit: {
-      opacity: 0,
-      y: isReducedMotion ? 0 : -14,
-      transition: {
-        duration: isReducedMotion ? 0.15 : 0.4,
+        duration: isReducedMotion ? 0.01 : 0.45,
         ease: [0.22, 1, 0.36, 1],
       },
     },
   };
 
   return (
-    <section className="relative w-full pt-16 sm:pt-20 px-2 sm:px-4 md:px-6 pb-6 bg-[#F6F7FB] dark:bg-[#080C0F] transition-colors">
-      {/* 
-        The Framed Container:
-        Rounded corners (rounded-3xl), overflow hidden, shadow, fixed background image
-      */}
-      <div 
-        className="relative w-full min-h-[90vh] sm:min-h-[92vh] rounded-3xl sm:rounded-[36px] overflow-hidden flex flex-col justify-between p-6 sm:p-10 md:p-14 lg:p-16 text-white shadow-2xl border border-black/10 dark:border-white/10 select-none"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onFocus={() => setIsFocused(true)}
-        onBlur={(e) => {
-          if (!e.currentTarget.contains(e.relatedTarget)) {
-            setIsFocused(false);
-          }
-        }}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      >
-        {/* Background Media with Parallax: Stays completely fixed while content slides */}
-        <motion.div 
-          className="absolute inset-0 z-0 origin-center pointer-events-none"
-          style={{ scale, y: yParallax }}
+    <section
+      id="hero"
+      aria-label="Escalup Enterprise Hero"
+      className="w-full min-h-screen relative overflow-hidden flex flex-col justify-between pt-24 sm:pt-28 pb-6 sm:pb-8 px-4 sm:px-6 md:px-8 lg:px-12 bg-[#F8FAFC] dark:bg-[#080C0F] text-[#111827] dark:text-white transition-colors select-none"
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => {
+        setIsHovered(false);
+        setMousePos({ x: 0, y: 0 });
+      }}
+      onFocusCapture={() => setIsFocused(true)}
+      onBlurCapture={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+          setIsFocused(false);
+        }
+      }}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      tabIndex={0}
+      onKeyDown={handleKeyDown}
+    >
+      {/* ------------------------------------------------------------- */}
+      {/* 1. FIXED FULL-BLEED ANIMATED BACKGROUND                       */}
+      {/* ------------------------------------------------------------- */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        
+        {/* Interactive Technical Engineering Grid with Mouse Parallax */}
+        <div
+          className="absolute -inset-[40px] pointer-events-none transition-transform duration-200 ease-out"
+          style={{
+            transform: isReducedMotion
+              ? 'none'
+              : `translate3d(${mousePos.x * 16}px, ${mousePos.y * 16}px, 0)`,
+            backgroundImage: `
+              linear-gradient(to right, ${isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 112, 173, 0.07)'} 1px, transparent 1px),
+              linear-gradient(to bottom, ${isDark ? 'rgba(255, 255, 255, 0.04)' : 'rgba(0, 112, 173, 0.07)'} 1px, transparent 1px)
+            `,
+            backgroundSize: '48px 48px',
+          }}
+        />
+
+        {/* Ambient Glowing Orbs with Smooth Easing */}
+        <div
+          className="absolute -top-[10%] left-[15%] w-[620px] h-[620px] rounded-full bg-[#0070AD]/10 dark:bg-[#0070AD]/16 blur-[140px] transition-transform duration-300 ease-out"
+          style={{
+            transform: isReducedMotion
+              ? 'none'
+              : `translate3d(${mousePos.x * -24}px, ${mousePos.y * -24}px, 0)`,
+          }}
+        />
+
+        <div
+          className="absolute -bottom-[15%] right-[10%] w-[680px] h-[680px] rounded-full bg-[#5846F6]/08 dark:bg-[#5846F6]/14 blur-[160px] transition-transform duration-300 ease-out"
+          style={{
+            transform: isReducedMotion
+              ? 'none'
+              : `translate3d(${mousePos.x * 20}px, ${mousePos.y * 20}px, 0)`,
+          }}
+        />
+
+        {/* Tactile Film Grain Overlay */}
+        <svg
+          className="absolute inset-0 w-full h-full opacity-[0.035] dark:opacity-[0.05] pointer-events-none mix-blend-overlay"
+          aria-hidden="true"
         >
-          <img
-            src={mountainHeroBg}
-            alt="Majestic mountain landscape - Navigate your next"
-            className="w-full h-full object-cover object-center filter brightness-95"
-            loading="eager"
-            fetchPriority="high"
-          />
-          {/* Layered dark vignette overlays */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0B0F14]/75 via-[#0B0F14]/40 to-[#0B0F14]/90 backdrop-contrast-115" />
-          <div className="absolute inset-0 bg-radial-at-c from-transparent via-[#0B0F14]/30 to-[#0B0F14]/80" />
+          <filter id="hero-grain-filter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch" />
+            <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0" />
+          </filter>
+          <rect width="100%" height="100%" filter="url(#hero-grain-filter)" />
+        </svg>
+
+      </div>
+
+      {/* ------------------------------------------------------------- */}
+      {/* 2. TOP HERO ROW: FLOATING BADGE & 01 / 03 COUNTER             */}
+      {/* ------------------------------------------------------------- */}
+      <div className="w-full max-w-[1720px] mx-auto flex items-center justify-between pt-2 sm:pt-4 relative z-10">
+        
+        {/* Top-Left Floating Badge */}
+        <motion.div
+          key={`badge-${currentSlide.id}`}
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35 }}
+          className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-white/90 dark:bg-[#11161B]/90 backdrop-blur-md border border-[#E2E6EE] dark:border-white/10 shadow-xs text-xs font-medium text-[#111827] dark:text-white max-w-[210px] xs:max-w-[270px] sm:max-w-none"
+        >
+          <Sparkles className="w-3.5 h-3.5 text-[#0070AD] dark:text-[#38BDF8] shrink-0" />
+          <span className="truncate">{currentSlide.tag}</span>
         </motion.div>
 
-        {/* Top Eyebrow Row: Slide Tag on Left, Single Source Counter on Right */}
-        <div className="relative z-10 flex items-center justify-between pt-8 sm:pt-12">
-          {/* Eyebrow Tag */}
-          <motion.div
-            key={`tag-${slide.id}`}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-sans font-medium tracking-wider bg-white/15 backdrop-blur-md border border-white/20 text-white"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-[#A5B4FC]" />
-            <span>{slide.tag}</span>
-          </motion.div>
-
-          {/* Slide Numbers Counter: "01 / 03", "02 / 03", "03 / 03" */}
-          <div className="text-xs font-sans tracking-widest text-white/70">
-            <span className="text-white font-semibold">0{activeIndex + 1}</span> / 0{HERO_SLIDES.length}
-          </div>
-        </div>
-
-        {/* 
-          Centered Content with Staggered Transition & Balanced Wrapping:
-          Stable min-height prevents layout jump during slide change
-        */}
-        <div className="relative z-10 my-auto py-8 sm:py-12 max-w-5xl mx-auto text-center flex flex-col items-center justify-center min-h-[360px] sm:min-h-[400px] md:min-h-[440px]">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`content-${activeIndex}`}
-              variants={contentContainerVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              className="space-y-6 w-full"
-            >
-              {/* Very large, light-weight (300) headline with text-wrap: balance */}
-              <motion.h1
-                variants={contentItemVariants}
-                className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-light text-white tracking-tight leading-[1.14] max-w-5xl mx-auto [text-wrap:balance]"
-                style={{ textWrap: 'balance' }}
-              >
-                {slide.title}
-              </motion.h1>
-
-              {/* Subtitle with high contrast and balanced line length */}
-              <motion.p
-                variants={contentItemVariants}
-                className="max-w-3xl mx-auto text-sm sm:text-base md:text-lg text-white/85 leading-relaxed font-normal [text-wrap:balance]"
-                style={{ textWrap: 'balance' }}
-              >
-                {slide.subtitle}
-              </motion.p>
-
-              {/* Action Buttons */}
-              <motion.div
-                variants={contentItemVariants}
-                className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-3"
-              >
-                <Button
-                  variant="white"
-                  size="md"
-                  onClick={handleQuoteClick}
-                  icon="arrow"
-                  className="w-full sm:w-auto shadow-xl"
-                >
-                  {slide.ctaPrimary}
-                </Button>
-
-                <Button
-                  variant="glass"
-                  size="md"
-                  onClick={handleBookCall}
-                  icon="none"
-                  className="w-full sm:w-auto"
-                >
-                  <Calendar className="w-4 h-4 text-white mr-1.5" />
-                  <span>{slide.ctaSecondary}</span>
-                </Button>
-              </motion.div>
-
-              {/* Key Highlights Ribbon */}
-              <motion.div
-                variants={contentItemVariants}
-                className="pt-2 text-[11px] sm:text-xs font-sans text-white/80 tracking-wide"
-              >
-                {slide.stats}
-              </motion.div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        {/* 
-          Bottom Segmented Progress Indicators & Accessible Playback Controls:
-          3 Segmented bars synchronised via 5000ms CSS scaleX animation
-        */}
-        <div className="relative z-10 pt-4 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between gap-4 font-sans">
-          
-          {/* Left: Pause/Play Button + 3 Segmented Progress Bars */}
-          <div className="flex items-center gap-3 w-full sm:w-auto">
-            {/* Accessible Pause / Play toggle */}
-            <button
-              onClick={() => setIsUserPaused((prev) => !prev)}
-              aria-label={isUserPaused ? 'Resume auto-play slide rotation' : 'Pause auto-play slide rotation'}
-              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white shrink-0"
-              title={isUserPaused ? 'Resume auto-play' : 'Pause auto-play'}
-            >
-              {isUserPaused ? (
-                <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-              ) : (
-                <Pause className="w-3.5 h-3.5 fill-current" />
-              )}
-            </button>
-
-            {/* 3 Progress Bars */}
-            <div className="flex items-center gap-2.5 flex-1 sm:w-auto">
-              {HERO_SLIDES.map((s, idx) => {
-                const isActive = activeIndex === idx;
-                const isPast = idx < activeIndex;
-
-                return (
-                  <button
-                    key={s.id}
-                    onClick={() => goToSlide(idx)}
-                    className="flex-1 sm:w-28 h-1.5 rounded-full bg-white/20 relative overflow-hidden cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                    aria-label={`Jump to slide 0${idx + 1}: ${s.shortLabel}`}
-                  >
-                    {/* Fill track: CSS scaleX animation on active segment */}
-                    <span
-                      key={isActive ? `bar-${idx}-${slideKey}` : `static-bar-${idx}`}
-                      className={`absolute inset-0 bg-white origin-left ${
-                        isActive && !isReducedMotion ? 'animate-hero-progress' : ''
-                      }`}
-                      style={{
-                        transform: isPast || (isActive && isReducedMotion) ? 'scaleX(1)' : isActive ? undefined : 'scaleX(0)',
-                        animationPlayState: isPaused ? 'paused' : 'running',
-                      }}
-                      onAnimationEnd={isActive ? handleProgressAnimationEnd : undefined}
-                    />
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Center/Right: Quick Slide Navigation Labels */}
-          <div className="hidden md:flex items-center gap-6 text-xs text-white/70">
-            {HERO_SLIDES.map((s, idx) => (
-              <button
-                key={s.id}
-                onClick={() => goToSlide(idx)}
-                className={`transition-colors cursor-pointer focus:outline-none focus-visible:underline ${
-                  activeIndex === idx ? 'text-white font-semibold' : 'hover:text-white/90 text-white/50'
-                }`}
-              >
-                0{idx + 1} · {s.shortLabel}
-              </button>
-            ))}
-          </div>
-
-          {/* Right Tagline */}
-          <div className="text-[11px] text-white/50 select-none">
-            Navigate your next ✦
-          </div>
-
+        {/* Top-Right Counter: "01 / 03" */}
+        <div className="text-xs sm:text-sm font-mono tracking-widest text-[#64748B] dark:text-[#94A3B8]">
+          <strong className="text-[#111827] dark:text-white font-bold text-sm sm:text-base">
+            {currentSlide.num}
+          </strong>{' '}
+          / 03
         </div>
 
       </div>
+
+      {/* ------------------------------------------------------------- */}
+      {/* 3. CENTER HERO CONTENT: HEADLINE, SUBTITLE, BUTTONS & STATS   */}
+      {/* ------------------------------------------------------------- */}
+      <div className="w-full max-w-5xl mx-auto text-center my-auto py-8 sm:py-12 relative z-10 flex flex-col items-center justify-center min-h-[380px] sm:min-h-[420px]">
+        
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`slide-content-${activeIndex}`}
+            variants={textContainerVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            className="w-full space-y-5 sm:space-y-6"
+          >
+            {/* Main Headline: Light weight preamble + colorful gradient focal phrase */}
+            <motion.h1
+              variants={textItemVariants}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-light text-[#111827] dark:text-white tracking-tight leading-[1.12] [text-wrap:balance]"
+            >
+              {currentSlide.line1}
+              <span className="font-semibold bg-gradient-to-r from-[#0070AD] via-[#2563EB] to-[#5846F6] bg-clip-text text-transparent block mt-1 sm:mt-2">
+                {currentSlide.line2}
+              </span>
+            </motion.h1>
+
+            {/* Subtitle with AA Contrast */}
+            <motion.p
+              variants={textItemVariants}
+              className="max-w-2xl mx-auto text-center text-sm sm:text-base md:text-[17px] text-[#475569] dark:text-[#94A3B8] leading-relaxed font-normal pt-1 [text-wrap:balance]"
+            >
+              {currentSlide.subtitle}
+            </motion.p>
+
+            {/* Action Buttons */}
+            <motion.div
+              variants={textItemVariants}
+              className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-3 w-full"
+            >
+              {/* Primary: Request a Quote */}
+              <button
+                onClick={handleQuoteClick}
+                className="w-full sm:w-auto px-7 py-3 rounded-full bg-[#0F172A] hover:bg-black text-white text-sm font-semibold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 group cursor-pointer border border-white/10"
+              >
+                <span>{currentSlide.ctaPrimary}</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+
+              {/* Secondary: Schedule an Engineering Intro Call */}
+              <button
+                onClick={handleBookCall}
+                className="w-full sm:w-auto px-6 py-3 rounded-full bg-white dark:bg-[#11161B] hover:bg-[#F8FAFC] dark:hover:bg-[#151D26] text-[#111827] dark:text-white border border-[#E2E6EE] dark:border-white/10 text-sm font-semibold shadow-xs hover:shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <Calendar className="w-4 h-4 text-[#0070AD] dark:text-[#38BDF8]" />
+                <span>{currentSlide.ctaSecondary}</span>
+              </button>
+            </motion.div>
+
+            {/* Trust & Governance Ribbon */}
+            <motion.div
+              variants={textItemVariants}
+              className="pt-3 text-xs sm:text-[13px] text-[#64748B] dark:text-[#94A3B8] tracking-wide font-normal"
+            >
+              {currentSlide.stats}
+            </motion.div>
+
+          </motion.div>
+        </AnimatePresence>
+
+      </div>
+
+      {/* ------------------------------------------------------------- */}
+      {/* 4. BOTTOM BAR: PLAY/PAUSE, 3 PROGRESS BARS, TABS & NEXT LINK  */}
+      {/* ------------------------------------------------------------- */}
+      <div className="w-full max-w-[1720px] mx-auto pt-6 flex flex-col md:flex-row items-center justify-between gap-4 relative z-10 border-t border-[#E2E6EE]/80 dark:border-white/10">
+        
+        {/* Left: Pause/Play Button + 3 Segmented Progress Bars */}
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setIsUserPaused(!isUserPaused)}
+            aria-label={isUserPaused ? 'Play slide rotation' : 'Pause slide rotation'}
+            className="w-7 h-7 rounded-full bg-white dark:bg-[#151D26] border border-[#E2E6EE] dark:border-white/10 text-[#475569] dark:text-[#94A3B8] hover:text-[#111827] dark:hover:text-white flex items-center justify-center cursor-pointer transition-colors shadow-xs"
+            title={isUserPaused ? 'Play' : 'Pause'}
+          >
+            {isUserPaused ? <Play className="w-3 h-3 ml-0.5" /> : <Pause className="w-3 h-3" />}
+          </button>
+
+          {/* 3 Progress Bars */}
+          <div className="flex items-center gap-2">
+            {HERO_SLIDES.map((s, idx) => {
+              const isCurrent = idx === activeIndex;
+              const isPassed = idx < activeIndex;
+
+              return (
+                <button
+                  key={s.id}
+                  onClick={() => goToSlide(idx)}
+                  aria-label={`Go to slide ${s.num}: ${s.shortLabel}`}
+                  className="w-14 sm:w-20 h-[3px] rounded-full bg-[#E2E6EE] dark:bg-white/15 overflow-hidden cursor-pointer relative block p-0 border-0"
+                >
+                  {isCurrent && (
+                    <div
+                      key={`progress-${slideKey}`}
+                      className={`h-full w-full bg-gradient-to-r from-[#0070AD] to-[#5846F6] ${
+                        isPaused ? '' : 'animate-hero-progress'
+                      }`}
+                      style={{
+                        animationPlayState: isPaused ? 'paused' : 'running',
+                      }}
+                    />
+                  )}
+                  {isPassed && (
+                    <div className="h-full w-full bg-[#0070AD]" />
+                  )}
+                  {!isCurrent && !isPassed && (
+                    <div className="h-full w-0" />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Center: Slide Tabs (01 Enterprise, 02 Native, 03 BIM) */}
+        <div className="flex items-center gap-5 sm:gap-6 text-xs">
+          {HERO_SLIDES.map((s, idx) => {
+            const isCurrent = idx === activeIndex;
+            return (
+              <button
+                key={s.id}
+                onClick={() => goToSlide(idx)}
+                className={`transition-colors cursor-pointer py-1 ${
+                  isCurrent
+                    ? 'text-[#111827] dark:text-white font-semibold underline decoration-[#0070AD] decoration-2 underline-offset-4'
+                    : 'text-[#64748B] dark:text-[#94A3B8] hover:text-[#111827] dark:hover:text-white font-medium'
+                }`}
+              >
+                {s.num} · {s.shortLabel}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Right: "Navigate your next +" link */}
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleNavigateNext}
+            className="text-xs font-semibold text-[#475569] dark:text-[#94A3B8] hover:text-[#111827] dark:hover:text-white transition-colors flex items-center gap-1 cursor-pointer py-1"
+          >
+            <span>Navigate your next</span>
+            <span className="text-[#0070AD] dark:text-[#38BDF8] font-bold">+</span>
+          </button>
+        </div>
+
+      </div>
+
     </section>
   );
 }

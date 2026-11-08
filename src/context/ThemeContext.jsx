@@ -37,11 +37,48 @@ export function ThemeProvider({ children }) {
     }
   }, [theme]);
 
-  const toggleTheme = () => {
-    setTheme((prev) => {
-      const next = prev === 'dark' ? 'light' : 'dark';
-      try { localStorage.setItem('escalup_theme', next); } catch { /* ignore */ }
-      return next;
+  const toggleTheme = (e) => {
+    const isReduced = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    const applyThemeChange = () => {
+      setTheme((prev) => {
+        const next = prev === 'dark' ? 'light' : 'dark';
+        try { localStorage.setItem('escalup_theme', next); } catch { /* ignore */ }
+        return next;
+      });
+    };
+
+    if (!document.startViewTransition || isReduced) {
+      applyThemeChange();
+      return;
+    }
+
+    const x = e?.clientX ?? (window.innerWidth / 2);
+    const y = e?.clientY ?? (window.innerHeight / 2);
+    const endRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    );
+
+    const transition = document.startViewTransition(() => {
+      applyThemeChange();
+    });
+
+    transition.ready.then(() => {
+      const clipPath = [
+        `circle(0px at ${x}px ${y}px)`,
+        `circle(${endRadius}px at ${x}px ${y}px)`
+      ];
+      document.documentElement.animate(
+        {
+          clipPath: clipPath,
+        },
+        {
+          duration: 480,
+          easing: 'ease-in-out',
+          pseudoElement: '::view-transition-new(root)',
+        }
+      );
     });
   };
 
