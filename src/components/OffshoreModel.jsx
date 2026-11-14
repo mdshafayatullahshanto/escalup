@@ -179,22 +179,22 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
 
         {/* 1. What We Support: All 7 Services */}
         <div className="mb-12 sm:mb-14">
-          <div className="flex items-center justify-between mb-8 pb-3 border-b border-[#E2E6EE] dark:border-white/10">
-            <div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8]">
-                Scope of Capabilities
-              </span>
-              <h3 className="text-2xl font-semibold text-[#111827] dark:text-white mt-1">
-                What We Support
-              </h3>
+          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8]">
+              Scope of Capabilities
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-light text-[#111827] dark:text-white tracking-tight mt-1 mb-2">
+              What We Support
+            </h3>
+            <div className="flex justify-center pt-1">
+              <a 
+                href="#services" 
+                className="text-xs sm:text-sm font-medium text-[#5846F6] hover:underline inline-flex items-center gap-1"
+              >
+                <span>View all services</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
             </div>
-            <a 
-              href="#services" 
-              className="text-xs sm:text-sm font-medium text-[#5846F6] hover:underline flex items-center gap-1"
-            >
-              <span>View all services</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </a>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
