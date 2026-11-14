@@ -8,7 +8,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowRight, ArrowUpRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2 } from 'lucide-react';
 import Badge from './ui/Badge';
 import GlassBadge from './ui/GlassBadge';
 import { BlurReveal, HighlightUnderline } from './ui/ScrollAnimations';
@@ -346,17 +346,6 @@ export default function InActionCarousel() {
                     Documented in production project release logs
                   </div>
                 </div>
-
-                {/* Bottom: NDA & Standards metadata */}
-                <div className="relative z-10 flex items-center justify-between pt-4 border-t border-[#E2E6EE]/80 dark:border-white/10 text-xs text-[#5A6679] dark:text-[#9BA8BA]">
-                  <div className="flex items-center gap-1.5">
-                    <ShieldCheck className="w-4 h-4 text-[#5846F6]" />
-                    <span>Protected by Mutual NDA</span>
-                  </div>
-                  <span className="font-medium text-[#0070AD] dark:text-[#38BDF8]">
-                    Native Parametric CAD
-                  </span>
-                </div>
               </div>
 
               {/* RIGHT 7 COLS: Pure White Narrative & Deliverables Panel */}
@@ -391,21 +380,6 @@ export default function InActionCarousel() {
                   <div className="text-xs text-[#5A6679] dark:text-[#9BA8BA] pt-1">
                     Governed Under: {currentProject.standards}
                   </div>
-                </div>
-
-                {/* Bottom Row with Divider */}
-                <div className="pt-8 mt-6 border-t border-[#E2E6EE] dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  <div className="text-xs text-[#5A6679] dark:text-[#9BA8BA]">
-                    Production Documentation Delivered Under ASME & ISO
-                  </div>
-
-                  <a
-                    href="#contact"
-                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#0070AD] hover:text-[#5846F6] dark:text-[#38BDF8] dark:hover:text-white transition-colors group"
-                  >
-                    <span>Inquire Technical Scope</span>
-                    <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </a>
                 </div>
               </div>
 

@@ -21,7 +21,6 @@ import InActionCarousel from '../components/InActionCarousel';
 import TopStoriesCarousel from '../components/TopStoriesCarousel';
 import AboutManifesto from '../components/AboutManifesto';
 import NavigateYourNext from '../components/NavigateYourNext';
-import ThoughtLeadershipBento from '../components/ThoughtLeadershipBento';
 import ContactSection from '../components/ContactSection';
 import FAQAccordion from '../components/FAQAccordion';
 
@@ -67,7 +66,6 @@ export default function HomePage({ onOpenCalendly }) {
       {/* -------------------------------------------------------- */}
       <AboutManifesto onOpenCalendly={onOpenCalendly} />
       <NavigateYourNext onOpenCalendly={onOpenCalendly} />
-      <ThoughtLeadershipBento />
 
       {/* -------------------------------------------------------- */}
       {/* 7. CONTACT                                               */}

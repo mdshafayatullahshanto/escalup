@@ -18,7 +18,7 @@ import {
   Cpu, 
   ChevronRight
 } from 'lucide-react';
-import { servicesData, standardsSummaryTable } from '../data/services';
+import { servicesData } from '../data/services';
 import GlassBadge from '../components/ui/GlassBadge';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
@@ -109,36 +109,9 @@ export default function ServiceDetailPage() {
             {service.title}
           </h1>
 
-          <p className="text-base sm:text-lg md:text-xl text-white/85 max-w-3xl leading-relaxed font-normal mb-8">
+          <p className="text-base sm:text-lg md:text-xl text-white/85 max-w-3xl leading-relaxed font-normal">
             {service.intro}
           </p>
-
-          <div className="flex items-center justify-center gap-3">
-            <Button
-              variant="white"
-              size="lg"
-              onClick={() => {
-                const el = document.getElementById('request-service');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              }}
-              icon="arrow"
-              className="shadow-2xl"
-            >
-              Request a Service Scope
-            </Button>
-          </div>
-
-          <div className="flex items-center gap-2.5 mt-12">
-            {[0, 1, 2].map((idx) => (
-              <span
-                key={idx}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  idx === 0 ? 'w-10 bg-[#5846F6]' : 'w-4 bg-white/30'
-                }`}
-              />
-            ))}
-          </div>
-
         </div>
       </section>
 
@@ -265,61 +238,7 @@ export default function ServiceDetailPage() {
       </section>
 
       {/* -------------------------------------------------------- */}
-      {/* 4. INTERNATIONAL STANDARDS SUMMARY TABLE                 */}
-      {/* -------------------------------------------------------- */}
-      <section className="py-20 sm:py-28 bg-[#F6F7FB] dark:bg-[#080C0F] border-b border-[#E2E6EE] dark:border-white/10 transition-colors">
-        <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
-          
-          <div className="max-w-3xl mb-10">
-            <div className="mb-3.5">
-              <GlassBadge>Compliance & Quality</GlassBadge>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-light text-[#111827] dark:text-white tracking-tight">
-              International <span className="font-semibold">Standards Summary</span>
-            </h2>
-            <p className="text-xs sm:text-sm text-[#475569] dark:text-[#9BA8BA] mt-2">
-              We apply the standards required by the project and the client. The governing standards and editions are confirmed at the Requirements & Scope stage.
-            </p>
-          </div>
-
-          {/* Two-Column Standards Summary Table */}
-          <div className="rounded-3xl bg-white dark:bg-[#11161B] border border-[#E2E6EE] dark:border-white/10 shadow-card overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-sm">
-                <thead>
-                  <tr className="bg-[#EEF2F8] dark:bg-[#17202B] text-xs font-semibold uppercase tracking-wider text-[#111827] dark:text-white border-b border-[#E2E6EE] dark:border-white/10">
-                    <th className="py-4 px-6 sm:px-8 w-1/3">Service</th>
-                    <th className="py-4 px-6 sm:px-8 w-2/3">Key Standards</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-[#E2E6EE] dark:divide-white/10">
-                  {standardsSummaryTable.map((row, idx) => (
-                    <tr 
-                      key={idx}
-                      className="hover:bg-[#F6F7FB] dark:hover:bg-[#151D26] transition-colors"
-                    >
-                      <td className="py-4 px-6 sm:px-8 font-semibold text-[#111827] dark:text-white">
-                        {row.service}
-                      </td>
-                      <td className="py-4 px-6 sm:px-8 text-[#475569] dark:text-[#9BA8BA]">
-                        {row.standards}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <div className="mt-4 p-4 rounded-xl bg-white dark:bg-[#11161B] border border-[#E2E6EE] dark:border-white/10 text-xs text-[#5A6679] dark:text-[#9BA8BA]">
-            <strong>Note:</strong> We apply the standards required by the project and the client. The governing standards and editions are confirmed at the Requirements & Scope stage.
-          </div>
-
-        </div>
-      </section>
-
-      {/* -------------------------------------------------------- */}
-      {/* 5. SCROLL-REVEAL TEXT BLOCK                              */}
+      {/* 4. SCROLL-REVEAL TEXT BLOCK                              */}
       {/* -------------------------------------------------------- */}
       <ScrollRevealText
         tag="Engineering Purpose & Integrity"
@@ -327,7 +246,7 @@ export default function ServiceDetailPage() {
       />
 
       {/* -------------------------------------------------------- */}
-      {/* 6. REQUEST FOR SERVICES FORM SECTION                     */}
+      {/* 5. REQUEST FOR SERVICES FORM SECTION                     */}
       {/* -------------------------------------------------------- */}
       <section 
         id="request-service" 

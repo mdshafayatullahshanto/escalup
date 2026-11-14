@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowRight, ArrowUpRight, Cpu, Layers, Wrench, Database } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Cpu, Layers, Wrench, Database } from 'lucide-react';
 import Badge from './ui/Badge';
 import Card from './ui/Card';
 import GlassBadge from './ui/GlassBadge';
@@ -308,10 +308,6 @@ export default function TopStoriesCarousel() {
                       {current.metricLabel}
                     </div>
                   </div>
-
-                  <div className="relative z-10 text-xs font-medium text-[#0070AD] dark:text-[#A5B4FC]">
-                    {current.tools}
-                  </div>
                 </div>
 
                 {/* RIGHT: Content Details (7 cols) */}
@@ -328,25 +324,6 @@ export default function TopStoriesCarousel() {
                     <p className="text-sm sm:text-base text-[#5A6679] dark:text-[#9BA8BA] leading-relaxed">
                       {current.description}
                     </p>
-                  </div>
-
-                  <div className="pt-8 border-t border-[#E2E6EE] dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div className="text-xs text-[#5A6679] dark:text-[#9BA8BA]">
-                      Production Documentation Delivered Under ASME & ISO
-                    </div>
-
-                    <a
-                      href="#projects"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        const el = document.getElementById('projects');
-                        if (el) el.scrollIntoView({ behavior: 'smooth' });
-                      }}
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0070AD] dark:text-[#38BDF8] hover:underline cursor-pointer group"
-                    >
-                      <span>Read Full Study</span>
-                      <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </a>
                   </div>
                 </div>
               </Card>
