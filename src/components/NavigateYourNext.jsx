@@ -146,11 +146,13 @@ export default function NavigateYourNext({ onOpenCalendly }) {
                   {isActive && (
                     <motion.div
                       layoutId="activeVerticalPillarBar"
-                      className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#5846F6] rounded-r"
+                      className="absolute left-0 top-0 bottom-0 w-1.5 bg-[#5846F6] rounded-r z-10"
                     />
                   )}
 
                   <button
+                    type="button"
+                    data-no-reveal="true"
                     onClick={() => setActiveTab(pillar.id)}
                     className={`w-full text-left p-4 sm:p-5 rounded-2xl transition-all flex items-center justify-between cursor-pointer ${
                       isActive

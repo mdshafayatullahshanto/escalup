@@ -29,6 +29,8 @@ export default function GlobalScrollRevealer() {
       '.blueprint-grid',
       '#hero-grain-filter',
       '.no-reveal',
+      '[data-no-reveal]',
+      '[role="tablist"]',
       '#home', // Hero slider handles its own internal slide crossfades
     ].join(', ');
 
@@ -38,8 +40,13 @@ export default function GlobalScrollRevealer() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const el = entry.target;
+            el.setAttribute('data-reveal', 'revealed');
+            el.setAttribute('data-revealed', 'true');
             el.classList.add('is-revealed');
             observer.unobserve(el);
+            setTimeout(() => {
+              el.setAttribute('data-reveal', 'done');
+            }, 750);
           }
         });
       },
@@ -74,7 +81,7 @@ export default function GlobalScrollRevealer() {
         // Query raw potential candidates inside this section
         const rawCandidates = Array.from(
           section.querySelectorAll(
-            'h1, h2, h3, h4, h5, h6, p, ul > li, ol > li, blockquote, [class*="shadow-card"], [class*="rounded-2xl"]:not(section):not(main), [class*="rounded-3xl"]:not(section):not(main), [data-reveal-item], button:not(#navbar *):not(header *), a[class*="rounded-full"]:not(nav *)'
+            'h1, h2, h3, h4, h5, h6, p, ul > li, ol > li, blockquote, [class*="shadow-card"]:not(button):not([role="tab"]), [class*="rounded-2xl"]:not(section):not(main):not(button):not([role="tab"]), [class*="rounded-3xl"]:not(section):not(main):not(button):not([role="tab"]), [data-reveal-item]'
           )
         );
 
@@ -84,7 +91,15 @@ export default function GlobalScrollRevealer() {
         //    keep the card container as the single animated unit and skip B.
         const validCandidates = rawCandidates.filter((el) => {
           if (el.closest(EXCLUDE_CONTAINERS)) return false;
-          if (el.classList.contains('is-revealed') || el.hasAttribute('data-reveal')) return false;
+          if (
+            el.getAttribute('data-revealed') === 'true' ||
+            el.getAttribute('data-reveal') === 'done' ||
+            el.getAttribute('data-reveal') === 'revealed' ||
+            el.classList.contains('is-revealed')
+          ) {
+            return false;
+          }
+          if (el.hasAttribute('data-reveal')) return false;
 
           // Check if el is nested inside another candidate container (card, rounded container, etc.)
           const parentContainer = el.parentElement?.closest(
@@ -131,7 +146,7 @@ export default function GlobalScrollRevealer() {
           globallyObserved.add(el);
 
           if (!el.hasAttribute('data-reveal')) {
-            el.setAttribute('data-reveal', 'true');
+            el.setAttribute('data-reveal', 'pending');
             el.style.setProperty('--stagger-idx', index.toString());
           }
 
@@ -142,7 +157,12 @@ export default function GlobalScrollRevealer() {
           if (inViewportInitially) {
             const delay = Math.min(index, 8) * 45;
             setTimeout(() => {
+              el.setAttribute('data-reveal', 'revealed');
+              el.setAttribute('data-revealed', 'true');
               el.classList.add('is-revealed');
+              setTimeout(() => {
+                el.setAttribute('data-reveal', 'done');
+              }, 750);
             }, delay);
           } else {
             observer.observe(el);

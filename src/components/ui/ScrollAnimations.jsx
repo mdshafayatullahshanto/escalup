@@ -51,7 +51,7 @@ export function StaggerItem({
   ...props
 }) {
   return (
-    <Component className={className} {...props}>
+    <Component data-reveal-item="true" className={className} {...props}>
       {children}
     </Component>
   );
