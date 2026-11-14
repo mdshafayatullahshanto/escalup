@@ -45,19 +45,21 @@ export default function AboutManifesto({ onOpenCalendly: _onOpenCalendly }) {
             </p>
           </BlurReveal>
 
-          {/* Founder Card: Matching height with narrative block, large prominent portrait */}
+          {/* Founder Card: Centered portrait and details in middle of card */}
           <BlurReveal delay={0.2} className="lg:col-span-5 flex flex-col">
-            <div className="w-full h-full bg-white dark:bg-[#11161B] rounded-3xl p-6 sm:p-7 lg:p-6 xl:p-8 border border-[#E2E6EE] dark:border-white/10 shadow-card flex flex-col sm:flex-row items-center sm:items-stretch gap-5 sm:gap-6 text-center sm:text-left">
-              <div className="w-40 sm:w-44 md:w-48 lg:w-40 xl:w-48 self-stretch shrink-0 rounded-2xl overflow-hidden shadow-xs border border-[#E2E6EE] dark:border-white/10 bg-[#EEF2F8] dark:bg-[#151D26] relative min-h-[200px]">
+            <div className="w-full h-full bg-white dark:bg-[#11161B] rounded-3xl p-6 sm:p-8 border border-[#E2E6EE] dark:border-white/10 shadow-card flex flex-col items-center justify-center text-center">
+              {/* Portrait: Centered in the middle of the card */}
+              <div className="w-44 sm:w-48 md:w-52 aspect-[4/5] shrink-0 rounded-2xl overflow-hidden shadow-card border border-[#E2E6EE] dark:border-white/10 bg-[#EEF2F8] dark:bg-[#151D26] mb-5">
                 <img
                   src={founderImg}
                   alt="Md. Shafayat Ullah Shanto - Founder & Lead Mechanical Engineer at Escalup"
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-center"
                   loading="lazy"
                 />
               </div>
 
-              <div className="flex-1 flex flex-col justify-center space-y-2">
+              {/* Founder Information */}
+              <div className="space-y-2 max-w-sm">
                 <h4 className="text-lg sm:text-xl font-medium text-[#111827] dark:text-white tracking-tight">
                   <em><strong>Md. Shafayat Ullah Shanto</strong></em>
                 </h4>
