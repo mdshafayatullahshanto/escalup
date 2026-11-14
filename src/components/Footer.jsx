@@ -48,22 +48,22 @@ export default function Footer() {
         </div>
 
         {/* Top: 4 Link Columns Architecture */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 pb-10 border-b border-[#E2E6EE] dark:border-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 pb-10 border-b border-[#E2E6EE] dark:border-white/10">
           
-          {/* Column 1: Services (All 7 in exact order) */}
-          <div data-reveal-item="true" className="space-y-4">
+          {/* Column 1: Services (All 7 in exact order - single line per topic) */}
+          <div data-reveal-item="true" className="space-y-4 md:col-span-2 lg:col-span-5">
             <h4 className="text-sm font-semibold uppercase tracking-wider text-[#111827] dark:text-white">
               Engineering Services
             </h4>
             <ul className="space-y-2 text-xs sm:text-sm">
               {servicesData.map((s) => (
-                <li key={s.id}>
+                <li key={s.id} className="whitespace-nowrap">
                   <UnderlineLink
                     to={`/services/${s.slug}`}
                     color="muted"
-                    className="block py-0.5"
+                    className="block py-0.5 whitespace-nowrap"
                   >
-                    0{s.id}. {s.title}
+                    {s.title}
                   </UnderlineLink>
                 </li>
               ))}
@@ -71,7 +71,7 @@ export default function Footer() {
           </div>
 
           {/* Column 2: Navigation Links (Matching navbar order) */}
-          <div data-reveal-item="true" className="space-y-4">
+          <div data-reveal-item="true" className="space-y-4 lg:col-span-2">
             <h4 className="text-sm font-semibold uppercase tracking-wider text-[#111827] dark:text-white">
               Navigation
             </h4>
@@ -120,7 +120,7 @@ export default function Footer() {
           </div>
 
           {/* Column 3: Data Security & Governance */}
-          <div data-reveal-item="true" className="space-y-4">
+          <div data-reveal-item="true" className="space-y-4 lg:col-span-3">
             <h4 className="text-sm font-semibold uppercase tracking-wider text-[#111827] dark:text-white">
               Data Security & Standards
             </h4>
@@ -154,7 +154,7 @@ export default function Footer() {
           </div>
 
           {/* Column 4: Contact & Leadership */}
-          <div data-reveal-item="true" className="space-y-4">
+          <div data-reveal-item="true" className="space-y-4 lg:col-span-2">
             <h4 className="text-sm font-semibold uppercase tracking-wider text-[#111827] dark:text-white">
               Office & Contact
             </h4>
