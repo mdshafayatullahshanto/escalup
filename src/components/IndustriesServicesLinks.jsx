@@ -10,18 +10,18 @@ const DIRECTORY_COLUMNS = [
   {
     title: 'Mechanical & Production',
     links: [
-      { label: '1. Mechanical Design & Product Development', to: '/services/mechanical-design-product-development' },
-      { label: '2. CAD, Parametric Modeling & Simulation', to: '/services/cad-parametric-modeling-simulation' },
-      { label: '3. Design for Manufacturing & Production Engineering', to: '/services/dfma-production-engineering' },
-      { label: '4. Engineering Standards, GD&T & Quality', to: '/services/engineering-standards-gdt-quality' },
+      { label: 'Mechanical Design & Product Development', to: '/services/mechanical-design-product-development' },
+      { label: 'CAD, Parametric Modeling & Simulation', to: '/services/cad-parametric-modeling-simulation' },
+      { label: 'Design for Manufacturing & Production Engineering', to: '/services/dfma-production-engineering' },
+      { label: 'Engineering Standards, GD&T & Quality', to: '/services/engineering-standards-gdt-quality' },
     ]
   },
   {
     title: 'Digital, PM & BIM',
     links: [
-      { label: '5. PLM, Digital Engineering & Automation', to: '/services/plm-digital-engineering-automation' },
-      { label: '6. Engineering Project Management & Offshore Support', to: '/services/project-management-offshore-support' },
-      { label: '7. BIM & MEP Design Engineering', to: '/services/bim-mep-design-engineering' },
+      { label: 'PLM, Digital Engineering & Automation', to: '/services/plm-digital-engineering-automation' },
+      { label: 'Engineering Project Management & Offshore Support', to: '/services/project-management-offshore-support' },
+      { label: 'BIM & MEP Design Engineering', to: '/services/bim-mep-design-engineering' },
       { label: 'International Standards Summary', to: '/services/mechanical-design-product-development' },
     ]
   },
