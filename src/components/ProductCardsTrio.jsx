@@ -5,7 +5,6 @@
 import React from 'react';
 import { ArrowRight, Cpu, Layers, Wrench, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import Badge from './ui/Badge';
 import GlassBadge from './ui/GlassBadge';
 import { BlurReveal, HighlightUnderline } from './ui/ScrollAnimations';
 
@@ -20,7 +19,6 @@ const TRIO_CARDS = [
     link: '/services/mechanical-design-product-development',
     gradient: 'from-[#0B1528] via-[#0F223D] to-[#0070AD]/40',
     icon: Cpu,
-    raised: false,
   },
   {
     id: 2,
@@ -32,7 +30,6 @@ const TRIO_CARDS = [
     link: '/services/bim-mep-design-engineering',
     gradient: 'from-[#0A161F] via-[#0D2E3A] to-[#14F3C1]/30',
     icon: Layers,
-    raised: true, // Center card is raised/larger
   },
   {
     id: 3,
@@ -44,7 +41,6 @@ const TRIO_CARDS = [
     link: '/services/dfma-production-engineering',
     gradient: 'from-[#120F24] via-[#241B4B] to-[#5846F6]/40',
     icon: Wrench,
-    raised: false,
   }
 ];
 
@@ -68,29 +64,25 @@ export default function ProductCardsTrio() {
           </h2>
         </BlurReveal>
 
-        {/* 3 Tall Product Cards with Stagger Animation */}
+        {/* 3 Tall Product Cards — Unified with Flagship Middle Card Style */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
           {TRIO_CARDS.map((card) => {
             const Icon = card.icon;
             return (
               <div
                 key={card.id}
-                className={`flex flex-col rounded-3xl overflow-hidden transition-all duration-300 ${
-                  card.raised
-                    ? 'md:-translate-y-4 md:shadow-2xl border-2 border-[#0070AD]/40 dark:border-[#38BDF8]/40'
-                    : 'border border-[#E2E6EE] dark:border-white/10 shadow-card hover:shadow-card-hover'
-                }`}
+                className="flex flex-col rounded-3xl overflow-hidden transition-all duration-300 border-2 border-[#0070AD]/40 dark:border-[#38BDF8]/40 shadow-2xl hover:border-[#0070AD]/70 hover:shadow-card-hover"
               >
                 {/* TOP: Abstract Tall Gradient Image / Banner */}
                 <div className={`h-72 sm:h-80 bg-gradient-to-br ${card.gradient} p-8 pb-16 sm:pb-20 flex flex-col justify-between relative overflow-hidden`}>
                   {/* Technical CAD blueprint mesh */}
-                  <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none" />
+                  <div className="absolute inset-0 blueprint-grid opacity-25 pointer-events-none" />
                   
                   <div className="relative z-10 flex items-center justify-between">
-                    <Badge variant={card.raised ? 'teal' : 'navy'} size="xs">
+                    <span className="inline-flex items-center text-[10px] sm:text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full bg-white/15 dark:bg-white/10 backdrop-blur-md text-white border border-white/20 shadow-xs">
                       {card.tag}
-                    </Badge>
-                    <Icon className="w-6 h-6 text-white/80" />
+                    </span>
+                    <Icon className="w-6 h-6 text-white/90" />
                   </div>
 
                   <div className="relative z-10">
