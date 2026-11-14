@@ -68,24 +68,24 @@ export default function IndustriesServicesLinks() {
           </p>
         </BlurReveal>
 
-        {/* 4-Column Grid of Thin Underlined Links */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        {/* 4-Column Grid / Flex of Thin Underlined Links (Strictly Single Line Per Topic) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:justify-between lg:items-start gap-8 lg:gap-6 xl:gap-8 overflow-x-auto pb-4">
           {DIRECTORY_COLUMNS.map((col, idx) => (
-            <div key={idx} data-reveal-item="true" className="space-y-4">
-              <h3 className="text-base font-bold text-[#111827] dark:text-white pb-3 border-b border-[#E2E6EE] dark:border-white/10 flex items-center justify-between">
+            <div key={idx} data-reveal-item="true" className="space-y-4 shrink-0">
+              <h3 className="text-base font-bold text-[#111827] dark:text-white pb-3 border-b border-[#E2E6EE] dark:border-white/10 flex items-center justify-between gap-3 whitespace-nowrap">
                 <span>{col.title}</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#0070AD]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#0070AD] shrink-0" />
               </h3>
 
-              <ul className="space-y-3">
+              <ul className="space-y-2.5 sm:space-y-3">
                 {col.links.map((link, lIdx) => (
-                  <li key={lIdx}>
+                  <li key={lIdx} className="whitespace-nowrap">
                     <UnderlineLink
                       to={link.to}
                       href={link.href}
                       color="default"
                       icon="none"
-                      className="text-xs sm:text-sm text-[#5A6679] dark:text-[#9BA8BA] hover:text-[#0070AD] dark:hover:text-[#38BDF8]"
+                      className="text-xs sm:text-sm text-[#5A6679] dark:text-[#9BA8BA] hover:text-[#0070AD] dark:hover:text-[#38BDF8] whitespace-nowrap block py-0.5"
                     >
                       {link.label}
                     </UnderlineLink>
