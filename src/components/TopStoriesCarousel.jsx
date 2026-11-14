@@ -17,7 +17,7 @@ const TOP_STORIES = [
     tag: 'Mechanical CAD',
     badgeVariant: 'navy',
     title: 'Scaling CAD Capacity On-Demand During Peak Release Cycles',
-    description: 'How global equipment manufacturers overcome drawing release bottlenecks by plugging into Escalup’s assigned parametric modeling standups.',
+    description: 'How global equipment manufacturers overcome drawing release bottlenecks by plugging into escalup’s assigned parametric modeling standups.',
     metric: 'Native CAD',
     metricLabel: 'Parametric modeling in client drawing formats',
     tools: 'SolidWorks · Siemens NX · Inventor',

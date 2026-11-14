@@ -1,5 +1,5 @@
 // /src/data/faq.js
-// Frequently Asked Questions for Escalup (exact 7 in order)
+// Frequently Asked Questions for escalup (exact 7 in order)
 
 export const faqData = [
   {

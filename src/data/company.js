@@ -2,15 +2,15 @@
 // Central company positioning, contact info, and operational details
 
 export const companyData = {
-  name: 'Escalup',
+  name: 'escalup',
   tagline: 'Offshore Engineering Services | Mechanical Design · BIM · MEP',
   subheadline: 'Scale Your Project Team with Dedicated Offshore Talent.',
-  description: 'Escalup is an offshore engineering services company. We provide Mechanical Design, BIM and MEP Design support to large international clients, including AI-driven and technology-focused companies, through an offshore model. Data security is a strict requirement for us. We handle project data in a Microsoft environment primarily and adapt to the client\'s software and environment when needed.',
+  description: 'escalup is an offshore engineering services company. We provide Mechanical Design, BIM and MEP Design support to large international clients, including AI-driven and technology-focused companies, through an offshore model. Data security is a strict requirement for us. We handle project data in a Microsoft environment primarily and adapt to the client\'s software and environment when needed.',
   
   founder: {
     name: 'Md. Shafayat Ullah Shanto',
     formattedName: '***Md. Shafayat Ullah Shanto***',
-    title: 'Founder & Lead Mechanical Engineer, Escalup',
+    title: 'Founder & Lead Mechanical Engineer, escalup',
     bio: 'A mechanical engineer with a background in mechanical design, industrial product development, CAD modeling, engineering documentation, PLM and MEP engineering, including HVAC, fire protection and plumbing systems.'
   },
 

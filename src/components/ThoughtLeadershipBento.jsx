@@ -52,7 +52,7 @@ const BENTO_ARTICLES = [
     badge: 'Announcement',
     badgeVariant: 'navy',
     icon: Newspaper,
-    title: 'Escalup Expands Offshore Engineering Support for Mechanical and MEP Work',
+    title: 'escalup Expands Offshore Engineering Support for Mechanical and MEP Work',
     description: 'Scaling parametric SolidWorks, Inventor, and Revit LOD 300–400 drafting capacity for European and North American clients.',
     date: 'November 02, 2026',
     readTime: '4 min read',

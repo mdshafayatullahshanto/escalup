@@ -23,7 +23,7 @@ const PILLARS = [
     title: 'Scale CAD Capacity With Dedicated Offshore Talent',
     badge: 'Offshore Extension',
     headline: 'Add engineering capacity to your team during peak release cycles.',
-    desc: 'When your workload grows, Escalup adds engineering capacity to your team. This can be overflow 3D parametric CAD modeling, MEP clash resolution, or dedicated mechanical and MEP specialists for an upcoming release. Our engineers join your standups, work to your drawing standards, and follow the same Design Approach on every project.',
+    desc: 'When your workload grows, escalup adds engineering capacity to your team. This can be overflow 3D parametric CAD modeling, MEP clash resolution, or dedicated mechanical and MEP specialists for an upcoming release. Our engineers join your standups, work to your drawing standards, and follow the same Design Approach on every project.',
     benefits: [
       'Engineers work under your drawing standards and environment',
       'Assigned engineers who follow your product architecture',
@@ -57,7 +57,7 @@ const PILLARS = [
     title: 'Native Software Integrity — Client Drawing Borders',
     badge: 'Parametric CAD',
     headline: 'We model inside your preferred software and corporate templates.',
-    desc: 'Escalup delivers native parametric CAD files in your corporate drawing format. We work directly in your required software (SolidWorks, Siemens NX, Inventor, Revit, Creo) using your customized title blocks, part numbering, and revision rules.',
+    desc: 'escalup delivers native parametric CAD files in your corporate drawing format. We work directly in your required software (SolidWorks, Siemens NX, Inventor, Revit, Creo) using your customized title blocks, part numbering, and revision rules.',
     benefits: [
       'Clean feature trees with fully defined sketches and constraints',
       'Conforms to client drawing borders, fonts, and BOM templates',

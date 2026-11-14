@@ -151,7 +151,7 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
           </p>
 
           <p className="text-sm sm:text-base text-[#475569] dark:text-[#9BA8BA] leading-relaxed max-w-3xl mx-auto font-normal">
-            Escalup works as an offshore extension of your engineering team. We take on defined design tasks or full project packages and deliver models, drawings and documents that meet your requirements and applicable standards. Our clients include international companies in product development, technology and construction.
+            escalup works as an offshore extension of your engineering team. We take on defined design tasks or full project packages and deliver models, drawings and documents that meet your requirements and applicable standards. Our clients include international companies in product development, technology and construction.
           </p>
         </BlurReveal>
 
@@ -353,7 +353,7 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
               </span>
             </h3>
             <p className="text-sm sm:text-base text-[#475569] dark:text-[#9BA8BA] max-w-2xl mx-auto font-normal">
-              Client data security is a core requirement of every Escalup engagement. We work under your rules, in your environment, when you require it.
+              Client data security is a core requirement of every escalup engagement. We work under your rules, in your environment, when you require it.
             </p>
           </div>
 
@@ -410,7 +410,7 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
                     <span>Adaptable Engineering Team</span>
                   </div>
                   <p className="text-xs sm:text-sm text-[#475569] dark:text-[#9BA8BA] leading-relaxed">
-                    Escalup runs an adaptable engineering team that uses AI-assisted workflows and engineering automation. When a client needs a specific software, version or environment, we set up the team to work in it.
+                    escalup runs an adaptable engineering team that uses AI-assisted workflows and engineering automation. When a client needs a specific software, version or environment, we set up the team to work in it.
                   </p>
                 </div>
               </div>

@@ -41,7 +41,7 @@ export default function ServiceDetailPage() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     if (service) {
-      document.title = `${service.title} | Escalup Engineering Services`;
+      document.title = `${service.title} | escalup Engineering Services`;
     }
   }, [slug, service]);
 
@@ -218,7 +218,7 @@ export default function ServiceDetailPage() {
       {/* -------------------------------------------------------- */}
       <ScrollRevealText
         tag="Engineering Purpose & Integrity"
-        text="Escalup works as an offshore extension of your engineering team. We take on defined design tasks or full project packages and deliver models, drawings and documents that meet your requirements and applicable standards."
+        text="escalup works as an offshore extension of your engineering team. We take on defined design tasks or full project packages and deliver models, drawings and documents that meet your requirements and applicable standards."
       />
 
       {/* -------------------------------------------------------- */}

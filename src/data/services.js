@@ -1,5 +1,5 @@
 // /src/data/services.js
-// The 7 core engineering service categories for Escalup (strict order everywhere)
+// The 7 core engineering service categories for escalup (strict order everywhere)
 
 export const servicesData = [
   {
@@ -11,7 +11,7 @@ export const servicesData = [
     tag: 'Service 01',
     standardsSummary: 'ISO 12100, ISO 286, ASME Y14.100',
     standardsDetail: 'ISO 12100 (risk assessment and risk reduction), ISO 286 (limits and fits), ISO 14040 (life cycle assessment for eco-design), ASME Y14.100 (engineering drawing practices)',
-    intro: 'Escalup delivers mechanical design and product development support for international engineering teams and manufacturers. From early concept definition and kinematic mechanism modeling to full lifecycle product development, we apply established mechanical engineering principles to deliver reliable, production-ready designs.',
+    intro: 'escalup delivers mechanical design and product development support for international engineering teams and manufacturers. From early concept definition and kinematic mechanism modeling to full lifecycle product development, we apply established mechanical engineering principles to deliver reliable, production-ready designs.',
     items: [
       'Mechanical Design Principles & Applied Mechanics',
       'Product Design & Full Lifecycle Development (NPI)',
@@ -115,7 +115,7 @@ export const servicesData = [
     tag: 'Service 05',
     standardsSummary: 'ISO 10007, STEP AP242',
     standardsDetail: 'ISO 10007 (configuration management), ISO 10303-242 / STEP AP242 (product data exchange)',
-    intro: 'Escalup organizes engineering data and automates repetitive modeling workflows. We configure multi-level BOM architectures, execute formal Engineering Change Orders (ECO/ECN), and write custom CAD API scripts to support consistent data governance.',
+    intro: 'escalup organizes engineering data and automates repetitive modeling workflows. We configure multi-level BOM architectures, execute formal Engineering Change Orders (ECO/ECN), and write custom CAD API scripts to support consistent data governance.',
     items: [
       'PLM & Product Data Management',
       'Engineering Change Management (ECN / ECO / ECR)',

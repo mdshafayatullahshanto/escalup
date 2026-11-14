@@ -16,7 +16,7 @@ export default function AboutManifesto({ onOpenCalendly: _onOpenCalendly }) {
         {/* Top Header Block */}
         <BlurReveal className="max-w-3xl mx-auto text-center mb-10 sm:mb-12">
           <div className="mb-3.5">
-            <GlassBadge>About Escalup</GlassBadge>
+            <GlassBadge>About escalup</GlassBadge>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-tight mb-4">
@@ -35,7 +35,7 @@ export default function AboutManifesto({ onOpenCalendly: _onOpenCalendly }) {
           {/* Narrative Paragraphs */}
           <BlurReveal delay={0.1} className="lg:col-span-7 space-y-5 text-sm sm:text-base text-[#475569] dark:text-[#9BA8BA] leading-relaxed flex flex-col justify-center font-normal">
             <p className="text-base sm:text-lg text-[#111827] dark:text-white font-normal leading-relaxed">
-              <strong className="bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent font-semibold">Escalup</strong> is an offshore engineering services company that brings people and engineering together to build better solutions. We provide Mechanical Design, BIM, and MEP Design support to international clients, including technology-focused and AI-driven companies.
+              <strong className="bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent font-semibold">escalup</strong> is an offshore engineering services company that brings people and engineering together to build better solutions. We provide Mechanical Design, BIM, and MEP Design support to international clients, including technology-focused and AI-driven companies.
             </p>
             <p>
               The company is led by <em><strong>Md. Shafayat Ullah Shanto</strong></em>, a mechanical engineer with a background in mechanical design, industrial product development, CAD modeling, engineering documentation, PLM and MEP engineering, including HVAC, fire protection and plumbing systems.
@@ -52,7 +52,7 @@ export default function AboutManifesto({ onOpenCalendly: _onOpenCalendly }) {
               <div className="w-44 sm:w-48 md:w-52 aspect-[4/5] shrink-0 rounded-2xl overflow-hidden shadow-card border border-[#E2E6EE] dark:border-white/10 bg-[#EEF2F8] dark:bg-[#151D26] mb-5">
                 <img
                   src={founderImg}
-                  alt="Md. Shafayat Ullah Shanto - Founder & Lead Mechanical Engineer at Escalup"
+                  alt="Md. Shafayat Ullah Shanto - Founder & Lead Mechanical Engineer at escalup"
                   className="w-full h-full object-cover object-center"
                   loading="lazy"
                 />
@@ -64,7 +64,7 @@ export default function AboutManifesto({ onOpenCalendly: _onOpenCalendly }) {
                   <em><strong>Md. Shafayat Ullah Shanto</strong></em>
                 </h4>
                 <p className="text-xs sm:text-sm text-[#0070AD] dark:text-[#38BDF8] font-medium">
-                  Founder & Lead Mechanical Engineer, Escalup
+                  Founder & Lead Mechanical Engineer, escalup
                 </p>
                 <p className="text-xs sm:text-sm text-[#5A6679] dark:text-[#9BA8BA] leading-relaxed pt-0.5">
                   Mechanical design, NPI, PLM governance, and MEP systems engineering.

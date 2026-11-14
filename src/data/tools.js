@@ -1,5 +1,5 @@
 // /src/data/tools.js
-// Software expertise supported by Escalup
+// Software expertise supported by escalup
 
 export const toolsData = [
   {

@@ -46,7 +46,7 @@ export default function CareersBanner({ onOpenCalendly }) {
 
               {/* Paragraph copy */}
               <p className="text-sm sm:text-base text-[#475569] dark:text-[#9BA8BA] max-w-xl leading-relaxed font-normal">
-                When your workload grows, Escalup adds engineering capacity to your team. This can be overflow 3D parametric CAD modeling, MEP clash resolution, or dedicated mechanical and MEP specialists for an upcoming release. Our engineers join your standups, work to your drawing standards, and follow the same Design Approach on every project. Team size and engagement terms are agreed per project.
+                When your workload grows, escalup adds engineering capacity to your team. This can be overflow 3D parametric CAD modeling, MEP clash resolution, or dedicated mechanical and MEP specialists for an upcoming release. Our engineers join your standups, work to your drawing standards, and follow the same Design Approach on every project. Team size and engagement terms are agreed per project.
               </p>
 
               {/* Clean bullet proof points */}
@@ -95,7 +95,7 @@ export default function CareersBanner({ onOpenCalendly }) {
                 <div className="w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-card relative bg-[#EEF2F8] dark:bg-[#151D26] border border-[#E2E6EE] dark:border-white/10 group">
                   <img
                     src={founderImg}
-                    alt="Md. Shafayat Ullah Shanto - Founder & Lead Mechanical Engineer at Escalup"
+                    alt="Md. Shafayat Ullah Shanto - Founder & Lead Mechanical Engineer at escalup"
                     className="w-full h-full object-cover object-top transition-all duration-500"
                   />
                 </div>
@@ -106,7 +106,7 @@ export default function CareersBanner({ onOpenCalendly }) {
                     <em><strong>Md. Shafayat Ullah Shanto</strong></em>
                   </h4>
                   <p className="text-sm text-[#5A6679] dark:text-[#9BA8BA] mt-0.5 font-normal">
-                    Founder & Lead Mechanical Engineer, Escalup
+                    Founder & Lead Mechanical Engineer, escalup
                   </p>
                 </div>
               </div>

@@ -223,7 +223,7 @@ export default function FramedHero({ onOpenCalendly }) {
   return (
     <section
       id="hero"
-      aria-label="Escalup Enterprise Hero"
+      aria-label="escalup Enterprise Hero"
       className="w-full min-h-[560px] lg:min-h-[640px] lg:h-[calc(100vh-4rem)] lg:max-h-[820px] relative overflow-hidden flex flex-col justify-between pt-24 sm:pt-28 pb-5 sm:pb-6 px-4 sm:px-6 lg:px-8 bg-[#F8FAFC] dark:bg-[#080C0F] text-[#111827] dark:text-white transition-colors select-none"
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
