@@ -5,12 +5,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { 
-  ArrowRight, 
-  Sun, 
-  Moon 
-} from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
 import Logo from './Logo';
 
 const NAV_ITEMS = [
@@ -29,7 +23,6 @@ export default function Navbar() {
   const location = useLocation();
   const [activeSection, setActiveSection] = useState(location.pathname === '/' ? 'home' : '');
   
-  const { isDark, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const isClickScrollingRef = useRef(false);
   const clickTimeoutRef = useRef(null);
@@ -118,16 +111,6 @@ export default function Navbar() {
     }
   };
 
-  const handleQuoteClick = (e) => {
-    if (e && e.preventDefault) e.preventDefault();
-    const contactEl = document.getElementById('contact');
-    if (contactEl) {
-      contactEl.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      navigate('/#contact');
-    }
-  };
-
   return (
     <header
       className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 py-3 sm:py-3.5 ${
@@ -169,33 +152,8 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* RIGHT: Theme Toggle + "CONTACT →" Pill */}
-        <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
-          
-          {/* Theme switcher (with circular View Transition reveal) */}
-          <button
-            onClick={(e) => toggleTheme(e)}
-            aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center bg-white dark:bg-[#11161B] text-[#111827] dark:text-white border border-[#E2E6EE] dark:border-white/10 shadow-xs hover:scale-105 active:scale-95 transition-transform cursor-pointer"
-            title={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
-          >
-            {isDark ? (
-              <Sun className="w-4 h-4 text-[#F3BA2F]" />
-            ) : (
-              <Moon className="w-4 h-4 text-[#111827] dark:text-white" />
-            )}
-          </button>
-
-          {/* "CONTACT →" Pill */}
-          <a
-            href="#contact"
-            onClick={handleQuoteClick}
-            className="px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-[#0070AD] via-[#2563EB] to-[#5846F6] hover:opacity-95 text-white text-[11px] sm:text-xs font-bold tracking-wider uppercase shadow-sm hover:shadow-md transition-all flex items-center gap-1 sm:gap-1.5 cursor-pointer shrink-0"
-          >
-            <span>Contact</span>
-            <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-          </a>
-        </div>
+        {/* Balance spacer for desktop center alignment */}
+        <div className="w-[120px] hidden lg:block pointer-events-none" />
 
       </div>
     </header>
