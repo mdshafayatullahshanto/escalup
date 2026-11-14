@@ -119,8 +119,11 @@ export default function ServiceDetailPage() {
             <GlassBadge>Discipline Overview</GlassBadge>
           </div>
 
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-[#111827] dark:text-white tracking-tight leading-tight sm:whitespace-nowrap">
-            About <span className="font-semibold">{service.title}</span>
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-[#111827] dark:text-white tracking-tight leading-tight">
+            About{' '}
+            <span className="block font-semibold sm:whitespace-nowrap mt-1">
+              {service.title}
+            </span>
           </h2>
 
           <p className="text-sm sm:text-base text-[#475569] dark:text-[#9BA8BA] leading-relaxed max-w-3xl">
@@ -180,8 +183,11 @@ export default function ServiceDetailPage() {
             <div className="mb-3.5">
               <GlassBadge>Capabilities Breakdown</GlassBadge>
             </div>
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-[#111827] dark:text-white tracking-tight sm:whitespace-nowrap">
-              Scope of <span className="font-semibold">{service.title}</span>
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-[#111827] dark:text-white tracking-tight leading-tight">
+              Scope of{' '}
+              <span className="block font-semibold sm:whitespace-nowrap mt-1">
+                {service.title}
+              </span>
             </h2>
             <p className="text-xs sm:text-sm text-[#475569] dark:text-[#9BA8BA] mt-2 max-w-xl mx-auto">
               Every deliverable is prepared for manufacturing or construction, following the Design Approach.
@@ -231,8 +237,11 @@ export default function ServiceDetailPage() {
             <div className="mb-3.5 flex justify-center">
               <GlassBadge>Request for Services</GlassBadge>
             </div>
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-white tracking-tight sm:whitespace-nowrap">
-              Initiate a Project Scope for <span className="font-semibold">{service.title}</span>
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-white tracking-tight leading-tight">
+              Initiate a Project Scope for{' '}
+              <span className="block font-semibold sm:whitespace-nowrap mt-1">
+                {service.title}
+              </span>
             </h2>
             <p className="text-sm text-white/70 mt-2">
               Share your project requirements. We will review them and respond with a proposed scope.
