@@ -340,37 +340,6 @@ export default function ContactSection({ onOpenCalendly }) {
                 </label>
               </div>
 
-              {/* Toggle Switch for Mutual NDA Consent */}
-              <div className="pt-2 flex items-center justify-between p-4 rounded-xl bg-[#EEF2F8] dark:bg-[#17202B] border border-[#D8DFEB] dark:border-white/10">
-                <div className="flex items-center gap-3">
-                  <ShieldCheck className="w-5 h-5 text-[#5846F6] shrink-0" />
-                  <div>
-                    <div className="text-xs font-medium text-[#111827] dark:text-white">
-                      Mutual NDA Protection
-                    </div>
-                    <div className="text-[11px] text-[#5A6679] dark:text-[#9BA8BA]">
-                      Countersign a formal non-disclosure agreement before sharing proprietary files.
-                    </div>
-                  </div>
-                </div>
-
-                {/* Toggle switch */}
-                <button
-                  type="button"
-                  onClick={() => setFormData((prev) => ({ ...prev, ndaRequested: !prev.ndaRequested }))}
-                  className={`w-11 h-6 flex items-center rounded-full p-1 cursor-pointer transition-colors duration-200 ${
-                    formData.ndaRequested ? 'bg-[#5846F6]' : 'bg-[#D8DFEB] dark:bg-[#333]'
-                  }`}
-                  aria-label="Toggle mutual NDA"
-                >
-                  <div
-                    className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform duration-200 ${
-                      formData.ndaRequested ? 'translate-x-5' : 'translate-x-0'
-                    }`}
-                  />
-                </button>
-              </div>
-
               {/* Primary Black Pill Submit Button */}
               <div className="pt-3">
                 <Button

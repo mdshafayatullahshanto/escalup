@@ -9,13 +9,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Play, 
-  X, 
   CheckCircle2, 
   ShieldCheck, 
-  Cpu, 
   ChevronRight
 } from 'lucide-react';
 import { servicesData } from '../data/services';
@@ -29,7 +25,6 @@ export default function ServiceDetailPage() {
   const { slug } = useParams();
   const navigate = useNavigate();
 
-  const [videoModalOpen, setVideoModalOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formLoading, setFormLoading] = useState(false);
   const [consentNda, setConsentNda] = useState(true);
@@ -119,64 +114,39 @@ export default function ServiceDetailPage() {
       {/* 2. DISCIPLINE OVERVIEW & HIGHLIGHT CARDS                 */}
       {/* -------------------------------------------------------- */}
       <section className="py-20 sm:py-28 max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 font-sans">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          
-          {/* Left Narrative */}
-          <div className="lg:col-span-6 space-y-6">
-            <div className="mb-2">
-              <GlassBadge>Discipline Overview</GlassBadge>
-            </div>
-
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#111827] dark:text-white tracking-tight leading-tight">
-              About <span className="font-semibold">{service.title}</span>
-            </h2>
-
-            <p className="text-sm sm:text-base text-[#475569] dark:text-[#9BA8BA] leading-relaxed">
-              {service.shortDesc}
-            </p>
-
-            <div className="space-y-3 pt-2">
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-4 h-4 text-[#5846F6] shrink-0 mt-1" />
-                <span className="text-xs sm:text-sm text-[#111827] dark:text-white">
-                  <strong>Native CAD & Drawing Integrity:</strong> Modeled directly in client-specified formats using corporate drawing templates.
-                </span>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-4 h-4 text-[#5846F6] shrink-0 mt-1" />
-                <span className="text-xs sm:text-sm text-[#111827] dark:text-white">
-                  <strong>Governing Standards:</strong> {service.standardsDetail}
-                </span>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="w-4 h-4 text-[#5846F6] shrink-0 mt-1" />
-                <span className="text-xs sm:text-sm text-[#111827] dark:text-white">
-                  <strong>Controlled Revisions:</strong> Managed through controlled product data, change records, and milestone review gates.
-                </span>
-              </div>
-            </div>
+        <div className="max-w-4xl space-y-6">
+          <div className="mb-2">
+            <GlassBadge>Discipline Overview</GlassBadge>
           </div>
 
-          {/* Right Video / Preview Card */}
-          <div className="lg:col-span-6">
-            <div 
-              onClick={() => setVideoModalOpen(true)}
-              className="relative rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-tr from-[#0B1528] to-[#122A4A] aspect-[16/10] flex items-center justify-center cursor-pointer group border border-[#E2E6EE] dark:border-white/10"
-            >
-              <div className="absolute inset-0 blueprint-grid opacity-25" />
-              <div className="absolute inset-0 bg-radial-at-c from-transparent via-black/40 to-black/80" />
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#111827] dark:text-white tracking-tight leading-tight">
+            About <span className="font-semibold">{service.title}</span>
+          </h2>
 
-              <div className="relative z-10 flex flex-col items-center gap-4 text-center p-6">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#0070AD]/85 backdrop-blur-md text-white flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:bg-[#0070AD] transition-all">
-                  <Play className="w-7 h-7 sm:w-8 sm:h-8 fill-current translate-x-0.5" />
-                </div>
-                <div className="text-white text-xs sm:text-sm font-semibold tracking-wide">
-                  Technical Workflow Overview
-                </div>
-              </div>
+          <p className="text-sm sm:text-base text-[#475569] dark:text-[#9BA8BA] leading-relaxed">
+            {service.shortDesc}
+          </p>
+
+          <div className="space-y-3 pt-2">
+            <div className="flex items-start gap-3">
+              <CheckCircle2 className="w-4 h-4 text-[#5846F6] shrink-0 mt-1" />
+              <span className="text-xs sm:text-sm text-[#111827] dark:text-white">
+                <strong>Native CAD & Drawing Integrity:</strong> Modeled directly in client-specified formats using corporate drawing templates.
+              </span>
+            </div>
+            <div className="flex items-start gap-3">
+              <CheckCircle2 className="w-4 h-4 text-[#5846F6] shrink-0 mt-1" />
+              <span className="text-xs sm:text-sm text-[#111827] dark:text-white">
+                <strong>Governing Standards:</strong> {service.standardsDetail}
+              </span>
+            </div>
+            <div className="flex items-start gap-3">
+              <CheckCircle2 className="w-4 h-4 text-[#5846F6] shrink-0 mt-1" />
+              <span className="text-xs sm:text-sm text-[#111827] dark:text-white">
+                <strong>Controlled Revisions:</strong> Managed through controlled product data, change records, and milestone review gates.
+              </span>
             </div>
           </div>
-
         </div>
 
         {/* Deliverables summary strip */}
@@ -379,61 +349,6 @@ export default function ServiceDetailPage() {
 
         </div>
       </section>
-
-      {/* -------------------------------------------------------- */}
-      {/* 7. PREVIEW MODAL                                         */}
-      {/* -------------------------------------------------------- */}
-      <AnimatePresence>
-        {videoModalOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 sm:p-8"
-            onClick={() => setVideoModalOpen(false)}
-          >
-            <div 
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-4xl rounded-3xl bg-[#0B0F14] border border-white/20 p-6 sm:p-8 text-white shadow-2xl"
-            >
-              <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
-                <div className="flex items-center gap-2 text-sm font-bold">
-                  <Play className="w-4 h-4 text-[#0070AD]" />
-                  <span>{service.title} · Engineering Workflow Overview</span>
-                </div>
-                <button
-                  onClick={() => setVideoModalOpen(false)}
-                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center cursor-pointer"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-
-              <div className="aspect-video rounded-2xl bg-gradient-to-br from-[#0B1528] to-[#040810] border border-white/10 flex flex-col items-center justify-center text-center p-8 relative overflow-hidden">
-                <div className="absolute inset-0 blueprint-grid opacity-30" />
-                <div className="relative z-10 space-y-3">
-                  <div className="w-16 h-16 rounded-full bg-[#5846F6]/20 border border-[#5846F6]/40 text-[#A5B4FC] flex items-center justify-center mx-auto">
-                    <Cpu className="w-8 h-8 animate-pulse" />
-                  </div>
-                  <h4 className="text-xl font-bold">
-                    Parametric CAD & Technical Coordination
-                  </h4>
-                  <p className="text-xs sm:text-sm text-white/70 max-w-md mx-auto">
-                    All deliverables are checked against applicable standards and managed through controlled change records.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-6 flex items-center justify-between text-xs text-white/60">
-                <span>Governed Under ASME & ISO Standards</span>
-                <Button variant="white" size="sm" onClick={() => setVideoModalOpen(false)}>
-                  Close Preview
-                </Button>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
     </div>
   );
