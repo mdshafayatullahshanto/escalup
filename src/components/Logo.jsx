@@ -1,13 +1,13 @@
 // /src/components/Logo.jsx
 // escalup official combined brand logo component
-// Combines the circular "e" symbol seamlessly with the "scalup" wordmark.
+// Uses brand color #2E756E for the company name and logo mark.
 // Clicking navigates to homepage and scrolls to the top smoothly.
 
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Logo({ 
-  variant = 'auto', // 'auto' | 'dark' (white logo for dark bg) | 'light' (dark logo for light bg) | 'teal'
+  variant = 'teal', // 'teal' (#2E756E, default) | 'white' (for dark contrast) | 'auto'
   size = 'md', 
   link = true, 
   className = '',
@@ -43,7 +43,7 @@ export default function Logo({
   let imageElement;
 
   if (variant === 'dark' || variant === 'white') {
-    // For dark background: white logo
+    // For high-contrast dark background when explicitly requested
     imageElement = (
       <img
         src="/escalup-logo-white.png"
@@ -52,17 +52,20 @@ export default function Logo({
         loading="eager"
       />
     );
-  } else if (variant === 'light') {
-    // For light background: dark logo
+  } else if (variant === 'auto') {
+    // Theme-adaptive: #2E756E brand color
     imageElement = (
-      <img
-        src="/escalup-logo-dark.png"
-        alt="escalup"
-        className={`${currentHeight} w-auto object-contain transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none`}
-        loading="eager"
-      />
+      <div className="relative inline-flex items-center">
+        <img
+          src="/escalup-logo-teal.png"
+          alt="escalup"
+          className={`${currentHeight} w-auto object-contain transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none`}
+          loading="eager"
+        />
+      </div>
     );
-  } else if (variant === 'teal') {
+  } else {
+    // Default: Official Brand Color #2E756E
     imageElement = (
       <img
         src="/escalup-logo-teal.png"
@@ -70,24 +73,6 @@ export default function Logo({
         className={`${currentHeight} w-auto object-contain transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none`}
         loading="eager"
       />
-    );
-  } else {
-    // 'auto': responsive to theme via Tailwind dark:
-    imageElement = (
-      <div className="relative inline-flex items-center">
-        <img
-          src="/escalup-logo-dark.png"
-          alt="escalup"
-          className={`${currentHeight} w-auto object-contain transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none block dark:hidden`}
-          loading="eager"
-        />
-        <img
-          src="/escalup-logo-white.png"
-          alt="escalup"
-          className={`${currentHeight} w-auto object-contain transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none hidden dark:block`}
-          loading="eager"
-        />
-      </div>
     );
   }
 

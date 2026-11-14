@@ -74,7 +74,7 @@ export default function ThankYouPage({ onOpenCalendly }) {
         </div>
 
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#111827] dark:text-white tracking-tight mb-4">
-          Thank you for reaching out to <span className="font-semibold text-[#111827] dark:text-white">escalup.</span>
+          Thank you for reaching out to <span className="font-semibold text-[#2E756E]">escalup.</span>
         </h1>
 
         <div className="p-4 rounded-2xl bg-[#EEF2F8] dark:bg-[#161D27] border border-[#E2E6EE] dark:border-white/10 text-[#111827] dark:text-white font-medium text-sm sm:text-base flex items-center justify-center gap-2 mb-6">

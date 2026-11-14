@@ -204,7 +204,7 @@ export default function Footer() {
 
           {/* Copyright Row */}
           <div className="text-xs text-[#5A6679] dark:text-[#9BA8BA]">
-            Copyright © 2026 escalup. All rights reserved.
+            Copyright © 2026 <span className="text-[#2E756E] font-medium">escalup</span>. All rights reserved.
           </div>
 
         </div>
