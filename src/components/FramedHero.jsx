@@ -10,7 +10,7 @@
 // - Bottom bar: Accessible play/pause, 3 segmented progress bars, slide tabs, and "Navigate your next +" link
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Calendar, Sparkles, Pause, Play, ArrowRight } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { companyData } from '../data/company';
@@ -24,7 +24,7 @@ const HERO_SLIDES = [
     tag: 'Offshore Engineering Services',
     line1: 'Scale Your Project Team with',
     line2: 'Dedicated Offshore Talent',
-    subtitle: 'escalup is your dedicated offshore engineering partner delivering Mechanical CAD, MEP, and BIM coordination for global equipment builders and consultancies.',
+    subtitle: 'Your dedicated offshore engineering partner delivering Mechanical CAD, MEP, and BIM coordination for global equipment builders and consultancies.',
     ctaPrimary: 'Request a Quote',
     ctaSecondary: 'Schedule an Engineering Intro Call',
     stats: 'Native Parametric CAD Files · Mutual NDA · Client Owns All Project IP',
@@ -185,39 +185,11 @@ export default function FramedHero({ onOpenCalendly: _onOpenCalendly }) {
 
   const currentSlide = HERO_SLIDES[activeIndex];
 
-  // Motion variants for smooth text entrance
-  const textContainerVariants = {
-    initial: { opacity: 0 },
-    animate: {
-      opacity: 1,
-      transition: {
-        staggerChildren: isReducedMotion ? 0 : 0.08,
-        delayChildren: isReducedMotion ? 0 : 0.04,
-      },
-    },
-    exit: {
-      opacity: 0,
-      transition: { duration: 0.2 },
-    },
-  };
-
-  const textItemVariants = {
-    initial: { opacity: 0, y: isReducedMotion ? 0 : 16 },
-    animate: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: isReducedMotion ? 0.01 : 0.45,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
-  };
-
   return (
     <section
       id="hero"
       aria-label="escalup Enterprise Hero"
-      className="w-full min-h-[560px] lg:min-h-[640px] lg:h-[calc(100vh-4rem)] lg:max-h-[820px] relative overflow-hidden flex flex-col justify-between pt-24 sm:pt-28 pb-5 sm:pb-6 px-4 sm:px-6 lg:px-8 bg-[#F8FAFC] dark:bg-[#080C0F] text-[#111827] dark:text-white transition-colors select-none"
+      className="w-full min-h-[660px] xs:min-h-[680px] sm:min-h-[680px] lg:min-h-[640px] lg:h-[calc(100vh-4rem)] lg:max-h-[820px] relative overflow-hidden flex flex-col justify-between pt-24 sm:pt-28 pb-5 sm:pb-6 px-4 sm:px-6 lg:px-8 bg-[#F8FAFC] dark:bg-[#080C0F] text-[#111827] dark:text-white transition-colors select-none"
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
@@ -319,74 +291,76 @@ export default function FramedHero({ onOpenCalendly: _onOpenCalendly }) {
       {/* ------------------------------------------------------------- */}
       {/* 3. CENTER HERO CONTENT: HEADLINE, SUBTITLE, BUTTONS & STATS   */}
       {/* ------------------------------------------------------------- */}
-      <div className="w-full max-w-4xl mx-auto text-center my-auto py-4 sm:py-6 relative z-10 flex flex-col items-center justify-center">
-        
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={`slide-content-${activeIndex}`}
-            variants={textContainerVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            className="w-full space-y-5 sm:space-y-6"
-          >
-            {/* Main Headline: Light weight preamble + colorful gradient focal phrase */}
-            <motion.h1
-              variants={textItemVariants}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-light text-[#111827] dark:text-white tracking-tight leading-[1.12] [text-wrap:balance]"
-            >
-              {currentSlide.line1}
-              <span className="font-semibold bg-gradient-to-r from-[#0070AD] via-[#2563EB] to-[#5846F6] bg-clip-text text-transparent block mt-1 sm:mt-2">
-                {currentSlide.line2}
-              </span>
-            </motion.h1>
-
-            {/* Subtitle with AA Contrast */}
-            <motion.p
-              variants={textItemVariants}
-              className="max-w-2xl mx-auto text-center text-sm sm:text-base md:text-[17px] text-[#475569] dark:text-[#94A3B8] leading-relaxed font-normal pt-1 [text-wrap:balance]"
-            >
-              {currentSlide.subtitle}
-            </motion.p>
-
-            {/* Action Buttons */}
+      <div className="w-full max-w-4xl mx-auto text-center my-auto py-2 sm:py-4 lg:py-6 relative z-10 grid grid-cols-1 items-center justify-items-center min-h-[410px] xs:min-h-[410px] sm:min-h-[380px] md:min-h-0">
+        {HERO_SLIDES.map((slide, idx) => {
+          const isCurrent = idx === activeIndex;
+          return (
             <motion.div
-              variants={textItemVariants}
-              className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-3 w-full"
+              key={slide.id}
+              initial={false}
+              animate={{
+                opacity: isCurrent ? 1 : 0,
+                y: isCurrent ? 0 : (isReducedMotion ? 0 : 8),
+                scale: isCurrent ? 1 : 0.985,
+              }}
+              transition={{
+                duration: isReducedMotion ? 0.01 : 0.45,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className={`col-start-1 row-start-1 w-full space-y-4 sm:space-y-6 flex flex-col items-center justify-center ${
+                isCurrent
+                  ? 'pointer-events-auto z-10 relative'
+                  : 'pointer-events-none z-0 select-none'
+              }`}
+              aria-hidden={!isCurrent}
             >
-              {/* Primary: Request a Quote */}
-              <button
-                onClick={handleQuoteClick}
-                className="w-full sm:w-auto px-7 py-3 rounded-full bg-[#0F172A] hover:bg-black text-white text-sm font-semibold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 group cursor-pointer border border-white/10"
-              >
-                <span>{currentSlide.ctaPrimary}</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
+              {/* Main Headline: Light weight preamble + colorful gradient focal phrase */}
+              <h1 className="text-[1.85rem] xs:text-[2.15rem] sm:text-5xl md:text-6xl lg:text-[4.25rem] font-light text-[#111827] dark:text-white tracking-tight leading-[1.15] sm:leading-[1.12] [text-wrap:balance] min-h-[140px] xs:min-h-[150px] sm:min-h-[160px] md:min-h-0 flex flex-col justify-center">
+                <span>{slide.line1}</span>
+                <span className="font-semibold bg-gradient-to-r from-[#0070AD] via-[#2563EB] to-[#5846F6] bg-clip-text text-transparent block mt-1 sm:mt-2">
+                  {slide.line2}
+                </span>
+              </h1>
 
-              {/* Secondary: Schedule an Engineering Intro Call */}
-              <a
-                href={companyData.contact.calendlyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => trackCallBooking('hero_secondary_button')}
-                className="w-full sm:w-auto px-6 py-3 rounded-full bg-white dark:bg-[#11161B] hover:bg-[#F8FAFC] dark:hover:bg-[#151D26] text-[#111827] dark:text-white border border-[#E2E6EE] dark:border-white/10 text-sm font-semibold shadow-xs hover:shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <Calendar className="w-4 h-4 text-[#0070AD] dark:text-[#38BDF8]" />
-                <span>{currentSlide.ctaSecondary}</span>
-              </a>
+              {/* Subtitle with AA Contrast */}
+              <p className="max-w-2xl mx-auto text-center text-sm sm:text-base md:text-[17px] text-[#475569] dark:text-[#94A3B8] leading-relaxed font-normal pt-1 [text-wrap:balance] min-h-[80px] xs:min-h-[76px] sm:min-h-[64px] md:min-h-0 flex items-center justify-center">
+                {slide.subtitle}
+              </p>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-3 w-full">
+                {/* Primary: Request a Quote */}
+                <button
+                  onClick={handleQuoteClick}
+                  tabIndex={isCurrent ? 0 : -1}
+                  className="w-full sm:w-auto px-7 py-3 rounded-full bg-[#0F172A] hover:bg-black text-white text-sm font-semibold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 group cursor-pointer border border-white/10"
+                >
+                  <span>{slide.ctaPrimary}</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </button>
+
+                {/* Secondary: Schedule an Engineering Intro Call */}
+                <a
+                  href={companyData.contact.calendlyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  tabIndex={isCurrent ? 0 : -1}
+                  onClick={() => trackCallBooking('hero_secondary_button')}
+                  className="w-full sm:w-auto px-6 py-3 rounded-full bg-white dark:bg-[#11161B] hover:bg-[#F8FAFC] dark:hover:bg-[#151D26] text-[#111827] dark:text-white border border-[#E2E6EE] dark:border-white/10 text-sm font-semibold shadow-xs hover:shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <Calendar className="w-4 h-4 text-[#0070AD] dark:text-[#38BDF8]" />
+                  <span>{slide.ctaSecondary}</span>
+                </a>
+              </div>
+
+              {/* Trust & Governance Ribbon */}
+              <div className="pt-3 text-xs sm:text-[13px] text-[#64748B] dark:text-[#94A3B8] tracking-wide font-normal min-h-[34px] sm:min-h-0 flex items-center justify-center">
+                {slide.stats}
+              </div>
+
             </motion.div>
-
-            {/* Trust & Governance Ribbon */}
-            <motion.div
-              variants={textItemVariants}
-              className="pt-3 text-xs sm:text-[13px] text-[#64748B] dark:text-[#94A3B8] tracking-wide font-normal"
-            >
-              {currentSlide.stats}
-            </motion.div>
-
-          </motion.div>
-        </AnimatePresence>
-
+          );
+        })}
       </div>
 
       {/* ------------------------------------------------------------- */}
