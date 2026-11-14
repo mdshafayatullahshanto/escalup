@@ -17,7 +17,6 @@ import {
   FileUp
 } from 'lucide-react';
 import { companyData } from '../data/company';
-import { servicesData } from '../data/services';
 import { trackQuoteSubmit, trackCallBooking } from '../utils/analytics';
 import { submitQuoteRequest } from '../lib/supabase';
 import GlassBadge from './ui/GlassBadge';
@@ -31,9 +30,9 @@ export default function ContactSection({ onOpenCalendly: _onOpenCalendly }) {
     company: '',
     email: '',
     country: '',
-    service: servicesData[0].title,
+    service: 'Multi-Discipline Engineering Package',
     engagementModel: 'Project-Based',
-    timeline: 'Within 2 weeks',
+    timeline: 'Flexible',
     details: '',
     ndaRequested: true,
   });
@@ -131,20 +130,19 @@ export default function ContactSection({ onOpenCalendly: _onOpenCalendly }) {
           {/* Main Form Column (50%): White Card with Balanced Padding & Equal-Height Stretch */}
           <div className="bg-white dark:bg-[#11161F] rounded-3xl p-6 sm:p-8 lg:p-9 border border-[#E2E6EE] dark:border-white/10 shadow-card flex flex-col justify-between h-full">
             
-            <div>
-              <div className="flex items-center justify-between pb-5 mb-5 border-b border-[#E2E6EE] dark:border-white/10">
-                <div>
-                  <h3 className="text-xl font-medium text-[#111827] dark:text-white">Project Scope & Specifications</h3>
-                  <p className="text-xs text-[#5A6679] dark:text-[#9BA8BA] mt-0.5">All submissions are encrypted and strictly protected under mutual NDA.</p>
-                </div>
-                <div className="hidden sm:flex items-center gap-1.5 text-xs font-medium text-[#5846F6] bg-[#5846F6]/10 px-3 py-1 rounded-full shrink-0">
-                  <ShieldCheck className="w-4 h-4 text-[#5846F6]" />
-                  <span>NDA Protected</span>
-                </div>
+            <div className="flex items-center justify-between pb-5 mb-5 border-b border-[#E2E6EE] dark:border-white/10">
+              <div>
+                <h3 className="text-xl font-medium text-[#111827] dark:text-white">Project Scope & Specifications</h3>
+                <p className="text-xs text-[#5A6679] dark:text-[#9BA8BA] mt-0.5">All submissions are encrypted and strictly protected under mutual NDA.</p>
               </div>
+              <div className="hidden sm:flex items-center gap-1.5 text-xs font-medium text-[#5846F6] bg-[#5846F6]/10 px-3 py-1 rounded-full shrink-0">
+                <ShieldCheck className="w-4 h-4 text-[#5846F6]" />
+                <span>NDA Protected</span>
+              </div>
+            </div>
 
-              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-4.5">
-                
+            <form onSubmit={handleSubmit} className="flex-1 flex flex-col justify-between space-y-4 sm:space-y-4.5">
+              <div className="space-y-4 sm:space-y-4.5">
                 {/* Row 1: Name & Company */}
                 <div className="grid sm:grid-cols-2 gap-3.5">
                   <div className="space-y-1">
@@ -227,79 +225,20 @@ export default function ContactSection({ onOpenCalendly: _onOpenCalendly }) {
                   </div>
                 </div>
 
-                {/* Row 3: Service Selection */}
-                <div className="space-y-1">
-                  <label htmlFor="form-service" className="block text-xs font-medium text-[#5A6679] dark:text-[#9BA8BA]">
-                    Primary Engineering Discipline *
-                  </label>
-                  <select
-                    id="form-service"
-                    name="service"
-                    value={formData.service}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-[#E2E6EE] dark:border-white/10 text-sm focus:outline-none focus:ring-2 focus:ring-[#5846F6] bg-[#F6F7FC] dark:bg-[#17202B] text-[#111827] dark:text-white cursor-pointer"
-                  >
-                    {servicesData.map((s) => (
-                      <option key={s.id} value={s.title}>
-                        {s.title}
-                      </option>
-                    ))}
-                    <option value="Multi-Discipline Project">Multi-Discipline Engineering Package</option>
-                  </select>
-                </div>
-
-                {/* Row 4: Engagement Model & Timeline */}
-                <div className="grid sm:grid-cols-2 gap-3.5">
-                  <div className="space-y-1">
-                    <label htmlFor="form-model" className="block text-xs font-medium text-[#5A6679] dark:text-[#9BA8BA]">
-                      Engagement Model
-                    </label>
-                    <select
-                      id="form-model"
-                      name="engagementModel"
-                      value={formData.engagementModel}
-                      onChange={handleChange}
-                      className="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-[#E2E6EE] dark:border-white/10 text-sm focus:outline-none focus:ring-2 focus:ring-[#5846F6] bg-[#F6F7FC] dark:bg-[#17202B] text-[#111827] dark:text-white cursor-pointer"
-                    >
-                      <option value="Project-Based">Project-Based (Fixed Price)</option>
-                      <option value="Dedicated Team (FTE)">Dedicated Team (Monthly FTE)</option>
-                      <option value="Hourly Bucket">Hourly Bucket / On-Demand</option>
-                    </select>
-                  </div>
-
-                  <div className="space-y-1">
-                    <label htmlFor="form-timeline" className="block text-xs font-medium text-[#5A6679] dark:text-[#9BA8BA]">
-                      Target Start Timeline
-                    </label>
-                    <select
-                      id="form-timeline"
-                      name="timeline"
-                      value={formData.timeline}
-                      onChange={handleChange}
-                      className="w-full px-4 py-2.5 sm:py-3 rounded-xl border border-[#E2E6EE] dark:border-white/10 text-sm focus:outline-none focus:ring-2 focus:ring-[#5846F6] bg-[#F6F7FC] dark:bg-[#17202B] text-[#111827] dark:text-white cursor-pointer"
-                    >
-                      <option value="Immediate (48h)">Immediate (Within 48 hours)</option>
-                      <option value="Within 2 weeks">Within 2 weeks</option>
-                      <option value="Within 1 month">Within 1 month</option>
-                      <option value="Planning / Exploring">Planning & Budgeting Phase</option>
-                    </select>
-                  </div>
-                </div>
-
-                {/* Row 5: Project Details Textarea */}
-                <div className="space-y-1">
+                {/* Project Details Textarea */}
+                <div className="space-y-1.5">
                   <label htmlFor="form-details" className="block text-xs font-medium text-[#5A6679] dark:text-[#9BA8BA]">
                     Project Description & Technical Brief *
                   </label>
                   <textarea
                     id="form-details"
                     name="details"
-                    rows={3}
+                    rows={4}
                     required
                     placeholder="Outline your assemblies, required drawing sheets, software preferences (SolidWorks, Inventor, Revit, NX), and standards..."
                     value={formData.details}
                     onChange={handleChange}
-                    className={`w-full px-4 py-2.5 rounded-xl border text-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#5846F6] bg-[#F6F7FC] dark:bg-[#17202B] text-[#111827] dark:text-white placeholder-[#8E9BAE] resize-none ${
+                    className={`w-full px-4 py-3 rounded-xl border text-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#5846F6] bg-[#F6F7FC] dark:bg-[#17202B] text-[#111827] dark:text-white placeholder-[#8E9BAE] resize-none ${
                       errors.details ? 'border-rose-400' : 'border-[#E2E6EE] dark:border-white/10'
                     }`}
                   />
@@ -332,30 +271,30 @@ export default function ContactSection({ onOpenCalendly: _onOpenCalendly }) {
                     />
                   </label>
                 </div>
+              </div>
 
-                {/* Primary Black Pill Submit Button */}
-                <div className="pt-2">
-                  <Button
-                    type="submit"
-                    variant="primary"
-                    size="lg"
-                    disabled={loading}
-                    icon="arrow"
-                    className="w-full shadow-md py-3.5"
-                  >
-                    {loading ? (
-                      <>
-                        <Loader2 className="w-4 h-4 animate-spin mr-2" />
-                        <span>Processing Request...</span>
-                      </>
-                    ) : (
-                      <span>Submit Quote Request (Reply within 24h)</span>
-                    )}
-                  </Button>
-                </div>
+              {/* Primary Black Pill Submit Button */}
+              <div className="pt-3">
+                <Button
+                  type="submit"
+                  variant="primary"
+                  size="lg"
+                  disabled={loading}
+                  icon="arrow"
+                  className="w-full shadow-md py-3.5"
+                >
+                  {loading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                      <span>Processing Request...</span>
+                    </>
+                  ) : (
+                    <span>Submit Quote Request (Reply within 24h)</span>
+                  )}
+                </Button>
+              </div>
 
-              </form>
-            </div>
+            </form>
           </div>
 
           {/* Right Sidebar: 2 Symmetrical Cards (50% Width, Equal Height Split, Matching Outer Height) */}
