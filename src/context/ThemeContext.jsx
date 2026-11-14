@@ -29,11 +29,11 @@ export function ThemeProvider({ children }) {
     if (theme === 'dark') {
       root.classList.add('dark');
       root.style.colorScheme = 'dark';
-      if (themeColorMeta) themeColorMeta.setAttribute('content', '#0D1A17');
+      if (themeColorMeta) themeColorMeta.setAttribute('content', '#080C0F');
     } else {
       root.classList.remove('dark');
       root.style.colorScheme = 'light';
-      if (themeColorMeta) themeColorMeta.setAttribute('content', '#2E756E');
+      if (themeColorMeta) themeColorMeta.setAttribute('content', '#0070AD');
     }
   }, [theme]);
 

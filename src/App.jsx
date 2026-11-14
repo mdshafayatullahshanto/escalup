@@ -20,7 +20,7 @@ function PageLoader() {
   return (
     <div className="min-h-[70vh] flex flex-col items-center justify-center bg-[#F6F7FB] dark:bg-[#080C0F] text-[#111827] dark:text-[#F3F5FA] gap-4">
       <Logo size="lg" link={false} />
-      <div className="w-5 h-5 rounded-full border-2 border-[#2E756E]/20 border-t-[#2E756E] animate-spin"></div>
+      <div className="w-5 h-5 rounded-full border-2 border-[#0070AD]/20 border-t-[#0070AD] animate-spin"></div>
     </div>
   );
 }
