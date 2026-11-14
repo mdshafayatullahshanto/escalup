@@ -35,7 +35,7 @@ export default function AboutManifesto({ onOpenCalendly: _onOpenCalendly }) {
           {/* Narrative Paragraphs */}
           <BlurReveal delay={0.1} className="lg:col-span-7 space-y-5 text-sm sm:text-base text-[#475569] dark:text-[#9BA8BA] leading-relaxed flex flex-col justify-center font-normal">
             <p className="text-base sm:text-lg text-[#111827] dark:text-white font-normal leading-relaxed">
-              <strong className="bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent font-semibold">escalup</strong> is an offshore engineering services company that brings people and engineering together to build better solutions. We provide Mechanical Design, BIM, and MEP Design support to international clients, including technology-focused and AI-driven companies.
+              <strong className="bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent font-semibold">escalup</strong> is an offshore engineering services company that brings people and engineering together to build things better. We provide Mechanical Design, BIM, and MEP Design support to international clients, including technology-focused and AI-driven companies.
             </p>
             <p>
               The company is led by <em><strong>Md. Shafayat Ullah Shanto</strong></em>, a mechanical engineer with a background in mechanical design, industrial product development, CAD modeling, engineering documentation, PLM and MEP engineering, including HVAC, fire protection and plumbing systems.
