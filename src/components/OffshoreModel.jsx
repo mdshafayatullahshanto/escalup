@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import Button from './ui/Button';
 import GlassBadge from './ui/GlassBadge';
+import { BlurReveal, HighlightUnderline } from './ui/ScrollAnimations';
 import { servicesData } from '../data/services';
 
 const PROJECT_STEPS = [
@@ -143,11 +144,12 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 16 },
+    hidden: { opacity: 0, y: 16, filter: 'blur(6px)' },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] }
+      filter: 'blur(0px)',
+      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
     }
   };
 
@@ -156,16 +158,18 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Block */}
-        <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-12">
+        <BlurReveal className="max-w-3xl mx-auto text-center mb-10 sm:mb-12">
           <div className="mb-3.5">
             <GlassBadge>Offshore Model</GlassBadge>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-tight mb-4">
             Dedicated Offshore{' '}
-            <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
-              Engineering Support
-            </span>
+            <HighlightUnderline color="#2E756E">
+              <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
+                Engineering Support
+              </span>
+            </HighlightUnderline>
           </h2>
 
           <p className="text-base sm:text-lg text-[#0070AD] dark:text-[#38BDF8] font-medium mb-3">
@@ -175,7 +179,7 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
           <p className="text-sm sm:text-base text-[#475569] dark:text-[#9BA8BA] leading-relaxed max-w-3xl mx-auto font-normal">
             Escalup works as an offshore extension of your engineering team. We take on defined design tasks or full project packages and deliver models, drawings and documents that meet your requirements and applicable standards. Our clients include international companies in product development, technology and construction.
           </p>
-        </div>
+        </BlurReveal>
 
         {/* 1. What We Support: All 7 Services */}
         <div className="mb-12 sm:mb-14">

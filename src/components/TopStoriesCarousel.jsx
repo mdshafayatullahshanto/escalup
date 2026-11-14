@@ -9,6 +9,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, Cpu, Layers, Wrench, Database } fr
 import Badge from './ui/Badge';
 import Card from './ui/Card';
 import GlassBadge from './ui/GlassBadge';
+import { BlurReveal, HighlightUnderline } from './ui/ScrollAnimations';
 
 const TOP_STORIES = [
   {
@@ -213,17 +214,19 @@ export default function TopStoriesCarousel() {
         
         {/* Section Header with "1/4" counter & circular arrows */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-10 font-sans">
-          <div>
+          <BlurReveal>
             <div className="mb-3.5">
               <GlassBadge>Featured Case Insights</GlassBadge>
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#111827] dark:text-white tracking-tight">
               Top Engineering{' '}
-              <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
-                Stories & Outcomes
-              </span>
+              <HighlightUnderline color="#2E756E">
+                <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
+                  Stories & Outcomes
+                </span>
+              </HighlightUnderline>
             </h2>
-          </div>
+          </BlurReveal>
 
           {/* Navigation Controls: Counter + Prev/Next Circular Buttons */}
           <div className="flex items-center gap-4">

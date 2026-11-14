@@ -15,6 +15,7 @@ import {
 import Badge from './ui/Badge';
 import GlassBadge from './ui/GlassBadge';
 import Button from './ui/Button';
+import { BlurReveal, StaggerList, StaggerItem, HighlightUnderline } from './ui/ScrollAnimations';
 
 const PILLARS = [
   {
@@ -113,32 +114,34 @@ export default function NavigateYourNext({ onOpenCalendly }) {
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header: Light-weight heading with ONE highlighted phrase */}
-        <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-12">
+        <BlurReveal className="max-w-3xl mx-auto text-center mb-10 sm:mb-12">
           <div className="mb-3.5">
             <GlassBadge>The Enterprise Offshore Transformation</GlassBadge>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-tight mb-4">
             Navigate Your Next with{' '}
-            <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
-              Precision Engineering.
-            </span>
+            <HighlightUnderline color="#2E756E">
+              <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
+                Precision Engineering.
+              </span>
+            </HighlightUnderline>
           </h2>
 
           <p className="text-sm sm:text-base md:text-lg text-[#5A6679] dark:text-[#9BA8BA] leading-relaxed max-w-2xl mx-auto font-normal">
             Global engineering firms face rising local payroll costs, drafting backlogs, and costly on-site fabrication rework. Here is how escalup solves each operational bottleneck.
           </p>
-        </div>
+        </BlurReveal>
 
         {/* Split Layout: Left Vertical Tab List, Right Content Panel */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start w-full">
           
           {/* LEFT: Vertical Tab List (4 cols) */}
-          <div className="lg:col-span-4 space-y-2.5">
+          <StaggerList className="lg:col-span-4 space-y-2.5">
             {PILLARS.map((pillar) => {
               const isActive = activeTab === pillar.id;
               return (
-                <div key={pillar.id} className="relative">
+                <StaggerItem key={pillar.id} className="relative">
                   {/* Indigo active indicator bar on the left edge */}
                   {isActive && (
                     <motion.div
@@ -166,10 +169,10 @@ export default function NavigateYourNext({ onOpenCalendly }) {
 
                     <ArrowRight className={`w-4 h-4 transition-transform ${isActive ? 'text-[#5846F6] translate-x-1' : 'opacity-0'}`} />
                   </button>
-                </div>
+                </StaggerItem>
               );
             })}
-          </div>
+          </StaggerList>
 
           {/* RIGHT: Content Swapping Panel with Smooth Crossfade (8 cols) */}
           <div className="lg:col-span-8">

@@ -8,6 +8,7 @@ import Badge from './ui/Badge';
 import GlassBadge from './ui/GlassBadge';
 import Card from './ui/Card';
 import UnderlineLink from './ui/UnderlineLink';
+import { BlurReveal, StaggerList, StaggerItem, HighlightUnderline } from './ui/ScrollAnimations';
 
 const BENTO_ARTICLES = [
   {
@@ -66,15 +67,17 @@ export default function ThoughtLeadershipBento() {
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-12 font-sans">
+        <BlurReveal className="max-w-3xl mx-auto text-center mb-10 sm:mb-12 font-sans">
           <div className="mb-3.5 flex justify-center">
             <GlassBadge>Engineering Knowledge & Perspectives</GlassBadge>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-tight mb-3">
             Research, Announcements &{' '}
-            <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
-              Thought Leadership
-            </span>
+            <HighlightUnderline color="#2E756E">
+              <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
+                Thought Leadership
+              </span>
+            </HighlightUnderline>
           </h2>
           <div className="flex justify-center pt-1">
             <a
@@ -85,13 +88,13 @@ export default function ThoughtLeadershipBento() {
               <ArrowRight className="w-4 h-4" />
             </a>
           </div>
-        </div>
+        </BlurReveal>
 
         {/* Bento Grid Layout (1 Large Card on Left, 3 Stacked on Right) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+        <StaggerList className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
           
           {/* Main Large Bento Feature Card (7 cols) */}
-          <div className="lg:col-span-7 flex">
+          <StaggerItem className="lg:col-span-7 flex">
             <Card
               variant="white"
               radius="3xl"
@@ -132,10 +135,10 @@ export default function ThoughtLeadershipBento() {
                 </UnderlineLink>
               </div>
             </Card>
-          </div>
+          </StaggerItem>
 
           {/* 3 Secondary Bento Cards (5 cols) */}
-          <div className="lg:col-span-5 flex flex-col gap-6 justify-between">
+          <StaggerItem className="lg:col-span-5 flex flex-col gap-6 justify-between">
             {BENTO_ARTICLES.slice(1).map((article) => {
               return (
                 <Card
@@ -174,9 +177,9 @@ export default function ThoughtLeadershipBento() {
                 </Card>
               );
             })}
-          </div>
+          </StaggerItem>
 
-        </div>
+        </StaggerList>
 
       </div>
     </section>

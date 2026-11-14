@@ -11,6 +11,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowRight, ArrowUpRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import Badge from './ui/Badge';
 import GlassBadge from './ui/GlassBadge';
+import { BlurReveal, HighlightUnderline } from './ui/ScrollAnimations';
 
 const ACTION_PROJECTS = [
   {
@@ -240,7 +241,7 @@ export default function InActionCarousel() {
         
         {/* Section Header with Controls */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-8 sm:mb-10 lg:mb-12">
-          <div>
+          <BlurReveal>
             {/* Glassmorphism Eyebrow Badge */}
             <div className="mb-3.5">
               <GlassBadge>Core Delivery Outcomes</GlassBadge>
@@ -249,11 +250,13 @@ export default function InActionCarousel() {
             {/* Headline: Reference Style (Light 300 with signature indigo gradient) */}
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-tight">
               Real Delivery,{' '}
-              <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
-                Measurable Impact.
-              </span>
+              <HighlightUnderline color="#2E756E">
+                <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
+                  Measurable Impact.
+                </span>
+              </HighlightUnderline>
             </h2>
-          </div>
+          </BlurReveal>
 
           {/* Navigation Controls: Counter + Round Arrow Buttons (Matching Reference) */}
           <div className="flex items-center gap-4 self-start sm:self-auto">

@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
 import { faqData } from '../data/faq';
 import GlassBadge from './ui/GlassBadge';
+import { BlurReveal, StaggerList, StaggerItem, HighlightUnderline } from './ui/ScrollAnimations';
 
 export default function FAQAccordion() {
   const [openIndex, setOpenIndex] = useState(0); // Only one item open at a time
@@ -21,29 +22,31 @@ export default function FAQAccordion() {
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header: Light-weight heading with ONE highlighted phrase */}
-        <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-12">
+        <BlurReveal className="max-w-3xl mx-auto text-center mb-10 sm:mb-12">
           <div className="mb-3.5">
             <GlassBadge>FAQs & Governance</GlassBadge>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-tight mb-4">
             Your Commonly{' '}
-            <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
-              Asked Questions.
-            </span>
+            <HighlightUnderline color="#2E756E">
+              <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
+                Asked Questions.
+              </span>
+            </HighlightUnderline>
           </h2>
 
           <p className="text-sm sm:text-base text-[#5A6679] dark:text-[#9BA8BA] leading-relaxed max-w-2xl mx-auto font-normal">
             Everything you need to know about working with escalup as your dedicated offshore CAD, Mechanical, and MEP engineering partner.
           </p>
-        </div>
+        </BlurReveal>
 
         {/* Accordion List with White Cards and Indigo Toggle Icon */}
-        <div className="max-w-3xl mx-auto space-y-3">
+        <StaggerList className="max-w-3xl mx-auto space-y-3">
           {faqData.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
-              <div
+              <StaggerItem
                 key={faq.id}
                 className={`rounded-2xl transition-all duration-300 overflow-hidden bg-white dark:bg-[#11161F] border ${
                   isOpen
@@ -88,10 +91,10 @@ export default function FAQAccordion() {
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
+              </StaggerItem>
             );
           })}
-        </div>
+        </StaggerList>
 
       </div>
     </section>

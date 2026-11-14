@@ -8,6 +8,7 @@ import { ArrowRight, Cpu, Layers, Wrench, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Badge from './ui/Badge';
 import GlassBadge from './ui/GlassBadge';
+import { BlurReveal, StaggerList, StaggerItem, HighlightUnderline } from './ui/ScrollAnimations';
 
 const TRIO_CARDS = [
   {
@@ -54,17 +55,19 @@ export default function ProductCardsTrio() {
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+        <BlurReveal className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
           <div className="mb-3.5">
             <GlassBadge>Core Engineering Pillars</GlassBadge>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-tight">
             Specialized Engineering Capabilities,{' '}
-            <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
-              Built for Scale.
-            </span>
+            <HighlightUnderline color="#2E756E">
+              <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
+                Built for Scale.
+              </span>
+            </HighlightUnderline>
           </h2>
-        </div>
+        </BlurReveal>
 
         {/* 3 Tall Product Cards with Stagger Animation */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
@@ -116,14 +119,14 @@ export default function ProductCardsTrio() {
                       {card.subtitle}
                     </p>
 
-                    <div className="pt-2 space-y-2">
+                    <StaggerList className="pt-2 space-y-2">
                       {card.benefits.map((b, bIdx) => (
-                        <div key={bIdx} className="flex items-center gap-2 text-xs text-[#111827] dark:text-[#F3F5FA]">
+                        <StaggerItem key={bIdx} className="flex items-center gap-2 text-xs text-[#111827] dark:text-[#F3F5FA]">
                           <CheckCircle2 className="w-3.5 h-3.5 text-[#0070AD] dark:text-[#14F3C1] shrink-0" />
                           <span>{b}</span>
-                        </div>
+                        </StaggerItem>
                       ))}
-                    </div>
+                    </StaggerList>
                   </div>
 
                   <div className="pt-6 mt-6 border-t border-[#E2E6EE] dark:border-white/10">

@@ -22,6 +22,7 @@ import { trackQuoteSubmit, trackCallBooking } from '../utils/analytics';
 import { submitQuoteRequest } from '../lib/supabase';
 import GlassBadge from './ui/GlassBadge';
 import Button from './ui/Button';
+import { BlurReveal, HighlightUnderline } from './ui/ScrollAnimations';
 
 export default function ContactSection({ onOpenCalendly }) {
   const navigate = useNavigate();
@@ -114,22 +115,24 @@ export default function ContactSection({ onOpenCalendly }) {
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header: Light-weight heading with ONE highlighted phrase */}
-        <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-12">
+        <BlurReveal className="max-w-3xl mx-auto text-center mb-10 sm:mb-12">
           <div className="mb-3.5">
             <GlassBadge>Initiate Project Discussion</GlassBadge>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-tight mb-4">
             Request a{' '}
-            <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
-              Detailed Engineering Quote.
-            </span>
+            <HighlightUnderline color="#2E756E">
+              <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
+                Detailed Engineering Quote.
+              </span>
+            </HighlightUnderline>
           </h2>
 
           <p className="text-sm sm:text-base md:text-lg text-[#5A6679] dark:text-[#9BA8BA] leading-relaxed max-w-2xl mx-auto font-normal">
             Share your project requirements. We will review them and respond with a proposed scope. Work is carried out under a mutual NDA, and the client owns all project IP.
           </p>
-        </div>
+        </BlurReveal>
 
         <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-start">
           

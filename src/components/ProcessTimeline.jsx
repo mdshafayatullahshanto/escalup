@@ -16,6 +16,7 @@ import {
   RefreshCw 
 } from 'lucide-react';
 import GlassBadge from './ui/GlassBadge';
+import { BlurReveal, HighlightUnderline } from './ui/ScrollAnimations';
 
 const PHASES = [
   {
@@ -111,8 +112,8 @@ export default function ProcessTimeline() {
   };
 
   const item = {
-    hidden: { opacity: 0, y: 18 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } }
+    hidden: { opacity: 0, y: 18, filter: 'blur(6px)' },
+    show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }
   };
 
   return (
@@ -120,22 +121,24 @@ export default function ProcessTimeline() {
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-12">
+        <BlurReveal className="max-w-3xl mx-auto text-center mb-10 sm:mb-12">
           <div className="mb-3.5">
             <GlassBadge>Design Approach</GlassBadge>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-tight mb-4">
             Structured Engineering{' '}
-            <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
-              Design Methodology
-            </span>
+            <HighlightUnderline color="#2E756E">
+              <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
+                Design Methodology
+              </span>
+            </HighlightUnderline>
           </h2>
 
           <p className="text-sm sm:text-base text-[#5A6679] dark:text-[#9BA8BA] leading-relaxed max-w-3xl mx-auto font-normal">
             A structured engineering design methodology built on precision, thorough analysis, and iterative refinement. It applies to both product design and building services design. Every deliverable is checked against the applicable standards (ASME, ISO, ASHRAE, NFPA, BNBC, IPC), managed through controlled product data and change records, and prepared for real-world manufacturing or construction. The process stays adaptable to changing project requirements.
           </p>
-        </div>
+        </BlurReveal>
 
         {/* 3 Main Phase Columns */}
         <motion.div

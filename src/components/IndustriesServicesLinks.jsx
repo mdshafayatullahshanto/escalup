@@ -4,6 +4,7 @@
 import React from 'react';
 import UnderlineLink from './ui/UnderlineLink';
 import GlassBadge from './ui/GlassBadge';
+import { BlurReveal, StaggerList, StaggerItem, HighlightUnderline } from './ui/ScrollAnimations';
 
 const DIRECTORY_COLUMNS = [
   {
@@ -50,25 +51,27 @@ export default function IndustriesServicesLinks() {
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-12">
+        <BlurReveal className="max-w-3xl mx-auto text-center mb-10 sm:mb-12">
           <div className="mb-3.5 flex justify-center">
             <GlassBadge>Engineering Directory</GlassBadge>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#111827] dark:text-white tracking-tight leading-tight mb-3">
             Industries and Services{' '}
-            <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
-              Capability Matrix
-            </span>
+            <HighlightUnderline color="#2E756E">
+              <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
+                Capability Matrix
+              </span>
+            </HighlightUnderline>
           </h2>
           <p className="text-sm sm:text-base text-[#5A6679] dark:text-[#9BA8BA] max-w-2xl mx-auto leading-relaxed font-normal">
             Explore dedicated offshore engineering teams across mechanical, MEP, and manufacturing disciplines.
           </p>
-        </div>
+        </BlurReveal>
 
         {/* 4-Column Grid of Thin Underlined Links */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <StaggerList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {DIRECTORY_COLUMNS.map((col, idx) => (
-            <div key={idx} className="space-y-4">
+            <StaggerItem key={idx} className="space-y-4">
               <h3 className="text-base font-bold text-[#111827] dark:text-white pb-3 border-b border-[#E2E6EE] dark:border-white/10 flex items-center justify-between">
                 <span>{col.title}</span>
                 <span className="w-1.5 h-1.5 rounded-full bg-[#0070AD]" />
@@ -89,9 +92,9 @@ export default function IndustriesServicesLinks() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerList>
 
       </div>
     </section>

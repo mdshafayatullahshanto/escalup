@@ -27,12 +27,13 @@ export default function SectionHeading({
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 18 },
+    hidden: { opacity: 0, y: 18, filter: 'blur(8px)' },
     visible: {
       opacity: 1,
       y: 0,
+      filter: 'blur(0px)',
       transition: {
-        duration: 0.55,
+        duration: 0.65,
         ease: [0.22, 1, 0.36, 1],
       },
     },
