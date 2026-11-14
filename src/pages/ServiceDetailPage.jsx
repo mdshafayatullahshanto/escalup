@@ -114,16 +114,16 @@ export default function ServiceDetailPage() {
       {/* 2. DISCIPLINE OVERVIEW & HIGHLIGHT CARDS                 */}
       {/* -------------------------------------------------------- */}
       <section className="py-20 sm:py-28 max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 font-sans">
-        <div className="max-w-4xl space-y-6">
+        <div className="w-full max-w-6xl space-y-6">
           <div className="mb-2">
             <GlassBadge>Discipline Overview</GlassBadge>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#111827] dark:text-white tracking-tight leading-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-[#111827] dark:text-white tracking-tight leading-tight sm:whitespace-nowrap">
             About <span className="font-semibold">{service.title}</span>
           </h2>
 
-          <p className="text-sm sm:text-base text-[#475569] dark:text-[#9BA8BA] leading-relaxed">
+          <p className="text-sm sm:text-base text-[#475569] dark:text-[#9BA8BA] leading-relaxed max-w-3xl">
             {service.shortDesc}
           </p>
 
@@ -176,11 +176,11 @@ export default function ServiceDetailPage() {
       <section className="py-20 sm:py-28 bg-[#FFFFFF] dark:bg-[#0A0E13] border-y border-[#E2E6EE] dark:border-white/10 transition-colors">
         <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
           
-          <div className="max-w-3xl mx-auto text-center mb-12">
+          <div className="w-full max-w-5xl mx-auto text-center mb-12">
             <div className="mb-3.5">
               <GlassBadge>Capabilities Breakdown</GlassBadge>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-light text-[#111827] dark:text-white tracking-tight">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-[#111827] dark:text-white tracking-tight sm:whitespace-nowrap">
               Scope of <span className="font-semibold">{service.title}</span>
             </h2>
             <p className="text-xs sm:text-sm text-[#475569] dark:text-[#9BA8BA] mt-2 max-w-xl mx-auto">
@@ -231,7 +231,7 @@ export default function ServiceDetailPage() {
             <div className="mb-3.5 flex justify-center">
               <GlassBadge>Request for Services</GlassBadge>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-light text-white tracking-tight">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-white tracking-tight sm:whitespace-nowrap">
               Initiate a Project Scope for <span className="font-semibold">{service.title}</span>
             </h2>
             <p className="text-sm text-white/70 mt-2">
