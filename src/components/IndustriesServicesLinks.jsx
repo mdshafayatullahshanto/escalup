@@ -40,7 +40,7 @@ const DIRECTORY_COLUMNS = [
       { label: 'Dedicated Engineering Desks', href: '#offshore-model' },
       { label: 'Project-Based & Overflow Support', href: '#offshore-model' },
       { label: 'Revision Handling & Support', href: '#offshore-model' },
-      { label: 'Schedule an Engineering Intro Call', href: '#contact' },
+      { label: 'Schedule an Engineering Intro Call', href: 'https://cal.com/escalup/book-a-call?overlayCalendar=true', target: '_blank', rel: 'noopener noreferrer' },
     ]
   }
 ];

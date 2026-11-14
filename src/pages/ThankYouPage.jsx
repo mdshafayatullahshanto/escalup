@@ -20,7 +20,7 @@ import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
 import Logo from '../components/Logo';
 
-export default function ThankYouPage({ onOpenCalendly }) {
+export default function ThankYouPage({ onOpenCalendly: _onOpenCalendly }) {
   const [submissionInfo] = useState(() => {
     try {
       const stored = sessionStorage.getItem('escalup_last_quote');
@@ -45,15 +45,6 @@ export default function ThankYouPage({ onOpenCalendly }) {
       // safe fallback
     }
   }, []);
-
-  const handleBookCall = () => {
-    trackCallBooking('thank_you_page_accelerator');
-    if (onOpenCalendly) {
-      onOpenCalendly();
-    } else {
-      window.open(companyData.contact.calendlyUrl, '_blank', 'noopener,noreferrer');
-    }
-  };
 
   return (
     <div className="min-h-[85vh] bg-[#F6F7FC] dark:bg-[#080C0F] py-20 px-4 sm:px-6 lg:px-8 flex items-center justify-center font-sans">
@@ -125,7 +116,10 @@ export default function ThankYouPage({ onOpenCalendly }) {
             Skip the email delay and reserve 30 minutes with our Principal Engineer right away.
           </p>
           <Button
-            onClick={handleBookCall}
+            href={companyData.contact.calendlyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackCallBooking('thank_you_page_accelerator')}
             variant="primary"
             size="md"
             icon="arrow"

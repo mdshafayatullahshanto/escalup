@@ -70,7 +70,7 @@ const HERO_STORIES = [
   }
 ];
 
-export default function Hero({ onOpenCalendly }) {
+export default function Hero({ onOpenCalendly: _onOpenCalendly }) {
   const [activeStoryIdx, setActiveStoryIdx] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -98,15 +98,6 @@ export default function Hero({ onOpenCalendly }) {
     const servicesEl = document.getElementById('services');
     if (servicesEl) {
       servicesEl.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleBookCall = () => {
-    trackCallBooking('hero_secondary_button');
-    if (onOpenCalendly) {
-      onOpenCalendly();
-    } else {
-      window.open(companyData.contact.calendlyUrl, '_blank', 'noopener,noreferrer');
     }
   };
 
@@ -210,13 +201,16 @@ export default function Hero({ onOpenCalendly }) {
             </a>
 
             {/* Secondary Intro Call Button */}
-            <button
-              onClick={handleBookCall}
+            <a
+              href={companyData.contact.calendlyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackCallBooking('hero_secondary_button')}
               className="px-5 py-3 sm:px-7 sm:py-3.5 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/30 text-white font-semibold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer"
             >
               <Calendar className="w-4 h-4 text-[#14F3C1]" />
               <span>Book a Free Intro Call</span>
-            </button>
+            </a>
 
             {/* Explore Disciplines */}
             <a

@@ -8,21 +8,12 @@ import { trackCallBooking } from '../utils/analytics';
 import { companyData } from '../data/company';
 import Magnetic from './Magnetic';
 
-export default function FinalCTABand({ onOpenCalendly }) {
+export default function FinalCTABand({ onOpenCalendly: _onOpenCalendly }) {
   const handleQuoteClick = (e) => {
     e.preventDefault();
     const contactEl = document.getElementById('contact');
     if (contactEl) {
       contactEl.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleBookCall = () => {
-    trackCallBooking('final_cta_band');
-    if (onOpenCalendly) {
-      onOpenCalendly();
-    } else {
-      window.open(companyData.contact.calendlyUrl, '_blank', 'noopener,noreferrer');
     }
   };
 
@@ -65,13 +56,16 @@ export default function FinalCTABand({ onOpenCalendly }) {
             </Magnetic>
 
             <Magnetic strength={0.15}>
-              <button
-                onClick={handleBookCall}
+              <a
+                href={companyData.contact.calendlyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackCallBooking('final_cta_band')}
                 className="w-full sm:w-auto px-7 py-4 rounded-full bg-[#2E756E]/30 hover:bg-[#2E756E]/50 text-white border border-[#2E756E]/50 hover:border-[#A0D4CE] font-semibold text-sm sm:text-base transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
               >
                 <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-[#A0D4CE]" />
                 <span>Book 30-Min Intro Call</span>
-              </button>
+              </a>
             </Magnetic>
           </div>
 

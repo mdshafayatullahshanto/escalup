@@ -10,16 +10,10 @@ import React from 'react';
 import { ShieldCheck, CheckCircle2 } from 'lucide-react';
 import founderImg from '../assets/founder.png';
 import Button from './ui/Button';
+import { companyData } from '../data/company';
+import { trackCallBooking } from '../utils/analytics';
 
-export default function CareersBanner({ onOpenCalendly }) {
-  const handleConnectClick = () => {
-    if (onOpenCalendly) {
-      onOpenCalendly();
-    } else {
-      window.open('https://cal.com/escalup/book-a-call?overlayCalendar=true', '_blank', 'noopener,noreferrer');
-    }
-  };
-
+export default function CareersBanner({ onOpenCalendly: _onOpenCalendly }) {
   return (
     <section className="w-full bg-[#F6F7FB] dark:bg-[#080C0F] text-[#111827] dark:text-white py-14 sm:py-20 md:py-24 border-y border-[#E2E6EE] dark:border-white/10 relative overflow-hidden font-sans transition-colors">
       {/* Subtle ambient lighting */}
@@ -74,7 +68,10 @@ export default function CareersBanner({ onOpenCalendly }) {
                 <Button
                   variant="primary"
                   size="lg"
-                  onClick={handleConnectClick}
+                  href={companyData.contact.calendlyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackCallBooking('careers_banner')}
                   icon="arrow"
                   className="shadow-md px-7"
                 >

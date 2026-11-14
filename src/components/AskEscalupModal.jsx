@@ -43,7 +43,7 @@ const QUICK_QUESTIONS = [
   }
 ];
 
-export default function AskEscalupModal({ isOpen, onClose, onOpenCalendly }) {
+export default function AskEscalupModal({ isOpen, onClose, onOpenCalendly: _onOpenCalendly }) {
   const [query, setQuery] = useState('');
 
   if (!isOpen) return null;
@@ -75,11 +75,8 @@ export default function AskEscalupModal({ isOpen, onClose, onOpenCalendly }) {
 
   const handleBookCall = () => {
     onClose();
-    if (onOpenCalendly) {
-      onOpenCalendly();
-    } else {
-      window.open(companyData.contact.calendlyUrl, '_blank', 'noopener,noreferrer');
-    }
+    trackCallBooking('ask_escalup_modal');
+    window.open(companyData.contact.calendlyUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (

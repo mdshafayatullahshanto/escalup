@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import FloatingActions from './components/FloatingActions';
 import CalendlyModal from './components/CalendlyModal';
+import { companyData } from './data/company';
 import HomePage from './pages/HomePage';
 import Logo from './components/Logo';
 import GlobalScrollRevealer from './components/GlobalScrollRevealer';
@@ -84,6 +85,10 @@ function AnimatedRoutes({ onOpenCalendly }) {
 export default function App() {
   const [calendlyOpen, setCalendlyOpen] = useState(false);
 
+  const handleOpenBooking = () => {
+    window.open(companyData.contact.calendlyUrl, '_blank', 'noopener,noreferrer');
+  };
+
   // Smooth scroll progress indicator
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -106,16 +111,16 @@ export default function App() {
 
         <div className="flex flex-col min-h-screen bg-[#F6F7FB] dark:bg-[#080C0F] text-[#111827] dark:text-[#F3F5FA] font-sans antialiased selection:bg-[#5846F6]/20 selection:text-[#5846F6]">
           {/* Sticky Global Navigation */}
-          <Navbar onOpenCalendly={() => setCalendlyOpen(true)} />
+          <Navbar onOpenCalendly={handleOpenBooking} />
 
           {/* Animated Page Transitions */}
-          <AnimatedRoutes onOpenCalendly={() => setCalendlyOpen(true)} />
+          <AnimatedRoutes onOpenCalendly={handleOpenBooking} />
 
           {/* Global Footer */}
-          <Footer onOpenCalendly={() => setCalendlyOpen(true)} />
+          <Footer onOpenCalendly={handleOpenBooking} />
 
           {/* Floating Circular Assistant & Scroll to Top */}
-          <FloatingActions onOpenCalendly={() => setCalendlyOpen(true)} />
+          <FloatingActions onOpenCalendly={handleOpenBooking} />
 
           {/* Global Modals with AnimatePresence */}
           <AnimatePresence>

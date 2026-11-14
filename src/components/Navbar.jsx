@@ -21,7 +21,7 @@ const NAV_ITEMS = [
   { id: 'faq', label: 'FAQ', href: '#faq' },
 ];
 
-export default function Navbar({ onOpenCalendly }) {
+export default function Navbar({ onOpenCalendly: _onOpenCalendly }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
@@ -131,15 +131,6 @@ export default function Navbar({ onOpenCalendly }) {
       }
     } else {
       navigate(href);
-    }
-  };
-
-  const handleBookCallClick = () => {
-    setMenuOpen(false);
-    if (onOpenCalendly) {
-      onOpenCalendly();
-    } else {
-      window.open(companyData.contact.calendlyUrl, '_blank', 'noopener,noreferrer');
     }
   };
 
@@ -285,13 +276,16 @@ export default function Navbar({ onOpenCalendly }) {
                   <ShieldCheck className="w-4 h-4 text-[#5846F6]" />
                   <span>Mutual NDA & 100% Client IP Ownership</span>
                 </div>
-                <button
-                  onClick={handleBookCallClick}
+                <a
+                  href={companyData.contact.calendlyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMenuOpen(false)}
                   className="w-full py-3 rounded-full bg-gradient-to-r from-[#0070AD] to-[#5846F6] text-white text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 hover:opacity-95 shadow-md transition-all cursor-pointer"
                 >
                   <span>Schedule Intro Call</span>
                   <ArrowRight className="w-4 h-4" />
-                </button>
+                </a>
                 <a
                   href={`mailto:${companyData.contact.email}`}
                   className="block text-center text-xs text-[#5A6679] dark:text-[#9BA8BA] hover:underline"

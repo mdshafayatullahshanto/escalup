@@ -13,6 +13,8 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, Sparkles, Pause, Play, ArrowRight } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { companyData } from '../data/company';
+import { trackCallBooking } from '../utils/analytics';
 
 const HERO_SLIDES = [
   {
@@ -53,7 +55,7 @@ const HERO_SLIDES = [
   }
 ];
 
-export default function FramedHero({ onOpenCalendly }) {
+export default function FramedHero({ onOpenCalendly: _onOpenCalendly }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [slideKey, setSlideKey] = useState(0); // restarts CSS progress animation
 
@@ -170,15 +172,6 @@ export default function FramedHero({ onOpenCalendly }) {
     const contactEl = document.getElementById('contact');
     if (contactEl) {
       contactEl.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleBookCall = (e) => {
-    if (e && e.preventDefault) e.preventDefault();
-    if (onOpenCalendly) {
-      onOpenCalendly();
-    } else {
-      window.open('https://cal.com/escalup/book-a-call?overlayCalendar=true', '_blank', 'noopener,noreferrer');
     }
   };
 
@@ -371,13 +364,16 @@ export default function FramedHero({ onOpenCalendly }) {
               </button>
 
               {/* Secondary: Schedule an Engineering Intro Call */}
-              <button
-                onClick={handleBookCall}
+              <a
+                href={companyData.contact.calendlyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackCallBooking('hero_secondary_button')}
                 className="w-full sm:w-auto px-6 py-3 rounded-full bg-white dark:bg-[#11161B] hover:bg-[#F8FAFC] dark:hover:bg-[#151D26] text-[#111827] dark:text-white border border-[#E2E6EE] dark:border-white/10 text-sm font-semibold shadow-xs hover:shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Calendar className="w-4 h-4 text-[#0070AD] dark:text-[#38BDF8]" />
                 <span>{currentSlide.ctaSecondary}</span>
-              </button>
+              </a>
             </motion.div>
 
             {/* Trust & Governance Ribbon */}
