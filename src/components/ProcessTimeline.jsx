@@ -127,11 +127,11 @@ export default function ProcessTimeline() {
         </BlurReveal>
 
         {/* 3 Main Phase Columns */}
-        <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
           {PHASES.map((phaseGroup, pIdx) => (
-            <div key={pIdx} className="space-y-5">
+            <div key={pIdx} className="flex flex-col h-full">
               {/* Phase Header */}
-              <div className="flex items-center justify-between pb-3 border-b border-[#E2E6EE] dark:border-white/10">
+              <div className="flex items-center justify-between pb-3 border-b border-[#E2E6EE] dark:border-white/10 mb-5 shrink-0">
                 <span className="text-xs font-semibold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8]">
                   {phaseGroup.phase}
                 </span>
@@ -140,31 +140,31 @@ export default function ProcessTimeline() {
                 </span>
               </div>
 
-              {/* Steps inside phase */}
-              <div className="space-y-4">
+              {/* Steps inside phase: Equal height 3-row grid */}
+              <div className="grid grid-rows-3 gap-4 flex-1">
                 {phaseGroup.steps.map((step) => {
                   const Icon = step.icon;
                   return (
                     <div
                       key={step.num}
-                      className="bg-white dark:bg-[#11161B] hover:border-[#5846F6]/40 dark:hover:border-[#5846F6]/40 rounded-2xl p-5 sm:p-6 border border-[#E2E6EE] dark:border-white/10 shadow-card transition-all duration-300 flex flex-col justify-between group cursor-default"
+                      className="h-full min-h-[190px] sm:min-h-[205px] lg:min-h-[215px] bg-white dark:bg-[#11161B] hover:border-[#5846F6]/40 dark:hover:border-[#5846F6]/40 rounded-2xl p-5 sm:p-6 border border-[#E2E6EE] dark:border-white/10 shadow-card transition-all duration-300 flex flex-col justify-between group cursor-default"
                     >
-                      <div>
-                        <div className="flex items-center justify-between mb-4">
-                          <div className="w-10 h-10 rounded-xl bg-[#F6F7FB] dark:bg-[#151D26] border border-[#E2E6EE] dark:border-white/10 text-[#0070AD] dark:text-[#38BDF8] flex items-center justify-center group-hover:bg-[#5846F6] group-hover:text-white transition-all shadow-xs">
-                            <Icon className="w-5 h-5" />
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-[#0070AD]/10 dark:bg-[#38BDF8]/10 text-[#0070AD] dark:text-[#38BDF8]">
-                              {step.badge}
-                            </span>
-                            <span className="text-xl font-bold text-[#9BA8BA]/40 group-hover:text-[#5846F6] transition-colors">
-                              {step.num}
-                            </span>
-                          </div>
+                      <div className="flex items-center justify-between mb-3.5 shrink-0">
+                        <div className="w-10 h-10 rounded-xl bg-[#F6F7FB] dark:bg-[#151D26] border border-[#E2E6EE] dark:border-white/10 text-[#0070AD] dark:text-[#38BDF8] flex items-center justify-center group-hover:bg-[#5846F6] group-hover:text-white transition-all shadow-xs">
+                          <Icon className="w-5 h-5" />
                         </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-[#0070AD]/10 dark:bg-[#38BDF8]/10 text-[#0070AD] dark:text-[#38BDF8]">
+                            {step.badge}
+                          </span>
+                          <span className="text-xl font-bold text-[#9BA8BA]/40 group-hover:text-[#5846F6] transition-colors">
+                            {step.num}
+                          </span>
+                        </div>
+                      </div>
 
-                        <h3 className="text-base font-semibold text-[#111827] dark:text-white mb-2 group-hover:text-[#0070AD] dark:group-hover:text-[#38BDF8] transition-colors leading-snug">
+                      <div className="flex-1 flex flex-col justify-start">
+                        <h3 className="text-base font-semibold text-[#111827] dark:text-white mb-2 group-hover:text-[#0070AD] dark:group-hover:text-[#38BDF8] transition-colors leading-snug min-h-[2.75rem] flex items-start">
                           {step.title}
                         </h3>
 
