@@ -8,6 +8,7 @@ import FloatingActions from './components/FloatingActions';
 import CalendlyModal from './components/CalendlyModal';
 import HomePage from './pages/HomePage';
 import Logo from './components/Logo';
+import GlobalScrollRevealer from './components/GlobalScrollRevealer';
 
 // Lazy-loaded subpages for optimal performance & fast initial load
 const ServiceDetailPage = lazy(() => import('./pages/ServiceDetailPage'));
@@ -95,6 +96,7 @@ export default function App() {
     <ThemeProvider>
       <Router>
         <ScrollManager />
+        <GlobalScrollRevealer />
 
         {/* Top Reading / Scroll Progress Bar */}
         <motion.div
