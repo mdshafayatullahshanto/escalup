@@ -12,8 +12,7 @@ import {
   Briefcase, 
   Lock, 
   Server, 
-  Cpu, 
-  ArrowRight
+  Cpu
 } from 'lucide-react';
 import GlassBadge from './ui/GlassBadge';
 import { BlurReveal, HighlightUnderline } from './ui/ScrollAnimations';
@@ -164,15 +163,6 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
             <h3 className="text-2xl sm:text-3xl font-light text-[#111827] dark:text-white tracking-tight mt-1 mb-2">
               What We Support
             </h3>
-            <div className="flex justify-center pt-1">
-              <a 
-                href="#services" 
-                className="text-xs sm:text-sm font-medium text-[#5846F6] hover:underline inline-flex items-center gap-1"
-              >
-                <span>View all services</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
           </div>
 
           <div className="flex flex-wrap justify-center gap-4 sm:gap-5">

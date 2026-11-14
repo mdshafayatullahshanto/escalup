@@ -3,8 +3,7 @@
 // The center card is raised/larger. Cards animate in on scroll with a small stagger.
 
 import React from 'react';
-import { ArrowRight, Cpu, Layers, Wrench, CheckCircle2 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Cpu, Layers, Wrench, CheckCircle2 } from 'lucide-react';
 import GlassBadge from './ui/GlassBadge';
 import { BlurReveal, HighlightUnderline } from './ui/ScrollAnimations';
 
@@ -114,16 +113,6 @@ export default function ProductCardsTrio() {
                         </li>
                       ))}
                     </ul>
-                  </div>
-
-                  <div className="pt-6 mt-6 border-t border-[#E2E6EE] dark:border-white/10">
-                    <Link
-                      to={card.link}
-                      className="group flex items-center justify-between text-xs font-bold text-[#0070AD] dark:text-[#38BDF8] hover:underline"
-                    >
-                      <span>Explore Technical Scope</span>
-                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                    </Link>
                   </div>
                 </div>
 
