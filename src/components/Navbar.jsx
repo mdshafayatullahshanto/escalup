@@ -185,21 +185,21 @@ export default function Navbar({ onOpenCalendly }) {
             })}
           </nav>
 
-          {/* RIGHT: Glowing Circular Hamburger Menu Button */}
+          {/* RIGHT: Circular Hamburger Menu Button (Matches Navbar height, no permanent glow) */}
           <div className="flex items-center">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white border-2 border-[#2563EB] shadow-[0_0_12px_rgba(37,99,235,0.7),0_0_24px_rgba(37,99,235,0.35)] hover:shadow-[0_0_18px_rgba(37,99,235,0.9),0_0_32px_rgba(37,99,235,0.5)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center cursor-pointer relative z-50 group"
+              className="w-9 h-9 rounded-full bg-white border-2 border-[#2563EB] shadow-xs hover:border-[#1D4ED8] hover:shadow-[0_0_10px_rgba(37,99,235,0.4)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center cursor-pointer relative z-50 group"
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               title="Menu"
             >
               {menuOpen ? (
-                <X className="w-5 h-5 text-[#2563EB] stroke-[2.5] transition-transform group-hover:rotate-90 duration-200" />
+                <X className="w-4 h-4 text-[#2563EB] stroke-[2.5] transition-transform group-hover:rotate-90 duration-200" />
               ) : (
-                <div className="flex flex-col justify-center items-center gap-[3.5px]">
-                  <span className="w-4 h-[2px] bg-[#2563EB] rounded-full transition-all group-hover:w-4.5"></span>
-                  <span className="w-4 h-[2px] bg-[#2563EB] rounded-full transition-all"></span>
-                  <span className="w-4 h-[2px] bg-[#2563EB] rounded-full transition-all group-hover:w-4.5"></span>
+                <div className="flex flex-col justify-center items-center gap-[3px]">
+                  <span className="w-3.5 h-[1.5px] bg-[#2563EB] rounded-full transition-all"></span>
+                  <span className="w-3.5 h-[1.5px] bg-[#2563EB] rounded-full transition-all"></span>
+                  <span className="w-3.5 h-[1.5px] bg-[#2563EB] rounded-full transition-all"></span>
                 </div>
               )}
             </button>
