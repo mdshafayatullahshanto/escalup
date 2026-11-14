@@ -59,24 +59,27 @@ export function StaggerItem({
 
 /**
  * Highlighter underline animation on key words in headlines.
- * Draws an organic, smooth highlighter brush/underline stroke from left to right on scroll.
+ * Draws an organic, smooth highlighter brush stroke with signature blue-to-indigo gradient
+ * (#0070AD -> #5846F6) from left to right on scroll, positioned safely below all letter descenders.
  */
 export function HighlightUnderline({
   children,
-  color = '#2E756E',
-  thickness = 3.5,
+  color,
+  thickness = 3,
   delay = 0.2,
   duration = 0.6,
   className = '',
 }) {
   const shouldReduceMotion = useReducedMotion();
+  const reactId = React.useId();
+  const gradientId = `underline-grad-${reactId.replace(/:/g, '')}`;
 
   return (
-    <span className={`relative inline-block whitespace-nowrap ${className}`}>
-      <span className="relative z-10">{children}</span>
+    <span className={`relative inline-block ${className}`}>
+      <span className="relative z-10 inline-block pb-1 sm:pb-1.5">{children}</span>
       {!shouldReduceMotion && (
         <motion.svg
-          className="absolute -bottom-1 sm:-bottom-1.5 left-0 w-full h-[6px] sm:h-[8px] pointer-events-none overflow-visible -z-0"
+          className="absolute bottom-0 left-0 w-full h-[5px] sm:h-[7px] pointer-events-none overflow-visible -z-0 translate-y-1 sm:translate-y-1.5"
           viewBox="0 0 100 8"
           fill="none"
           preserveAspectRatio="none"
@@ -84,9 +87,15 @@ export function HighlightUnderline({
           whileInView="visible"
           viewport={{ once: true, margin: '-20px' }}
         >
+          <defs>
+            <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#0070AD" />
+              <stop offset="100%" stopColor="#5846F6" />
+            </linearGradient>
+          </defs>
           <motion.path
-            d="M 1 5 Q 35 1, 65 4.5 T 99 3.5"
-            stroke={color}
+            d="M 1 4 Q 40 6.5, 70 4.5 T 99 5"
+            stroke={color || `url(#${gradientId})`}
             strokeWidth={thickness}
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -94,7 +103,7 @@ export function HighlightUnderline({
               hidden: { pathLength: 0, opacity: 0 },
               visible: {
                 pathLength: 1,
-                opacity: 0.85,
+                opacity: 0.95,
                 transition: {
                   duration,
                   delay,

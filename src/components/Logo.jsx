@@ -1,13 +1,13 @@
 // /src/components/Logo.jsx
 // escalup official combined brand logo component
-// Uses brand color #2E756E for the company name and logo mark.
+// Uses signature blue-to-indigo gradient (#0070AD -> #5846F6) for company name and logo mark.
 // Clicking navigates to homepage and scrolls to the top smoothly.
 
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Logo({ 
-  variant = 'teal', // 'teal' (#2E756E, default) | 'white' (for dark contrast) | 'auto'
+  variant = 'gradient', // 'gradient' (#0070AD -> #5846F6, default) | 'white' (for dark contrast) | 'auto'
   size = 'md', 
   link = true, 
   className = '',
@@ -52,23 +52,11 @@ export default function Logo({
         loading="eager"
       />
     );
-  } else if (variant === 'auto') {
-    // Theme-adaptive: #2E756E brand color
-    imageElement = (
-      <div className="relative inline-flex items-center">
-        <img
-          src="/escalup-logo-teal.png"
-          alt="escalup"
-          className={`${currentHeight} w-auto object-contain transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none`}
-          loading="eager"
-        />
-      </div>
-    );
   } else {
-    // Default: Official Brand Color #2E756E
+    // Default: Signature Brand Gradient (#0070AD to #5846F6)
     imageElement = (
       <img
-        src="/escalup-logo-teal.png"
+        src="/escalup-logo-gradient.png"
         alt="escalup"
         className={`${currentHeight} w-auto object-contain transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none`}
         loading="eager"
@@ -87,7 +75,7 @@ export default function Logo({
       <Link
         to="/"
         onClick={handleClick}
-        className="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2E756E] rounded-md transition-opacity cursor-pointer inline-flex items-center shrink-0"
+        className="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0070AD] rounded-md transition-opacity cursor-pointer inline-flex items-center shrink-0"
         aria-label="escalup home"
       >
         {content}

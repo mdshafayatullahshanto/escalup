@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-151 -151 302 302" width="800" height="800">
+  <defs>
+    <linearGradient id="e-brand-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0070AD"/>
+      <stop offset="100%" stop-color="#5846F6"/>
+    </linearGradient>
+  </defs>
+  <g transform="rotate(-22)">
+    <path fill="url(#e-brand-grad)" d="M147.75 30.16 A150.80 150.80 0 1 0 120.64 90.48 L0 90.48 A90.48 90.48 0 1 1 85.31 -30.16 L0 -30.16 A30.16 30.16 0 0 0 0 30.16 Z"/>
+  </g>
+</svg>

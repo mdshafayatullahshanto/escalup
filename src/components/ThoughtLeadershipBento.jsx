@@ -73,7 +73,7 @@ export default function ThoughtLeadershipBento() {
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-tight mb-3">
             Research, Announcements &{' '}
-            <HighlightUnderline color="#2E756E">
+            <HighlightUnderline>
               <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
                 Thought Leadership
               </span>

@@ -25,7 +25,7 @@ export default function CuriousSection() {
         {/* Centered Heading with Gradient Highlight Word */}
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-[1.16] mb-4 [text-wrap:balance]">
           Transforming engineering capacity with{' '}
-          <HighlightUnderline color="#2E756E">
+          <HighlightUnderline>
             <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
               intelligent CAD collaboration.
             </span>
