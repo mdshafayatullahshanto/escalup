@@ -3,12 +3,11 @@
 // The center card is raised/larger. Cards animate in on scroll with a small stagger.
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { ArrowRight, Cpu, Layers, Wrench, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Badge from './ui/Badge';
 import GlassBadge from './ui/GlassBadge';
-import { BlurReveal, StaggerList, StaggerItem, HighlightUnderline } from './ui/ScrollAnimations';
+import { BlurReveal, HighlightUnderline } from './ui/ScrollAnimations';
 
 const TRIO_CARDS = [
   {
@@ -71,15 +70,11 @@ export default function ProductCardsTrio() {
 
         {/* 3 Tall Product Cards with Stagger Animation */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
-          {TRIO_CARDS.map((card, idx) => {
+          {TRIO_CARDS.map((card) => {
             const Icon = card.icon;
             return (
-              <motion.div
+              <div
                 key={card.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.55, delay: idx * 0.15, ease: [0.22, 1, 0.36, 1] }}
                 className={`flex flex-col rounded-3xl overflow-hidden transition-all duration-300 ${
                   card.raised
                     ? 'md:-translate-y-4 md:shadow-2xl border-2 border-[#0070AD]/40 dark:border-[#38BDF8]/40'
@@ -119,14 +114,14 @@ export default function ProductCardsTrio() {
                       {card.subtitle}
                     </p>
 
-                    <StaggerList className="pt-2 space-y-2">
+                    <ul className="pt-2 space-y-2">
                       {card.benefits.map((b, bIdx) => (
-                        <StaggerItem key={bIdx} className="flex items-center gap-2 text-xs text-[#111827] dark:text-[#F3F5FA]">
+                        <li key={bIdx} className="flex items-center gap-2 text-xs text-[#111827] dark:text-[#F3F5FA]">
                           <CheckCircle2 className="w-3.5 h-3.5 text-[#0070AD] dark:text-[#14F3C1] shrink-0" />
                           <span>{b}</span>
-                        </StaggerItem>
+                        </li>
                       ))}
-                    </StaggerList>
+                    </ul>
                   </div>
 
                   <div className="pt-6 mt-6 border-t border-[#E2E6EE] dark:border-white/10">
@@ -140,7 +135,7 @@ export default function ProductCardsTrio() {
                   </div>
                 </div>
 
-              </motion.div>
+              </div>
             );
           })}
         </div>

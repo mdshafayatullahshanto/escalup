@@ -3,7 +3,6 @@
 // Brand color combination matching reference design
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Target, Shield, Users2, Activity } from 'lucide-react';
 import SectionHeading from './SectionHeading';
 
@@ -35,23 +34,6 @@ const VALUES = [
 ];
 
 export default function ValuesSection() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.1 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
-    }
-  };
-
   return (
     <section className="py-16 sm:py-20 md:py-28 bg-[#F8FAF9] dark:bg-[#0D1A17] border-b border-[#DBE3E0] dark:border-[#263830] relative">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
@@ -62,20 +44,12 @@ export default function ValuesSection() {
           subtitle="Our offshore engineering model is built on transparency, technical rigor, and zero-defect drafting—ensuring reliable delivery for international procurement heads."
         />
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-40px' }}
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
-        >
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {VALUES.map((val) => {
             const Icon = val.icon;
             return (
-              <motion.div
+              <div
                 key={val.number}
-                variants={itemVariants}
-                whileHover={{ y: -6 }}
                 className="bg-white dark:bg-[#152620] hover:bg-[#F4F6F5] dark:hover:bg-[#1D3328] rounded-3xl p-7 border border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40 dark:hover:border-[#3B948A]/40 shadow-soft hover:shadow-card transition-all duration-300 flex flex-col justify-between group cursor-default"
               >
                 <div>
@@ -96,10 +70,10 @@ export default function ValuesSection() {
                     {val.desc}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
 
       </div>
     </section>

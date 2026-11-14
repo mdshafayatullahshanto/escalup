@@ -3,7 +3,6 @@
 // Light Editorial Engineering Theme with Deep Forest Teal Band
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { ArrowRight, Calendar, ShieldCheck, Clock, Star, Lock } from 'lucide-react';
 import { trackCallBooking } from '../utils/analytics';
 import { companyData } from '../data/company';
@@ -34,13 +33,7 @@ export default function FinalCTABand({ onOpenCalendly }) {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#2E756E]/20 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-40px' }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-4xl mx-auto text-center space-y-6"
-        >
+        <div className="max-w-4xl mx-auto text-center space-y-6">
           
           {/* Eyebrow Pill */}
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#2E756E]/40 text-[#A0D4CE] border border-[#2E756E]/50">
@@ -98,7 +91,7 @@ export default function FinalCTABand({ onOpenCalendly }) {
             </div>
           </div>
 
-        </motion.div>
+        </div>
       </div>
     </section>
   );

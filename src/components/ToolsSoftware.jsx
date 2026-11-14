@@ -18,27 +18,11 @@ export default function ToolsSoftware() {
           subtitle="We deliver in native formats and industry standards to maintain 100% parametric integrity with your in-house repositories."
         />
 
-        {/* Categories Stack with motion stagger */}
-        <motion.div
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-40px' }}
-          variants={{
-            hidden: { opacity: 0 },
-            show: {
-              opacity: 1,
-              transition: { staggerChildren: 0.1 }
-            }
-          }}
-          className="space-y-6 max-w-5xl mx-auto"
-        >
+        {/* Categories Stack */}
+        <div className="space-y-6 max-w-5xl mx-auto">
           {toolsData.map((categoryGroup, idx) => (
-            <motion.div
+            <div
               key={idx}
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } }
-              }}
               className="p-6 sm:p-7 rounded-3xl bg-white dark:bg-[#152620] border border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/40 dark:hover:border-[#3B948A]/40 transition-all shadow-soft text-center"
             >
               <div className="flex flex-col items-center justify-center gap-1.5 mb-5 text-center">
@@ -62,9 +46,9 @@ export default function ToolsSoftware() {
                   </motion.div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Informational Callout Card */}
         {toolsNote && (

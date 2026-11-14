@@ -3,7 +3,6 @@
 // 9 Steps in exact sequence with structured engineering design methodology
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { 
   FileSearch, 
   Lightbulb, 
@@ -103,19 +102,6 @@ const PHASES = [
 ];
 
 export default function ProcessTimeline() {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.08 }
-    }
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 18, filter: 'blur(6px)' },
-    show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }
-  };
-
   return (
     <section id="process" className="py-12 sm:py-16 md:py-20 bg-[#F6F7FB] dark:bg-[#080C0F] text-[#111827] dark:text-white border-b border-[#E2E6EE] dark:border-white/10 relative scroll-mt-12 transition-colors">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -141,13 +127,7 @@ export default function ProcessTimeline() {
         </BlurReveal>
 
         {/* 3 Main Phase Columns */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-40px' }}
-          className="grid lg:grid-cols-3 gap-6 lg:gap-8"
-        >
+        <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
           {PHASES.map((phaseGroup, pIdx) => (
             <div key={pIdx} className="space-y-5">
               {/* Phase Header */}
@@ -165,10 +145,8 @@ export default function ProcessTimeline() {
                 {phaseGroup.steps.map((step) => {
                   const Icon = step.icon;
                   return (
-                    <motion.div
+                    <div
                       key={step.num}
-                      variants={item}
-                      whileHover={{ y: -4 }}
                       className="bg-white dark:bg-[#11161B] hover:border-[#5846F6]/40 dark:hover:border-[#5846F6]/40 rounded-2xl p-5 sm:p-6 border border-[#E2E6EE] dark:border-white/10 shadow-card transition-all duration-300 flex flex-col justify-between group cursor-default"
                     >
                       <div>
@@ -194,13 +172,13 @@ export default function ProcessTimeline() {
                           {step.desc}
                         </p>
                       </div>
-                    </motion.div>
+                    </div>
                   );
                 })}
               </div>
             </div>
           ))}
-        </motion.div>
+        </div>
 
       </div>
     </section>

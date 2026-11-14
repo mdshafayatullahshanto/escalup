@@ -1,9 +1,8 @@
 // /src/components/SectionHeading.jsx
-// Smooth, staggered entrance animation for section headings across the site
-// Brand color combination matching reference design
+// Clean, semantic section headings with consistent typography across the site
+// Automatically animated in top-to-bottom order by the global scroll reveal engine.
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import GlassBadge from './ui/GlassBadge';
 
 export default function SectionHeading({
@@ -15,60 +14,25 @@ export default function SectionHeading({
 }) {
   const isCenter = align === 'center';
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.05,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 18, filter: 'blur(8px)' },
-    visible: {
-      opacity: 1,
-      y: 0,
-      filter: 'blur(0px)',
-      transition: {
-        duration: 0.65,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
-  };
-
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-60px' }}
-      data-no-reveal="true"
+    <div
       className={`max-w-3xl mb-12 md:mb-16 ${isCenter ? 'mx-auto text-center' : 'text-left'} ${className}`}
     >
       {eyebrow && (
-        <motion.div variants={itemVariants} className="mb-3.5">
+        <div className="mb-3.5">
           <GlassBadge>{eyebrow}</GlassBadge>
-        </motion.div>
+        </div>
       )}
 
-      <motion.h2
-        variants={itemVariants}
-        className="text-2xl sm:text-3xl md:text-4xl font-light tracking-tight leading-tight text-[#111827] dark:text-white"
-      >
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-tight leading-tight text-[#111827] dark:text-white">
         {title}
-      </motion.h2>
+      </h2>
 
       {subtitle && (
-        <motion.p
-          variants={itemVariants}
-          className="mt-4 text-base sm:text-lg leading-relaxed text-[#5A6A65] dark:text-[#8FA89F]"
-        >
+        <p className="mt-4 text-base sm:text-lg leading-relaxed text-[#5A6A65] dark:text-[#8FA89F]">
           {subtitle}
-        </motion.p>
+        </p>
       )}
-    </motion.div>
+    </div>
   );
 }

@@ -3,7 +3,6 @@
 // Light Editorial Engineering Theme with Deep Teal accents
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { CheckCircle2, ArrowRight, Sparkles } from 'lucide-react';
 
 export default function PilotProject() {
@@ -41,13 +40,7 @@ export default function PilotProject() {
   return (
     <section className="py-16 md:py-24 bg-white dark:bg-[#0D1A17] border-b border-[#DBE3E0] dark:border-[#263830] relative overflow-hidden">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-40px' }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="bg-gradient-to-br from-[#142F2C] via-[#102724] to-[#0A1B19] rounded-3xl p-8 sm:p-12 md:p-16 text-white shadow-2xl relative overflow-hidden border border-[#2E756E]/40"
-        >
+        <div className="bg-gradient-to-br from-[#142F2C] via-[#102724] to-[#0A1B19] rounded-3xl p-8 sm:p-12 md:p-16 text-white shadow-2xl relative overflow-hidden border border-[#2E756E]/40">
           {/* Subtle background CAD grid */}
           <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none" />
 
@@ -93,7 +86,7 @@ export default function PilotProject() {
               </span>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

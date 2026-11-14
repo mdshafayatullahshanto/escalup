@@ -3,7 +3,6 @@
 // Connects global procurement personas directly with verified engineering capabilities.
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { 
   Factory, 
   DraftingCompass, 
@@ -58,19 +57,6 @@ const CLIENT_PERSONAS = [
 ];
 
 export default function WhoWeWorkWith() {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 }
-    }
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } }
-  };
-
   const handleQuoteClick = (e) => {
     e.preventDefault();
     const el = document.getElementById('contact');
@@ -88,21 +74,12 @@ export default function WhoWeWorkWith() {
         />
 
         {/* 4 Industry Cards in Infosys Corporate Architecture */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-40px' }}
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
-        >
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {CLIENT_PERSONAS.map((persona) => {
             const Icon = persona.icon;
             return (
-              <motion.div
+              <div
                 key={persona.id}
-                variants={item}
-                whileHover={{ y: -6 }}
-                transition={{ duration: 0.28, ease: 'easeOut' }}
                 className="bg-white dark:bg-[#152620] rounded-3xl p-6 sm:p-7 border border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/50 dark:hover:border-[#3B948A]/50 shadow-soft hover:shadow-card transition-all duration-300 flex flex-col justify-between group cursor-default"
               >
                 <div>
@@ -159,19 +136,13 @@ export default function WhoWeWorkWith() {
                     <ArrowRight className="w-3.5 h-3.5" />
                   </a>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
 
         {/* Global reach ribbon */}
-        <motion.div 
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-          className="mt-12 py-4 px-6 rounded-2xl bg-white dark:bg-[#152620] border border-[#DBE3E0] dark:border-[#263830] flex flex-col sm:flex-row items-center justify-center gap-3 text-xs text-[#5A6A65] dark:text-[#8FA89F] shadow-soft text-center"
-        >
+        <div className="mt-12 py-4 px-6 rounded-2xl bg-white dark:bg-[#152620] border border-[#DBE3E0] dark:border-[#263830] flex flex-col sm:flex-row items-center justify-center gap-3 text-xs text-[#5A6A65] dark:text-[#8FA89F] shadow-soft text-center">
           <div className="flex items-center gap-2 font-bold text-[#14201D] dark:text-[#E4EDE9]">
             <Globe className="w-4 h-4 text-[#2E756E] dark:text-[#14F3C1]" />
             <span>Serving international engineering organizations across:</span>
@@ -193,7 +164,7 @@ export default function WhoWeWorkWith() {
               North America
             </span>
           </div>
-        </motion.div>
+        </div>
 
       </div>
     </section>

@@ -7,7 +7,6 @@
 // grayscale portrait with caption below the card.
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { ShieldCheck, CheckCircle2 } from 'lucide-react';
 import founderImg from '../assets/founder.png';
 import Button from './ui/Button';
@@ -19,35 +18,6 @@ export default function CareersBanner({ onOpenCalendly }) {
     } else {
       window.open('https://cal.com/escalup/book-a-call', '_blank', 'noopener,noreferrer');
     }
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 16 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
-    },
-  };
-
-  const imageVariants = {
-    hidden: { opacity: 0, y: 22 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
-    },
   };
 
   return (
@@ -65,34 +35,22 @@ export default function CareersBanner({ onOpenCalendly }) {
           <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-10 lg:gap-14">
             
             {/* Left Text Block (56% width on desktop) */}
-            <motion.div
-              className="w-full lg:w-[56%] space-y-6 text-left"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-50px' }}
-            >
+            <div className="w-full lg:w-[56%] space-y-6 text-left">
               {/* Headline: Reference Style (Light 300 with signature indigo gradient) */}
-              <motion.h2 
-                variants={itemVariants}
-                className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-[1.18] max-w-xl [text-wrap:balance]"
-              >
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-[1.18] max-w-xl [text-wrap:balance]">
                 Scale Your Project Team with{' '}
                 <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
                   Dedicated Offshore Talent.
                 </span>
-              </motion.h2>
+              </h2>
 
               {/* Paragraph copy */}
-              <motion.p 
-                variants={itemVariants}
-                className="text-sm sm:text-base text-[#475569] dark:text-[#9BA8BA] max-w-xl leading-relaxed font-normal"
-              >
+              <p className="text-sm sm:text-base text-[#475569] dark:text-[#9BA8BA] max-w-xl leading-relaxed font-normal">
                 When your workload grows, Escalup adds engineering capacity to your team. This can be overflow 3D parametric CAD modeling, MEP clash resolution, or dedicated mechanical and MEP specialists for an upcoming release. Our engineers join your standups, work to your drawing standards, and follow the same Design Approach on every project. Team size and engagement terms are agreed per project.
-              </motion.p>
+              </p>
 
               {/* Clean bullet proof points */}
-              <motion.div variants={itemVariants} className="space-y-2.5 pt-1">
+              <div className="space-y-2.5 pt-1">
                 <div className="flex items-center gap-2.5 text-sm sm:text-[15px] text-[#1E293B] dark:text-white/90">
                   <CheckCircle2 className="w-4 h-4 text-[#5846F6] shrink-0" />
                   <span>Native parametric CAD files in the client's drawing format</span>
@@ -109,13 +67,10 @@ export default function CareersBanner({ onOpenCalendly }) {
                   <CheckCircle2 className="w-4 h-4 text-[#5846F6] shrink-0" />
                   <span>Project data in a Microsoft 365 environment, adaptable to client tools</span>
                 </div>
-              </motion.div>
+              </div>
 
               {/* CTA Row with Black Pill Button */}
-              <motion.div 
-                variants={itemVariants}
-                className="pt-2 flex flex-col sm:flex-row items-start sm:items-center gap-5"
-              >
+              <div className="pt-2 flex flex-col sm:flex-row items-start sm:items-center gap-5">
                 <Button
                   variant="primary"
                   size="lg"
@@ -130,17 +85,11 @@ export default function CareersBanner({ onOpenCalendly }) {
                   <ShieldCheck className="w-4 h-4 text-[#5846F6]" />
                   <span>Client owns all project IP</span>
                 </div>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
 
             {/* Right Portrait Column (42% width on desktop) */}
-            <motion.div
-              className="w-full sm:w-[85%] md:w-[70%] lg:w-[42%] flex justify-center lg:justify-end"
-              variants={imageVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-50px' }}
-            >
+            <div className="w-full sm:w-[85%] md:w-[70%] lg:w-[42%] flex justify-center lg:justify-end">
               <div className="w-full max-w-[420px]">
                 {/* Grayscale Portrait Frame */}
                 <div className="w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-card relative bg-[#EEF2F8] dark:bg-[#151D26] border border-[#E2E6EE] dark:border-white/10 group">
@@ -161,7 +110,7 @@ export default function CareersBanner({ onOpenCalendly }) {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
           </div>
         </div>

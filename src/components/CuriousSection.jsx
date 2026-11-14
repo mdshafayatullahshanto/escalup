@@ -2,7 +2,6 @@
 // STEP 3 - Item 3: Centered heading with a gradient highlight word, short subtext, dark pill button ("I'm Curious").
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import Button from './ui/Button';
 import GlassBadge from './ui/GlassBadge';
 import { HighlightUnderline } from './ui/ScrollAnimations';
@@ -19,15 +18,9 @@ export default function CuriousSection() {
       <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
         
         {/* Glassmorphism Eyebrow */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="mb-3.5"
-        >
+        <div className="mb-3.5">
           <GlassBadge>The Engineering Edge</GlassBadge>
-        </motion.div>
+        </div>
 
         {/* Centered Heading with Gradient Highlight Word */}
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-[1.16] mb-4 [text-wrap:balance]">
@@ -45,12 +38,7 @@ export default function CuriousSection() {
         </p>
 
         {/* Dark Pill Primary Button: "I'm Curious" */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.3 }}
-        >
+        <div>
           <Button
             variant="primary"
             size="md"
@@ -60,7 +48,7 @@ export default function CuriousSection() {
           >
             I'm Curious
           </Button>
-        </motion.div>
+        </div>
 
       </div>
     </section>

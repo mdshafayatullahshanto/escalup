@@ -1,8 +1,11 @@
 // src/components/GlobalScrollRevealer.jsx
-// Global reusable scroll-triggered animation engine
-// Automatically discovers and animates all headings, paragraphs, lists, cards, buttons, FAQs, and footer elements across the entire website.
-// Zero heavy libraries — built on native IntersectionObserver and CSS hardware-accelerated transforms.
-// Runs once per element, staggers items within the same section, respects prefers-reduced-motion, and prevents layout shift.
+// Unified, high-performance global scroll animation engine
+// Guarantees:
+// 1. Identical timing (0.6s), identical distance (18px), identical easing, and light blur (4px) everywhere.
+// 2. Strict top-to-bottom (and left-to-right) animation order within every section.
+// 3. Single IntersectionObserver with zero layout shift and hardware acceleration.
+// 4. Zero double-animation: outer visual containers animate as a unit, or standalone text elements animate individually.
+// 5. Accessible: respects prefers-reduced-motion instantly.
 
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -15,7 +18,7 @@ export default function GlobalScrollRevealer() {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
-    // Elements or containers that should never be hidden/animated (navigation, cursor, modals, pre-animated blocks, etc.)
+    // Containers that should never be animated (navigation, cursor, background grids, overlays)
     const EXCLUDE_CONTAINERS = [
       'header',
       'nav',
@@ -23,26 +26,13 @@ export default function GlobalScrollRevealer() {
       '#navbar',
       '#custom-cursor',
       '[aria-hidden="true"]',
-      '.no-reveal',
-      '[data-no-reveal]',
-      '[data-stagger-list]',
-      '[data-stagger-item]',
       '.blueprint-grid',
+      '#hero-grain-filter',
+      '.no-reveal',
+      '#home', // Hero slider handles its own internal slide crossfades
     ].join(', ');
 
-    // Target elements to discover and animate
-    const TARGET_SELECTOR = [
-      'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
-      'p',
-      'ul > li', 'ol > li',
-      '[class*="shadow-card"]',
-      '[class*="rounded-3xl"]:not(section):not(main)',
-      'button:not([aria-hidden="true"])',
-      'a[class*="rounded-full"]',
-      'footer .grid > div',
-      'footer .pt-8',
-    ].join(', ');
-
+    // Single IntersectionObserver for all reveal items
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -55,58 +45,102 @@ export default function GlobalScrollRevealer() {
       },
       {
         root: null,
-        rootMargin: '0px 0px -40px 0px', // trigger smoothly as content approaches viewport
+        rootMargin: '0px 0px -30px 0px', // trigger smoothly as content enters viewport
         threshold: 0.05,
       }
     );
 
     const scanAndObserve = () => {
-      // Find all sections, major content blocks, and footer
-      const containers = document.querySelectorAll('section, main > div, footer, [id="services"], [id="process"], [id="offshore-model"], [id="portfolio"], [id="about"], [id="contact"], [id="faq"]');
+      // Find all potential section containers across the website
+      const allContainers = Array.from(
+        document.querySelectorAll('section, main > div:not(#home), footer')
+      );
 
-      const observedSet = new Set();
+      // Filter to innermost "leaf" sections so each section staggers independently
+      const leafSections = allContainers.filter((container) => {
+        if (container.closest(EXCLUDE_CONTAINERS)) return false;
+        // If this container contains another candidate container, let the child sections be processed
+        const hasChildSection = allContainers.some(
+          (other) => other !== container && container.contains(other)
+        );
+        return !hasChildSection;
+      });
 
-      containers.forEach((container) => {
-        if (container.closest(EXCLUDE_CONTAINERS)) return;
+      const globallyObserved = new Set();
 
-        // Query all candidates inside this container
-        const rawCandidates = Array.from(container.querySelectorAll(TARGET_SELECTOR));
+      leafSections.forEach((section) => {
+        if (section.closest(EXCLUDE_CONTAINERS)) return;
 
-        // Filter out candidates that are inside excluded containers, already processed, or inside an already-revealed parent
-        const filtered = rawCandidates.filter((el) => {
+        // Query raw potential candidates inside this section
+        const rawCandidates = Array.from(
+          section.querySelectorAll(
+            'h1, h2, h3, h4, h5, h6, p, ul > li, ol > li, blockquote, [class*="shadow-card"], [class*="rounded-2xl"]:not(section):not(main), [class*="rounded-3xl"]:not(section):not(main), [data-reveal-item], button:not(#navbar *):not(header *), a[class*="rounded-full"]:not(nav *)'
+          )
+        );
+
+        // Filter candidates:
+        // 1. Exclude navigation, cursor, and modal elements
+        // 2. Prevent double animation: if candidate B is inside candidate A (e.g. p inside a card),
+        //    keep the card container as the single animated unit and skip B.
+        const validCandidates = rawCandidates.filter((el) => {
           if (el.closest(EXCLUDE_CONTAINERS)) return false;
           if (el.classList.contains('is-revealed') || el.hasAttribute('data-reveal')) return false;
 
-          // Prevent double text animation: if an ancestor element already has data-reveal, skip this child
-          if (el.parentElement && el.parentElement.closest('[data-reveal]')) return false;
-
-          // Avoid double-animating deeply nested elements if the direct card parent is already animated
-          const parentCard = el.closest('[class*="shadow-card"], [class*="rounded-3xl"]');
-          if (parentCard && parentCard !== el) {
+          // Check if el is nested inside another candidate container (card, rounded container, etc.)
+          const parentContainer = el.parentElement?.closest(
+            '[class*="shadow-card"], [class*="rounded-2xl"], [class*="rounded-3xl"], [data-reveal-item]'
+          );
+          if (parentContainer && parentContainer !== el && section.contains(parentContainer)) {
+            // Let the parent container be the single animated unit
             return false;
           }
+
+          // Check if el is an empty container or invisible
+          if (el.offsetWidth === 0 && el.offsetHeight === 0) return false;
 
           return true;
         });
 
-        // Assign automatic stagger indices within the section cluster
-        filtered.forEach((el, index) => {
-          if (observedSet.has(el)) return;
-          observedSet.add(el);
+        // Calculate visual screen positions to sort strictly top-to-bottom
+        const scrollY = window.scrollY || window.pageYOffset;
+        const scrollX = window.scrollX || window.pageXOffset;
+
+        const positionedItems = validCandidates.map((el) => {
+          const rect = el.getBoundingClientRect();
+          return {
+            el,
+            top: rect.top + scrollY,
+            left: rect.left + scrollX,
+          };
+        });
+
+        // Strict top-to-bottom sorting:
+        // Items on different vertical levels sort by 'top'.
+        // Items on the same horizontal row/shelf (within 16px) sort left-to-right.
+        positionedItems.sort((a, b) => {
+          if (Math.abs(a.top - b.top) > 16) {
+            return a.top - b.top;
+          }
+          return a.left - b.left;
+        });
+
+        // Assign strictly sequential stagger indices (0, 1, 2, 3...)
+        positionedItems.forEach((item, index) => {
+          const el = item.el;
+          if (globallyObserved.has(el)) return;
+          globallyObserved.add(el);
 
           if (!el.hasAttribute('data-reveal')) {
             el.setAttribute('data-reveal', 'true');
-            // Cap stagger delay at 8 items (max 560ms) to ensure snappy response
-            const staggerIndex = Math.min(index % 9, 8);
-            el.style.setProperty('--stagger-idx', staggerIndex.toString());
+            el.style.setProperty('--stagger-idx', index.toString());
           }
 
-          // Check if element is already in the viewport on initial page load (above the fold)
+          // Check if already in viewport on load (above the fold)
           const rect = el.getBoundingClientRect();
           const inViewportInitially = rect.top < window.innerHeight && rect.bottom > 0;
 
           if (inViewportInitially) {
-            const delay = parseInt(el.style.getPropertyValue('--stagger-idx') || '0', 10) * 45;
+            const delay = Math.min(index, 8) * 45;
             setTimeout(() => {
               el.classList.add('is-revealed');
             }, delay);
@@ -120,10 +154,10 @@ export default function GlobalScrollRevealer() {
     // Initial scan
     scanAndObserve();
 
-    // Re-scan after short delay for lazy-loaded assets and fonts
+    // Re-scan after short delay for lazy fonts and DOM hydration
     const timer = setTimeout(scanAndObserve, 250);
 
-    // Watch for dynamically added DOM nodes (e.g. routes, modals, dynamic lists)
+    // Watch for dynamically loaded subpages, tabs, or DOM additions
     const mutationObserver = new MutationObserver(() => {
       scanAndObserve();
     });
@@ -139,4 +173,3 @@ export default function GlobalScrollRevealer() {
 
   return null;
 }
-

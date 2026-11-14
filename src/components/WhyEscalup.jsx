@@ -3,7 +3,6 @@
 // Light Editorial Engineering Theme with Deep Teal accents
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { 
   FileText, 
   GitMerge, 
@@ -60,19 +59,6 @@ const ADVANTAGES = [
 ];
 
 export default function WhyEscalup() {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.08 }
-    }
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }
-  };
-
   return (
     <section className="py-20 md:py-28 bg-[#F8FAF9] dark:bg-[#0D1A17] border-b border-[#DBE3E0] dark:border-[#263830] relative">
       <div className="w-full max-w-[1600px] 2xl:max-w-[1760px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
@@ -84,21 +70,12 @@ export default function WhyEscalup() {
         />
 
         {/* 6 Grid Cards */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-40px' }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {ADVANTAGES.map((adv) => {
             const Icon = adv.icon;
             return (
-              <motion.div
+              <div
                 key={adv.id}
-                variants={item}
-                whileHover={{ y: -8, scale: 1.01 }}
-                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
                 className="p-7 sm:p-8 rounded-3xl bg-white dark:bg-[#152620] hover:bg-white dark:hover:bg-[#1D3328] border border-[#DBE3E0] dark:border-[#263830] hover:border-[#2E756E]/50 dark:hover:border-[#3B948A]/50 shadow-soft hover:shadow-card transition-all duration-300 group flex flex-col justify-between cursor-default"
               >
                 <div>
@@ -119,10 +96,10 @@ export default function WhyEscalup() {
                     {adv.desc}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
 
       </div>
     </section>

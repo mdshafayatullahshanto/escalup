@@ -3,7 +3,6 @@
 // Precise offshore engineering partner structure, 7 project phases, governance, and Microsoft 365 security.
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { 
   Layers, 
   MessageSquare, 
@@ -135,24 +134,6 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
     if (contactEl) contactEl.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.08 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 16, filter: 'blur(6px)' },
-    visible: {
-      opacity: 1,
-      y: 0,
-      filter: 'blur(0px)',
-      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
-    }
-  };
-
   return (
     <section id="offshore-model" className="py-12 sm:py-16 md:py-20 bg-[#F6F7FB] dark:bg-[#080C0F] text-[#111827] dark:text-white border-b border-[#E2E6EE] dark:border-white/10 font-sans relative scroll-mt-12 transition-colors">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -243,17 +224,10 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
             </h3>
           </div>
 
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-40px' }}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {PROJECT_STEPS.map((step) => (
-              <motion.div
+              <div
                 key={step.step}
-                variants={itemVariants}
                 className="bg-white dark:bg-[#11161B] rounded-2xl p-6 border border-[#E2E6EE] dark:border-white/10 shadow-card flex flex-col justify-between"
               >
                 <div>
@@ -267,9 +241,9 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
                     {step.desc}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
 
         {/* 3. Communication & Deliverables Grid */}

@@ -40,7 +40,7 @@ export default function Footer() {
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Brand Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-8 border-b border-[#E2E6EE] dark:border-white/10 mb-10">
+        <div data-reveal-item="true" className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-8 border-b border-[#E2E6EE] dark:border-white/10 mb-10">
           <Logo size="md" />
           <p className="text-xs sm:text-sm text-[#475569] dark:text-[#9BA8BA] max-w-md">
             Offshore Mechanical Design, BIM & MEP engineering support for global innovators.
@@ -51,7 +51,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 pb-10 border-b border-[#E2E6EE] dark:border-white/10">
           
           {/* Column 1: Services (All 7 in exact order) */}
-          <div className="space-y-4">
+          <div data-reveal-item="true" className="space-y-4">
             <h4 className="text-sm font-semibold uppercase tracking-wider text-[#111827] dark:text-white">
               Engineering Services
             </h4>
@@ -71,7 +71,7 @@ export default function Footer() {
           </div>
 
           {/* Column 2: Navigation Links (Matching navbar order) */}
-          <div className="space-y-4">
+          <div data-reveal-item="true" className="space-y-4">
             <h4 className="text-sm font-semibold uppercase tracking-wider text-[#111827] dark:text-white">
               Navigation
             </h4>
@@ -120,7 +120,7 @@ export default function Footer() {
           </div>
 
           {/* Column 3: Data Security & Governance */}
-          <div className="space-y-4">
+          <div data-reveal-item="true" className="space-y-4">
             <h4 className="text-sm font-semibold uppercase tracking-wider text-[#111827] dark:text-white">
               Data Security & Standards
             </h4>
@@ -154,7 +154,7 @@ export default function Footer() {
           </div>
 
           {/* Column 4: Contact & Leadership */}
-          <div className="space-y-4">
+          <div data-reveal-item="true" className="space-y-4">
             <h4 className="text-sm font-semibold uppercase tracking-wider text-[#111827] dark:text-white">
               Office & Contact
             </h4>
@@ -175,7 +175,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar: Location Select, Copyright Row */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div data-reveal-item="true" className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           
           {/* Location Select Pill */}
           <div className="relative">

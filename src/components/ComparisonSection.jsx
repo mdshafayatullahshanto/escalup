@@ -3,7 +3,6 @@
 // Light Editorial Engineering Theme with Deep Teal accents
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Check, X, ArrowRight } from 'lucide-react';
 import SectionHeading from './SectionHeading';
 import Magnetic from './Magnetic';
@@ -49,13 +48,7 @@ export default function ComparisonSection() {
         <div className="grid md:grid-cols-2 gap-8 lg:gap-10 max-w-5xl mx-auto">
           
           {/* Left: Other Firms */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.5 }}
-            className="rounded-3xl p-7 sm:p-9 bg-[#F8FAF9] dark:bg-[#152620] border border-[#DBE3E0] dark:border-[#263830] shadow-soft"
-          >
+          <div className="rounded-3xl p-7 sm:p-9 bg-[#F8FAF9] dark:bg-[#152620] border border-[#DBE3E0] dark:border-[#263830] shadow-soft">
             <div className="flex items-center justify-between pb-6 border-b border-[#DBE3E0] dark:border-[#263830] mb-6">
               <div>
                 <span className="text-xs font-bold uppercase tracking-wider text-[#889893] dark:text-[#5A7268] block mb-1 font-mono">
@@ -84,16 +77,10 @@ export default function ComparisonSection() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
           {/* Right: With escalup (Consilio Highlight Card) */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.5 }}
-            className="rounded-3xl p-7 sm:p-9 bg-gradient-to-br from-[#142F2C] via-[#102724] to-[#0A1B19] text-white shadow-2xl border border-[#2E756E]/40 relative overflow-hidden flex flex-col justify-between"
-          >
+          <div className="rounded-3xl p-7 sm:p-9 bg-gradient-to-br from-[#142F2C] via-[#102724] to-[#0A1B19] text-white shadow-2xl border border-[#2E756E]/40 relative overflow-hidden flex flex-col justify-between">
             {/* Subtle glow effect */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#2E756E]/20 rounded-full blur-3xl pointer-events-none" />
 
@@ -142,7 +129,7 @@ export default function ComparisonSection() {
                 </a>
               </Magnetic>
             </div>
-          </motion.div>
+          </div>
 
         </div>
 

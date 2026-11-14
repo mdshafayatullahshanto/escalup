@@ -1,16 +1,16 @@
 // src/components/ui/ScrollAnimations.jsx
-// Lightweight, performant scroll-triggered text animations using existing framer-motion:
-// 1. BlurReveal: smooth blur-in reveal for headings, paragraphs, and subtitles.
-// 2. StaggerList & StaggerItem: staggered reveal for lists, cards, and directory columns.
-// 3. HighlightUnderline: dynamic highlighter stroke underline animation for key words.
+// Lightweight, accessible scroll animation helpers
+// Integrates seamlessly with the single global scroll animation engine:
+// 1. BlurReveal: Semantic passthrough wrapper for headings, paragraphs, and sections.
+// 2. StaggerList & StaggerItem: Semantic passthrough wrappers for lists and grids.
+// 3. HighlightUnderline: Organic SVG brush stroke underline animation for key words.
 
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 
 /**
- * Blur-in reveal wrapper for headings, paragraphs, and text blocks.
- * Lightweight passthrough that lets the global scroll reveal engine animate
- * child text elements cleanly without conflicting parent-level blur/shift.
+ * Passthrough wrapper for headings, paragraphs, and text blocks.
+ * Handled with unified timing, distance, and top-to-bottom staggering by the global engine.
  */
 export function BlurReveal({
   children,
@@ -26,93 +26,39 @@ export function BlurReveal({
 }
 
 /**
- * Container for staggered item reveals.
+ * Container wrapper for lists and item groups.
  */
 export function StaggerList({
   children,
-  as = 'div',
-  staggerDelay = 0.08,
-  delayChildren = 0.05,
+  as: Component = 'div',
   className = '',
-  once = true,
-  margin = '-40px',
   ...props
 }) {
-  const shouldReduceMotion = useReducedMotion();
-  const Component = motion[as] || motion.div;
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: shouldReduceMotion ? 0 : staggerDelay,
-        delayChildren: shouldReduceMotion ? 0 : delayChildren,
-      },
-    },
-  };
-
   return (
-    <Component
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once, margin }}
-      data-stagger-list="true"
-      className={className}
-      {...props}
-    >
+    <Component className={className} {...props}>
       {children}
     </Component>
   );
 }
 
 /**
- * Individual staggered child item.
+ * Individual item wrapper in a list or grid.
  */
 export function StaggerItem({
   children,
-  as = 'div',
-  duration = 0.5,
-  yOffset = 16,
-  blurAmount = 4,
+  as: Component = 'div',
   className = '',
   ...props
 }) {
-  const shouldReduceMotion = useReducedMotion();
-  const Component = motion[as] || motion.div;
-
-  const itemVariants = {
-    hidden: {
-      opacity: 0,
-      y: shouldReduceMotion ? 0 : yOffset,
-      filter: shouldReduceMotion ? 'none' : `blur(${blurAmount}px)`,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      filter: 'blur(0px)',
-      transition: {
-        duration,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
-  };
-
   return (
-    <Component
-      variants={itemVariants}
-      data-stagger-item="true"
-      className={className}
-      {...props}
-    >
+    <Component className={className} {...props}>
       {children}
     </Component>
   );
 }
 
 /**
- * Highlighter underline animation on key words.
+ * Highlighter underline animation on key words in headlines.
  * Draws an organic, smooth highlighter brush/underline stroke from left to right on scroll.
  */
 export function HighlightUnderline({
@@ -120,7 +66,7 @@ export function HighlightUnderline({
   color = '#2E756E',
   thickness = 3.5,
   delay = 0.2,
-  duration = 0.65,
+  duration = 0.6,
   className = '',
 }) {
   const shouldReduceMotion = useReducedMotion();
@@ -152,7 +98,7 @@ export function HighlightUnderline({
                 transition: {
                   duration,
                   delay,
-                  ease: [0.22, 1, 0.36, 1],
+                  ease: [0.16, 1, 0.3, 1],
                 },
               },
             }}
@@ -162,5 +108,3 @@ export function HighlightUnderline({
     </span>
   );
 }
-
-

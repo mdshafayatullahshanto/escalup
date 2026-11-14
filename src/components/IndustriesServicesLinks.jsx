@@ -4,7 +4,7 @@
 import React from 'react';
 import UnderlineLink from './ui/UnderlineLink';
 import GlassBadge from './ui/GlassBadge';
-import { BlurReveal, StaggerList, StaggerItem, HighlightUnderline } from './ui/ScrollAnimations';
+import { BlurReveal, HighlightUnderline } from './ui/ScrollAnimations';
 
 const DIRECTORY_COLUMNS = [
   {
@@ -69,9 +69,9 @@ export default function IndustriesServicesLinks() {
         </BlurReveal>
 
         {/* 4-Column Grid of Thin Underlined Links */}
-        <StaggerList className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {DIRECTORY_COLUMNS.map((col, idx) => (
-            <StaggerItem key={idx} className="space-y-4">
+            <div key={idx} data-reveal-item="true" className="space-y-4">
               <h3 className="text-base font-bold text-[#111827] dark:text-white pb-3 border-b border-[#E2E6EE] dark:border-white/10 flex items-center justify-between">
                 <span>{col.title}</span>
                 <span className="w-1.5 h-1.5 rounded-full bg-[#0070AD]" />
@@ -92,9 +92,9 @@ export default function IndustriesServicesLinks() {
                   </li>
                 ))}
               </ul>
-            </StaggerItem>
+            </div>
           ))}
-        </StaggerList>
+        </div>
 
       </div>
     </section>
