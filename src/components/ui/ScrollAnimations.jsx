@@ -8,42 +8,18 @@ import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 
 /**
- * Blur-in reveal for headings, paragraphs, and text blocks.
- * Transitions smoothly from slight blur and subtle translateY to sharp focus.
+ * Blur-in reveal wrapper for headings, paragraphs, and text blocks.
+ * Lightweight passthrough that lets the global scroll reveal engine animate
+ * child text elements cleanly without conflicting parent-level blur/shift.
  */
 export function BlurReveal({
   children,
-  as = 'div',
-  delay = 0,
-  duration = 0.65,
-  yOffset = 18,
-  blurAmount = 8,
+  as: Component = 'div',
   className = '',
-  once = true,
-  margin = '-40px',
   ...props
 }) {
-  const shouldReduceMotion = useReducedMotion();
-  const Component = motion[as] || motion.div;
-
-  if (shouldReduceMotion) {
-    const RawComponent = as;
-    return <RawComponent className={className} {...props}>{children}</RawComponent>;
-  }
-
   return (
-    <Component
-      initial={{ opacity: 0, y: yOffset, filter: `blur(${blurAmount}px)` }}
-      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-      viewport={{ once, margin }}
-      transition={{
-        duration,
-        delay,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-      className={className}
-      {...props}
-    >
+    <Component className={className} {...props}>
       {children}
     </Component>
   );
@@ -82,6 +58,7 @@ export function StaggerList({
       initial="hidden"
       whileInView="visible"
       viewport={{ once, margin }}
+      data-stagger-list="true"
       className={className}
       {...props}
     >
@@ -123,7 +100,12 @@ export function StaggerItem({
   };
 
   return (
-    <Component variants={itemVariants} className={className} {...props}>
+    <Component
+      variants={itemVariants}
+      data-stagger-item="true"
+      className={className}
+      {...props}
+    >
       {children}
     </Component>
   );

@@ -15,8 +15,20 @@ export default function GlobalScrollRevealer() {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
-    // Elements or containers that should never be hidden/animated (navigation, cursor, modals, etc.)
-    const EXCLUDE_CONTAINERS = 'header, nav, [role="navigation"], #navbar, #custom-cursor, [aria-hidden="true"], .no-reveal, .blueprint-grid';
+    // Elements or containers that should never be hidden/animated (navigation, cursor, modals, pre-animated blocks, etc.)
+    const EXCLUDE_CONTAINERS = [
+      'header',
+      'nav',
+      '[role="navigation"]',
+      '#navbar',
+      '#custom-cursor',
+      '[aria-hidden="true"]',
+      '.no-reveal',
+      '[data-no-reveal]',
+      '[data-stagger-list]',
+      '[data-stagger-item]',
+      '.blueprint-grid',
+    ].join(', ');
 
     // Target elements to discover and animate
     const TARGET_SELECTOR = [
@@ -27,7 +39,6 @@ export default function GlobalScrollRevealer() {
       '[class*="rounded-3xl"]:not(section):not(main)',
       'button:not([aria-hidden="true"])',
       'a[class*="rounded-full"]',
-      '#faq .rounded-2xl',
       'footer .grid > div',
       'footer .pt-8',
     ].join(', ');
@@ -61,16 +72,18 @@ export default function GlobalScrollRevealer() {
         // Query all candidates inside this container
         const rawCandidates = Array.from(container.querySelectorAll(TARGET_SELECTOR));
 
-        // Filter out candidates that are inside excluded containers or already processed
+        // Filter out candidates that are inside excluded containers, already processed, or inside an already-revealed parent
         const filtered = rawCandidates.filter((el) => {
           if (el.closest(EXCLUDE_CONTAINERS)) return false;
-          if (el.classList.contains('is-revealed')) return false;
+          if (el.classList.contains('is-revealed') || el.hasAttribute('data-reveal')) return false;
+
+          // Prevent double text animation: if an ancestor element already has data-reveal, skip this child
+          if (el.parentElement && el.parentElement.closest('[data-reveal]')) return false;
 
           // Avoid double-animating deeply nested elements if the direct card parent is already animated
-          const parentCard = el.closest('[class*="shadow-card"]');
-          if (parentCard && parentCard !== el && (el.tagName === 'P' || el.tagName === 'LI')) {
-            // Allow card itself to animate smoothly, unless it's a prominent heading or CTA button
-            if (el.tagName !== 'H3' && el.tagName !== 'H4') return false;
+          const parentCard = el.closest('[class*="shadow-card"], [class*="rounded-3xl"]');
+          if (parentCard && parentCard !== el) {
+            return false;
           }
 
           return true;
@@ -126,3 +139,4 @@ export default function GlobalScrollRevealer() {
 
   return null;
 }
+

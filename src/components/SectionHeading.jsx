@@ -45,6 +45,7 @@ export default function SectionHeading({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-60px' }}
+      data-no-reveal="true"
       className={`max-w-3xl mb-12 md:mb-16 ${isCenter ? 'mx-auto text-center' : 'text-left'} ${className}`}
     >
       {eyebrow && (

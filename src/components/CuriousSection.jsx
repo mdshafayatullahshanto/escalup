@@ -30,31 +30,19 @@ export default function CuriousSection() {
         </motion.div>
 
         {/* Centered Heading with Gradient Highlight Word */}
-        <motion.h2
-          initial={{ opacity: 0, y: 15, filter: 'blur(8px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.65, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-[1.16] mb-4 [text-wrap:balance]"
-        >
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#111827] dark:text-white tracking-tight leading-[1.16] mb-4 [text-wrap:balance]">
           Transforming engineering capacity with{' '}
           <HighlightUnderline color="#2E756E">
             <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
               intelligent CAD collaboration.
             </span>
           </HighlightUnderline>
-        </motion.h2>
+        </h2>
 
         {/* Short Subtext */}
-        <motion.p
-          initial={{ opacity: 0, y: 12, filter: 'blur(6px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.65, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="text-sm sm:text-base md:text-lg text-[#5A6679] dark:text-[#9BA8BA] max-w-2xl leading-relaxed mb-6 font-normal"
-        >
+        <p className="text-sm sm:text-base md:text-lg text-[#5A6679] dark:text-[#9BA8BA] max-w-2xl leading-relaxed mb-6 font-normal">
           Discover how equipment manufacturers and building consultancies scale their engineering teams without local payroll liability or quality trade-offs.
-        </motion.p>
+        </p>
 
         {/* Dark Pill Primary Button: "I'm Curious" */}
         <motion.div
