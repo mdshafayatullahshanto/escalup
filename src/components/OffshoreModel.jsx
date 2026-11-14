@@ -182,11 +182,11 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
             </div>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
             {servicesData.map((svc) => (
               <div 
                 key={svc.id}
-                className="bg-white dark:bg-[#11161B] rounded-2xl p-5 border border-[#E2E6EE] dark:border-white/10 shadow-card hover:border-[#5846F6]/40 transition-all flex flex-col justify-between"
+                className="w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.75rem)] xl:w-[calc(25%-0.75rem)] max-w-sm bg-white dark:bg-[#11161B] rounded-2xl p-5 border border-[#E2E6EE] dark:border-white/10 shadow-card hover:border-[#5846F6]/40 transition-all flex flex-col justify-between min-h-[220px]"
               >
                 <div>
                   <span className="text-xs font-mono font-bold text-[#5846F6] block mb-2">0{svc.id}</span>
@@ -224,11 +224,11 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
             </h3>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex flex-wrap justify-center gap-6">
             {PROJECT_STEPS.map((step) => (
               <div
                 key={step.step}
-                className="bg-white dark:bg-[#11161B] rounded-2xl p-6 border border-[#E2E6EE] dark:border-white/10 shadow-card flex flex-col justify-between"
+                className="w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] max-w-sm bg-white dark:bg-[#11161B] rounded-2xl p-6 border border-[#E2E6EE] dark:border-white/10 shadow-card flex flex-col justify-between min-h-[190px]"
               >
                 <div>
                   <div className="w-9 h-9 rounded-xl bg-[#0070AD]/10 text-[#0070AD] dark:text-[#38BDF8] font-bold text-sm flex items-center justify-center mb-4">
