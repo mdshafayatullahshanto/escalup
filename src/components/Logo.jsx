@@ -1,27 +1,28 @@
 // /src/components/Logo.jsx
-// escalup official brand logo component (do not redraw or alter logo geometry)
-// The brand name is always written in lowercase: "escalup"
-// Clicking the logo navigates to homepage and scrolls to the top smoothly
+// escalup official combined brand logo component
+// Combines the circular "e" symbol seamlessly with the "scalup" wordmark.
+// Clicking navigates to homepage and scrolls to the top smoothly.
 
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Logo({ 
-  variant = 'default', 
+  variant = 'auto', // 'auto' | 'dark' (white logo for dark bg) | 'light' (dark logo for light bg) | 'teal'
   size = 'md', 
   link = true, 
   className = '',
   onClick 
 }) {
-  // Size presets
+  // Height sizing presets; width auto maintains the natural ~3.74:1 aspect ratio
   const sizeMap = {
-    sm: { icon: 'w-6 h-6', text: 'text-lg', dot: 'w-1.5 h-1.5' },
-    md: { icon: 'w-8 h-8', text: 'text-xl', dot: 'w-2 h-2' },
-    lg: { icon: 'w-10 h-10', text: 'text-2xl', dot: 'w-2.5 h-2.5' },
+    xs: 'h-5',
+    sm: 'h-6 sm:h-7',
+    md: 'h-7 sm:h-8',
+    lg: 'h-9 sm:h-10',
+    xl: 'h-11 sm:h-12',
   };
 
-  const currentSize = sizeMap[size] || sizeMap.md;
-  const isDarkVariant = variant === 'dark'; // for dark background (e.g. footer)
+  const currentHeight = sizeMap[size] || sizeMap.md;
 
   const handleClick = (e) => {
     if (onClick) {
@@ -39,42 +40,60 @@ export default function Logo({
     }
   };
 
-  const content = (
-    <div className={`inline-flex items-center gap-2.5 select-none font-sans group cursor-pointer ${className}`}>
-      {/* Official Symbol using the attached SVG */}
-      <div className={`relative ${currentSize.icon} shrink-0 transition-transform duration-300 group-hover:scale-105`}>
-        <img
-          src={isDarkVariant ? '/e-logo-white.svg' : '/e-logo-2e756e.svg'}
-          alt="escalup logo"
-          className="w-full h-full object-contain pointer-events-none"
-          onError={(e) => {
-            // Fallback to inline SVG if image file fails to load
-            e.target.style.display = 'none';
-            if (e.target.nextSibling) {
-              e.target.nextSibling.style.display = 'block';
-            }
-          }}
-        />
-        {/* Inline SVG Fallback matching exact geometry of e-logo-2e756e.svg */}
-        <svg
-          viewBox="-151 -151 302 302"
-          className="w-full h-full hidden pointer-events-none"
-          fill={isDarkVariant ? '#FFFFFF' : '#2E756E'}
-        >
-          <g transform="rotate(-22)">
-            <path d="M147.75 30.16 A150.80 150.80 0 1 0 120.64 90.48 L0 90.48 A90.48 90.48 0 1 1 85.31 -30.16 L0 -30.16 A30.16 30.16 0 0 0 0 30.16 Z" />
-          </g>
-        </svg>
-      </div>
+  let imageElement;
 
-      {/* Brand Name: always lowercase "escalup" matching the logo teal color */}
-      <span
-        className={`font-bold tracking-tight lowercase ${currentSize.text} ${
-          isDarkVariant ? 'text-white' : 'text-[#2E756E] dark:text-[#38B2A6]'
-        } transition-colors`}
-      >
-        escalup
-      </span>
+  if (variant === 'dark' || variant === 'white') {
+    // For dark background: white logo
+    imageElement = (
+      <img
+        src="/escalup-logo-white.png"
+        alt="escalup"
+        className={`${currentHeight} w-auto object-contain transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none`}
+        loading="eager"
+      />
+    );
+  } else if (variant === 'light') {
+    // For light background: dark logo
+    imageElement = (
+      <img
+        src="/escalup-logo-dark.png"
+        alt="escalup"
+        className={`${currentHeight} w-auto object-contain transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none`}
+        loading="eager"
+      />
+    );
+  } else if (variant === 'teal') {
+    imageElement = (
+      <img
+        src="/escalup-logo-teal.png"
+        alt="escalup"
+        className={`${currentHeight} w-auto object-contain transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none`}
+        loading="eager"
+      />
+    );
+  } else {
+    // 'auto': responsive to theme via Tailwind dark:
+    imageElement = (
+      <div className="relative inline-flex items-center">
+        <img
+          src="/escalup-logo-dark.png"
+          alt="escalup"
+          className={`${currentHeight} w-auto object-contain transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none block dark:hidden`}
+          loading="eager"
+        />
+        <img
+          src="/escalup-logo-white.png"
+          alt="escalup"
+          className={`${currentHeight} w-auto object-contain transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none hidden dark:block`}
+          loading="eager"
+        />
+      </div>
+    );
+  }
+
+  const content = (
+    <div className={`inline-flex items-center group cursor-pointer ${className}`}>
+      {imageElement}
     </div>
   );
 
@@ -83,7 +102,7 @@ export default function Logo({
       <Link
         to="/"
         onClick={handleClick}
-        className="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2E756E] rounded-md transition-opacity cursor-pointer inline-block"
+        className="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2E756E] rounded-md transition-opacity cursor-pointer inline-flex items-center shrink-0"
         aria-label="escalup home"
       >
         {content}

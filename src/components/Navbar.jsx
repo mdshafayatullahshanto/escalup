@@ -4,13 +4,14 @@
 // Clean floating pill navbar with logo, theme toggle with circular reveal, and gradient "CONTACT →" pill button.
 
 import React, { useState, useEffect, useRef } from 'react';
-import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { 
   ArrowRight, 
   Sun, 
   Moon 
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import Logo from './Logo';
 
 const NAV_ITEMS = [
   { id: 'home', label: 'Home', href: '#home' },
@@ -137,19 +138,8 @@ export default function Navbar() {
     >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
-        {/* LEFT: Brand Logo */}
-        <Link
-          to="/"
-          className="flex items-center gap-2 group cursor-pointer shrink-0"
-          aria-label="Escalup home"
-        >
-          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#0070AD] border border-white/40 flex items-center justify-center text-white font-bold text-sm shadow-xs group-hover:scale-105 transition-transform">
-            e
-          </div>
-          <span className="text-xl sm:text-2xl font-bold tracking-tight font-sans text-[#111827] dark:text-white">
-            escalup
-          </span>
-        </Link>
+        {/* LEFT: Official Combined Brand Logo */}
+        <Logo size="md" />
 
         {/* CENTER: Floating Pill Navigation Bar (Exact 8 items with active pill) */}
         <nav

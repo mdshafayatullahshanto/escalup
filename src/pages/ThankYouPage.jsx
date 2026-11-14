@@ -18,6 +18,7 @@ import { companyData } from '../data/company';
 import { trackCallBooking } from '../utils/analytics';
 import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
+import Logo from '../components/Logo';
 
 export default function ThankYouPage({ onOpenCalendly }) {
   const [submissionInfo] = useState(() => {
@@ -58,6 +59,11 @@ export default function ThankYouPage({ onOpenCalendly }) {
     <div className="min-h-[85vh] bg-[#F6F7FC] dark:bg-[#080C0F] py-20 px-4 sm:px-6 lg:px-8 flex items-center justify-center font-sans">
       <div className="max-w-2xl w-full bg-white dark:bg-[#11161F] rounded-3xl p-8 sm:p-12 border border-[#E2E6EE] dark:border-white/10 shadow-card text-center relative overflow-hidden">
         
+        {/* Brand Logo */}
+        <div className="flex justify-center mb-6">
+          <Logo size="md" />
+        </div>
+
         {/* Animated Check Icon */}
         <div className="w-16 h-16 rounded-2xl bg-[#5846F6]/10 text-[#5846F6] mx-auto flex items-center justify-center mb-6 shadow-xs animate-bounce">
           <CheckCircle2 className="w-9 h-9 text-[#5846F6]" />

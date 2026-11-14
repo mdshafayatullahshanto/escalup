@@ -9,6 +9,7 @@ import { Globe, ChevronDown, Check, Mail, MapPin } from 'lucide-react';
 import UnderlineLink from './ui/UnderlineLink';
 import { servicesData } from '../data/services';
 import { companyData } from '../data/company';
+import Logo from './Logo';
 
 export default function Footer() {
   const [locationOpen, setLocationOpen] = useState(false);
@@ -38,6 +39,14 @@ export default function Footer() {
     <footer className="bg-white dark:bg-[#070B0E] text-[#111827] dark:text-[#F3F5FA] pt-12 sm:pt-16 pb-10 border-t border-[#E2E6EE] dark:border-white/10 transition-colors font-sans">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
+        {/* Brand Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-8 border-b border-[#E2E6EE] dark:border-white/10 mb-10">
+          <Logo size="md" />
+          <p className="text-xs sm:text-sm text-[#475569] dark:text-[#9BA8BA] max-w-md">
+            Offshore Mechanical Design, BIM & MEP engineering support for global innovators.
+          </p>
+        </div>
+
         {/* Top: 4 Link Columns Architecture */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 pb-10 border-b border-[#E2E6EE] dark:border-white/10">
           

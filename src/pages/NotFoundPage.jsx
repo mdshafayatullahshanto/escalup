@@ -6,11 +6,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Home, ArrowRight } from 'lucide-react';
 import Button from '../components/ui/Button';
+import Logo from '../components/Logo';
 
 export default function NotFoundPage() {
   return (
     <div className="min-h-[80vh] bg-[#F6F7FC] dark:bg-[#080C0F] py-24 px-4 flex items-center justify-center text-[#111827] dark:text-[#F3F5FA] font-sans">
       <div className="max-w-md w-full bg-white dark:bg-[#11161F] rounded-3xl p-8 sm:p-10 border border-[#E2E6EE] dark:border-white/10 shadow-card text-center">
+        <div className="flex justify-center mb-6">
+          <Logo size="md" />
+        </div>
         <div className="w-14 h-14 rounded-2xl bg-[#5846F6]/10 text-[#5846F6] mx-auto flex items-center justify-center mb-6 font-bold text-xl border border-[#5846F6]/20">
           404
         </div>

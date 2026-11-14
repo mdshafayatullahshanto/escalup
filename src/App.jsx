@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import FloatingActions from './components/FloatingActions';
 import CalendlyModal from './components/CalendlyModal';
 import HomePage from './pages/HomePage';
+import Logo from './components/Logo';
 
 // Lazy-loaded subpages for optimal performance & fast initial load
 const ServiceDetailPage = lazy(() => import('./pages/ServiceDetailPage'));
@@ -16,9 +17,9 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 // Loading fallback spinner with escalup brand styling
 function PageLoader() {
   return (
-    <div className="min-h-[70vh] flex flex-col items-center justify-center bg-[#F6F7FB] dark:bg-[#080C0F] text-[#111827] dark:text-[#F3F5FA]">
-      <div className="w-10 h-10 rounded-full border-2 border-[#5846F6]/20 border-t-[#5846F6] animate-spin mb-3"></div>
-      <span className="text-xs font-medium text-[#5A6679] dark:text-[#9BA8BA] tracking-wider">escalup engineering...</span>
+    <div className="min-h-[70vh] flex flex-col items-center justify-center bg-[#F6F7FB] dark:bg-[#080C0F] text-[#111827] dark:text-[#F3F5FA] gap-4">
+      <Logo size="lg" link={false} />
+      <div className="w-5 h-5 rounded-full border-2 border-[#2E756E]/20 border-t-[#2E756E] animate-spin"></div>
     </div>
   );
 }
