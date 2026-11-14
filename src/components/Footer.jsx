@@ -5,8 +5,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Globe, ChevronDown, Check, Mail, Phone, MapPin } from 'lucide-react';
-import { LinkedInIcon, TwitterIcon, FacebookIcon, YoutubeIcon } from './Icons';
+import { Globe, ChevronDown, Check, Mail, MapPin } from 'lucide-react';
 import UnderlineLink from './ui/UnderlineLink';
 import { servicesData } from '../data/services';
 import { companyData } from '../data/company';
@@ -161,26 +160,13 @@ export default function Footer() {
                   {companyData.contact.email}
                 </a>
               </div>
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-[#0070AD] shrink-0" />
-                <a href={`tel:${companyData.contact.phone}`} className="hover:underline text-[#111827] dark:text-white">
-                  {companyData.contact.phone}
-                </a>
-              </div>
-              <div className="pt-2 text-xs">
-                <span>Led by </span>
-                <span className="text-[#111827] dark:text-white">
-                  <em><strong>Md. Shafayat Ullah Shanto</strong></em>
-                </span>
-                <span className="block text-[11px] text-[#5A6679]">Founder & Lead Mechanical Engineer</span>
-              </div>
             </div>
           </div>
 
         </div>
 
-        {/* Bottom Bar: Location Select, Social Icons, Copyright Row */}
-        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        {/* Bottom Bar: Location Select, Copyright Row */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           
           {/* Location Select Pill */}
           <div className="relative">
@@ -205,46 +191,6 @@ export default function Footer() {
                 </div>
               </div>
             )}
-          </div>
-
-          {/* Social Icons */}
-          <div className="flex items-center gap-4 text-[#5A6679] dark:text-[#9BA8BA]">
-            <a
-              href={companyData.social.facebook}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-              className="hover:text-[#0070AD] transition-colors p-1"
-            >
-              <FacebookIcon className="w-4 h-4" />
-            </a>
-            <a
-              href={companyData.social.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="hover:text-[#0070AD] transition-colors p-1"
-            >
-              <LinkedInIcon className="w-4 h-4" />
-            </a>
-            <a
-              href={companyData.social.twitter}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Twitter / X"
-              className="hover:text-[#111827] dark:hover:text-white transition-colors p-1"
-            >
-              <TwitterIcon className="w-4 h-4" />
-            </a>
-            <a
-              href={companyData.social.youtube}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="YouTube"
-              className="hover:text-red-500 transition-colors p-1"
-            >
-              <YoutubeIcon className="w-4 h-4" />
-            </a>
           </div>
 
           {/* Copyright Row */}
