@@ -5,7 +5,7 @@
 // Dark stat card uses black/indigo (zero green, zero monospace, light-weight heading).
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
   CheckCircle2, 
   ArrowRight, 
@@ -89,8 +89,6 @@ const PILLARS = [
 export default function NavigateYourNext({ onOpenCalendly: _onOpenCalendly }) {
   const [activeTab, setActiveTab] = useState(PILLARS[0].id);
 
-  const activePillar = PILLARS.find((p) => p.id === activeTab) || PILLARS[0];
-
   return (
     <section id="navigate-next" className="py-12 sm:py-16 md:py-20 bg-[#F6F7FC] dark:bg-[#080C0F] border-b border-[#E2E6EE] dark:border-white/10 font-sans relative overflow-hidden scroll-mt-12 transition-colors">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -158,69 +156,78 @@ export default function NavigateYourNext({ onOpenCalendly: _onOpenCalendly }) {
             })}
           </StaggerList>
 
-          {/* RIGHT: Content Swapping Panel with Smooth Crossfade (8 cols) */}
+          {/* RIGHT: Content Swapping Panel with Uniform Size (8 cols) */}
           <div className="lg:col-span-8">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activePillar.id}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-                className="rounded-3xl bg-white dark:bg-[#11161F] border border-[#E2E6EE] dark:border-white/10 p-7 sm:p-10 lg:p-12 shadow-card"
-              >
-                <div className="space-y-6">
-                  
-                  {/* Badge */}
-                  <div>
-                    <Badge variant="navy" size="sm" className="bg-[#182232] text-[#A5B4FC] border border-white/10">
-                      {activePillar.badge}
-                    </Badge>
-                  </div>
+            <div className="grid grid-cols-1 grid-rows-1 w-full">
+              {PILLARS.map((pillar) => {
+                const isActive = activeTab === pillar.id;
+                return (
+                  <div
+                    key={pillar.id}
+                    className={`col-start-1 row-start-1 h-full w-full transition-all duration-300 ease-out ${
+                      isActive
+                        ? 'opacity-100 translate-y-0 z-10 pointer-events-auto'
+                        : 'opacity-0 translate-y-1.5 z-0 pointer-events-none'
+                    }`}
+                    aria-hidden={!isActive}
+                  >
+                    <div className="h-full rounded-3xl bg-white dark:bg-[#11161F] border border-[#E2E6EE] dark:border-white/10 p-7 sm:p-10 lg:p-12 shadow-card flex flex-col justify-between">
+                      <div className="space-y-6">
+                        
+                        {/* Badge */}
+                        <div>
+                          <Badge variant="navy" size="sm" className="bg-[#182232] text-[#A5B4FC] border border-white/10">
+                            {pillar.badge}
+                          </Badge>
+                        </div>
 
-                  {/* Title & Description */}
-                  <div className="space-y-3">
-                    <h3 className="text-2xl sm:text-3xl font-light text-[#111827] dark:text-white leading-snug">
-                      {activePillar.title}
-                    </h3>
-                    <p className="text-sm sm:text-base text-[#5A6679] dark:text-[#9BA8BA] leading-relaxed font-normal">
-                      {activePillar.desc}
-                    </p>
-                  </div>
+                        {/* Title & Description */}
+                        <div className="space-y-3">
+                          <h3 className="text-2xl sm:text-3xl font-light text-[#111827] dark:text-white leading-snug">
+                            {pillar.title}
+                          </h3>
+                          <p className="text-sm sm:text-base text-[#5A6679] dark:text-[#9BA8BA] leading-relaxed font-normal">
+                            {pillar.desc}
+                          </p>
+                        </div>
 
-                  {/* Benefits List with Indigo Checks */}
-                  <div className="space-y-3 pt-2">
-                    {activePillar.benefits.map((b, idx) => (
-                      <div key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-[#111827] dark:text-[#F3F5FA]">
-                        <CheckCircle2 className="w-4 h-4 text-[#5846F6] shrink-0 mt-0.5" />
-                        <span>{b}</span>
-                      </div>
-                    ))}
-                  </div>
+                        {/* Benefits List with Indigo Checks */}
+                        <div className="space-y-3 pt-2">
+                          {pillar.benefits.map((b, idx) => (
+                            <div key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-[#111827] dark:text-[#F3F5FA]">
+                              <CheckCircle2 className="w-4 h-4 text-[#5846F6] shrink-0 mt-0.5" />
+                              <span>{b}</span>
+                            </div>
+                          ))}
+                        </div>
 
-                  {/* Dark Stat Card in Black / Indigo (NOT GREEN) */}
-                  <div className="p-6 sm:p-7 rounded-2xl bg-[#0B0F14] text-white border border-white/10 shadow-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <div>
-                      <div className="text-xs uppercase tracking-wider text-[#A5B4FC] font-medium mb-1">
-                        Verified Operational Outcome
                       </div>
-                      <div className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-                        {activePillar.metric}
+
+                      {/* Dark Stat Card in Black / Indigo (pinned to bottom) */}
+                      <div className="mt-8 p-6 sm:p-7 rounded-2xl bg-[#0B0F14] text-white border border-white/10 shadow-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                        <div>
+                          <div className="text-xs uppercase tracking-wider text-[#A5B4FC] font-medium mb-1">
+                            Verified Operational Outcome
+                          </div>
+                          <div className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+                            {pillar.metric}
+                          </div>
+                          <div className="text-xs text-white/70 mt-0.5">
+                            {pillar.metricLabel}
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-2 text-xs text-white/80 shrink-0">
+                          <ShieldCheck className="w-4 h-4 text-[#5846F6]" />
+                          <span>Governed under mutual NDA</span>
+                        </div>
                       </div>
-                      <div className="text-xs text-white/70 mt-0.5">
-                        {activePillar.metricLabel}
-                      </div>
+
                     </div>
-
-                    <div className="flex items-center gap-2 text-xs text-white/80 shrink-0">
-                      <ShieldCheck className="w-4 h-4 text-[#5846F6]" />
-                      <span>Governed under mutual NDA</span>
-                    </div>
                   </div>
-
-                </div>
-              </motion.div>
-            </AnimatePresence>
+                );
+              })}
+            </div>
           </div>
 
         </div>
