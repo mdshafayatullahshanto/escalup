@@ -9,12 +9,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   CheckCircle2, 
   ArrowRight, 
-  Calendar,
   ShieldCheck
 } from 'lucide-react';
 import Badge from './ui/Badge';
 import GlassBadge from './ui/GlassBadge';
-import Button from './ui/Button';
 import { BlurReveal, StaggerList, StaggerItem, HighlightUnderline } from './ui/ScrollAnimations';
 
 const PILLARS = [
@@ -88,26 +86,10 @@ const PILLARS = [
   }
 ];
 
-export default function NavigateYourNext({ onOpenCalendly }) {
+export default function NavigateYourNext({ onOpenCalendly: _onOpenCalendly }) {
   const [activeTab, setActiveTab] = useState(PILLARS[0].id);
 
   const activePillar = PILLARS.find((p) => p.id === activeTab) || PILLARS[0];
-
-  const handleQuoteClick = (e) => {
-    if (e && e.preventDefault) e.preventDefault();
-    const contactEl = document.getElementById('contact');
-    if (contactEl) {
-      contactEl.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleBookCall = () => {
-    if (onOpenCalendly) {
-      onOpenCalendly();
-    } else {
-      window.open('https://cal.com/escalup/book-a-call', '_blank', 'noopener,noreferrer');
-    }
-  };
 
   return (
     <section id="navigate-next" className="py-12 sm:py-16 md:py-20 bg-[#F6F7FC] dark:bg-[#080C0F] border-b border-[#E2E6EE] dark:border-white/10 font-sans relative overflow-hidden scroll-mt-12 transition-colors">
@@ -234,29 +216,6 @@ export default function NavigateYourNext({ onOpenCalendly }) {
                       <ShieldCheck className="w-4 h-4 text-[#5846F6]" />
                       <span>Governed under mutual NDA</span>
                     </div>
-                  </div>
-
-                  {/* CTAs */}
-                  <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                    <Button
-                      variant="primary"
-                      size="md"
-                      onClick={handleQuoteClick}
-                      icon="arrow"
-                      className="shadow-sm"
-                    >
-                      Request Scope Quote
-                    </Button>
-
-                    <Button
-                      variant="outline"
-                      size="md"
-                      onClick={handleBookCall}
-                      icon="none"
-                    >
-                      <Calendar className="w-4 h-4 text-[#5846F6] mr-1.5" />
-                      <span>Discuss on Cal.com</span>
-                    </Button>
                   </div>
 
                 </div>

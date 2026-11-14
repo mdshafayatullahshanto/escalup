@@ -15,7 +15,6 @@ import {
   Cpu, 
   ArrowRight
 } from 'lucide-react';
-import Button from './ui/Button';
 import GlassBadge from './ui/GlassBadge';
 import { BlurReveal, HighlightUnderline } from './ui/ScrollAnimations';
 import { servicesData } from '../data/services';
@@ -128,12 +127,6 @@ const CLIENT_ENV_POINTS = [
 ];
 
 export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
-  const handleContactClick = (e) => {
-    if (e && e.preventDefault) e.preventDefault();
-    const contactEl = document.getElementById('contact');
-    if (contactEl) contactEl.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <section id="offshore-model" className="py-12 sm:py-16 md:py-20 bg-[#F6F7FB] dark:bg-[#080C0F] text-[#111827] dark:text-white border-b border-[#E2E6EE] dark:border-white/10 font-sans relative scroll-mt-12 transition-colors">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -197,11 +190,6 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
                     {(svc.items || []).slice(0, 3).map((sub, i) => (
                       <li key={i} className="truncate">• {sub}</li>
                     ))}
-                    {(svc.items || []).length > 3 && (
-                      <li className="text-[11px] text-[#0070AD] dark:text-[#38BDF8]">
-                        +{svc.items.length - 3} more sub-services
-                      </li>
-                    )}
                   </ul>
                 </div>
                 <div className="pt-3 border-t border-[#E2E6EE] dark:border-white/10 text-[11px] text-[#5A6679] dark:text-[#9BA8BA]">
@@ -309,12 +297,6 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
                 We apply the standards required by the project and the client, including ISO, ASME, ASHRAE, NFPA, IPC, BNBC, RSC, PWD and JICA. The governing standards and editions are confirmed at the Requirements & Scope stage.
               </p>
             </div>
-            <div className="pt-4 mt-4 border-t border-[#E2E6EE] dark:border-white/10">
-              <a href="#services" className="text-xs font-semibold text-[#5846F6] hover:underline flex items-center gap-1">
-                <span>View full standards table</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
           </div>
 
           {/* Revision Handling */}
@@ -353,22 +335,6 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
             </div>
           </div>
 
-        </div>
-
-        {/* Offshore CTA Band */}
-        <div className="mb-12 sm:mb-14 bg-white dark:bg-[#11161B] rounded-3xl p-6 sm:p-8 border border-[#E2E6EE] dark:border-white/10 shadow-card text-center max-w-3xl mx-auto">
-          <p className="text-base sm:text-lg text-[#111827] dark:text-white font-medium mb-4">
-            Share your project requirements. We will review them and respond with a proposed scope.
-          </p>
-          <Button
-            variant="primary"
-            size="lg"
-            onClick={handleContactClick}
-            icon="arrow"
-            className="shadow-md"
-          >
-            Contact Us
-          </Button>
         </div>
 
         {/* ------------------------------------------------------------- */}
@@ -447,18 +413,6 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
                     Escalup runs an adaptable engineering team that uses AI-assisted workflows and engineering automation. When a client needs a specific software, version or environment, we set up the team to work in it.
                   </p>
                 </div>
-              </div>
-
-              <div className="pt-4 border-t border-[#E2E6EE] dark:border-white/10">
-                <Button
-                  variant="primary"
-                  size="md"
-                  onClick={handleContactClick}
-                  icon="arrow"
-                  className="w-full sm:w-auto shadow-md"
-                >
-                  Discuss Your Requirements
-                </Button>
               </div>
 
             </div>
