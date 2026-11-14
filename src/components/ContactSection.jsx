@@ -24,7 +24,7 @@ import GlassBadge from './ui/GlassBadge';
 import Button from './ui/Button';
 import { BlurReveal, HighlightUnderline } from './ui/ScrollAnimations';
 
-export default function ContactSection({ onOpenCalendly }) {
+export default function ContactSection({ onOpenCalendly: _onOpenCalendly }) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
@@ -101,14 +101,6 @@ export default function ContactSection({ onOpenCalendly }) {
     }
   };
 
-  const handleBookCall = () => {
-    trackCallBooking('contact_sidebar_button');
-    if (onOpenCalendly) {
-      onOpenCalendly();
-    } else {
-      window.open(companyData.contact.calendlyUrl, '_blank', 'noopener,noreferrer');
-    }
-  };
 
   return (
     <section id="contact" className="py-12 sm:py-16 md:py-20 bg-[#F6F7FC] dark:bg-[#080C0F] border-b border-[#E2E6EE] dark:border-white/10 font-sans relative scroll-mt-12 transition-colors">
@@ -387,7 +379,10 @@ export default function ContactSection({ onOpenCalendly }) {
                 <Button
                   variant="primary"
                   size="md"
-                  onClick={handleBookCall}
+                  href={companyData.contact.calendlyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackCallBooking('contact_sidebar_button')}
                   icon="external"
                   className="w-full py-3"
                 >

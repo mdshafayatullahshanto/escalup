@@ -178,7 +178,7 @@ export default function FramedHero({ onOpenCalendly }) {
     if (onOpenCalendly) {
       onOpenCalendly();
     } else {
-      window.open('https://cal.com/escalup/book-a-call', '_blank', 'noopener,noreferrer');
+      window.open('https://cal.com/escalup/book-a-call?overlayCalendar=true', '_blank', 'noopener,noreferrer');
     }
   };
 

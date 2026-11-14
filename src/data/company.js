@@ -27,8 +27,8 @@ export const companyData = {
     email: 'contact.escalup@gmail.com',
     secondaryEmail: 'contact.escalup@gmail.com',
     phone: '+880 1700-000000',
-    calendlyUrl: 'https://cal.com/escalup/book-a-call',
-    bookingUrl: 'https://cal.com/escalup/book-a-call',
+    calendlyUrl: 'https://cal.com/escalup/book-a-call?overlayCalendar=true',
+    bookingUrl: 'https://cal.com/escalup/book-a-call?overlayCalendar=true',
     linkedinUrl: 'https://www.linkedin.com/company/escalup',
     capabilityStatementPdf: '/escalup-capability-statement.pdf'
   },
