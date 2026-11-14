@@ -176,28 +176,28 @@ export default function ServiceDetailPage() {
       <section className="py-20 sm:py-28 bg-[#FFFFFF] dark:bg-[#0A0E13] border-y border-[#E2E6EE] dark:border-white/10 transition-colors">
         <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
           
-          <div className="max-w-3xl mb-12">
+          <div className="max-w-3xl mx-auto text-center mb-12">
             <div className="mb-3.5">
               <GlassBadge>Capabilities Breakdown</GlassBadge>
             </div>
             <h2 className="text-3xl sm:text-4xl font-light text-[#111827] dark:text-white tracking-tight">
               Scope of <span className="font-semibold">{service.title}</span>
             </h2>
-            <p className="text-xs sm:text-sm text-[#475569] dark:text-[#9BA8BA] mt-2">
+            <p className="text-xs sm:text-sm text-[#475569] dark:text-[#9BA8BA] mt-2 max-w-xl mx-auto">
               Every deliverable is prepared for manufacturing or construction, following the Design Approach.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex flex-wrap justify-center gap-6">
             {service.items.map((item, idx) => (
               <div 
                 key={idx}
-                className="p-6 rounded-2xl bg-[#F6F7FB] dark:bg-[#11161B] border border-[#E2E6EE] dark:border-white/10 shadow-card"
+                className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] p-6 rounded-2xl bg-[#F6F7FB] dark:bg-[#11161B] border border-[#E2E6EE] dark:border-white/10 shadow-card flex flex-col justify-start"
               >
                 <div className="text-xs font-mono font-bold text-[#5846F6] mb-2">
-                  0{idx + 1}
+                  {String(idx + 1).padStart(2, '0')}
                 </div>
-                <h3 className="text-base font-semibold text-[#111827] dark:text-white mb-2 leading-snug">
+                <h3 className="text-base font-semibold text-[#111827] dark:text-white leading-snug">
                   {item}
                 </h3>
               </div>
