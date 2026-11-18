@@ -81,7 +81,7 @@ export default function GlobalScrollRevealer() {
         // Query raw potential candidates inside this section
         const rawCandidates = Array.from(
           section.querySelectorAll(
-            'h1, h2, h3, h4, h5, h6, p, ul > li, ol > li, blockquote, [class*="shadow-card"]:not(button):not([role="tab"]), [class*="rounded-2xl"]:not(section):not(main):not(button):not([role="tab"]), [class*="rounded-3xl"]:not(section):not(main):not(button):not([role="tab"]), [data-reveal-item]'
+            'h1, h2, h3, h4, h5, h6, p, ul > li, ol > li, blockquote, [class*="shadow-card"]:not(button):not([role="tab"]), [class*="rounded-2xl"]:not(section):not(main):not(button):not([role="tab"]), [class*="rounded-3xl"]:not(section):not(main):not(button):not([role="tab"]), button[class*="rounded-full"]:not([role="tab"]):not([aria-label*="Previous"]):not([aria-label*="Next"]):not([aria-label*="story"]):not([aria-label*="case"]):not([aria-label*="Close"]):not([aria-label*="Menu"]):not([aria-label*="Scroll to top"]), a[class*="rounded-full"]:not([role="tab"]), [data-reveal-item]'
           )
         );
 

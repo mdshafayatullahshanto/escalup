@@ -1,5 +1,6 @@
 // /src/context/ThemeContext.jsx
 // Full light/dark/auto theme system with localStorage persistence and system preference detection
+/* eslint-disable react-refresh/only-export-components */
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
@@ -36,6 +37,24 @@ export function ThemeProvider({ children }) {
       if (themeColorMeta) themeColorMeta.setAttribute('content', '#0070AD');
     }
   }, [theme]);
+
+  // Dynamically listen for OS / device preference changes
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleSystemChange = (e) => {
+      try {
+        const stored = localStorage.getItem('escalup_theme');
+        if (!stored || stored === 'auto') {
+          setTheme(e.matches ? 'dark' : 'light');
+        }
+      } catch {
+        setTheme(e.matches ? 'dark' : 'light');
+      }
+    };
+    mediaQuery.addEventListener?.('change', handleSystemChange);
+    return () => mediaQuery.removeEventListener?.('change', handleSystemChange);
+  }, []);
 
   const toggleTheme = (e) => {
     const isReduced = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
