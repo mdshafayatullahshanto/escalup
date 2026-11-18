@@ -4,7 +4,7 @@
 // and 5-second autoplay looping 1 -> 2 -> 3 -> 4 -> 1 with pause/resume on hover, focus, and tab-hidden.
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight, Cpu, Layers, Wrench, Database } from 'lucide-react';
 import Badge from './ui/Badge';
 import Card from './ui/Card';
@@ -64,6 +64,7 @@ const TOP_STORIES = [
 
 export default function TopStoriesCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [prevIndex, setPrevIndex] = useState(null);
   const [direction, setDirection] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -81,21 +82,35 @@ export default function TopStoriesCarousel() {
   const startTimeRef = useRef(0);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
+  const touchStartY = useRef(0);
+  const touchEndY = useRef(0);
 
   // Manual & auto navigation
   const nextSlide = useCallback(() => {
     setDirection(1);
+    setPrevIndex(activeIndex);
     setActiveIndex((prev) => (prev === TOP_STORIES.length - 1 ? 0 : prev + 1));
     remainingTimeRef.current = 5000;
     startTimeRef.current = Date.now();
-  }, []);
+  }, [activeIndex]);
 
   const prevSlide = useCallback(() => {
     setDirection(-1);
+    setPrevIndex(activeIndex);
     setActiveIndex((prev) => (prev === 0 ? TOP_STORIES.length - 1 : prev - 1));
     remainingTimeRef.current = 5000;
     startTimeRef.current = Date.now();
-  }, []);
+  }, [activeIndex]);
+
+  // Clear prevIndex after transition completes
+  useEffect(() => {
+    if (prevIndex !== null) {
+      const timer = setTimeout(() => {
+        setPrevIndex(null);
+      }, 550);
+      return () => clearTimeout(timer);
+    }
+  }, [prevIndex, activeIndex]);
 
   // Reduced motion preference
   useEffect(() => {
@@ -151,50 +166,29 @@ export default function TopStoriesCarousel() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [prevSlide, nextSlide]);
 
-  // Touch swipe support
+  // Touch swipe support with vertical scroll protection
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
     touchEndX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+    touchEndY.current = e.touches[0].clientY;
   };
 
   const handleTouchMove = (e) => {
     touchEndX.current = e.touches[0].clientX;
+    touchEndY.current = e.touches[0].clientY;
   };
 
   const handleTouchEnd = () => {
-    const diff = touchStartX.current - touchEndX.current;
-    if (Math.abs(diff) > 40) {
-      if (diff > 0) nextSlide();
+    const diffX = touchStartX.current - touchEndX.current;
+    const diffY = touchStartY.current - touchEndY.current;
+    if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY) * 1.2) {
+      if (diffX > 0) nextSlide();
       else prevSlide();
     }
   };
 
-  const current = TOP_STORIES[activeIndex];
-  const Icon = current.icon;
 
-  // Directional slide variants (translateX + opacity, no layout jump)
-  const slideVariants = {
-    enter: (dir) => ({
-      x: isReducedMotion ? 0 : (dir > 0 ? 60 : -60),
-      opacity: 0,
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-      transition: {
-        x: { duration: isReducedMotion ? 0 : 0.6, ease: [0.22, 1, 0.36, 1] },
-        opacity: { duration: isReducedMotion ? 0 : 0.45, ease: 'easeOut' },
-      },
-    },
-    exit: (dir) => ({
-      x: isReducedMotion ? 0 : (dir > 0 ? -60 : 60),
-      opacity: 0,
-      transition: {
-        x: { duration: isReducedMotion ? 0 : 0.4, ease: [0.22, 1, 0.36, 1] },
-        opacity: { duration: isReducedMotion ? 0 : 0.3, ease: 'easeIn' },
-      },
-    }),
-  };
 
   return (
     <section 
@@ -254,81 +248,110 @@ export default function TopStoriesCarousel() {
           </div>
         </div>
 
-        {/* Carousel Content Container (Image Left, Content Right) */}
+        {/* Carousel Content Container (CSS Grid Stack: Zero Height Fluctuation & Zero Layout Shift) */}
         <div 
-          className="relative overflow-hidden cursor-grab active:cursor-grabbing select-none"
+          className="grid grid-cols-1 grid-rows-1 relative w-full overflow-hidden select-none"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          <AnimatePresence mode="wait" custom={direction}>
-            <motion.div
-              key={current.id}
-              custom={direction}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.15}
-              onDragEnd={(e, { offset, velocity }) => {
-                const swipeThreshold = 40;
-                if (offset.x < -swipeThreshold || velocity.x < -250) {
-                  nextSlide();
-                } else if (offset.x > swipeThreshold || velocity.x > 250) {
-                  prevSlide();
-                }
-              }}
-            >
-              <Card
-                variant="white"
-                radius="3xl"
-                hover={false}
-                className="grid grid-cols-1 lg:grid-cols-12 overflow-hidden border border-[#E2E6EE] dark:border-white/10"
+          {TOP_STORIES.map((story, idx) => {
+            const isCurrent = idx === activeIndex;
+            const isPrev = idx === prevIndex;
+            const StoryIcon = story.icon;
+
+            let targetX = 0;
+            let targetOpacity = 0;
+            let zIndex = 0;
+            let pointerEvents = 'none';
+
+            if (isCurrent) {
+              targetX = 0;
+              targetOpacity = 1;
+              zIndex = 10;
+              pointerEvents = 'auto';
+            } else if (isPrev) {
+              targetX = isReducedMotion ? 0 : (direction > 0 ? -60 : 60);
+              targetOpacity = 0;
+              zIndex = 5;
+              pointerEvents = 'none';
+            } else {
+              targetX = isReducedMotion ? 0 : (direction > 0 ? 60 : -60);
+              targetOpacity = 0;
+              zIndex = 0;
+              pointerEvents = 'none';
+            }
+
+            return (
+              <motion.div
+                key={story.id}
+                initial={false}
+                animate={{
+                  x: targetX,
+                  opacity: targetOpacity,
+                }}
+                transition={{
+                  x: { duration: isReducedMotion ? 0.01 : 0.5, ease: [0.22, 1, 0.36, 1] },
+                  opacity: { duration: isReducedMotion ? 0.01 : (isCurrent ? 0.45 : 0.3), ease: isCurrent ? 'easeOut' : 'easeIn' },
+                }}
+                className={`col-start-1 row-start-1 w-full h-full ${
+                  isCurrent ? 'relative z-10' : (isPrev ? 'relative z-[5]' : 'invisible pointer-events-none')
+                }`}
+                style={{
+                  zIndex,
+                  pointerEvents,
+                }}
+                aria-hidden={!isCurrent}
               >
-                {/* LEFT: Abstract Image / Visual Card Panel (5 cols) */}
-                <div className={`lg:col-span-5 p-8 sm:p-12 bg-gradient-to-br ${current.color} dark:bg-[#121A23] flex flex-col justify-between min-h-[280px] sm:min-h-[360px] relative overflow-hidden border-b lg:border-b-0 lg:border-r border-[#E2E6EE] dark:border-white/10`}>
-                  {/* Subtle technical background grid */}
-                  <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none" />
-                  
-                  <div className="relative z-10 flex items-center justify-between">
-                    <Badge variant={current.badgeVariant} size="sm">
-                      {current.tag}
-                    </Badge>
-                    <Icon className="w-8 h-8 text-[#5846F6] dark:text-[#A5B4FC] opacity-75" />
-                  </div>
-
-                  {/* Impact Metric Banner */}
-                  <div className="relative z-10 my-auto py-6">
-                    <div className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#111827] dark:text-white tracking-tight">
-                      {current.metric}
-                    </div>
-                    <div className="text-xs sm:text-sm font-medium text-[#5A6679] dark:text-[#9BA8BA] mt-1 max-w-xs">
-                      {current.metricLabel}
-                    </div>
-                  </div>
-                </div>
-
-                {/* RIGHT: Content Details (7 cols) */}
-                <div className="lg:col-span-7 p-8 sm:p-12 flex flex-col justify-between">
-                  <div className="space-y-4">
-                    <div className="text-xs text-[#5A6679] dark:text-[#9BA8BA] uppercase tracking-wider font-medium">
-                      Case Insight · 0{current.id}
+                <Card
+                  variant="white"
+                  radius="3xl"
+                  hover={false}
+                  className="w-full h-full grid grid-cols-1 lg:grid-cols-12 overflow-hidden border border-[#E2E6EE] dark:border-white/10"
+                >
+                  {/* LEFT: Abstract Image / Visual Card Panel (5 cols) */}
+                  <div className={`lg:col-span-5 p-8 sm:p-12 bg-gradient-to-br ${story.color} dark:bg-[#121A23] flex flex-col justify-between min-h-[260px] sm:min-h-[320px] lg:min-h-0 relative overflow-hidden border-b lg:border-b-0 lg:border-r border-[#E2E6EE] dark:border-white/10`}>
+                    {/* Subtle technical background grid */}
+                    <div className="absolute inset-0 blueprint-grid opacity-20 pointer-events-none" />
+                    
+                    <div className="relative z-10 flex items-center justify-between">
+                      <Badge variant={story.badgeVariant} size="sm">
+                        {story.tag}
+                      </Badge>
+                      <StoryIcon className="w-8 h-8 text-[#5846F6] dark:text-[#A5B4FC] opacity-75" />
                     </div>
 
-                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-light text-[#111827] dark:text-white leading-snug">
-                      {current.title}
-                    </h3>
-
-                    <p className="text-sm sm:text-base text-[#5A6679] dark:text-[#9BA8BA] leading-relaxed">
-                      {current.description}
-                    </p>
+                    {/* Impact Metric Banner */}
+                    <div className="relative z-10 my-auto py-6">
+                      <div className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#111827] dark:text-white tracking-tight">
+                        {story.metric}
+                      </div>
+                      <div className="text-xs sm:text-sm font-medium text-[#5A6679] dark:text-[#9BA8BA] mt-1 max-w-xs">
+                        {story.metricLabel}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </Card>
-            </motion.div>
-          </AnimatePresence>
+
+                  {/* RIGHT: Content Details (7 cols) */}
+                  <div className="lg:col-span-7 p-8 sm:p-12 flex flex-col justify-between">
+                    <div className="space-y-4">
+                      <div className="text-xs text-[#5A6679] dark:text-[#9BA8BA] uppercase tracking-wider font-medium">
+                        Case Insight · 0{story.id}
+                      </div>
+
+                      <h3 className="text-xl sm:text-2xl lg:text-3xl font-light text-[#111827] dark:text-white leading-snug min-h-[56px] sm:min-h-[64px] flex items-center">
+                        {story.title}
+                      </h3>
+
+                      <p className="text-sm sm:text-base text-[#5A6679] dark:text-[#9BA8BA] leading-relaxed min-h-[64px] sm:min-h-[72px] flex items-center">
+                        {story.description}
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              </motion.div>
+            );
+          })}
         </div>
 
       </div>

@@ -7,7 +7,7 @@
 // Includes 5-second autoplay looping 1 -> 2 -> 3 -> 4 -> 1 with pause/resume on hover, focus, and tab-hidden.
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight, CheckCircle2 } from 'lucide-react';
 import Badge from './ui/Badge';
 import Card from './ui/Card';
@@ -79,6 +79,7 @@ const ACTION_PROJECTS = [
 
 export default function InActionCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [prevIndex, setPrevIndex] = useState(null);
   const [direction, setDirection] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -96,30 +97,46 @@ export default function InActionCarousel() {
   const startTimeRef = useRef(0);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
+  const touchStartY = useRef(0);
+  const touchEndY = useRef(0);
 
   // Manual & auto navigation
   const nextSlide = useCallback(() => {
     setDirection(1);
+    setPrevIndex(activeIndex);
     setActiveIndex((prev) => (prev === ACTION_PROJECTS.length - 1 ? 0 : prev + 1));
     remainingTimeRef.current = 5000;
     startTimeRef.current = Date.now();
-  }, []);
+  }, [activeIndex]);
 
   const prevSlide = useCallback(() => {
     setDirection(-1);
+    setPrevIndex(activeIndex);
     setActiveIndex((prev) => (prev === 0 ? ACTION_PROJECTS.length - 1 : prev - 1));
     remainingTimeRef.current = 5000;
     startTimeRef.current = Date.now();
-  }, []);
+  }, [activeIndex]);
 
   const goToSlide = useCallback((targetIndex) => {
     setActiveIndex((prev) => {
       if (targetIndex === prev) return prev;
       setDirection(targetIndex > prev ? 1 : -1);
+      setPrevIndex(prev);
       return targetIndex;
     });
     remainingTimeRef.current = 5000;
+    startTimeRef.current = Date.now();
   }, []);
+
+  // Clear prevIndex after transition completes
+  useEffect(() => {
+    if (prevIndex !== null) {
+      const timer = setTimeout(() => {
+        setPrevIndex(null);
+      }, 550);
+      return () => clearTimeout(timer);
+    }
+  }, [prevIndex, activeIndex]);
 
   // Reduced motion preference
   useEffect(() => {
@@ -175,48 +192,26 @@ export default function InActionCarousel() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [prevSlide, nextSlide]);
 
-  // Touch swipe support on mobile/tablet
+  // Touch swipe support on mobile/tablet with vertical scroll protection
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
     touchEndX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+    touchEndY.current = e.touches[0].clientY;
   };
 
   const handleTouchMove = (e) => {
     touchEndX.current = e.touches[0].clientX;
+    touchEndY.current = e.touches[0].clientY;
   };
 
   const handleTouchEnd = () => {
-    const diff = touchStartX.current - touchEndX.current;
-    if (Math.abs(diff) > 40) {
-      if (diff > 0) nextSlide();
+    const diffX = touchStartX.current - touchEndX.current;
+    const diffY = touchStartY.current - touchEndY.current;
+    if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY) * 1.2) {
+      if (diffX > 0) nextSlide();
       else prevSlide();
     }
-  };
-
-  const currentProject = ACTION_PROJECTS[activeIndex];
-
-  // Directional slide variants (translateX + opacity, no layout jump)
-  const slideVariants = {
-    enter: (dir) => ({
-      x: isReducedMotion ? 0 : (dir > 0 ? 60 : -60),
-      opacity: 0,
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-      transition: {
-        x: { duration: isReducedMotion ? 0 : 0.6, ease: [0.22, 1, 0.36, 1] },
-        opacity: { duration: isReducedMotion ? 0 : 0.45, ease: 'easeOut' },
-      },
-    },
-    exit: (dir) => ({
-      x: isReducedMotion ? 0 : (dir > 0 ? -60 : 60),
-      opacity: 0,
-      transition: {
-        x: { duration: isReducedMotion ? 0 : 0.4, ease: [0.22, 1, 0.36, 1] },
-        opacity: { duration: isReducedMotion ? 0 : 0.3, ease: 'easeIn' },
-      },
-    }),
   };
 
   return (
@@ -286,112 +281,139 @@ export default function InActionCarousel() {
         </div>
 
         {/* 
-          Reference White Card Design (Image 3):
+          Reference White Card Design: CSS Grid Stack for zero height fluctuation & zero layout shift.
           Left: Lavender-tinted panel with Verified Outcome stat & badge.
           Right: Pure white surface with narrative, deliverables checklist, and technical scope link.
         */}
         <div 
-          className="relative w-full overflow-hidden cursor-grab active:cursor-grabbing select-none"
+          className="grid grid-cols-1 grid-rows-1 relative w-full overflow-hidden select-none"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
-          <AnimatePresence mode="wait" custom={direction}>
-            <motion.div
-              key={currentProject.id}
-              custom={direction}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={0.15}
-              onDragEnd={(e, { offset, velocity }) => {
-                const swipeThreshold = 40;
-                if (offset.x < -swipeThreshold || velocity.x < -250) {
-                  nextSlide();
-                } else if (offset.x > swipeThreshold || velocity.x > 250) {
-                  prevSlide();
-                }
-              }}
-            >
-              <Card
-                variant="white"
-                radius="3xl"
-                hover={false}
-                className="w-full grid grid-cols-1 lg:grid-cols-12 overflow-hidden border border-[#E2E6EE] dark:border-white/10"
+          {ACTION_PROJECTS.map((project, idx) => {
+            const isCurrent = idx === activeIndex;
+            const isPrev = idx === prevIndex;
+
+            let targetX = 0;
+            let targetOpacity = 0;
+            let zIndex = 0;
+            let pointerEvents = 'none';
+
+            if (isCurrent) {
+              targetX = 0;
+              targetOpacity = 1;
+              zIndex = 10;
+              pointerEvents = 'auto';
+            } else if (isPrev) {
+              targetX = isReducedMotion ? 0 : (direction > 0 ? -60 : 60);
+              targetOpacity = 0;
+              zIndex = 5;
+              pointerEvents = 'none';
+            } else {
+              targetX = isReducedMotion ? 0 : (direction > 0 ? 60 : -60);
+              targetOpacity = 0;
+              zIndex = 0;
+              pointerEvents = 'none';
+            }
+
+            return (
+              <motion.div
+                key={project.id}
+                initial={false}
+                animate={{
+                  x: targetX,
+                  opacity: targetOpacity,
+                }}
+                transition={{
+                  x: { duration: isReducedMotion ? 0.01 : 0.5, ease: [0.22, 1, 0.36, 1] },
+                  opacity: { duration: isReducedMotion ? 0.01 : (isCurrent ? 0.45 : 0.3), ease: isCurrent ? 'easeOut' : 'easeIn' },
+                }}
+                className={`col-start-1 row-start-1 w-full h-full ${
+                  isCurrent ? 'relative z-10' : (isPrev ? 'relative z-[5]' : 'invisible pointer-events-none')
+                }`}
+                style={{
+                  zIndex,
+                  pointerEvents,
+                }}
+                aria-hidden={!isCurrent}
               >
-                {/* LEFT 5 COLS: Lavender-tinted Outcome & Metric Panel (Matching Image 3) */}
-              <div className="lg:col-span-5 p-8 sm:p-10 lg:p-12 bg-[#EEF2F8] dark:bg-[#131A24] flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-[#E2E6EE] dark:border-white/10 relative overflow-hidden">
-                {/* Blueprint grid subtle background */}
-                <div className="absolute inset-0 blueprint-grid opacity-15 pointer-events-none" />
+                <Card
+                  variant="white"
+                  radius="3xl"
+                  hover={false}
+                  className="w-full h-full grid grid-cols-1 lg:grid-cols-12 overflow-hidden border border-[#E2E6EE] dark:border-white/10"
+                >
+                  {/* LEFT 5 COLS: Lavender-tinted Outcome & Metric Panel */}
+                  <div className="lg:col-span-5 p-8 sm:p-10 lg:p-12 bg-[#EEF2F8] dark:bg-[#131A24] flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-[#E2E6EE] dark:border-white/10 relative overflow-hidden min-h-[240px] sm:min-h-[260px] lg:min-h-0">
+                    {/* Blueprint grid subtle background */}
+                    <div className="absolute inset-0 blueprint-grid opacity-15 pointer-events-none" />
 
-                {/* Top: Discipline Badge & Client Type */}
-                <div className="relative z-10 flex items-center justify-between gap-3">
-                  <Badge variant="navy" size="xs">
-                    {currentProject.discipline}
-                  </Badge>
-                  <span className="text-xs text-[#5A6679] dark:text-[#9BA8BA]">
-                    {currentProject.clientType}
-                  </span>
-                </div>
-
-                {/* Center: Large Verified Result Metric */}
-                <div className="relative z-10 my-auto py-8">
-                  <div className="text-xs font-semibold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8] mb-2">
-                    Verified Outcome
-                  </div>
-                  <div className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#111827] dark:text-white tracking-tight leading-tight">
-                    {currentProject.metricNum}{' '}
-                    <span className="font-light text-2xl sm:text-3xl lg:text-4xl block sm:inline text-[#111827] dark:text-white">
-                      {currentProject.metricPhrase}
-                    </span>
-                  </div>
-                  <div className="text-xs sm:text-sm text-[#5A6679] dark:text-[#9BA8BA] mt-2 font-normal">
-                    Documented in production project release logs
-                  </div>
-                </div>
-              </div>
-
-              {/* RIGHT 7 COLS: Pure White Narrative & Deliverables Panel */}
-              <div className="lg:col-span-7 p-8 sm:p-10 lg:p-12 bg-white dark:bg-[#11161B] flex flex-col justify-between text-left">
-                <div className="space-y-5">
-                  <div className="text-xs font-semibold uppercase tracking-wider text-[#5A6679] dark:text-[#9BA8BA]">
-                    Case Insight · 0{currentProject.id}
-                  </div>
-
-                  <h3 className="text-2xl sm:text-3xl font-light text-[#111827] dark:text-white leading-tight">
-                    {currentProject.title}
-                  </h3>
-
-                  <p className="text-sm sm:text-base text-[#475569] dark:text-[#9BA8BA] leading-relaxed font-normal">
-                    {currentProject.outcome}
-                  </p>
-
-                  {/* Deliverables List matching reference card style (Image 3) */}
-                  <div className="space-y-2.5 pt-2">
-                    <div className="text-xs font-semibold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8]">
-                      Key Production Deliverables
+                    {/* Top: Discipline Badge & Client Type */}
+                    <div className="relative z-10 flex items-center justify-between gap-3">
+                      <Badge variant="navy" size="xs">
+                        {project.discipline}
+                      </Badge>
+                      <span className="text-xs text-[#5A6679] dark:text-[#9BA8BA]">
+                        {project.clientType}
+                      </span>
                     </div>
-                    {currentProject.deliverables.map((item, dIdx) => (
-                      <div key={dIdx} className="flex items-center gap-2.5 text-sm sm:text-[15px] text-[#1E293B] dark:text-white/90">
-                        <CheckCircle2 className="w-4 h-4 text-[#5846F6] shrink-0" />
-                        <span>{item}</span>
+
+                    {/* Center: Large Verified Result Metric */}
+                    <div className="relative z-10 my-auto py-8">
+                      <div className="text-xs font-semibold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8] mb-2">
+                        Verified Outcome
                       </div>
-                    ))}
+                      <div className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#111827] dark:text-white tracking-tight leading-tight">
+                        {project.metricNum}{' '}
+                        <span className="font-light text-2xl sm:text-3xl lg:text-4xl block sm:inline text-[#111827] dark:text-white">
+                          {project.metricPhrase}
+                        </span>
+                      </div>
+                      <div className="text-xs sm:text-sm text-[#5A6679] dark:text-[#9BA8BA] mt-2 font-normal">
+                        Documented in production project release logs
+                      </div>
+                    </div>
                   </div>
 
-                  {/* Technical Standards */}
-                  <div className="text-xs text-[#5A6679] dark:text-[#9BA8BA] pt-1">
-                    Governed Under: {currentProject.standards}
-                  </div>
-                </div>
-              </div>
+                  {/* RIGHT 7 COLS: Pure White Narrative & Deliverables Panel */}
+                  <div className="lg:col-span-7 p-8 sm:p-10 lg:p-12 bg-white dark:bg-[#11161B] flex flex-col justify-between text-left">
+                    <div className="space-y-5">
+                      <div className="text-xs font-semibold uppercase tracking-wider text-[#5A6679] dark:text-[#9BA8BA]">
+                        Case Insight · 0{project.id}
+                      </div>
 
-              </Card>
-            </motion.div>
-          </AnimatePresence>
+                      <h3 className="text-2xl sm:text-3xl font-light text-[#111827] dark:text-white leading-tight min-h-[56px] sm:min-h-[64px] flex items-center">
+                        {project.title}
+                      </h3>
+
+                      <p className="text-sm sm:text-base text-[#475569] dark:text-[#9BA8BA] leading-relaxed font-normal min-h-[64px] sm:min-h-[72px] flex items-center">
+                        {project.outcome}
+                      </p>
+
+                      {/* Deliverables List matching reference card style */}
+                      <div className="space-y-2.5 pt-2 min-h-[110px] sm:min-h-[116px]">
+                        <div className="text-xs font-semibold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8]">
+                          Key Production Deliverables
+                        </div>
+                        {project.deliverables.map((item, dIdx) => (
+                          <div key={dIdx} className="flex items-center gap-2.5 text-sm sm:text-[15px] text-[#1E293B] dark:text-white/90">
+                            <CheckCircle2 className="w-4 h-4 text-[#5846F6] shrink-0" />
+                            <span>{item}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Technical Standards */}
+                      <div className="text-xs text-[#5A6679] dark:text-[#9BA8BA] pt-1">
+                        Governed Under: {project.standards}
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* 
