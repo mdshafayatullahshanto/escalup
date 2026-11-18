@@ -343,9 +343,11 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
             </div>
             <h3 className="text-3xl sm:text-4xl font-light text-[#111827] dark:text-white tracking-tight mb-3">
               Data Security &{' '}
-              <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
-                Client Environment
-              </span>
+              <HighlightUnderline>
+                <span className="font-semibold bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent">
+                  Client Environment
+                </span>
+              </HighlightUnderline>
             </h3>
             <p className="text-sm sm:text-base text-[#475569] dark:text-[#9BA8BA] max-w-2xl mx-auto font-normal">
               Client data security is a core requirement of every escalup engagement. We work under your rules, in your environment, when you require it.
