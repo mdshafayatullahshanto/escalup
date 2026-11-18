@@ -93,7 +93,7 @@ export default function CareersBanner({ onOpenCalendly: _onOpenCalendly }) {
                   <img
                     src={founderImg}
                     alt="Md. Shafayat Ullah Shanto - Founder & Lead Mechanical Engineer at escalup"
-                    className="w-full h-full object-cover object-top transition-all duration-500"
+                    className="w-full h-full object-cover object-center transition-all duration-500"
                   />
                 </div>
 
