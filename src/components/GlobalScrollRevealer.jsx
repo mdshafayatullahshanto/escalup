@@ -90,7 +90,7 @@ export default function GlobalScrollRevealer() {
         // 2. Prevent double animation: if candidate B is inside candidate A (e.g. p inside a card),
         //    keep the card container as the single animated unit and skip B.
         const validCandidates = rawCandidates.filter((el) => {
-          if (el.closest(EXCLUDE_CONTAINERS)) return false;
+          if (el.closest(EXCLUDE_CONTAINERS) || el.closest('[data-scroll-animated="true"]')) return false;
           if (
             el.getAttribute('data-revealed') === 'true' ||
             el.getAttribute('data-reveal') === 'done' ||

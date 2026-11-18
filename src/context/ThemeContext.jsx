@@ -1,33 +1,67 @@
 // /src/context/ThemeContext.jsx
-// Full light/dark/auto theme system with localStorage persistence and system preference detection
+// Full light/dark/auto theme system with real-time OS preference detection
 /* eslint-disable react-refresh/only-export-components */
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
 const ThemeContext = createContext({
   theme: 'light',
+  themeMode: 'auto',
   isDark: false,
+  setThemeMode: () => {},
   toggleTheme: () => {},
+  cycleTheme: () => {},
 });
 
-function getInitialTheme() {
+function getSystemPrefersDark() {
+  if (typeof window === 'undefined' || !window.matchMedia) return false;
+  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+
+function getInitialMode() {
   try {
-    const stored = localStorage.getItem('escalup_theme');
-    if (stored === 'dark' || stored === 'light') return stored;
+    const storedMode = localStorage.getItem('escalup_theme_mode');
+    if (storedMode === 'auto' || storedMode === 'dark' || storedMode === 'light') {
+      return storedMode;
+    }
+    // Clean up legacy key so it does not block auto mode
+    localStorage.removeItem('escalup_theme');
   } catch { /* ignore */ }
-  if (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    return 'dark';
-  }
-  return 'light';
+  return 'auto';
 }
 
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState(getInitialTheme);
+  const [themeMode, setThemeModeState] = useState(getInitialMode);
+  const [systemPrefersDark, setSystemPrefersDark] = useState(getSystemPrefersDark);
 
+  // Compute active theme from themeMode and system preference
+  const isDark = themeMode === 'dark' || (themeMode === 'auto' && systemPrefersDark);
+  const theme = isDark ? 'dark' : 'light';
+
+  // Listen in real-time to OS system theme changes
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    const handler = (e) => {
+      setSystemPrefersDark(e.matches);
+    };
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', handler);
+      return () => mediaQuery.removeEventListener('change', handler);
+    } else if (mediaQuery.addListener) {
+      mediaQuery.addListener(handler);
+      return () => mediaQuery.removeListener(handler);
+    }
+  }, []);
+
+  // Sync document root class, CSS colorScheme, and mobile theme-color meta tag
   useEffect(() => {
     const root = document.documentElement;
     const themeColorMeta = document.querySelector('meta[name="theme-color"]');
-    if (theme === 'dark') {
+
+    if (isDark) {
       root.classList.add('dark');
       root.style.colorScheme = 'dark';
       if (themeColorMeta) themeColorMeta.setAttribute('content', '#080C0F');
@@ -36,73 +70,49 @@ export function ThemeProvider({ children }) {
       root.style.colorScheme = 'light';
       if (themeColorMeta) themeColorMeta.setAttribute('content', '#0070AD');
     }
-  }, [theme]);
+  }, [isDark]);
 
-  // Dynamically listen for OS / device preference changes
-  useEffect(() => {
-    if (typeof window === 'undefined' || !window.matchMedia) return;
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleSystemChange = (e) => {
-      try {
-        const stored = localStorage.getItem('escalup_theme');
-        if (!stored || stored === 'auto') {
-          setTheme(e.matches ? 'dark' : 'light');
-        }
-      } catch {
-        setTheme(e.matches ? 'dark' : 'light');
+  // Set explicit mode ('auto', 'light', or 'dark') and persist
+  const setThemeMode = (mode) => {
+    setThemeModeState(mode);
+    try {
+      localStorage.setItem('escalup_theme_mode', mode);
+      if (mode === 'auto') {
+        localStorage.removeItem('escalup_theme');
+      } else {
+        localStorage.setItem('escalup_theme', mode);
       }
-    };
-    mediaQuery.addEventListener?.('change', handleSystemChange);
-    return () => mediaQuery.removeEventListener?.('change', handleSystemChange);
-  }, []);
+    } catch { /* ignore */ }
+  };
 
-  const toggleTheme = (e) => {
-    const isReduced = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
-    const applyThemeChange = () => {
-      setTheme((prev) => {
-        const next = prev === 'dark' ? 'light' : 'dark';
-        try { localStorage.setItem('escalup_theme', next); } catch { /* ignore */ }
-        return next;
-      });
-    };
+  // Toggle between dark and light
+  const toggleTheme = () => {
+    const next = isDark ? 'light' : 'dark';
+    setThemeMode(next);
+  };
 
-    if (!document.startViewTransition || isReduced) {
-      applyThemeChange();
-      return;
+  // Cycle between auto -> dark -> light -> auto
+  const cycleTheme = () => {
+    let next = 'auto';
+    if (themeMode === 'auto') {
+      next = isDark ? 'light' : 'dark';
+    } else if (themeMode === 'dark') {
+      next = 'light';
+    } else {
+      next = 'auto';
     }
-
-    const x = e?.clientX ?? (window.innerWidth / 2);
-    const y = e?.clientY ?? (window.innerHeight / 2);
-    const endRadius = Math.hypot(
-      Math.max(x, window.innerWidth - x),
-      Math.max(y, window.innerHeight - y)
-    );
-
-    const transition = document.startViewTransition(() => {
-      applyThemeChange();
-    });
-
-    transition.ready.then(() => {
-      const clipPath = [
-        `circle(0px at ${x}px ${y}px)`,
-        `circle(${endRadius}px at ${x}px ${y}px)`
-      ];
-      document.documentElement.animate(
-        {
-          clipPath: clipPath,
-        },
-        {
-          duration: 480,
-          easing: 'ease-in-out',
-          pseudoElement: '::view-transition-new(root)',
-        }
-      );
-    });
+    setThemeMode(next);
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, isDark: theme === 'dark', toggleTheme }}>
+    <ThemeContext.Provider value={{
+      theme,
+      themeMode,
+      isDark,
+      setThemeMode,
+      toggleTheme,
+      cycleTheme,
+    }}>
       {children}
     </ThemeContext.Provider>
   );

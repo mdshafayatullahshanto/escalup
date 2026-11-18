@@ -6,8 +6,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ArrowRight, ShieldCheck } from 'lucide-react';
+import { X, ArrowRight, ShieldCheck, Sun, Moon, Laptop } from 'lucide-react';
 import { companyData } from '../data/company';
+import { useTheme } from '../context/ThemeContext';
 import Logo from './Logo';
 
 const NAV_ITEMS = [
@@ -22,6 +23,7 @@ const NAV_ITEMS = [
 ];
 
 export default function Navbar({ onOpenCalendly: _onOpenCalendly }) {
+  const { themeMode, isDark, cycleTheme, setThemeMode } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
@@ -176,11 +178,26 @@ export default function Navbar({ onOpenCalendly: _onOpenCalendly }) {
             })}
           </nav>
 
-          {/* RIGHT: Circular Hamburger Menu Button (Matches Navbar height, no permanent glow) */}
-          <div className="flex items-center">
+          {/* RIGHT: Theme Toggle & Circular Hamburger Menu Button */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={cycleTheme}
+              className="w-9 h-9 rounded-full bg-white dark:bg-[#151D26] border border-[#D8DFEB] dark:border-white/10 shadow-xs hover:border-[#0070AD] dark:hover:border-[#38BDF8] hover:scale-105 active:scale-95 transition-all flex items-center justify-center cursor-pointer text-[#475569] dark:text-[#9BA8BA]"
+              aria-label={`Current theme: ${themeMode === 'auto' ? 'Auto (System)' : themeMode}. Click to cycle theme.`}
+              title={`Theme: ${themeMode === 'auto' ? 'Auto (System)' : themeMode === 'dark' ? 'Dark' : 'Light'}`}
+            >
+              {themeMode === 'auto' ? (
+                <Laptop className="w-4 h-4 text-[#0070AD] dark:text-[#38BDF8]" />
+              ) : isDark ? (
+                <Moon className="w-4 h-4 text-[#38BDF8]" />
+              ) : (
+                <Sun className="w-4 h-4 text-[#F59E0B]" />
+              )}
+            </button>
+
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="w-9 h-9 rounded-full bg-white border-2 border-[#2563EB] shadow-xs hover:border-[#1D4ED8] hover:shadow-[0_0_10px_rgba(37,99,235,0.4)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center cursor-pointer relative z-50 group"
+              className="w-9 h-9 rounded-full bg-white dark:bg-[#151D26] border-2 border-[#2563EB] shadow-xs hover:border-[#1D4ED8] hover:shadow-[0_0_10px_rgba(37,99,235,0.4)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center cursor-pointer relative z-50 group"
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               title="Menu"
             >
@@ -271,7 +288,50 @@ export default function Navbar({ onOpenCalendly: _onOpenCalendly }) {
               </div>
 
               {/* Drawer Bottom Actions */}
-              <div className="p-6 sm:p-8 border-t border-[#E2E6EE] dark:border-white/10 bg-[#F6F7FC] dark:bg-[#11161B] space-y-3">
+              <div className="p-6 sm:p-8 border-t border-[#E2E6EE] dark:border-white/10 bg-[#F6F7FC] dark:bg-[#11161B] space-y-3.5">
+                {/* Theme Mode Selector in Drawer */}
+                <div className="pb-1">
+                  <div className="text-[10px] font-semibold uppercase tracking-wider text-[#5A6679] dark:text-[#9BA8BA] mb-2 flex items-center justify-between">
+                    <span>Appearance</span>
+                    <span className="text-[#0070AD] dark:text-[#38BDF8] capitalize font-semibold">{themeMode === 'auto' ? 'Auto (System)' : themeMode}</span>
+                  </div>
+                  <div className="grid grid-cols-3 gap-1.5 p-1 bg-[#EEF2F8] dark:bg-[#151D26] rounded-xl border border-[#D8DFEB] dark:border-white/10 text-xs font-medium">
+                    <button
+                      onClick={() => setThemeMode('auto')}
+                      className={`py-1.5 rounded-lg flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+                        themeMode === 'auto'
+                          ? 'bg-white dark:bg-[#202B37] text-[#111827] dark:text-white shadow-xs font-semibold'
+                          : 'text-[#5A6679] dark:text-[#9BA8BA] hover:text-[#111827] dark:hover:text-white'
+                      }`}
+                    >
+                      <Laptop className="w-3.5 h-3.5" />
+                      <span>Auto</span>
+                    </button>
+                    <button
+                      onClick={() => setThemeMode('light')}
+                      className={`py-1.5 rounded-lg flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+                        themeMode === 'light'
+                          ? 'bg-white dark:bg-[#202B37] text-[#111827] dark:text-white shadow-xs font-semibold'
+                          : 'text-[#5A6679] dark:text-[#9BA8BA] hover:text-[#111827] dark:hover:text-white'
+                      }`}
+                    >
+                      <Sun className="w-3.5 h-3.5 text-[#F59E0B]" />
+                      <span>Light</span>
+                    </button>
+                    <button
+                      onClick={() => setThemeMode('dark')}
+                      className={`py-1.5 rounded-lg flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+                        themeMode === 'dark'
+                          ? 'bg-white dark:bg-[#202B37] text-[#111827] dark:text-white shadow-xs font-semibold'
+                          : 'text-[#5A6679] dark:text-[#9BA8BA] hover:text-[#111827] dark:hover:text-white'
+                      }`}
+                    >
+                      <Moon className="w-3.5 h-3.5 text-[#38BDF8]" />
+                      <span>Dark</span>
+                    </button>
+                  </div>
+                </div>
+
                 <div className="flex items-center gap-2 text-xs text-[#5A6679] dark:text-[#9BA8BA]">
                   <ShieldCheck className="w-4 h-4 text-[#5846F6]" />
                   <span>Mutual NDA & 100% Client IP Ownership</span>
