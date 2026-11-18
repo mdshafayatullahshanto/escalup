@@ -10,6 +10,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowRight, CheckCircle2 } from 'lucide-react';
 import Badge from './ui/Badge';
+import Card from './ui/Card';
 import GlassBadge from './ui/GlassBadge';
 import { BlurReveal, HighlightUnderline } from './ui/ScrollAnimations';
 
@@ -314,9 +315,14 @@ export default function InActionCarousel() {
                   prevSlide();
                 }
               }}
-              className="w-full rounded-3xl bg-white dark:bg-[#11161B] border border-[#E2E6EE] dark:border-white/10 shadow-card hover:shadow-card-hover relative overflow-hidden transition-all duration-300 grid grid-cols-1 lg:grid-cols-12"
             >
-              {/* LEFT 5 COLS: Lavender-tinted Outcome & Metric Panel (Matching Image 3) */}
+              <Card
+                variant="white"
+                radius="3xl"
+                hover={false}
+                className="w-full grid grid-cols-1 lg:grid-cols-12 overflow-hidden border border-[#E2E6EE] dark:border-white/10"
+              >
+                {/* LEFT 5 COLS: Lavender-tinted Outcome & Metric Panel (Matching Image 3) */}
               <div className="lg:col-span-5 p-8 sm:p-10 lg:p-12 bg-[#EEF2F8] dark:bg-[#131A24] flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-[#E2E6EE] dark:border-white/10 relative overflow-hidden">
                 {/* Blueprint grid subtle background */}
                 <div className="absolute inset-0 blueprint-grid opacity-15 pointer-events-none" />
@@ -383,6 +389,7 @@ export default function InActionCarousel() {
                 </div>
               </div>
 
+              </Card>
             </motion.div>
           </AnimatePresence>
         </div>
