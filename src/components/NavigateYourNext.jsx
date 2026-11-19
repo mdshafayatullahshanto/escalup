@@ -157,7 +157,7 @@ export default function NavigateYourNext({ onOpenCalendly: _onOpenCalendly }) {
           </StaggerList>
 
           {/* RIGHT: Content Swapping Panel with Uniform Size (8 cols) */}
-          <div className="lg:col-span-8">
+          <BlurReveal delay={0.15} className="lg:col-span-8">
             <div className="grid grid-cols-1 grid-rows-1 w-full">
               {PILLARS.map((pillar) => {
                 const isActive = activeTab === pillar.id;
@@ -228,7 +228,7 @@ export default function NavigateYourNext({ onOpenCalendly: _onOpenCalendly }) {
                 );
               })}
             </div>
-          </div>
+          </BlurReveal>
 
         </div>
 

@@ -15,7 +15,7 @@ import {
   Cpu
 } from 'lucide-react';
 import GlassBadge from './ui/GlassBadge';
-import { BlurReveal, HighlightUnderline } from './ui/ScrollAnimations';
+import { BlurReveal, StaggerList, StaggerItem, HighlightUnderline } from './ui/ScrollAnimations';
 import { servicesData } from '../data/services';
 
 const PROJECT_STEPS = [
@@ -156,18 +156,18 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
 
         {/* 1. What We Support: All 7 Services */}
         <div className="mb-12 sm:mb-14">
-          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+          <BlurReveal className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
             <span className="text-xs font-semibold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8]">
               Scope of Capabilities
             </span>
             <h3 className="text-2xl sm:text-3xl font-light text-[#111827] dark:text-white tracking-tight mt-1 mb-2">
               What We Support
             </h3>
-          </div>
+          </BlurReveal>
 
-          <div className="flex flex-wrap justify-center gap-4 sm:gap-5">
+          <StaggerList className="flex flex-wrap justify-center gap-4 sm:gap-5">
             {servicesData.map((svc) => (
-              <div 
+              <StaggerItem 
                 key={svc.id}
                 className="w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-0.85rem)] xl:w-[calc(25%-0.95rem)] max-w-sm bg-white dark:bg-[#11161B] rounded-2xl p-5 border border-[#E2E6EE] dark:border-white/10 shadow-card hover:border-[#5846F6]/40 transition-all flex flex-col justify-between min-h-[300px]"
               >
@@ -191,25 +191,25 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
                     {svc.standardsSummary || svc.standardsDetail}
                   </span>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerList>
         </div>
 
         {/* 2. How a Project Works (Steps 1 - 7) */}
         <div className="mb-10 sm:mb-12">
-          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+          <BlurReveal className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
             <span className="text-xs font-semibold uppercase tracking-wider text-[#0070AD] dark:text-[#38BDF8]">
               Execution Cycle
             </span>
             <h3 className="text-2xl sm:text-3xl font-light text-[#111827] dark:text-white tracking-tight mt-1">
               How a Project Works
             </h3>
-          </div>
+          </BlurReveal>
 
-          <div className="flex flex-wrap justify-center gap-6">
+          <StaggerList className="flex flex-wrap justify-center gap-6">
             {PROJECT_STEPS.map((step) => (
-              <div
+              <StaggerItem
                 key={step.step}
                 className="w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] max-w-sm bg-white dark:bg-[#11161B] rounded-2xl p-6 border border-[#E2E6EE] dark:border-white/10 shadow-card flex flex-col justify-between min-h-[190px]"
               >
@@ -224,16 +224,16 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
                     {step.desc}
                   </p>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerList>
         </div>
 
         {/* 3. Communication & Deliverables Grid */}
-        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 mb-10 sm:mb-12">
+        <StaggerList className="grid lg:grid-cols-2 gap-6 lg:gap-8 mb-10 sm:mb-12">
           
           {/* Communication Panel */}
-          <div className="bg-white dark:bg-[#11161B] rounded-3xl p-8 border border-[#E2E6EE] dark:border-white/10 shadow-card">
+          <StaggerItem className="bg-white dark:bg-[#11161B] rounded-3xl p-8 border border-[#E2E6EE] dark:border-white/10 shadow-card">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-xl bg-[#5846F6]/10 text-[#5846F6] flex items-center justify-center">
                 <MessageSquare className="w-5 h-5" />
@@ -250,10 +250,10 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
                 </li>
               ))}
             </ul>
-          </div>
+          </StaggerItem>
 
           {/* Deliverables Panel */}
-          <div className="bg-white dark:bg-[#11161B] rounded-3xl p-8 border border-[#E2E6EE] dark:border-white/10 shadow-card">
+          <StaggerItem className="bg-white dark:bg-[#11161B] rounded-3xl p-8 border border-[#E2E6EE] dark:border-white/10 shadow-card">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-xl bg-[#0070AD]/10 text-[#0070AD] dark:text-[#38BDF8] flex items-center justify-center">
                 <FileCheck className="w-5 h-5" />
@@ -274,15 +274,15 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
                 </div>
               ))}
             </div>
-          </div>
+          </StaggerItem>
 
-        </div>
+        </StaggerList>
 
         {/* 4. Standards, Revision Handling & Engagement Terms */}
-        <div className="grid md:grid-cols-3 gap-6 mb-10 sm:mb-12">
+        <StaggerList className="grid md:grid-cols-3 gap-6 mb-10 sm:mb-12">
           
           {/* Standards */}
-          <div className="bg-white dark:bg-[#11161B] rounded-2xl p-6 border border-[#E2E6EE] dark:border-white/10 shadow-card flex flex-col justify-between">
+          <StaggerItem className="bg-white dark:bg-[#11161B] rounded-2xl p-6 border border-[#E2E6EE] dark:border-white/10 shadow-card flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <Layers className="w-5 h-5 text-[#5846F6]" />
@@ -292,10 +292,10 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
                 We apply the standards required by the project and the client, including ISO, ASME, ASHRAE, NFPA, IPC, BNBC, RSC, PWD and JICA. The governing standards and editions are confirmed at the Requirements & Scope stage.
               </p>
             </div>
-          </div>
+          </StaggerItem>
 
           {/* Revision Handling */}
-          <div className="bg-white dark:bg-[#11161B] rounded-2xl p-6 border border-[#E2E6EE] dark:border-white/10 shadow-card flex flex-col justify-between">
+          <StaggerItem className="bg-white dark:bg-[#11161B] rounded-2xl p-6 border border-[#E2E6EE] dark:border-white/10 shadow-card flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <RotateCcw className="w-5 h-5 text-[#0070AD] dark:text-[#38BDF8]" />
@@ -310,10 +310,10 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
                 ))}
               </ul>
             </div>
-          </div>
+          </StaggerItem>
 
           {/* Engagement Terms */}
-          <div className="bg-white dark:bg-[#11161B] rounded-2xl p-6 border border-[#E2E6EE] dark:border-white/10 shadow-card flex flex-col justify-between">
+          <StaggerItem className="bg-white dark:bg-[#11161B] rounded-2xl p-6 border border-[#E2E6EE] dark:border-white/10 shadow-card flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <Briefcase className="w-5 h-5 text-[#5846F6]" />
@@ -328,16 +328,16 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
                 ))}
               </div>
             </div>
-          </div>
+          </StaggerItem>
 
-        </div>
+        </StaggerList>
 
         {/* ------------------------------------------------------------- */}
         {/* NEW SECTION: DATA SECURITY & CLIENT ENVIRONMENT               */}
         {/* ------------------------------------------------------------- */}
         <div id="data-security" className="scroll-mt-16 pt-4">
           
-          <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-10">
+          <BlurReveal className="max-w-3xl mx-auto text-center mb-8 sm:mb-10">
             <div className="mb-3.5">
               <GlassBadge>Data Security</GlassBadge>
             </div>
@@ -352,12 +352,12 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
             <p className="text-sm sm:text-base text-[#475569] dark:text-[#9BA8BA] max-w-2xl mx-auto font-normal">
               Client data security is a core requirement of every escalup engagement. We work under your rules, in your environment, when you require it.
             </p>
-          </div>
+          </BlurReveal>
 
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 mb-4">
+          <StaggerList className="grid lg:grid-cols-2 gap-6 lg:gap-8 mb-4">
             
             {/* Data Security Card */}
-            <div className="bg-white dark:bg-[#11161B] rounded-3xl p-8 border border-[#E2E6EE] dark:border-white/10 shadow-card space-y-4">
+            <StaggerItem className="bg-white dark:bg-[#11161B] rounded-3xl p-8 border border-[#E2E6EE] dark:border-white/10 shadow-card space-y-4">
               <div className="flex items-center gap-3 pb-3 border-b border-[#E2E6EE] dark:border-white/10">
                 <div className="w-10 h-10 rounded-xl bg-[#5846F6]/10 text-[#5846F6] flex items-center justify-center">
                   <Lock className="w-5 h-5" />
@@ -376,10 +376,10 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
                   </li>
                 ))}
               </ul>
-            </div>
+            </StaggerItem>
 
             {/* Client Environment Card */}
-            <div className="bg-white dark:bg-[#11161B] rounded-3xl p-8 border border-[#E2E6EE] dark:border-white/10 shadow-card flex flex-col justify-between space-y-6">
+            <StaggerItem className="bg-white dark:bg-[#11161B] rounded-3xl p-8 border border-[#E2E6EE] dark:border-white/10 shadow-card flex flex-col justify-between space-y-6">
               <div>
                 <div className="flex items-center gap-3 pb-3 border-b border-[#E2E6EE] dark:border-white/10 mb-4">
                   <div className="w-10 h-10 rounded-xl bg-[#0070AD]/10 text-[#0070AD] dark:text-[#38BDF8] flex items-center justify-center">
@@ -412,9 +412,9 @@ export default function OffshoreModel({ onOpenCalendly: _onOpenCalendly }) {
                 </div>
               </div>
 
-            </div>
+            </StaggerItem>
 
-          </div>
+          </StaggerList>
 
         </div>
 
