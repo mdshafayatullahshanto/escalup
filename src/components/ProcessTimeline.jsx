@@ -15,7 +15,7 @@ import {
   RefreshCw 
 } from 'lucide-react';
 import GlassBadge from './ui/GlassBadge';
-import { BlurReveal, HighlightUnderline } from './ui/ScrollAnimations';
+import { BlurReveal, StaggerList, StaggerItem, HighlightUnderline } from './ui/ScrollAnimations';
 
 const PHASES = [
   {
@@ -127,7 +127,7 @@ export default function ProcessTimeline() {
         </BlurReveal>
 
         {/* 3 Main Phase Columns */}
-        <div className="grid lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+        <StaggerList className="grid lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
           {PHASES.map((phaseGroup, pIdx) => (
             <div key={pIdx} className="flex flex-col h-full">
               {/* Phase Header */}
@@ -145,7 +145,7 @@ export default function ProcessTimeline() {
                 {phaseGroup.steps.map((step) => {
                   const Icon = step.icon;
                   return (
-                    <div
+                    <StaggerItem
                       key={step.num}
                       className="h-full min-h-[190px] sm:min-h-[205px] lg:min-h-[215px] bg-white dark:bg-[#11161B] hover:border-[#5846F6]/40 dark:hover:border-[#5846F6]/40 rounded-2xl p-5 sm:p-6 border border-[#E2E6EE] dark:border-white/10 shadow-card transition-all duration-300 flex flex-col justify-between group cursor-default"
                     >
@@ -172,13 +172,13 @@ export default function ProcessTimeline() {
                           {step.desc}
                         </p>
                       </div>
-                    </div>
+                    </StaggerItem>
                   );
                 })}
               </div>
             </div>
           ))}
-        </div>
+        </StaggerList>
 
       </div>
     </section>

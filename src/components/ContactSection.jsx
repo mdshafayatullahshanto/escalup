@@ -21,7 +21,7 @@ import { trackQuoteSubmit, trackCallBooking } from '../utils/analytics';
 import { submitQuoteRequest } from '../lib/supabase';
 import GlassBadge from './ui/GlassBadge';
 import Button from './ui/Button';
-import { BlurReveal, HighlightUnderline } from './ui/ScrollAnimations';
+import { BlurReveal, StaggerList, StaggerItem, HighlightUnderline } from './ui/ScrollAnimations';
 
 export default function ContactSection({ onOpenCalendly: _onOpenCalendly }) {
   const navigate = useNavigate();
@@ -125,10 +125,10 @@ export default function ContactSection({ onOpenCalendly: _onOpenCalendly }) {
           </p>
         </BlurReveal>
 
-        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+        <StaggerList className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
           
           {/* Main Form Column (50%): White Card with Balanced Padding & Equal-Height Stretch */}
-          <div className="bg-white dark:bg-[#11161F] rounded-3xl p-6 sm:p-8 lg:p-9 border border-[#E2E6EE] dark:border-white/10 shadow-card flex flex-col justify-between h-full">
+          <StaggerItem className="bg-white dark:bg-[#11161F] rounded-3xl p-6 sm:p-8 lg:p-9 border border-[#E2E6EE] dark:border-white/10 shadow-card flex flex-col justify-between h-full">
             
             <div className="flex items-center justify-between pb-5 mb-5 border-b border-[#E2E6EE] dark:border-white/10">
               <div>
@@ -295,13 +295,13 @@ export default function ContactSection({ onOpenCalendly: _onOpenCalendly }) {
               </div>
 
             </form>
-          </div>
+          </StaggerItem>
 
           {/* Right Sidebar: 2 Symmetrical Cards (50% Width, Equal Height Split, Matching Outer Height) */}
           <div className="flex flex-col gap-6 lg:gap-8 h-full">
             
             {/* Card 2: Book Intro Call Card */}
-            <div className="bg-white dark:bg-[#11161F] rounded-3xl p-6 sm:p-8 border border-[#E2E6EE] dark:border-white/10 shadow-card flex-1 flex flex-col justify-between">
+            <StaggerItem className="bg-white dark:bg-[#11161F] rounded-3xl p-6 sm:p-8 border border-[#E2E6EE] dark:border-white/10 shadow-card flex-1 flex flex-col justify-between">
               <div>
                 <div className="w-10 h-10 rounded-2xl bg-[#5846F6]/10 text-[#5846F6] flex items-center justify-center mb-3.5">
                   <Calendar className="w-5 h-5" />
@@ -336,10 +336,10 @@ export default function ContactSection({ onOpenCalendly: _onOpenCalendly }) {
                   <span>Email: {companyData.contact.email}</span>
                 </a>
               </div>
-            </div>
+            </StaggerItem>
 
             {/* Card 3: Operational Location & Lazy-Loaded Map Card */}
-            <div className="bg-white dark:bg-[#11161F] rounded-3xl p-6 sm:p-8 border border-[#E2E6EE] dark:border-white/10 shadow-card flex-1 flex flex-col justify-between">
+            <StaggerItem className="bg-white dark:bg-[#11161F] rounded-3xl p-6 sm:p-8 border border-[#E2E6EE] dark:border-white/10 shadow-card flex-1 flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-2.5 mb-2.5">
                   <div className="w-7 h-7 rounded-xl bg-[#5846F6]/10 text-[#5846F6] flex items-center justify-center shrink-0">
@@ -381,11 +381,11 @@ export default function ContactSection({ onOpenCalendly: _onOpenCalendly }) {
                 />
               </div>
 
-            </div>
+            </StaggerItem>
 
           </div>
 
-        </div>
+        </StaggerList>
 
       </div>
     </section>

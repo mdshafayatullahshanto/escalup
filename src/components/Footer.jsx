@@ -10,6 +10,7 @@ import UnderlineLink from './ui/UnderlineLink';
 import { servicesData } from '../data/services';
 import { companyData } from '../data/company';
 import Logo from './Logo';
+import { BlurReveal, StaggerList, StaggerItem } from './ui/ScrollAnimations';
 
 export default function Footer() {
   const navigate = useNavigate();
@@ -39,18 +40,18 @@ export default function Footer() {
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Brand Header */}
-        <div data-reveal-item="true" className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-8 border-b border-[#E2E6EE] dark:border-white/10 mb-10">
+        <BlurReveal className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-8 border-b border-[#E2E6EE] dark:border-white/10 mb-10">
           <Logo size="md" />
           <p className="text-xs sm:text-sm text-[#475569] dark:text-[#9BA8BA] whitespace-normal sm:whitespace-nowrap">
             Offshore Mechanical Design, BIM & MEP engineering support for global innovators.
           </p>
-        </div>
+        </BlurReveal>
 
         {/* Top: 4 Link Columns Architecture */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:justify-between lg:items-start gap-8 lg:gap-8 pb-10 border-b border-[#E2E6EE] dark:border-white/10">
+        <StaggerList className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:justify-between lg:items-start gap-8 lg:gap-8 pb-10 border-b border-[#E2E6EE] dark:border-white/10">
           
           {/* Column 1: Services (All 7 in exact order - single line per topic) */}
-          <div data-reveal-item="true" className="space-y-4 sm:col-span-2 lg:col-span-auto shrink-0">
+          <StaggerItem className="space-y-4 sm:col-span-2 lg:col-span-auto shrink-0">
             <h4 className="text-sm font-semibold uppercase tracking-wider text-[#111827] dark:text-white whitespace-nowrap">
               Engineering Services
             </h4>
@@ -67,10 +68,10 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </StaggerItem>
 
           {/* Column 2: Navigation Links (Matching navbar order) */}
-          <div data-reveal-item="true" className="space-y-4 shrink-0">
+          <StaggerItem className="space-y-4 shrink-0">
             <h4 className="text-sm font-semibold uppercase tracking-wider text-[#111827] dark:text-white whitespace-nowrap">
               Navigation
             </h4>
@@ -116,10 +117,10 @@ export default function Footer() {
                 </UnderlineLink>
               </li>
             </ul>
-          </div>
+          </StaggerItem>
 
           {/* Column 3: Data Security & Governance */}
-          <div data-reveal-item="true" className="space-y-4 shrink-0">
+          <StaggerItem className="space-y-4 shrink-0">
             <h4 className="text-sm font-semibold uppercase tracking-wider text-[#111827] dark:text-white whitespace-nowrap">
               Data Security & Standards
             </h4>
@@ -150,10 +151,10 @@ export default function Footer() {
                 </UnderlineLink>
               </li>
             </ul>
-          </div>
+          </StaggerItem>
 
           {/* Column 4: Contact & Leadership */}
-          <div data-reveal-item="true" className="space-y-4 shrink-0">
+          <StaggerItem className="space-y-4 shrink-0">
             <h4 className="text-sm font-semibold uppercase tracking-wider text-[#111827] dark:text-white whitespace-nowrap">
               Office & Contact
             </h4>
@@ -169,16 +170,16 @@ export default function Footer() {
                 </a>
               </div>
             </div>
-          </div>
+          </StaggerItem>
 
-        </div>
+        </StaggerList>
 
         {/* Bottom Bar: Copyright Row */}
-        <div data-reveal-item="true" className="pt-8 flex items-center justify-center text-center">
+        <BlurReveal delay={0.15} className="pt-8 flex items-center justify-center text-center">
           <div className="text-xs text-[#5A6679] dark:text-[#9BA8BA]">
             Copyright © 2026 <span className="bg-gradient-to-r from-[#0070AD] to-[#5846F6] bg-clip-text text-transparent font-semibold">escalup</span>. All rights reserved.
           </div>
-        </div>
+        </BlurReveal>
 
       </div>
     </footer>

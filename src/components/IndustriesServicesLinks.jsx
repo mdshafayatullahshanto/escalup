@@ -4,7 +4,7 @@
 import React from 'react';
 import UnderlineLink from './ui/UnderlineLink';
 import GlassBadge from './ui/GlassBadge';
-import { BlurReveal, HighlightUnderline } from './ui/ScrollAnimations';
+import { BlurReveal, StaggerList, StaggerItem, HighlightUnderline } from './ui/ScrollAnimations';
 
 const DIRECTORY_COLUMNS = [
   {
@@ -69,9 +69,9 @@ export default function IndustriesServicesLinks() {
         </BlurReveal>
 
         {/* 4-Column Layout without horizontal scrollbar - perfectly adjusted positions */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:justify-between lg:items-start gap-6 sm:gap-8 lg:gap-4 xl:gap-6 2xl:gap-8">
+        <StaggerList className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:justify-between lg:items-start gap-6 sm:gap-8 lg:gap-4 xl:gap-6 2xl:gap-8">
           {DIRECTORY_COLUMNS.map((col, idx) => (
-            <div key={idx} data-reveal-item="true" className="space-y-3.5 sm:space-y-4 shrink-0">
+            <StaggerItem key={idx} className="space-y-3.5 sm:space-y-4 shrink-0">
               <h3 className="text-sm lg:text-[15px] xl:text-base font-bold text-[#111827] dark:text-white pb-3 border-b border-[#E2E6EE] dark:border-white/10 flex items-center justify-between gap-3 whitespace-nowrap">
                 <span>{col.title}</span>
                 <span className="w-1.5 h-1.5 rounded-full bg-[#0070AD] shrink-0" />
@@ -92,9 +92,9 @@ export default function IndustriesServicesLinks() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerList>
 
       </div>
     </section>

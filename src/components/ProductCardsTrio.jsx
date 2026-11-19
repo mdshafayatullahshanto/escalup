@@ -5,7 +5,7 @@
 import React from 'react';
 import { Cpu, Layers, Wrench, CheckCircle2 } from 'lucide-react';
 import GlassBadge from './ui/GlassBadge';
-import { BlurReveal, HighlightUnderline } from './ui/ScrollAnimations';
+import { BlurReveal, StaggerList, StaggerItem, HighlightUnderline } from './ui/ScrollAnimations';
 
 const TRIO_CARDS = [
   {
@@ -64,11 +64,11 @@ export default function ProductCardsTrio() {
         </BlurReveal>
 
         {/* 3 Tall Product Cards — Unified with Flagship Middle Card Style */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+        <StaggerList className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
           {TRIO_CARDS.map((card) => {
             const Icon = card.icon;
             return (
-              <div
+              <StaggerItem
                 key={card.id}
                 className="flex flex-col rounded-3xl overflow-hidden transition-all duration-300 border-2 border-[#0070AD]/40 dark:border-[#38BDF8]/40 shadow-2xl hover:border-[#0070AD]/70 hover:shadow-card-hover"
               >
@@ -116,10 +116,10 @@ export default function ProductCardsTrio() {
                   </div>
                 </div>
 
-              </div>
+              </StaggerItem>
             );
           })}
-        </div>
+        </StaggerList>
 
       </div>
     </section>
