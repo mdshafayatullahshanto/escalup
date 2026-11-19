@@ -23,7 +23,7 @@ const NAV_ITEMS = [
 ];
 
 export default function Navbar({ onOpenCalendly: _onOpenCalendly }) {
-  const { themeMode, isDark, cycleTheme, setThemeMode } = useTheme();
+  const { themeMode, setThemeMode } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
@@ -178,23 +178,8 @@ export default function Navbar({ onOpenCalendly: _onOpenCalendly }) {
             })}
           </nav>
 
-          {/* RIGHT: Theme Toggle & Circular Hamburger Menu Button */}
-          <div className="flex items-center gap-2">
-            <button
-              onClick={cycleTheme}
-              className="w-9 h-9 rounded-full bg-white dark:bg-[#151D26] border border-[#D8DFEB] dark:border-white/10 shadow-xs hover:border-[#0070AD] dark:hover:border-[#38BDF8] hover:scale-105 active:scale-95 transition-all flex items-center justify-center cursor-pointer text-[#475569] dark:text-[#9BA8BA]"
-              aria-label={`Current theme: ${themeMode === 'auto' ? 'Auto (System)' : themeMode}. Click to cycle theme.`}
-              title={`Theme: ${themeMode === 'auto' ? 'Auto (System)' : themeMode === 'dark' ? 'Dark' : 'Light'}`}
-            >
-              {themeMode === 'auto' ? (
-                <Laptop className="w-4 h-4 text-[#0070AD] dark:text-[#38BDF8]" />
-              ) : isDark ? (
-                <Moon className="w-4 h-4 text-[#38BDF8]" />
-              ) : (
-                <Sun className="w-4 h-4 text-[#F59E0B]" />
-              )}
-            </button>
-
+          {/* RIGHT: Circular Hamburger Menu Button (Matches Navbar height, no permanent glow) */}
+          <div className="flex items-center">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               className="w-9 h-9 rounded-full bg-white dark:bg-[#151D26] border-2 border-[#2563EB] shadow-xs hover:border-[#1D4ED8] hover:shadow-[0_0_10px_rgba(37,99,235,0.4)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center cursor-pointer relative z-50 group"
